@@ -15,8 +15,6 @@ export const Login = () => {
     const { mobileOrEmail, password } = inputs;
     const dispatch = useDispatch()
 
-    const [message, setMessage] = useState('')
-    
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -32,11 +30,11 @@ export const Login = () => {
 
     return (
         <Container>
-            <form className="text-center register-form" onSubmit={formHandeler} >
+            <form  onSubmit={formHandeler} >
                 <input className="text-right" type="text" name="mobileOrEmail" placeholder="نام کاربری" onChange={handleChange} required /><br />
                 <input className="text-right" type="password" name="password" placeholder="رمز عبور" onChange={handleChange} required /><br />
                 <button type="submit">ورود</button> <br />
-                <a className="login-option" href="/register">ثبت نام</a> <br />
+                <a href="/register">ثبت نام</a> <br />
             </form>
         </Container>
     )
