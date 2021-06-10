@@ -9,6 +9,7 @@ import { Redirect, Route, Router, Switch } from 'react-router';
 import { Login } from './components/login'
 import { Register } from './components/register';
 import { Customers } from './components/customers/customers.js';
+import { Finance } from './components/finance/finance.js';
 
 
 function App() {
@@ -16,8 +17,9 @@ function App() {
         <Router history={history}>
             <Switch>
             <Route exact path="/" component={Login} />
-            <Route exact path="/register" component={Register} />
-            <PrivateRoute exact path="/customers" component={Customers} ></PrivateRoute>
+            <Route path="/register" component={Register} />
+            <PrivateRoute path="/customers" component={Customers} ></PrivateRoute>
+            <PrivateRoute path="/finance" component={Finance}></PrivateRoute>
             <PrivateRoute path="/dashboard" component={Dashboard} ></PrivateRoute>
             <PrivateRoute path="/addOrder" component={AddOrder} ></PrivateRoute>
             <Redirect from="*" to="/" />
