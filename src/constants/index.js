@@ -1,2 +1,3 @@
 export * from './userConstants';
-export * from './alertConstants'
+export * from './alertConstants';
+export * from './customerConstants'

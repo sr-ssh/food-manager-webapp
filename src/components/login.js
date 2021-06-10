@@ -30,7 +30,7 @@ export const Login = () => {
 
     return (
         <Container>
-            <form  onSubmit={formHandeler} >
+            <form onSubmit={formHandeler} >
                 <input className="text-right" type="text" name="mobileOrEmail" placeholder="نام کاربری" onChange={handleChange} required /><br />
                 <input className="text-right" type="password" name="password" placeholder="رمز عبور" onChange={handleChange} required /><br />
                 <button type="submit">ورود</button> <br />
