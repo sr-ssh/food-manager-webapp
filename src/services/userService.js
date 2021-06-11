@@ -15,7 +15,8 @@ function login(mobileOrEmail, password) {
     return axios
         .post(`${baseRoute}/login`, {mobileOrEmail, password})
         .then(res => {
-            console.log("res.user >> "); console.log(res.data.data);
+            console.log("res.user >> "); 
+            console.log(res.data.data);
             // store user details and jwt token in local storage to keep user logged in between page refreshes
             localStorage.setItem('user', JSON.stringify(res.data.data));
             return res.data.data
