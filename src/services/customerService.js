@@ -1,6 +1,7 @@
 
 import axios from 'axios';
 import { SERVER_URL } from '../config';
+import { authHeader } from '../helpers';
 
 let baseRoute = SERVER_URL;
 
@@ -11,16 +12,11 @@ export const customerService = {
 
 function getCustomers() {
     console.log("into customerService");
-    let user = localStorage.getItem('user')
-    user = JSON.parse(user)
-    let data = {
-        headers:{
-            'authorization': user.accessToken,
-            'idtoken': user.idToken
-        }
-    }
+    const requestOptions = {
+        headers: authHeader()
+    };
     return axios
-        .get(`${baseRoute}/customer`, data)
+        .get(`${baseRoute}/customer`, requestOptions)
         .then(res => {
             console.log("res.customers >> "); console.log(res.data.data);
             return res.data.data
