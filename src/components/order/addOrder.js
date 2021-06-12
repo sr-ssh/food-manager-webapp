@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { productActions } from '../../actions';
+import { productActions, orderActions  } from '../../actions';
 
 
 export const AddOrder = () => {
@@ -11,7 +11,7 @@ export const AddOrder = () => {
     const dispatch = useDispatch()
     const products = useSelector(state => state.getProducts.product)
 
-    let orderHandler = (e, product) => {
+    let newOrder = (e, product) => {
         e.preventDefault();
         insertPrice(totalPrice + parseInt(product.sellingPrice))
         let newOrder = {
@@ -35,6 +35,23 @@ export const AddOrder = () => {
         }
     };
 
+    let removeOrder = (e, product) => {
+        e.preventDefault()
+        insertPrice(totalPrice - parseInt(product.sellingPrice))
+        let updatedOrder = order.map((item) => {
+            if (item._id === product._id) {
+                return {...item, quantity: --item.quantity};
+            }
+            return item;
+        });
+        
+        if(product.quantity === 0) {
+            updatedOrder = updatedOrder.filter(item => item._id !== product._id)
+        }
+        
+        insertOrder(updatedOrder)
+    }
+
     let productHandler = (e) => {
         e.preventDefault()
         dispatch(productActions.getProducts())
@@ -42,17 +59,20 @@ export const AddOrder = () => {
 
     let handleChange = (e) => {
         e.preventDefault()
-        console.log('handleChange')
+        setCustomer({...customer, [e.target.name]: e.target.value})
     }
 
     let formHandler = (e) => {
         e.preventDefault()
-        console.log('formHandler')
+        if(order.length) {
+            dispatch(orderActions.addOrder(order, customer))
+        } else {
+            console.log('empty order can not be sent')
+        }
     }
 
     return (
         <div>
-        {console.log(order)}
             <form className="text-center register-form" onSubmit={formHandler} >
                 <label htmlFor="mobile">شماره موبایل</label>
                 <input className="text-right" type="number" name="mobile" id="mobile" placeholder="شماره موبایل" onChange={handleChange} required /><br />
@@ -60,8 +80,8 @@ export const AddOrder = () => {
                 <input className="text-right" type="text" name="name" id="name" placeholder="نام" onChange={handleChange} required /><br />
                 <label htmlFor="family">نام خانوادگی</label>
                 <input className="text-right" type="text" name="family" id="family" placeholder="نام خانوادگی" onChange={handleChange} required /><br />
-                <label htmlFor="birthDate">تاریخ تولد (اختیاری)</label>
-                <input className="text-right" type="date" name="birthDate" id="birthDate" placeholder="(اختیاری) تاریخ تولد" onChange={handleChange} /><br />
+                <label htmlFor="birthday">تاریخ تولد (اختیاری)</label>
+                <input className="text-right" type="date" name="birthday" id="birthday" placeholder="(اختیاری) تاریخ تولد" onChange={handleChange} /><br />
                 <label htmlFor="address">آدرس</label>
                 <input className="text-right" type="text" name="address" id="address" placeholder="آدرس" onChange={handleChange} /><br />
                 <h3>سبد خرید:</h3>
@@ -70,8 +90,12 @@ export const AddOrder = () => {
                     {products 
                         ? products.map(item =>  {
                             return(
-                                <h4 onClick={(e) => orderHandler(e, item)} key={item.name}>{item.name} {item.sellingPrice} تومان</h4>                            )    
-                        })  
+                                <div key={item.name}>
+                                    <span>{item.name} {item.sellingPrice} تومان</span>  
+                                    <button onClick={(e) => newOrder(e, item)}>اضافه کردن</button>    
+                                </div>                 
+                                 )    
+                            })  
                         : null
                     }
                 </div>
@@ -81,9 +105,10 @@ export const AddOrder = () => {
                         order.length 
                         ? order.map(item => {
                             return (
-                                <div style={{"margin": "10px"}}>
-                                <span>{item.name}</span>
-                                <span>{item.quantity} * {item.sellingPrice}</span>
+                                <div key={item.name} style={{"margin": "10px"}}>
+                                    <span>{item.name}</span>
+                                    <span>{item.quantity} * {item.sellingPrice}</span>
+                                    <button onClick={(e) => removeOrder(e, item)} >حذف سفارش</button>
                                 </div>
                             )
                         }) 
@@ -92,7 +117,7 @@ export const AddOrder = () => {
                 </div>
                 <span>جمع کل</span> <span>{totalPrice}</span>
                 <h5>تاریخ یادآوری</h5>
-                <input type="number" placeholder="5 روز" required />
+                <input onChange={handleChange} name="reminderDay" type="number" placeholder="5 روز" required />
                 <div>
                     <button type="submit">ثبت</button> <br />
                 </div>

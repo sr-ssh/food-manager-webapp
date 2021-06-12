@@ -1,30 +1,26 @@
-
 import axios from 'axios';
 import { SERVER_URL } from '../config';
 import { authHeader } from '../helpers';
 
 let baseRoute = SERVER_URL;
 
-export const productService = {
-    getProducts
+export const orderService = {
+    addOrder
 };
 
-
-function getProducts() {
-    console.log("into productService");
-
+function addOrder(products, customer) {
+    console.log("into orderService");
     const requestOptions = {
-        headers: authHeader()
+        headers: authHeader(),
+        body: {products, customer}
     };
-    
+
     return axios
-        .get(`${baseRoute}/product`, requestOptions)
+        .post(`${baseRoute}/order`,requestOptions.body ,{headers: requestOptions.headers} )
         .then(res => {
             console.log("res.user >> "); 
-            console.log(res.data.data);
-            // store user details and jwt token in local storage to keep user logged in between page refreshes
-            //localStorage.setItem('user', JSON.stringify(res.data.data));
-            return res.data.data
+            console.log(res.data);
+            return res.data
         })
         .catch(function (error) {
             if (error.response) {
@@ -33,4 +29,3 @@ function getProducts() {
             }
         });
 }
-
