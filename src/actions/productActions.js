@@ -11,11 +11,11 @@ function getProducts() {
         dispatch(request())
         productService.getProducts()
             .then(
-                product => {
-                    dispatch(success(product));
+                res => {
+                    dispatch(success(res.data));
                     console.log("products received")
-                    console.log(product)
-                    dispatch(alertActions.success(product));
+                    console.log(res.data)
+                    dispatch(alertActions.success(res));
                 },
                 error => {
                     dispatch(failure(error.toString()));

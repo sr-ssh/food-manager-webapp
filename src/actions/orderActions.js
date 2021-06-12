@@ -15,7 +15,7 @@ function addOrder(products, customer) {
                     dispatch(success(products, customer));
                     console.log("order added")
                     console.log(res)
-                    dispatch(alertActions.success(products));
+                    dispatch(alertActions.success(res));
                 },
                 error => {
                     dispatch(failure(error.toString()));
