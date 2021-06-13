@@ -19,23 +19,22 @@ body{
 #triangle-up {
     top: 0;
     left: 0;
-    right: 0;
     z-index: -1;
     position: absolute;
     border-left: 368px solid var(--button-color);
-    border-top: 37px solid var(--button-color);
+    border-right: 368px solid transparent;
+    border-top: 56px solid var(--button-color);
     border-bottom: 56px solid transparent;
 }
 
 
 #triangle-down {
-    right: 0;
     position: absolute;
     bottom: 0;
     left: 0;
     z-index: -1;
-    border-right: 368px solid var(--button-color);
-    border-bottom: 59px solid var(--button-color);
-    border-top: 49px solid transparent;
+    border-right: 763px solid var(--button-color);
+    border-bottom: 34px solid var(--button-color);
+    border-top: 114px solid transparent;
 }
 
