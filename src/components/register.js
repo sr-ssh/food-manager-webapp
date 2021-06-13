@@ -5,6 +5,14 @@ import { userActions } from '../actions/userActions';
 import { Container } from 'react-bootstrap';
 
 
+import logo from './../assets/images/tem-x.png'
+import userLogo from './../assets/images/user.svg'
+import mobileLogo from './../assets/images/phone.svg'
+import emailLogo from './../assets/images/emaill.svg'
+import companyLogo from './../assets/images/company-name.svg'
+import passwordLogo from './../assets/images/password.svg'
+
+
 
 export const Register = () => {
 
@@ -27,17 +35,23 @@ export const Register = () => {
     }
 
     return (
+        <>
+        <div id="triangle-up"></div>
+        <img src={logo} alt="logo" className="logo"/>
         <Container>
+            
             <form className="text-center form" onSubmit={formHandeler} >
-                <input className="text-right form-input" type="text" name="name" placeholder="نام" onChange={handleChange} required /><br />
-                <input className="text-right form-input" type="text" name="family" placeholder="نام خانوادگی" onChange={handleChange} required /><br />
-                <input className="text-right form-input" type="text" name="email" placeholder="ایمیل" onChange={handleChange} /><br />
-                <input className="text-right form-input" type="text" name="mobile" placeholder="موبایل" onChange={handleChange} required /><br />
-                <input className="text-right form-input" type="text" name="company" placeholder="نام شرکت" onChange={handleChange} /><br />
-                <input className="text-right form-input" type="password" name="password" placeholder="رمز عبور" onChange={handleChange} required /><br />
+                <img src={userLogo} alt="use-icon" className="form-icon"/><input className="text-right form-input" type="text" name="name" placeholder="نام" onChange={handleChange} required /><br />
+                <img src={userLogo} alt="use-icon" className="form-icon"/><input className="text-right form-input" type="text" name="family" placeholder="نام خانوادگی" onChange={handleChange} required /><br />
+                <img src={emailLogo} alt="use-icon" className="form-icon"/><input className="text-right form-input" type="text" name="email" placeholder="ایمیل" onChange={handleChange} /><br />
+                <img src={mobileLogo} alt="use-icon" className="form-icon"/><input className="text-right form-input" type="text" name="mobile" placeholder="موبایل" onChange={handleChange} required /><br />
+                <img src={companyLogo} alt="use-icon" className="form-icon"/><input className="text-right form-input" type="text" name="company" placeholder="نام شرکت" onChange={handleChange} /><br />
+                <img src={passwordLogo} alt="use-icon" className="form-icon"/><input className="text-right form-input" type="password" name="password" placeholder="رمز عبور" onChange={handleChange} required /><br />
                 <button type="submit" className="form-submit">ثبت نام</button>
             </form>
         </Container>
+        <div id="triangle-down"></div>
+        </>
     )
 }
 

@@ -7,13 +7,13 @@
     border: none;
     border-bottom: 1px solid var(--button-color);
     line-height: 2rem;
-    width: 183px;
+    width: 152px;
     margin-top: 14px;
     font-family: 'IranSans';
     font-size: 12px;
     font-weight: bold;
     color: var(--button-color);
-    padding-right: 17px;
+    padding-right: 44px;
 }
 
 .form-submit{
@@ -33,4 +33,19 @@
     height: 49px;
     color: var(--button-color);
     font-family: 'IranSans';
+}
+
+.logo{
+    width: 136px;
+    position: absolute;
+    top: 33px;
+    left: 20px;
+}
+
+.form-icon{
+    width: 17px;
+    color: var(--button-background);
+    position: relative;
+    right: 27px;
+    top: 5px;
 }
