@@ -1,0 +1,36 @@
+.form{
+    margin-right: 10%;
+    margin-top: 8em;
+}
+
+.form-input{
+    border: none;
+    border-bottom: 1px solid var(--button-color);
+    line-height: 2rem;
+    width: 183px;
+    margin-top: 14px;
+    font-family: 'IranSans';
+    font-size: 12px;
+    font-weight: bold;
+    color: var(--button-color);
+    padding-right: 17px;
+}
+
+.form-submit{
+    background-color: var(--button-background);
+    border: none;
+    border-radius: 11px;
+    padding: 9px;
+    padding-left: 40px;
+    padding-right: 40px;
+    margin-top: 62px;
+    font-size: 14px;
+    font-weight: bold;
+    position: relative;
+    left: -87px;
+    bottom: -19px;
+    width: 185px;
+    height: 49px;
+    color: var(--button-color);
+    font-family: 'IranSans';
+}

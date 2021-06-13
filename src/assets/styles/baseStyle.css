@@ -1,0 +1,17 @@
+
+
+:root{
+    --body-bachground: #ffffff;
+    --button-background: #64b5f6;
+    --button-color: #373737;
+}
+
+@font-face {
+    font-family: 'IranSans';
+    src: url('./../font/ir_sans.ttf');  
+}
+
+body{
+    font-family: 'IranSans';
+    background-color: var(--body-bachground);
+}

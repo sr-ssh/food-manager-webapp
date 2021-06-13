@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { userActions } from '../actions/userActions';
+import { Container } from 'react-bootstrap';
 
 
 
@@ -26,17 +27,17 @@ export const Register = () => {
     }
 
     return (
-        <div className="container register">
-            <form className="text-center register-form" onSubmit={formHandeler} >
-                <input className="text-right" type="text" name="name" placeholder="نام" onChange={handleChange} required /><br />
-                <input className="text-right" type="text" name="family" placeholder="نام خانوادگی" onChange={handleChange} required /><br />
-                <input className="text-right" type="text" name="email" placeholder="ایمیل" onChange={handleChange} /><br />
-                <input className="text-right" type="text" name="mobile" placeholder="موبایل" onChange={handleChange} required /><br />
-                <input className="text-right" type="text" name="company" placeholder="نام شرکت" onChange={handleChange} /><br />
-                <input className="text-right" type="password" name="password" placeholder="رمز عبور" onChange={handleChange} required /><br />
-                <button type="submit">ثبت نام</button>
+        <Container>
+            <form className="text-center form" onSubmit={formHandeler} >
+                <input className="text-right form-input" type="text" name="name" placeholder="نام" onChange={handleChange} required /><br />
+                <input className="text-right form-input" type="text" name="family" placeholder="نام خانوادگی" onChange={handleChange} required /><br />
+                <input className="text-right form-input" type="text" name="email" placeholder="ایمیل" onChange={handleChange} /><br />
+                <input className="text-right form-input" type="text" name="mobile" placeholder="موبایل" onChange={handleChange} required /><br />
+                <input className="text-right form-input" type="text" name="company" placeholder="نام شرکت" onChange={handleChange} /><br />
+                <input className="text-right form-input" type="password" name="password" placeholder="رمز عبور" onChange={handleChange} required /><br />
+                <button type="submit" className="form-submit">ثبت نام</button>
             </form>
-        </div>
+        </Container>
     )
 }
 
