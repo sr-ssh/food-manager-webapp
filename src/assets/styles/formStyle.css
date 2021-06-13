@@ -49,3 +49,15 @@
     right: 27px;
     top: 5px;
 }
+
+.register-link {
+    margin-right: 16px;
+    margin-top: 60px;
+}
+
+.register-link a {
+    color: inherit;
+    text-decoration: none;
+    text-shadow: 2px 1px 10px #64b5f6;
+}
+
