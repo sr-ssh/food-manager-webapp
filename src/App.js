@@ -4,6 +4,7 @@ import { Dashboard } from './components/main/dashboard'
 import { AddOrder } from './components/order/addOrder'
 import PrivateRoute from './components/privateRoute';
 import { Redirect, Route, Router, Switch } from 'react-router';
+import 'bootstrap/dist/css/bootstrap.css';
 
 //routes
 import { Login } from './components/login'

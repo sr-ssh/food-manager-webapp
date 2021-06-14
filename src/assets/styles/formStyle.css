@@ -61,3 +61,10 @@
     text-shadow: 2px 1px 10px #64b5f6;
 }
 
+.mzLogo {
+    height: 20vh;
+}
+
+.loginForm {
+    height: 40vh;
+}
