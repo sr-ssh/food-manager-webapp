@@ -6,7 +6,7 @@ export const Dashboard = () => {
         <div>
             <ul>
                 <li>
-                    <Link to="/addOrder">ثبت سفارش</Link>
+                    <Link to="/order/add">ثبت سفارش</Link>
                 </li>
                 <li>لیست سفارشات</li>
                 <li>یادآوری</li>
