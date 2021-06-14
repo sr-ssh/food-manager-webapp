@@ -5,14 +5,14 @@
 
 .form-input{
     border: none;
-    border-bottom: 1px solid var(--button-color);
+    border-bottom: 1px solid var(--button-color-one);
     line-height: 2rem;
     width: 152px;
     margin-top: 14px;
     font-family: 'IranSans';
     font-size: 12px;
     font-weight: bold;
-    color: var(--button-color);
+    color: var(--button-color-one);
     padding-right: 44px;
 }
 
@@ -31,7 +31,7 @@
     bottom: -19px;
     width: 185px;
     height: 49px;
-    color: var(--button-color);
+    color: var(--button-color-one);
     font-family: 'IranSans';
 }
 

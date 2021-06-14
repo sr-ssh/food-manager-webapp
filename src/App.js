@@ -22,8 +22,8 @@ function App() {
             <PrivateRoute path="/customers" component={Customers} ></PrivateRoute>
             <PrivateRoute path="/finance" component={Finance}></PrivateRoute>
             <PrivateRoute path="/dashboard" component={Dashboard} ></PrivateRoute>
-            <PrivateRoute path="/addOrder" component={AddOrder} ></PrivateRoute>
-            <Redirect from="*" to="/" />
+            <PrivateRoute path="/order/add" component={AddOrder} ></PrivateRoute>
+            {/* <Redirect from="*" to="/" /> */}
             </Switch>
         </Router>
   );
