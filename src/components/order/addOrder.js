@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { productActions, orderActions  } from '../../actions';
 import { Header } from '../base/header';
 import { Basket } from './basket';
-import { Container , Form , Button } from 'react-bootstrap';
+import { Container , Form , Button , Row , Col } from 'react-bootstrap';
 
 
 export const AddOrder = () => {
@@ -31,64 +31,61 @@ export const AddOrder = () => {
         <Header brand="ثبت سفارش"/>
         <Container>
             
-            <Form className="text-right" onSubmit={formHandler} >
-                <div className="order-flex">
+            <Form className="text-right d-flex flex-column justify-content-around align-items-center position-absolute bottom-0 left-0 right-0 order-flex" onSubmit={formHandler} >
 
-                    <div className="order-inputs">
+                    <Row className="order-inputs d-flex justify-content-around align-items-center flex-wrap">
                    
-                        <div className="order-input-group">
+                        <Row className="d-flex flex-nowrap justify-content-around">
 
-                            <div>
+                            <Col>
                                 <Form.Group controlId="mobile">
                                     <Form.Label>موبایل</Form.Label>
                                     <Form.Control className="order-input border-0" type="number" placeholder="شماره موبایل" onChange={handleChange}  required/>
                                 </Form.Group>
-                            </div>
+                            </Col>
 
-                            <div>
-                                <Form.Group controlId="name">
-                                    <Form.Label>نام</Form.Label>
-                                    <Form.Control className="order-input border-0" type="text" placeholder="نام" onChange={handleChange}  required/>
+                        </Row>
+
+                        <Row className="d-flex flex-nowrap justify-content-around">
+
+                            <Col>
+                                <Form.Group controlId="family">
+                                    <Form.Label>نام خانوادگی</Form.Label>
+                                    <Form.Control className="order-input border-0" type="text" placeholder="نام خانوادگی" onChange={handleChange}  required/>
                                 </Form.Group>
-                            </div>
+                            </Col>
                             
-                        </div>
+                            <Col>
+                                <Form.Group controlId="birthday">
+                                    <Form.Label>تاریخ تولد</Form.Label>
+                                    <Form.Control className="order-input border-0" type="text" placeholder="(اختیاری) تاریخ تولد" onChange={handleChange}/>
+                                </Form.Group>
+                            </Col>
 
-                        <div className="order-input-group">
+                        </Row>
+                    </Row>
 
-                        <div>
-                            <Form.Group controlId="family">
-                                <Form.Label>نام خانوادگی</Form.Label>
-                                <Form.Control className="order-input border-0" type="text" placeholder="نام خانوادگی" onChange={handleChange}  required/>
-                            </Form.Group>
-                        </div>
-                        
-                        <div>
-                            <Form.Group controlId="birthday">
-                                <Form.Label>تاریخ تولد</Form.Label>
-                                <Form.Control className="order-input border-0" type="date" placeholder="(اختیاری) تاریخ تولد" onChange={handleChange}/>
-                            </Form.Group>
-                        </div>
+                    <Row className="order-submit-flex">
+                        <Col>
+                            <Basket order={order} insertOrder={insertOrder} />
+                        </Col>
+                    </Row>
 
-                        </div>
-                    </div>
-
-                    <div className="order-submit-flex">
-                        <Basket order={order} insertOrder={insertOrder} />
-                    </div>
-
-                    <div>
-                        <h5>تاریخ یادآوری</h5>
-                        <input onChange={handleChange} name="reminderDay" type="number" placeholder="5 روز"/>
-                    </div>
+                    <Row>
+                        <Col>
+                            <h5>تاریخ یادآوری</h5>
+                            <input onChange={handleChange} name="reminderDay" type="number" placeholder="5 روز"/>
+                        </Col>
+                    </Row>
                     
-                    <div className="order-submit-flex">
-                    <Button className="order-submit border-0" size="lg" type="submit" block>
-                        ثبت
-                    </Button>
-                    </div>
+                    <Row className="order-submit-flex align-self-stretch">
+                        <Col>
+                            <Button className="fw-bold order-submit border-0 col-12" size="lg" type="submit" block>
+                                ثبت
+                            </Button>
+                        </Col>
+                    </Row>
                 
-                </div>
             </Form>
         </Container>
         </div>

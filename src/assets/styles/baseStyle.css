@@ -45,10 +45,18 @@ body{
 
 .navbar-brand{
     font-size: 14px;
+    transform: translateX(-50%);
+    left: 50%;
+    position: absolute;
 }
 
 .my-nav{
     background-color: var(--button-color-one);
+    direction: ltr;
+}
+
+.navbar-expand .navbar-nav .nav-link {
+    padding-left: 1.5rem;
 }
 
 

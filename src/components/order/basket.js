@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { productActions } from '../../actions';
-import { Card , DropdownButton , Dropdown , Button , Table } from 'react-bootstrap';
+import { Card , DropdownButton , Dropdown , Button , Table , Row , Col } from 'react-bootstrap';
 
 //icons
 import deleteIcon from './../../assets/images/delete.svg'
@@ -61,74 +61,82 @@ export const Basket = ({order, insertOrder}) => {
 
     return(
         <>
-        <h6>سبد خرید</h6>
-        <Card>
-            <Card.Body className="basket-flex">
-                
-                <div className="products-dropdown text-right">
+        <Row>
+            <h6>سبد خرید</h6>
+        </Row>
+        <Row>
+            <Card className="border-0">
+                <Card.Body className="basket-flex d-flex flex-column justify-content-around">
+                    
+                    <Row className="d-flex flex-row justify-content-around text-right">
 
-                    <DropdownButton onClick={(e) => productHandler(e)} title="محصولات">
-                        {products 
-                            ? products.map((item, index) =>  {
-                                return(
-                                    <div key={index}>
-                                        {index ? <Dropdown.Divider /> : null}
-                                        <Dropdown.Item onClick={(e) => newOrder(e, item)}>
-                                            <span>{item.name}</span> {item.sellingPrice} تومان
-                                        </Dropdown.Item>
-                                    </div>   
-                                    )    
-                                })  
-                            : null
+                        <Col>
+                            <DropdownButton onClick={(e) => productHandler(e)} title="محصولات">
+                                {products 
+                                    ? products.map((item, index) =>  {
+                                        return(
+                                            <Col key={index}>
+                                                {index ? <Dropdown.Divider /> : null}
+                                                <Dropdown.Item onClick={(e) => newOrder(e, item)}>
+                                                    <Row><Col>{item.name}</Col> <Col>{item.sellingPrice} تومان</Col></Row>
+                                                </Dropdown.Item>
+                                            </Col>   
+                                            )    
+                                        })  
+                                    : null
+                                }
+                            </DropdownButton>
+                        </Col>
+
+                        <Col>
+                            <Button className="products-add border-0" type="button">
+                                +
+                            </Button>
+                        </Col>
+                    
+                    </Row>
+                
+                    <Row>
+                        {
+                            order.length 
+                            ? <Table borderless size="sm">
+                                <thead>
+                                <tr>
+                                    <th>سفارش</th>
+                                    <th>قیمت</th>
+                                    <th>تعداد</th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {
+                                    order.map(item => {
+                                        return (
+                                            <tr key={item.name}>
+                                                <td>{item.name}</td>
+                                                <td>{item.quantity * item.sellingPrice} تومان</td>
+                                                <td>{item.quantity}</td>
+                                                <td><img onClick={(e) => removeOrder(e, item)} src={deleteIcon} alt="delete-icon"/></td>
+                                            </tr>
+                                        )
+                                    })
+                                }
+                                <tr className="border-top">
+                                    <td>جمع کل:</td>
+                                    <td>{totalPrice} تومان</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                </tbody>
+                            </Table>
+                        
+                        : <Col>هیچ محصولی انتخاب نشده است</Col>   
                         }
-                    </DropdownButton>
+                    </Row>
 
-                    <Button className="products-add border-0" type="button">
-                        +
-                    </Button>
-                
-                </div>
-            
-                <div>
-                    {
-                        order.length 
-                        ? <Table borderless size="sm">
-                            <thead>
-                            <tr>
-                                <th>سفارش</th>
-                                <th>قیمت</th>
-                                <th>تعداد</th>
-                                <th></th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {
-                                order.map(item => {
-                                    return (
-                                        <tr key={item.name}>
-                                            <td>{item.name}</td>
-                                            <td>{item.quantity * item.sellingPrice} تومان</td>
-                                            <td>{item.quantity}</td>
-                                            <td><img onClick={(e) => removeOrder(e, item)} src={deleteIcon} alt="delete-icon"/></td>
-                                        </tr>
-                                    )
-                                })
-                            }
-                            <tr className="border-top">
-                                <td>جمع کل:</td>
-                                <td>{totalPrice} تومان</td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            </tbody>
-                        </Table>
-                      
-                      : <span>هیچ محصولی انتخاب نشده است</span>   
-                    }
-                </div>
-
-        </Card.Body>
-        </Card>
+                </Card.Body>
+            </Card> 
+        </Row>
         </>
     )
 }
