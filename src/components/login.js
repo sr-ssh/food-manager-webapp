@@ -10,7 +10,7 @@ import mobileLogo from './../assets/images/phone.svg'
 import emailLogo from './../assets/images/emaill.svg'
 import companyLogo from './../assets/images/company-name.svg'
 import passwordLogo from './../assets/images/password.svg'
-import { Container, Button, Form, Row, Col } from 'react-bootstrap';
+import { Container, Button, Form, Row, Col, Image, InputGroup, FormControl } from 'react-bootstrap';
 
 
 export const Login = () => {
@@ -37,30 +37,36 @@ export const Login = () => {
             <Container fluid className="p-0 d-flex flex-column">
                 <Row className="p-0 m-0 mzLogo">
                     <Col className="">
-                        <img src={logo} alt="logo" width="136px"/>
+                        <img className="logo" src={logo} alt="logo" width="168px"/>
                     </Col>
                 </Row>
-                <Row className="p-0 m-0 loginForm">
+                <Row className="ms-0 loginForm">
                     <Col>
-                        <Form>
-                            <Row className="w-100 m-auto">
-                                <Col md={6} sm={6} xs={6}>
-                                    <Form.Control className="w-100 mr-5" type="text" placeholder="ایمیل / موبایل" />
+                        <Form className="d-flex flex-column justify-content-center"  onSubmit={formHandeler}>
+                            <Row className="w-100 me-2">
+                                <Col md={1} sm={1} xs={1}>
+                                    <Image src={userLogo} className="form-icon" width="20px" height="20px"/>
+                                </Col>
+                                <Col md={6} sm={6} xs={8}>
+                                    <Form.Control size="lg" className="pe-5 pt-2 form-input shadow-none" type="text" placeholder="ایمیل / موبایل" />
                                 </Col>
                             </Row>
-                            <Row className="w-100 m-auto">
-                                <Col md={6} sm={6} xs={6}>
-                                    <Form.Control className="w-100 mr-5" type="password" placeholder="رمز عبور" />
+                            <Row className="w-100 me-2 mt-4">
+                                <Col md={1} sm={1} xs={1}>
+                                    <Image src={passwordLogo} className="form-icon" width="20px" height="20px"/>
+                                </Col>
+                                <Col md={6} sm={6} xs={8}>
+                                    <Form.Control size="lg" className="pe-5 form-input shadow-none" type="password" placeholder="رمز عبور" />
                                 </Col>
                             </Row>
-                            <Row className="m-0 ">
-                                <Col>
-                                    <a>ثبت نام</a>
+                            <Row className="w-100 me-2">
+                                <Col className="mt-5 register-link ">
+                                    <a href="/register">ثبت نام</a>
                                 </Col>
                             </Row>
-                            <Row className="m-0 ">
-                                <Col>
-                                    <Button>ورود</Button>
+                            <Row className="submitContainer ">
+                                <Col xs={6}className="me-auto ms-4">
+                                    <Button className="form-submit w-100">ورود</Button>
                                 </Col>
                             </Row>
                         </Form>

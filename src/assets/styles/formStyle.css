@@ -1,64 +1,75 @@
 .form{
     margin-right: 10%;
-    margin-top: 8em;
+    margin-top: 50vh;
 }
 
-.form-input{
+.form-input {
     border: none;
+    outline: 0;
     border-bottom: 1px solid var(--button-color-one);
+    border-radius: 0;
     line-height: 2rem;
-    width: 152px;
-    margin-top: 14px;
     font-family: 'IranSans';
-    font-size: 12px;
     font-weight: bold;
+    font-size: 16px;
     color: var(--button-color-one);
-    padding-right: 44px;
+}
+
+.form-input:focus {
+    outline: 0;
+    box-shadow: 0;
+    border: 0;
+    border-bottom: 1px solid var(--button-color-one);
 }
 
 .form-submit{
     background-color: var(--button-background);
     border: none;
     border-radius: 11px;
-    padding: 9px;
+    /* padding: 9px;
     padding-left: 40px;
-    padding-right: 40px;
-    margin-top: 62px;
+    padding-right: 40px; */
+    /* margin-top: 45%; */
     font-size: 14px;
     font-weight: bold;
-    position: relative;
+    /* position: relative;
     left: -87px;
-    bottom: -19px;
-    width: 185px;
+    bottom: -19px; */
+    /* width: 60vw; */
     height: 49px;
     color: var(--button-color-one);
     font-family: 'IranSans';
 }
 
+.submitContainer {
+    margin-top: 130px;
+}
+
 .logo{
-    width: 136px;
     position: absolute;
-    top: 57px;
-    left: 20px;
+    top: 40px;
+    left: 5px;
 }
 
 .form-icon{
-    width: 17px;
-    color: var(--button-background);
     position: relative;
-    right: 27px;
-    top: 5px;
+    top: 13px;
+    right: 50px;
+    color: var(--button-background);
+    
 }
 
-.register-link {
+/* .register-link {
     margin-right: 16px;
     margin-top: 60px;
-}
+} */
 
 .register-link a {
     color: inherit;
+    margin-right: 40px;
     text-decoration: none;
     text-shadow: 2px 1px 10px #64b5f6;
+    font-weight: bold;
 }
 
 .mzLogo {
@@ -66,5 +77,6 @@
 }
 
 .loginForm {
+    margin-top: 90px;
     height: 40vh;
 }
