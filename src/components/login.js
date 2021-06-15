@@ -48,7 +48,7 @@ export const Login = () => {
                                     <Image src={userLogo} className="form-icon" width="20px" height="20px"/>
                                 </Col>
                                 <Col md={6} sm={6} xs={8}>
-                                    <Form.Control size="lg" className="pe-5 pt-2 form-input shadow-none" type="text" placeholder="ایمیل / موبایل" />
+                                    <Form.Control size="lg" className="pe-5 pt-2 form-input shadow-none" name="mobileOrEmail" type="text" placeholder="ایمیل / موبایل" onChange={handleChange} required/>
                                 </Col>
                             </Row>
                             <Row className="w-100 me-2 mt-4">
@@ -56,7 +56,7 @@ export const Login = () => {
                                     <Image src={passwordLogo} className="form-icon" width="20px" height="20px"/>
                                 </Col>
                                 <Col md={6} sm={6} xs={8}>
-                                    <Form.Control size="lg" className="pe-5 form-input shadow-none" type="password" placeholder="رمز عبور" />
+                                    <Form.Control size="lg" className="pe-5 form-input shadow-none" name="password" type="password" placeholder="رمز عبور" onChange={handleChange} required/>
                                 </Col>
                             </Row>
                             <Row className="w-100 me-2">
@@ -64,9 +64,9 @@ export const Login = () => {
                                     <a href="/register">ثبت نام</a>
                                 </Col>
                             </Row>
-                            <Row className="submitContainer ">
-                                <Col xs={6}className="me-auto ms-4">
-                                    <Button className="form-submit w-100">ورود</Button>
+                            <Row className="registerSubmitContainer">
+                                <Col xs={7} className="me-auto ms-4">
+                                    <Button className="form-submit w-75 me-auto d-block" type="submit" >ورود</Button>
                                 </Col>
                             </Row>
                         </Form>
