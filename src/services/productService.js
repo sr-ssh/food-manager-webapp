@@ -7,7 +7,8 @@ import { handleResponse, handleError } from '../helpers'
 let baseRoute = SERVER_URL;
 
 export const productService = {
-    getProducts
+    getProducts,
+    addProduct
 };
 
 
@@ -32,3 +33,23 @@ function getProducts() {
         });
 }
 
+
+function addProduct(product) {
+    console.log("into productService");
+    const requestOptions = {
+        headers: authHeader()
+    };
+    return axios
+        .post(`${baseRoute}/product`, product,{headers: requestOptions.headers} )
+        .then(res => {
+            console.log("res.user >> "); 
+            console.log(res.data);
+            return handleResponse(res)
+        })
+        .catch(function (error) {
+            if (error.response) {
+                console.log(error.response.data);
+                handleError(error.response.status)
+            }
+        });
+}

@@ -27,3 +27,26 @@ export function getProducts(state = initialState, action) {
     }
 
 }
+
+export function addProduct(state = {}, action) {
+    switch (action.type) {
+        case productConstants.ADD_PRODUCT_REQUEST:
+            return {
+                ...state, 
+                loading: true,
+            }
+        case productConstants.ADD_PRODUCT_SUCCESS: 
+            return {
+                ...state,
+                loading: false,
+                product: action.data
+            }
+        case productConstants.ADD_PRODUCT_FAILURE:
+            return {
+                err: action.error
+            }
+        default:
+            return state;
+    }
+
+}
