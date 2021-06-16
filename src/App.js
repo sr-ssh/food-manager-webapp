@@ -14,6 +14,7 @@ import { Finance } from './components/finance/finance.js';
 import { Products } from './components/products/products';
 import { AddProduct } from './components/products/addProduct';
 import { EditProduct } from './components/products/editProduct';
+import { Main } from './components/main/main';
 
 function App() {
   return (    
@@ -21,6 +22,7 @@ function App() {
             <Switch>
             <Route exact path="/" component={Login} />
             <Route path="/register" component={Register} />
+            <PrivateRoute path="/main" component={Main} ></PrivateRoute>
             <PrivateRoute path="/products" component={Products} ></PrivateRoute>
             <PrivateRoute path="/product/add" component={AddProduct} ></PrivateRoute>
             <PrivateRoute path="/product/edit" component={EditProduct} ></PrivateRoute>
