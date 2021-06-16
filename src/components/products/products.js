@@ -17,7 +17,7 @@ export const Products = () => {
     }, [])
 
     return (
-        <div className="order-page">
+        <div className="product-page">
         {console.log(products)}
             <Header title="محصولات"/>
             <Container className="m-auto">

@@ -13,7 +13,7 @@ export const Main = () => {
     
     return(
         <div className="order-page">
-            <Header brand=" "/>
+            {/* <Header brand=" "/> */}
             <Dashboard show={show} onHide={handleClose}/>
         </div>
     )
