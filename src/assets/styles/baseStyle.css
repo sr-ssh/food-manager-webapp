@@ -52,7 +52,7 @@ body{
 
 .my-nav{
     background-color: var(--button-color-one);
-    direction: ltr;
+    
 }
 
 .navbar-expand .navbar-nav .nav-link {

@@ -8,6 +8,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import './assets/styles/formStyle.css';
 import './assets/styles/baseStyle.css';
 import './assets/styles/orderStyle.css';
+import './assets/styles/productListStyle.css';
 
 ReactDOM.render(
   <Provider store={store}>

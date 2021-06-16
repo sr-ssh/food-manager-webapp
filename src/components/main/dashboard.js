@@ -8,14 +8,19 @@ export const Dashboard = () => {
                 <li>
                     <Link to="/order/add">ثبت سفارش</Link>
                 </li>
-                <li>لیست سفارشات</li>
+                <li>
+                    <Link to="">سفارش ها</Link>
+                </li>
                 <li>یادآوری</li>
-                <li>محصولات</li>
+                <li>
+                    <Link to="/products">محصولات</Link>
+                </li>
                 <li>مالی</li>
                 <li>مشتریان</li>
+                <li>تخفیفات</li>
                 <li>حساب کاربری</li>
-                <li>تنظیمات</li>
                 <li>خروج</li>
+                <li>تنظیمات</li>
             </ul>
         </div>
     )

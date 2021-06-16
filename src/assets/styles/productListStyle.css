@@ -1,0 +1,35 @@
+.editLogo {
+    margin-top: -20px !important;
+}
+
+.productCard {
+    border-radius: 10px;
+}
+
+.activeStatus {
+   color: var(--button-color-two);
+   font-weight: bold;
+}
+
+.activeStatus span {
+    height: 15px;
+    width: 15px;
+    margin-left: 10px;
+    background-color: var(--button-color-two);
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.deActiveStatus {
+    color: var(--text-color-one);
+    font-weight: bold;
+}
+
+.deActiveStatus span {
+    height: 15px;
+    width: 15px;
+    margin-left: 10px;
+    background-color: var(--text-color-one);
+    border-radius: 50%;
+    display: inline-block;
+}
