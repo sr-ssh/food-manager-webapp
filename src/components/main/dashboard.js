@@ -16,7 +16,9 @@ export const Dashboard = ({show, handleClose}) => {
                         </li>
                         <li>لیست سفارشات</li>
                         <li>یادآوری</li>
-                        <li>محصولات</li>
+                        <li>
+                            <Link to="/products">محصولات</Link>
+                        </li>
                         <li>مالی</li>
                         <li>مشتریان</li>
                         <li>حساب کاربری</li>
