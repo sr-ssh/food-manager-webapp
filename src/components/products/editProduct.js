@@ -5,15 +5,9 @@ import { Header } from '../base/header';
 import { Container , Form , Button , Row , Col } from 'react-bootstrap';
 
 
-export const EditProduct = () => {
+export const EditProduct = ({location}) => {
     
-    let product = {
-        id: "60c98bbbfa4cab1dd8c70d77",
-        active: true,
-        name: "موهیتو عربی",
-        description: "نعنا تازه",
-        sellingPrice: "20000"
-    }
+    let product = location.state;
 
     const [newProduct, setnewProduct] = useState(product)
     const dispatch = useDispatch()
@@ -30,6 +24,7 @@ export const EditProduct = () => {
 
     let formHandler = (e) => {
         e.preventDefault()
+        console.log(location)
         dispatch(productActions.editProduct(newProduct))
     }
 

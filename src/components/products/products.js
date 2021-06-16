@@ -4,7 +4,8 @@ import { Container, Card } from 'react-bootstrap';
 import { AddProduct } from './addProduct'
 import { useDispatch, useSelector } from 'react-redux'
 import { productActions } from '../../actions'
-import moment from 'jalali-moment'
+import moment from 'jalali-moment';
+import { history } from '../../helpers';
 
 import editIcon from '../../assets/images/Products/edit.svg'
 
@@ -42,7 +43,7 @@ export const Products = () => {
                                 <Card.Text className="pt-1 ps-1">
                                     توضیحات :   {item.description}
                                 </Card.Text>
-                                <Card.Link className="editLogo w-100 d-block m-auto" href="#">
+                                <Card.Link className="editLogo w-100 d-block m-auto" onClick={e => history.push('/product/edit', item)}>
                                     <img className="d-block me-auto" src={editIcon} height="42px" alt="back-icon" />
                                 </Card.Link>
                             </Card.Body>
