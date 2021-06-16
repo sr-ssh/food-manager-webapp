@@ -1,27 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import Sidebar from "react-sidebar"
 
 export const Dashboard = () => {
+    const [sidebarOpen, setOpen] = useState(false)
+
     return (
-        <div>
-            <ul>
-                <li>
-                    <Link to="/order/add">ثبت سفارش</Link>
-                </li>
-                <li>
-                    <Link to="">سفارش ها</Link>
-                </li>
-                <li>یادآوری</li>
-                <li>
-                    <Link to="/products">محصولات</Link>
-                </li>
-                <li>مالی</li>
-                <li>مشتریان</li>
-                <li>تخفیفات</li>
-                <li>حساب کاربری</li>
-                <li>خروج</li>
-                <li>تنظیمات</li>
-            </ul>
-        </div>
+        <>
+            <Sidebar
+                sidebar={<b>Sidebar content</b>}
+                open={sidebarOpen}
+                onSetOpen={setOpen}
+                styles={{ sidebar: { background: "white", width : "200px"} }}
+            >
+                <button onClick={() => setOpen(true)}>
+                    Open sidebar
+                </button>
+            </Sidebar>
+        </>
     )
 }
