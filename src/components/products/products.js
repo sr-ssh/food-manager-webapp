@@ -4,6 +4,7 @@ import { Container, Card } from 'react-bootstrap';
 import { AddProduct } from './addProduct'
 import { useDispatch, useSelector } from 'react-redux'
 import { productActions } from '../../actions'
+import moment from 'jalali-moment'
 
 import editIcon from '../../assets/images/Products/edit.svg'
 
@@ -36,7 +37,7 @@ export const Products = () => {
                                     قیمت فروش : {item.sellingPrice} تومان
                                 </Card.Text>
                                 <Card.Text className="pt-1">
-                                    تاریخ ویرایش : {item.updatedAt}
+                                    تاریخ ویرایش : {moment.from(item.updatedAt, 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD')}
                                 </Card.Text>
                                 <Card.Text className="pt-1 ps-1">
                                     توضیحات :   {item.description}
