@@ -13,6 +13,7 @@ import { Customers } from './components/customers/customers.js';
 import { Finance } from './components/finance/finance.js';
 import { Products } from './components/products/products';
 import { AddProduct } from './components/products/addProduct';
+import { EditProduct } from './components/products/editProduct';
 
 function App() {
   return (    
@@ -22,6 +23,7 @@ function App() {
             <Route path="/register" component={Register} />
             <PrivateRoute path="/products" component={Products} ></PrivateRoute>
             <PrivateRoute path="/product/add" component={AddProduct} ></PrivateRoute>
+            <PrivateRoute path="/product/edit" component={EditProduct} ></PrivateRoute>
             <PrivateRoute path="/customers" component={Customers} ></PrivateRoute>
             <PrivateRoute path="/finance" component={Finance}></PrivateRoute>
             <PrivateRoute path="/dashboard" component={Dashboard} ></PrivateRoute>

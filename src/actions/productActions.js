@@ -4,7 +4,8 @@ import { alertActions } from './alertActions';
 
 export const productActions = {
     getProducts,
-    addProduct
+    addProduct,
+    editProduct
 };
 
 function getProducts() {
@@ -47,7 +48,29 @@ function addProduct(product) {
                     dispatch(failure(error.toString()));
                     console.log("occure error");
                     console.log(error.toString());
-                    dispatch(alertActions.error(productConstants.GET_PRODUCT_FAILURE, error.toString()));
+                    dispatch(alertActions.error(productConstants.ADD_PRODUCT_FAILURE, error.toString()));
+                }
+            );
+    }
+
+}
+
+function editProduct(product) {
+    return dispatch => {
+        dispatch(request(productConstants.EDIT_PRODUCT_REQUEST))
+        productService.editProduct(product)
+            .then(
+                res => {
+                    dispatch(success(productConstants.EDIT_PRODUCT_SUCCESS, product));
+                    console.log("product edited")
+                    console.log(res)
+                    dispatch(alertActions.success(res));
+                },
+                error => {
+                    dispatch(failure(error.toString()));
+                    console.log("occure error");
+                    console.log(error.toString());
+                    dispatch(alertActions.error(productConstants.EDIT_PRODUCT_FAILURE, error.toString()));
                 }
             );
     }

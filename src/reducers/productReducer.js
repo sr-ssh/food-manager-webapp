@@ -50,3 +50,25 @@ export function addProduct(state = {}, action) {
     }
 
 }
+
+export function editProduct(state = {}, action) {
+    switch (action.type) {
+        case productConstants.EDIT_PRODUCT_REQUEST:
+            return {
+                ...state, 
+                loading: true,
+            }
+        case productConstants.EDIT_PRODUCT_SUCCESS: 
+            return {
+                ...state,
+                loading: false,
+                product: action.data
+            }
+        case productConstants.EDIT_PRODUCT_FAILURE:
+            return {
+                err: action.error
+            }
+        default:
+            return state;
+    }
+}

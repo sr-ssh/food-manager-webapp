@@ -8,7 +8,8 @@ let baseRoute = SERVER_URL;
 
 export const productService = {
     getProducts,
-    addProduct
+    addProduct,
+    editProduct
 };
 
 
@@ -41,6 +42,26 @@ function addProduct(product) {
     };
     return axios
         .post(`${baseRoute}/product`, product,{headers: requestOptions.headers} )
+        .then(res => {
+            console.log("res.user >> "); 
+            console.log(res.data);
+            return handleResponse(res)
+        })
+        .catch(function (error) {
+            if (error.response) {
+                console.log(error.response.data);
+                handleError(error.response.status)
+            }
+        });
+}
+
+function editProduct(product) {
+    console.log("into productService");
+    const requestOptions = {
+        headers: authHeader()
+    };
+    return axios
+        .put(`${baseRoute}/product`, product,{headers: requestOptions.headers} )
         .then(res => {
             console.log("res.user >> "); 
             console.log(res.data);
