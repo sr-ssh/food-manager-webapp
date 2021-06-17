@@ -9,6 +9,7 @@ import './assets/styles/formStyle.css';
 import './assets/styles/baseStyle.css';
 import './assets/styles/orderStyle.css';
 import './assets/styles/productListStyle.css';
+import './assets/styles/product.css'
 
 ReactDOM.render(
   <Provider store={store}>

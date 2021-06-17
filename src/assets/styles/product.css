@@ -1,0 +1,34 @@
+.delete-button{
+    border: 2px solid rgba(255,130,255,0.3);
+    width: 44px;
+    border-radius: 10px;
+}
+
+.add-product .btn-primary {
+    color: #435668;
+    background-color: #64B5F6;
+}
+
+.product-input{
+    height: 60%;
+}
+
+.product-checkbox{
+    font-size: 14px;
+}
+
+.was-validated .form-check-input:valid, .form-check-input.is-valid {
+    border-color: var(--button-color-two);
+}
+
+.was-validated .form-check-input:valid:checked, .form-check-input.is-valid:checked {
+    border-color: var(--button-color-two);
+}
+
+.was-validated .form-check-input:valid ~ .form-check-label, .form-check-input.is-valid ~ .form-check-label {
+    color: var(--button-color-two);
+}
+
+.was-validated .form-check-input:valid:checked, .form-check-input.is-valid:checked {
+    background-color: var(--button-color-two);
+}
