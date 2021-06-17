@@ -21,8 +21,8 @@ export const Login = () => {
 
 
     const handleChange = (e) => {
-        const { name, value } = e.target;
-        setInputs(inputs => ({ ...inputs, [name]: value }));
+        const { id, value } = e.target;
+        setInputs(inputs => ({ ...inputs, [id]: value }));
     }
 
     const formHandeler = e => {
@@ -31,7 +31,7 @@ export const Login = () => {
     }
 
     return (
-        <>
+        <div className="order-page">
             <div id="triangle-up"></div>
 
             <Container fluid className="p-0 d-flex flex-column">
@@ -43,30 +43,33 @@ export const Login = () => {
                 <Row className="ms-0 loginForm">
                     <Col>
                         <Form className="d-flex flex-column justify-content-center"  onSubmit={formHandeler}>
-                            <Row className="w-100 me-2">
-                                <Col md={1} sm={1} xs={1}>
-                                    <Image src={userLogo} className="form-icon" width="20px" height="20px"/>
-                                </Col>
-                                <Col md={6} sm={6} xs={8}>
-                                    <Form.Control size="lg" className="pe-5 pt-2 form-input shadow-none" name="mobileOrEmail" type="text" placeholder="ایمیل / موبایل" onChange={handleChange} required/>
-                                </Col>
-                            </Row>
-                            <Row className="w-100 me-2 mt-4">
-                                <Col md={1} sm={1} xs={1}>
-                                    <Image src={passwordLogo} className="form-icon" width="20px" height="20px"/>
-                                </Col>
-                                <Col md={6} sm={6} xs={8}>
-                                    <Form.Control size="lg" className="pe-5 form-input shadow-none" name="password" type="password" placeholder="رمز عبور" onChange={handleChange} required/>
+                            <Row className="w-100 me-2 pe-2 order-inputs ">
+                                <Col >
+                                    <Form.Group controlId="mobileOrEmail" >
+                                        <Image src={userLogo} width="17px" className="mx-2"/>
+                                        <Form.Label>ایمیل / موبایل</Form.Label>
+                                        <Form.Control className="order-input login-input" type="text" onChange={handleChange}  required/>
+                                    </Form.Group>
                                 </Col>
                             </Row>
-                            <Row className="w-100 me-2">
-                                <Col className="mt-5 register-link ">
+
+                            <Row className="w-100 me-2 mt-4 pe-2 order-inputs ">
+                                <Col>
+                                    <Form.Group controlId="password">
+                                        <Image src={passwordLogo} width="17px" className="mx-2"/>
+                                        <Form.Label>رمز عبور</Form.Label>
+                                        <Form.Control className="order-input login-input" type="password" onChange={handleChange}  required/>
+                                    </Form.Group>
+                                </Col>
+                            </Row>
+                            <Row className="w-100 me-1">
+                                <Col className="mt-4 register-link">
                                     <a href="/register">ثبت نام</a>
                                 </Col>
                             </Row>
                             <Row className="registerSubmitContainer">
                                 <Col xs={7} className="me-auto ms-4">
-                                    <Button className="form-submit w-75 me-auto d-block" type="submit" >ورود</Button>
+                                    <Button className="form-submit w-100 me-auto d-block" type="submit" >ورود</Button>
                                 </Col>
                             </Row>
                         </Form>
@@ -75,7 +78,7 @@ export const Login = () => {
             </Container>
             
             <div id="triangle-down"></div>
-        </>
+        </div>
     )
 }
 
