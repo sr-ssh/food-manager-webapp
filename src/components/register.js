@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { userActions } from '../actions/userActions';
-import { Container, Button, Form, Row, Col, Image, InputGroup, FormControl } from 'react-bootstrap';
+import { Container, Button, Form, Row, Col, Image } from 'react-bootstrap';
 
 import logo from './../assets/images/tem-x.png'
 import userLogo from './../assets/images/user.svg'

@@ -1,4 +1,5 @@
 import { productConstants } from '../constants';
+import { history } from '../helpers';
 import { productService } from '../services';
 import { alertActions } from './alertActions';
 
@@ -43,6 +44,7 @@ function addProduct(product) {
                     console.log("product added")
                     console.log(res)
                     dispatch(alertActions.success(res));
+                    history.push('/products')
                 },
                 error => {
                     dispatch(failure(error.toString()));
@@ -65,6 +67,7 @@ function editProduct(product) {
                     console.log("product edited")
                     console.log(res)
                     dispatch(alertActions.success(res));
+                    history.push('/products')
                 },
                 error => {
                     dispatch(failure(error.toString()));

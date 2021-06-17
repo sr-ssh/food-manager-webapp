@@ -38,7 +38,7 @@ export const EditProduct = ({location}) => {
             
             <Form className="order-inputs text-right d-flex flex-column justify-content-around position-absolute bottom-0 order-flex" onSubmit={formHandler} >
 
-            <Row className="m-0 p-0 d-flex justify-content-around align-items-center product-input">
+            <Row className="m-0 p-0 d-flex justify-content-around align-items-center product-input-edit">
                     <Row className="d-flex justify-content-center align-items-center">
                         <Col>
                             <Form.Group className="fw-bold product-checkbox" onChange={handleChange}>
@@ -83,13 +83,10 @@ export const EditProduct = ({location}) => {
                 </Row>
 
                 <Row className="p-0 m-0 d-flex justify-content-center align-items-center">
-                    <Col className="col-9">
+                    <Col className="col-11">
                         <Button className="order-submit fw-bold border-0 w-100" size="lg" type="submit" block>
                             ثبت
                         </Button>
-                    </Col>
-                    <Col className="col-2 ">
-                        <img src={deleteIcon} alt="delete-icon" className="delete-button p-2"  onClick={e => history.push('/products')}/>
                     </Col>
                 </Row>
                 

@@ -9,7 +9,11 @@
     background-color: #64B5F6;
 }
 
-.product-input{
+.product-input-add{
+    height: 40%;
+}
+
+.product-input-edit{
     height: 60%;
 }
 
@@ -31,4 +35,25 @@
 
 .was-validated .form-check-input:valid:checked, .form-check-input.is-valid:checked {
     background-color: var(--button-color-two);
+}
+
+
+.was-validated .form-check-input:invalid, .form-check-input.is-invalid {
+    border-color: var(--dager-color);
+}
+
+.was-validated .form-check-input:invalid:checked, .form-check-input.is-invalid:checked {
+    border-color: var(--dager-color);
+}
+
+.was-validated .form-check-input:invalid ~ .form-check-label, .form-check-input.is-invalid ~ .form-check-label {
+    color: var(--dager-color);
+}
+
+.was-validated .form-check-input:invalid:checked, .form-check-input.is-invalid:checked {
+    background-color: var(--dager-color);
+}
+
+.form-check-input:checked[type=radio] {
+    background-image: none;
 }

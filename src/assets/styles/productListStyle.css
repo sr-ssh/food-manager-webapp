@@ -29,7 +29,7 @@
 }
 
 .deActiveStatus {
-    color: var(--text-color-one);
+    color: var(--dager-color);
     font-weight: bold;
 }
 
@@ -37,7 +37,7 @@
     height: 15px;
     width: 15px;
     margin-left: 10px;
-    background-color: var(--text-color-one);
+    background-color: var(--dager-color);
     border-radius: 50%;
     display: inline-block;
 }

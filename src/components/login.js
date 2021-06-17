@@ -6,11 +6,8 @@ import { userActions } from '../actions/userActions';
 //css
 import logo from './../assets/images/tem-x.png'
 import userLogo from './../assets/images/user.svg'
-import mobileLogo from './../assets/images/phone.svg'
-import emailLogo from './../assets/images/emaill.svg'
-import companyLogo from './../assets/images/company-name.svg'
 import passwordLogo from './../assets/images/password.svg'
-import { Container, Button, Form, Row, Col, Image, InputGroup, FormControl } from 'react-bootstrap';
+import { Container, Button, Form, Row, Col, Image } from 'react-bootstrap';
 
 
 export const Login = () => {
