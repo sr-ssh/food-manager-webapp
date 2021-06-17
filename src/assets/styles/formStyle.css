@@ -26,16 +26,8 @@
     background-color: var(--button-background);
     border: none;
     border-radius: 11px;
-    /* padding: 9px;
-    padding-left: 40px;
-    padding-right: 40px; */
-    /* margin-top: 45%; */
     font-size: 14px;
     font-weight: bold;
-    /* position: relative;
-    left: -87px;
-    bottom: -19px; */
-    /* width: 60vw; */
     height: 43px;
     color: var(--button-color-one);
     font-family: 'IranSans';

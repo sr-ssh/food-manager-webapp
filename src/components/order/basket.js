@@ -62,12 +62,11 @@ export const Basket = ({order, insertOrder}) => {
     return(
         <>
         <Row>
-            <h6>سبد خرید</h6>
-        </Row>
-        <Row>
-            <Card className="border-0">
+            <Card className="border-0 p-1">
                 <Card.Body className="basket-flex d-flex flex-column justify-content-around">
-                    
+                    <Row>
+                        <h6 className="order-input">سبد خرید</h6>
+                    </Row>
                     <Row className="d-flex flex-row justify-content-around text-right">
 
                         <Col>
@@ -97,41 +96,38 @@ export const Basket = ({order, insertOrder}) => {
                     </Row>
                 
                     <Row>
-                        {
-                            order.length 
-                            ? <Table borderless size="sm">
-                                <thead>
+                        <Table borderless size="sm">
+                            <thead>
                                 <tr>
                                     <th>سفارش</th>
                                     <th>قیمت</th>
                                     <th>تعداد</th>
                                     <th></th>
                                 </tr>
-                                </thead>
-                                <tbody>
-                                {
-                                    order.map(item => {
-                                        return (
-                                            <tr key={item.name}>
-                                                <td>{item.name}</td>
-                                                <td>{item.quantity * item.sellingPrice} تومان</td>
-                                                <td>{item.quantity}</td>
-                                                <td><img onClick={(e) => removeOrder(e, item)} src={deleteIcon} alt="delete-icon"/></td>
-                                            </tr>
-                                        )
-                                    })
-                                }
-                                <tr className="border-top">
+                            </thead>
+                            <tbody>
+                            {
+                                order.length 
+                                ? order.map(item => {
+                                            return (
+                                                <tr key={item.name}>
+                                                    <td>{item.name}</td>
+                                                    <td>{item.quantity * item.sellingPrice} تومان</td>
+                                                    <td>{item.quantity}</td>
+                                                    <td><img onClick={(e) => removeOrder(e, item)} src={deleteIcon} alt="delete-icon"/></td>
+                                                </tr>
+                                            )
+                                        })
+                                : null
+                            }
+                                <tr className="border-top-blue">
                                     <td>جمع کل:</td>
                                     <td>{totalPrice} تومان</td>
                                     <td></td>
                                     <td></td>
                                 </tr>
-                                </tbody>
-                            </Table>
-                        
-                        : <Col>هیچ محصولی انتخاب نشده است</Col>   
-                        }
+                            </tbody>
+                        </Table>
                     </Row>
 
                 </Card.Body>

@@ -33,52 +33,59 @@ export const AddOrder = () => {
             
             <Form className="text-right d-flex flex-column justify-content-around align-items-center position-absolute bottom-0 left-0 right-0 order-flex" onSubmit={formHandler} >
 
-                    <Row className="order-inputs d-flex justify-content-around align-items-center flex-wrap">
+                    <Row className="m-0 p-0 order-inputs d-flex justify-content-around align-items-center flex-wrap mt-4">
                    
                         <Row className="d-flex flex-nowrap justify-content-around">
 
                             <Col>
                                 <Form.Group controlId="mobile">
                                     <Form.Label>موبایل</Form.Label>
-                                    <Form.Control className="order-input border-0" type="number" placeholder="شماره موبایل" onChange={handleChange}  required/>
+                                    <Form.Control className="order-input" type="number" onChange={handleChange}  required/>
                                 </Form.Group>
                             </Col>
 
                         </Row>
 
-                        <Row className="d-flex flex-nowrap justify-content-around">
+                        <Row className="d-flex flex-nowrap justify-content-around mt-2">
 
                             <Col>
                                 <Form.Group controlId="family">
                                     <Form.Label>نام خانوادگی</Form.Label>
-                                    <Form.Control className="order-input border-0" type="text" placeholder="نام خانوادگی" onChange={handleChange}  required/>
+                                    <Form.Control className="order-input" type="text" onChange={handleChange}  required/>
                                 </Form.Group>
                             </Col>
                             
                             <Col>
                                 <Form.Group controlId="birthday">
                                     <Form.Label>تاریخ تولد</Form.Label>
-                                    <Form.Control className="order-input border-0" type="text" placeholder="(اختیاری) تاریخ تولد" onChange={handleChange}/>
+                                    <Form.Control className="order-input" type="text" onChange={handleChange}/>
                                 </Form.Group>
                             </Col>
 
                         </Row>
                     </Row>
 
-                    <Row className="order-submit-flex">
+                    <Row className="m-3 ms-4 p-0 order-submit-flex align-self-stretch">
                         <Col>
                             <Basket order={order} insertOrder={insertOrder} />
                         </Col>
                     </Row>
 
-                    <Row>
-                        <Col>
-                            <h5>تاریخ یادآوری</h5>
-                            <input onChange={handleChange} name="reminderDay" type="number" placeholder="5 روز"/>
-                        </Col>
+                    <Row className="d-flex order-inputs align-self-start me-3 flex-row">
+                        <Form.Group controlId="reminder">
+                            <Row>
+                            <Col xs={4} className="p-2">
+                            <Form.Label>تاریخ یادآوری</Form.Label>
+                            <Form.Control className="text-center order-input" type="number" onChange={handleChange}/>
+                            </Col>
+                            <Col className="align-self-end p-2">
+                                <span className="mt-2 reminder-span" ><smal>روز دیگر</smal></span>
+                            </Col>
+                            </Row>
+                        </Form.Group>
                     </Row>
                     
-                    <Row className="order-submit-flex align-self-stretch">
+                    <Row className="m-0 ms-2 p-0 order-submit-flex align-self-stretch">
                         <Col>
                             <Button className="fw-bold order-submit border-0 col-12" size="lg" type="submit" block>
                                 ثبت

@@ -3,10 +3,7 @@ import { useDispatch } from 'react-redux';
 import { productActions } from '../../actions';
 import { Header } from '../base/header2';
 import { Container , Form , Button , Row , Col } from 'react-bootstrap';
-import { history } from '../../helpers';
 
-//icons
-import deleteIcon from './../../assets/images/delete.svg'
 
 export const EditProduct = ({location}) => {
     

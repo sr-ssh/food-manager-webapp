@@ -43,14 +43,15 @@
 }
 
 .order-submit{
-    background-color: var(--button-color-two);
-    border-radius: 10px;
-    font-size: 15px;
+    background-color: var(--button-background);
+    border: none;
+    border-radius: 11px;
+    font-size: 14px;
+    font-weight: bold;
+    height: 43px;
+    color: var(--button-color-one);
+    font-family: 'IranSans';
     padding: 11px;
-}
-
-.order-submit::after{
-    background-color: var(--button-color-two);
 }
 
 .order-submit-flex{
@@ -110,4 +111,12 @@
 
 .basket-flex img{
     width: 1.5rem;
+}
+
+.border-top-blue {
+    border-top: 1px solid var(--button-background);
+}
+
+.reminder-span{
+    font-size: 9px;
 }
