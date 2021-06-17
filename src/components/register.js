@@ -56,14 +56,6 @@ export const Register = () => {
                                     </Form.Group>
                                 </Col>
                             </Row>
-                            {/* <Row className="w-100 me-2">
-                                <Col md={1} sm={1} xs={1}>
-                                    <Image src={userLogo} className="form-icon" width="20px" height="20px"/>
-                                </Col>
-                                <Col md={6} sm={6} xs={8}>
-                                    <Form.Control size="lg" className="pe-5 pt-2 form-input shadow-none" name="family" type="text" placeholder="نام خانوادگی" onChange={handleChange} required />
-                                </Col>
-                            </Row> */}
 
                             <Row className="w-100 me-2 pe-2 order-inputs mt-2">
                                 <Col >
@@ -75,15 +67,6 @@ export const Register = () => {
                                 </Col>
                             </Row>
 
-                            {/* <Row className="w-100 me-2 mt-4">
-                                <Col md={1} sm={1} xs={1}>
-                                    <Image src={mobileLogo} className="form-icon" width="20px" height="20px"/>
-                                </Col>
-                                <Col md={6} sm={6} xs={8}>
-                                    <Form.Control size="lg" className="pe-5 form-input shadow-none" name="mobile" type="number" placeholder="موبایل" onChange={handleChange} required/>
-                                </Col>
-                            </Row> */}
-
                             <Row className="w-100 me-2 pe-2 order-inputs mt-2">
                                 <Col >
                                     <Form.Group controlId="email" >
@@ -94,15 +77,6 @@ export const Register = () => {
                                 </Col>
                             </Row>
                             
-                            {/* <Row className="w-100 me-2 mt-4">
-                                <Col md={1} sm={1} xs={1}>
-                                    <Image src={emailLogo} className="form-icon" width="20px" height="20px"/>
-                                </Col>
-                                <Col md={6} sm={6} xs={8}>
-                                    <Form.Control size="lg" className="pe-5 form-input shadow-none" name="email" type="email" placeholder="ایمیل" onChange={handleChange} required/>
-                                </Col>
-                            </Row> */}
-
                             <Row className="w-100 me-2 pe-2 order-inputs mt-2">
                                 <Col >
                                     <Form.Group controlId="company" >
@@ -113,15 +87,6 @@ export const Register = () => {
                                 </Col>
                             </Row>
 
-                            {/* <Row className="w-100 me-2 mt-4">
-                                <Col md={1} sm={1} xs={1}>
-                                    <Image src={companyLogo} className="form-icon" width="20px" height="20px"/>
-                                </Col>
-                                <Col md={6} sm={6} xs={8}>
-                                    <Form.Control size="lg" className="pe-5 form-input shadow-none" name="company" type="text" placeholder="نام شرکت" onChange={handleChange} required/>
-                                </Col>
-                            </Row> */}
-
                             <Row className="w-100 me-2 pe-2 order-inputs mt-2">
                                 <Col >
                                     <Form.Group controlId="password" >
@@ -131,16 +96,6 @@ export const Register = () => {
                                     </Form.Group>
                                 </Col>
                             </Row>
-
-                            {/* <Row className="w-100 me-2 mt-4">
-                                <Col md={1} sm={1} xs={1}>
-                                    <Image src={passwordLogo} className="form-icon" width="20px" height="20px"/>
-                                </Col>
-                                <Col md={6} sm={6} xs={8}>
-                                    <Form.Control size="lg" className="pe-5 form-input shadow-none" name="password" type="password" placeholder="رمز عبور" onChange={handleChange} required/>
-                                </Col>
-                            </Row>
-                             */}
 
                             <Row className="w-100 me-0">
                                 <Col className="mt-4 register-link">
