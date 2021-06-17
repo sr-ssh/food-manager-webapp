@@ -10,6 +10,7 @@ import './assets/styles/baseStyle.css';
 import './assets/styles/orderStyle.css';
 import './assets/styles/productListStyle.css';
 import './assets/styles/product.css'
+import './assets/styles/dashboardStyle.css';
 
 ReactDOM.render(
   <Provider store={store}>
