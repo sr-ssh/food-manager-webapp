@@ -1,21 +1,34 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import Sidebar from "react-sidebar"
+import Sidebar from 'react-sidebar'
+
+import { SidebarItems } from './sidebarItems'
+
+import logo from "../../assets/images/back.svg"
 
 export const Dashboard = () => {
-    const [sidebarOpen, setOpen] = useState(false)
+    const [isOpen, setIsOpen] = useState(false)
 
     return (
         <>
             <Sidebar
-                sidebar={<b>Sidebar content</b>}
-                open={sidebarOpen}
-                onSetOpen={setOpen}
-                styles={{ sidebar: { background: "white", width : "200px"} }}
+                sidebar={<SidebarItems />}
+                open={isOpen}
+                onSetOpen={setIsOpen}
+                pullRight={true}
+                styles={{ 
+                    sidebar: { background: "white", width : "42vw" },
+                    overlay: { backgroundColor: "none" }
+                }}
+                overlayClassName="test3"
+                shadow={false}
+                touch={false}
             >
-                <button onClick={() => setOpen(true)}>
-                    Open sidebar
-                </button>
+                <div className="mainPage h-100">
+                    <button onClick={() => setIsOpen(!isOpen)} className="d-block me-auto">
+                        Open sidebar
+                    </button>
+                </div>
             </Sidebar>
         </>
     )
