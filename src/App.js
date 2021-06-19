@@ -15,6 +15,7 @@ import { Products } from './components/products/products';
 import { AddProduct } from './components/products/addProduct';
 import { EditProduct } from './components/products/editProduct';
 import { Main } from './components/main/main';
+import { Orders } from './components/order/orders';
 
 function App() {
   return (    
@@ -26,6 +27,7 @@ function App() {
             <PrivateRoute path="/products" component={Products} ></PrivateRoute>
             <PrivateRoute path="/product/add" component={AddProduct} ></PrivateRoute>
             <PrivateRoute path="/product/edit" component={EditProduct} ></PrivateRoute>
+            <PrivateRoute path="/orders" component={Orders} ></PrivateRoute>
             <PrivateRoute path="/customers" component={Customers} ></PrivateRoute>
             <PrivateRoute path="/finance" component={Finance}></PrivateRoute>
             <PrivateRoute path="/dashboard" component={Dashboard} ></PrivateRoute>

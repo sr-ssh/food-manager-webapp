@@ -6,8 +6,30 @@ import { handleResponse, handleError } from '../helpers'
 let baseRoute = SERVER_URL;
 
 export const orderService = {
+    getOrders,
     addOrder
 };
+
+function getOrders() {
+    console.log("into orderService");
+
+    const requestOptions = {
+        headers: authHeader()
+    };
+    
+    return axios
+        .get(`${baseRoute}/order`, requestOptions)
+        .then(res => {
+            console.log("res.user >> "); console.log(res.data.data);
+            return handleResponse(res)
+        })
+        .catch(function (error) {
+            if (error.response) {
+                console.log(error.response.data);
+                handleError(error.response.status)
+            }
+        });
+}
 
 function addOrder(products, customer) {
     console.log("into orderService");

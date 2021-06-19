@@ -146,3 +146,40 @@
 .reminder-span{
     font-size: 9px;
 }
+
+.background-blue{
+    background-color: var(--background-blue);
+}
+
+.orders th{
+    font-size: 11px;
+    color: var(--text-color-one);
+    font-weight: normal;
+}
+
+.orders td{
+    color: var(--text-color-two);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.orders span{
+    color: var(--text-color-two);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.text-bold{
+    color: var(--text-color-two);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.text-gray{
+    font-size: 13px;
+    color: var(--text-color-one);
+}
+
+.orders .customer-round{
+    border-radius: 10px;
+}
