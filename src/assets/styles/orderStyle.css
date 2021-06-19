@@ -13,12 +13,19 @@
     top: 47px;
 }
 
+.orderInput {
+    font-size: 11px;
+    color: var(--text-color-one);
+    font-family: 'IranSans';
+    font-weight: bold;
+    width: 47%;
+}
+
 .order-inputs{
     font-size: 11px;
     color: var(--text-color-one);
     font-family: 'IranSans';
-    /* margin-left: 6px; */
-    /* margin-right: 6px; */
+    font-weight: bold;
 }
 
 .order-input{
@@ -33,10 +40,6 @@
     border: 1px solid var(--button-color-one);
 }
 
-.order-page .form-group {
-    /* margin-left: 8px; */
-    /* margin-right: 8px; */
-}
 
 .order-page .form-control {
     height: calc(1.5em + 0.75rem + 1px);
@@ -54,13 +57,12 @@
     padding: 11px;
 }
 
-.order-submit-flex{
-    /* margin-left: 14px; */
-    /* margin-right: 14px; */
-}
-
 .order-page .card{
     background-color: var(--card-background);
+}
+
+.basketContainer {
+    border-radius: 11px;
 }
 
 .basket-flex .dropdown-toggle {
@@ -69,7 +71,15 @@
     color: var(--text-color-one);
     font-size: 13px;
     border-radius: 10px;
+    width: 100%;
+    text-align: right;
 }
+
+.basket-flex .dropdown-toggle::after { 
+    content: "";
+    border: none;
+}
+
 
 .basket-flex .dropdown-item {
     font-size: 13px;
@@ -91,6 +101,7 @@
 
 .products-add{
     background-color: var(--body-bachground);
+    border-radius: 11px;
 }
 
 .products-add:active{
@@ -111,6 +122,21 @@
 
 .basket-flex img{
     width: 1.5rem;
+}
+
+.orderTable {
+    min-height: 33vh;
+}
+
+.dropdownProductMenu {
+    width: 100%;
+    border-radius: 0 0 11px 11px;
+    padding: 5px;
+}
+
+.dim {
+    box-shadow: 0 0 0 1000px rgba(0, 0, 0, .5);
+    box-shadow: 0 0 0 100vmax rgba(0, 0, 0, .5);
 }
 
 .border-top-blue {
