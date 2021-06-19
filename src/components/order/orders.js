@@ -1,0 +1,113 @@
+import React, { useEffect } from 'react'
+import { Header } from '../base/serachHeader';
+import { useDispatch, useSelector } from 'react-redux'
+import { orderActions } from '../../actions'
+import moment from 'jalali-moment';
+import { history } from '../../helpers';
+import { Card , Table , Row , Col, Container } from 'react-bootstrap';
+
+import editIcon from '../../assets/images/Products/edit.svg'
+
+export const Orders = () => {
+
+    const dispatch = useDispatch()
+    const orders = useSelector(state => state.getOrders.orders)
+
+    const getTotalPrice = (item) => {
+        item = item.map(a => a.sellingPrice)
+        return item.reduce((a, b) => parseInt(a) + parseInt(b), 0);
+    }
+    
+    useEffect(() => {
+        dispatch(orderActions.getOrders())
+    }, [dispatch])
+
+
+    return (
+        <div className="product-page orders">
+        {console.log(orders)}
+            <Header title="سفارش ها"/>
+            <Container className="m-auto">
+                {orders ? 
+                    (orders.map(order => 
+                        <Card className="m-auto mt-3 bg-light productCard border-0 lh-lg" >
+                            <Card.Body className="pb-0 ps-1 rounded-3 text-gray">
+                                <Row className="p-0 ps-2 m-0 ">
+                                    <Card className="background-blue border-0 customer-round">
+                                        <Card.Body className="pe-0 ps-0 ">
+                                            <Row>
+                                                <Col>
+                                                    <Card.Text>
+                                                        نام مشتری: <span>{order.customer.family}</span>
+                                                    </Card.Text>
+                                                </Col>
+                                            </Row>
+                                            <Row className="flex-nowrap mt-2">
+                                                <Col>
+                                                    <Card.Text>
+                                                        موبایل: <span>{order.customer.mobile}</span>
+                                                    </Card.Text>
+                                                </Col>
+                                                <Col>
+                                                    <Card.Text>
+                                                        تاریخ : <span>{moment.from(order.customer.creadtedAt, 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD')}</span>
+                                                    </Card.Text>
+                                                </Col>
+                                            </Row>
+                                        </Card.Body>
+                                    </Card>
+                                </Row>
+                                <Row className="mt-2">
+                                    <Card.Text className="text-bold">
+                                        سبد خرید
+                                    </Card.Text>
+                                </Row>
+                                
+                                <Row className="m-0 p-0 ps-2">
+                                    
+                                    <Table borderless size="sm">
+                                        <thead>
+                                            <tr>
+                                                <th>سفارش</th>
+                                                <th>قیمت</th>
+                                                <th>تعداد</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        {
+                                            order.products.length 
+                                            ? order.products.map(item => {
+                                                        return (
+                                                            <tr key={item.name}>
+                                                                <td>{item.name}</td>
+                                                                <td>{item.quantity * item.sellingPrice} تومان</td>
+                                                                <td>{item.quantity}</td>
+                                                            </tr>
+                                                        )
+                                                    })
+                                                
+                                            : null
+                                        }
+                                        <tr className="border-top-blue">
+                                            <td>جمع کل:</td>
+                                            <td className="fs-6">{getTotalPrice(order.products)} تومان</td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                            
+                                        </tbody>
+                                    </Table>
+                                </Row>
+
+                            </Card.Body>
+                        </Card>    
+                    ))    
+                    
+                    : null}
+                
+                    
+            </Container>
+        </div>
+    )
+}
