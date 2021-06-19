@@ -10,15 +10,20 @@ export const orderService = {
     addOrder
 };
 
-function getOrders() {
+function getOrders(filter = {}) {
     console.log("into orderService");
-
+    filter = {
+        customerName: "کو"
+    }
     const requestOptions = {
-        headers: authHeader()
+        headers: authHeader(),
+        body: filter
     };
+
+    
     
     return axios
-        .get(`${baseRoute}/order`, requestOptions)
+        .get(`${baseRoute}/order`, requestOptions, {body: filter})
         .then(res => {
             console.log("res.user >> "); console.log(res.data.data);
             return handleResponse(res)
