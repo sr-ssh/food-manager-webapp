@@ -5,15 +5,23 @@ import { Card , DropdownButton , Dropdown , Button , Table , Row , Col } from 'r
 
 //icons
 import deleteIcon from './../../assets/images/delete.svg'
+import spinnerIcon from './../../assets/images/sppiner.svg'
+import plusIcon from './../../assets/images/plus.svg'
 
 export const Basket = ({order, insertOrder}) => {
 
+    const [dimStatus, setDimStatus] = useState(false)
     const [totalPrice, insertPrice] = useState(0)
+    const [selectedItem, setItem] = useState("")
     const products = useSelector(state => state.getProducts.product)
     const dispatch = useDispatch()
 
-    let newOrder = (e, product) => {
+    let newOrder = (e) => {
         e.preventDefault();
+        let product = products.find(item => item.name === selectedItem)
+        console.log("producttttttttttt")
+        console.log(product)
+        console.log("producttttttttttt")
         insertPrice(totalPrice + parseInt(product.sellingPrice))
         let newOrder = {
           _id: product._id,
@@ -59,53 +67,67 @@ export const Basket = ({order, insertOrder}) => {
     }
 
 
-    return(
+    return (
         <>
         <Row>
-            <Card className="border-0 p-1">
-                <Card.Body className="basket-flex d-flex flex-column justify-content-around">
+            <Card className="border-0 p-3 pt-2  basketContainer">
+                <Card.Body className="p-0 basket-flex">
                     <Row>
-                        <h6 className="order-input">سبد خرید</h6>
+                        <h6 className="order-input fw-bold">سبد خرید</h6>
                     </Row>
-                    <Row className="d-flex flex-row justify-content-around text-right">
+                    <Row>
+                        <Col className="col-10 pe-2">
+                            <Dropdown onToggle={(e) => setDimStatus(!dimStatus)} onClick={(e) => productHandler(e)}>
+                                <Dropdown.Toggle className="d-flex">
+                                    {selectedItem.length ? <span>{selectedItem}</span> : <span>محصولات</span>} 
+                                    <img className="me-auto" src={spinnerIcon} height="20px" />
+                                </Dropdown.Toggle> 
+                                <Dropdown.Menu className={`${dimStatus ? "dim" : ""} dropdownProductMenu`}>
+                                    {products 
+                                        ? products.map((item, index) =>  {
+                                            return(
+                                                <Col key={index}>
+                                                    {index ? <Dropdown.Divider  /> : null}
+                                                    <Dropdown.Item onClick={() => setItem(item.name) }>
+                                                        <Row>
+                                                            <Col className="text-end">{item.name}</Col> 
+                                                            <Col>{item.sellingPrice} <span className="orderInput">تومان</span></Col>
+                                                        </Row>
+                                                    </Dropdown.Item>
+                                                </Col>   
+                                                )    
+                                            })  
+                                        : null
+                                    }
+                                </Dropdown.Menu>
+                            </Dropdown>
 
-                        <Col>
-                            <DropdownButton onClick={(e) => productHandler(e)} title="محصولات">
-                                {products 
-                                    ? products.map((item, index) =>  {
-                                        return(
-                                            <Col key={index}>
-                                                {index ? <Dropdown.Divider /> : null}
-                                                <Dropdown.Item onClick={(e) => newOrder(e, item)}>
-                                                    <Row><Col>{item.name}</Col> <Col>{item.sellingPrice} تومان</Col></Row>
-                                                </Dropdown.Item>
-                                            </Col>   
-                                            )    
-                                        })  
-                                    : null
-                                }
-                            </DropdownButton>
                         </Col>
 
-                        <Col>
-                            <Button className="products-add border-0" type="button">
-                                +
+                        <Col className="col-2 p-0 text-center">
+                            <Button className="w-75 products-add border-0 py-1" onClick={(e) => newOrder(e)} type="button">
+                                <img className="d-flex m-auto" src={plusIcon} />
                             </Button>
                         </Col>
-                    
                     </Row>
                 
-                    <Row>
-                        <Table borderless size="sm">
+                    <Row className="orderTable pt-2 px-2">
+                        <Table className="" borderless size="sm">
+                            <col width="40%" />
+                            <col width="35%" />
+                            <col width="20%" />
                             <thead>
                                 <tr>
-                                    <th>سفارش</th>
-                                    <th>قیمت</th>
-                                    <th>تعداد</th>
+                                    <th className="fw-bold">سفارش</th>
+                                    <th className="fw-bold">قیمت</th>
+                                    <th className="fw-bold">تعداد</th>
                                     <th></th>
                                 </tr>
                             </thead>
                             <tbody>
+                                <tr style={ order.length ? {"display": "none"} : {}}>
+                                    <td></td>
+                                </tr>
                             {
                                 order.length 
                                 ? order.map(item => {
@@ -113,21 +135,24 @@ export const Basket = ({order, insertOrder}) => {
                                                 <tr key={item.name}>
                                                     <td>{item.name}</td>
                                                     <td>{item.quantity * item.sellingPrice} تومان</td>
-                                                    <td>{item.quantity}</td>
+                                                    <td className="pe-3">{item.quantity}</td>
                                                     <td><img onClick={(e) => removeOrder(e, item)} src={deleteIcon} alt="delete-icon"/></td>
                                                 </tr>
                                             )
                                         })
                                 : null
                             }
-                                <tr className="border-top-blue">
-                                    <td>جمع کل:</td>
-                                    <td>{totalPrice} تومان</td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
+                           
                             </tbody>
                         </Table>
+                        <Row className="border-top-blue pt-2 mt-auto">
+                            <Col className="col-5">
+                                <span className="">جمع کل</span>
+                            </Col>
+                            <Col className="px-1">
+                                {totalPrice}
+                            </Col>
+                        </Row>
                     </Row>
 
                 </Card.Body>

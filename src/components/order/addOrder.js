@@ -28,73 +28,66 @@ export const AddOrder = () => {
 
     return (
         <div className="order-page">
-        <Header brand="ثبت سفارش"/>
-        <Container>
-            
-            <Form className="text-right d-flex flex-column justify-content-around align-items-center position-absolute bottom-0 left-0 right-0 order-flex" onSubmit={formHandler} >
-
-                    <Row className="m-0 p-0 order-inputs d-flex justify-content-around align-items-center flex-wrap mt-4">
-                   
-                        <Row className="d-flex flex-nowrap justify-content-around">
-
-                            <Col>
-                                <Form.Group controlId="mobile">
-                                    <Form.Label>موبایل</Form.Label>
-                                    <Form.Control className="order-input" type="number" onChange={handleChange}  required/>
-                                </Form.Group>
-                            </Col>
-
-                        </Row>
-
-                        <Row className="d-flex flex-nowrap justify-content-around mt-2">
-
-                            <Col>
-                                <Form.Group controlId="family">
-                                    <Form.Label>نام خانوادگی</Form.Label>
-                                    <Form.Control className="order-input" type="text" onChange={handleChange}  required/>
-                                </Form.Group>
-                            </Col>
-                            
-                            <Col>
-                                <Form.Group controlId="birthday">
-                                    <Form.Label>تاریخ تولد</Form.Label>
-                                    <Form.Control className="order-input" type="text" onChange={handleChange}/>
-                                </Form.Group>
-                            </Col>
-
-                        </Row>
+        {console.log("===========orders======")}
+        {console.log(order)}
+        {console.log("============customer=======")}
+        {console.log(customer)}
+        {console.log("============")}
+            <Header title="ثبت سفارش"/>
+            <Container fluid className="pt-3 px-3 m-0">
+                <Form className="" onSubmit={formHandler} >
+                    <Row className="m-0 p-0 order-inputs">
+                        <Col className="p-0 col-5 orderInput">
+                            <Form.Group >
+                                <Form.Label className="pe-2">موبایل</Form.Label>
+                                <Form.Control className="order-input" type="number" name="mobile" onChange={handleChange}  required/>
+                            </Form.Group>
+                        </Col>
+                    </Row>
+                    <Row className="m-0 p-0 mt-2 order-inputs">
+                        <Col className="p-0 col-5 orderInput">
+                            <Form.Group >
+                                <Form.Label className="pe-2">نام</Form.Label>
+                                <Form.Control className="order-input" type="text" name="family" onChange={handleChange}  required/>
+                            </Form.Group>
+                        </Col> 
+                        <Col className="p-0 col-5 me-auto orderInput">
+                            <Form.Group controlId="birthday">
+                                <Form.Label className="pe-2">تاریخ تولد</Form.Label>
+                                <Form.Control className="order-input" type="date" name="birthday" onChange={handleChange}/>
+                            </Form.Group>
+                        </Col>
                     </Row>
 
-                    <Row className="m-3 ms-4 p-0 order-submit-flex align-self-stretch">
+                    <Row className="m-0 mt-4 basketContainer">
                         <Col>
                             <Basket order={order} insertOrder={insertOrder} />
                         </Col>
                     </Row>
 
-                    <Row className="d-flex order-inputs align-self-start me-3 flex-row">
+                    <Row className="m-0 order-input align-self-start me-3 flex-row">
                         <Form.Group controlId="reminder">
                             <Row>
-                            <Col xs={4} className="p-2">
-                            <Form.Label>تاریخ یادآوری</Form.Label>
-                            <Form.Control className="text-center order-input" type="number" onChange={handleChange}/>
-                            </Col>
-                            <Col className="align-self-end p-2">
-                                <span className="mt-2 reminder-span" ><smal>روز دیگر</smal></span>
-                            </Col>
+                                <Col className="p-0 mt-3 col-3">
+                                    <Form.Label>تاریخ یادآوری</Form.Label>
+                                    <Form.Control className="text-center order-input" type="number" name="reminder" onChange={handleChange}/>
+                                </Col>
+                                <Col className="align-self-end p-2">
+                                    <span className="mt-2 reminder-span" ><smal>روز دیگر</smal></span>
+                                </Col>
                             </Row>
                         </Form.Group>
                     </Row>
                     
-                    <Row className="m-0 ms-2 p-0 order-submit-flex align-self-stretch">
-                        <Col>
-                            <Button className="fw-bold order-submit border-0 col-12" size="lg" type="submit" block>
+                    <Row className="m-0 mt-4 justify-content-center w-100">
+                        <Col className="col-12">
+                            <Button className="fw-bold order-submit border-0 w-100" size="lg" type="submit" block>
                                 ثبت
                             </Button>
                         </Col>
                     </Row>
-                
-            </Form>
-        </Container>
+                </Form>
+            </Container>
         </div>
     )
 }
