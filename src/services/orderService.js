@@ -5,6 +5,11 @@ import { handleResponse, handleError } from '../helpers'
 
 let baseRoute = SERVER_URL;
 
+axios.interceptors.request.use(request => {
+    console.log('Starting Request', request)
+    return request
+  })
+
 export const orderService = {
     getOrders,
     addOrder
@@ -12,18 +17,14 @@ export const orderService = {
 
 function getOrders(filter = {}) {
     console.log("into orderService");
-    filter = {
-        customerName: "کو"
-    }
+
     const requestOptions = {
         headers: authHeader(),
-        body: filter
+        params: filter
     };
-
-    
     
     return axios
-        .get(`${baseRoute}/order`, requestOptions, {body: filter})
+        .get(`${baseRoute}/order`, requestOptions )
         .then(res => {
             console.log("res.user >> "); console.log(res.data.data);
             return handleResponse(res)

@@ -7,10 +7,10 @@ export const orderActions = {
     addOrder
 }
 
-function getOrders() {
+function getOrders(filter) {
     return dispatch => {
         dispatch(request(orderConstants.GET_ORDERS_REQUEST))
-        orderService.getOrders()
+        orderService.getOrders(filter)
             .then(
                 res => {
                     dispatch(success(orderConstants.GET_ORDERS_SUCCESS, res.data));

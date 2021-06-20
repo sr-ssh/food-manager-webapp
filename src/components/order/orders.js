@@ -1,15 +1,14 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Header } from '../base/serachHeader';
 import { useDispatch, useSelector } from 'react-redux'
 import { orderActions } from '../../actions'
 import moment from 'jalali-moment';
-import { history } from '../../helpers';
 import { Card , Table , Row , Col, Container } from 'react-bootstrap';
 
-import editIcon from '../../assets/images/Products/edit.svg'
 
 export const Orders = () => {
 
+    const[filter, setFilter] = useState({})
     const dispatch = useDispatch()
     const orders = useSelector(state => state.getOrders.orders)
 
@@ -19,8 +18,8 @@ export const Orders = () => {
     }
     
     useEffect(() => {
-        dispatch(orderActions.getOrders())
-    }, [dispatch])
+        dispatch(orderActions.getOrders(filter))
+    }, [dispatch, filter])
 
 
     return (
