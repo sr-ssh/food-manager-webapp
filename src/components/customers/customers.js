@@ -1,6 +1,9 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { customerActions } from '../../actions/customerActions'
+import { customerActions } from '../../actions/customerActions';
+import { Container } from 'react-bootstrap';
+import { Header } from '../base/serachHeader';
+
 
 // components
 import { Customer } from './customer'
@@ -21,12 +24,17 @@ export const Customers = () => {
 
     return(
         <>
-        <Filter />
-        {
-            customers
-            ? customers.map((customer, index) => <><hr/><Customer key={index} customer={customer} /></>)
-            : <p>هیچ مشتری وجود ندارد</p>
-        }
+        {/* <Filter /> */}
+        <div className="product-page orders">
+            <Header title="مشتریان"/>
+            <Container fluid className="m-auto">
+                {
+                    customers
+                    ? (customers.map((customer, index) => <Customer key={index} customer={customer}/>))   
+                    : null
+                }
+            </Container>
+        </div>
         </>
     )
 }

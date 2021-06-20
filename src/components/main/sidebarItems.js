@@ -32,7 +32,7 @@ export const SidebarItems = () => {
                     <Link to="/">مالی</Link>
                 </Col>
                 <Col xs={10} sm={10} md={10} lg={10} className="py-3 mx-3 fw-bold sidebarItem">
-                    <Link to="/">مشتریان</Link>
+                    <Link to="/customers">مشتریان</Link>
                 </Col>
                 <Col xs={10} sm={10} md={10} lg={10} className="py-3 mx-3 fw-bold sidebarItem">
                     <Link to="/">تخفیف ها</Link>

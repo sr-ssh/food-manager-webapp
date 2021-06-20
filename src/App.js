@@ -32,7 +32,7 @@ function App() {
             <PrivateRoute path="/finance" component={Finance}></PrivateRoute>
             <PrivateRoute path="/dashboard" component={Dashboard} ></PrivateRoute>
             <PrivateRoute path="/order/add" component={AddOrder} ></PrivateRoute>
-            {/* <Redirect from="*" to="/" /> */}
+            <Redirect from="*" to="/" />
             </Switch>
         </Router>
   );

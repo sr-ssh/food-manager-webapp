@@ -24,7 +24,6 @@ export const Orders = () => {
 
     return (
         <div className="product-page orders">
-        {console.log(orders)}
             <Header title="سفارش ها"/>
             <Container className="m-auto">
                 {orders ? 
