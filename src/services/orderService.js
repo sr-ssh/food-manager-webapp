@@ -19,12 +19,11 @@ function getOrders(filter = {}) {
     console.log("into orderService");
 
     const requestOptions = {
-        headers: authHeader(),
-        params: filter
+        headers: authHeader()
     };
     
     return axios
-        .get(`${baseRoute}/order`, requestOptions )
+        .get(`${baseRoute}/order/${encodeURI("شکوهی")}/${"09527841261"}/${"2021-05-31T05:42:13.845Z"}/${"2021-07-19T09:24:18.663Z"}`, requestOptions )
         .then(res => {
             console.log("res.user >> "); console.log(res.data.data);
             return handleResponse(res)

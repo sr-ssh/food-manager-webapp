@@ -4,7 +4,7 @@ import { alert } from './alertReducer';
 import { getCustomers , setCustomersFilter } from './customerReducer'
 import { getProducts } from './productReducer'
 import { financeSummary, bill } from './financeReducer'
-import { addOrder, getOrders } from './orderReducer'
+import { addOrder, getOrders, setOrdersFilter } from './orderReducer'
 
 export default combineReducers ({
     authentication,
@@ -15,5 +15,6 @@ export default combineReducers ({
     financeSummary,
     bill,
     addOrder,
-    getOrders
+    getOrders,
+    setOrdersFilter
 })

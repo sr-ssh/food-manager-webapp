@@ -48,3 +48,15 @@ export function addOrder(state = initialState, action) {
             return state
     }
 }
+
+export function setOrdersFilter(state = {}, action){
+    
+    switch (action.type) {
+        case orderConstants.ADD_ORDER_FILTER:
+            return{
+                filter: action.filter
+            }
+        default:
+            return state;
+    }
+}

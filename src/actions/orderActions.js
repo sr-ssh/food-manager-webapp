@@ -54,6 +54,14 @@ function addOrder(products, customer) {
     function failure(error) { return { type: orderConstants.ADD_ORDER_FAILURE, error } }
 }
 
+function setFilter(filter) {
+    return dispatch => {
+        dispatch(success(filter))
+    };
+
+    function success(filter) { console.log("into success"); return { type: orderConstants.ADD_ORDER_FILTER, filter } }
+}
+
 function request(type) {
     return { type: type }
 }

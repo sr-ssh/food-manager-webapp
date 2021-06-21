@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react'
-import { Header } from '../base/serachHeader';
 import { useDispatch, useSelector } from 'react-redux'
-import { orderActions } from '../../actions'
 import moment from 'jalali-moment';
 import { Card , Table , Row , Col, Container } from 'react-bootstrap';
 
+import { orderActions } from '../../actions';
+import { Header } from '../base/serachHeader';
+import { OrderSearch } from './search'
 
 export const Orders = () => {
 
-    const[filter, setFilter] = useState({})
+    const [filter, setFilter] = useState({})
+    const [modalShow, setModalShow] = useState(false)
     const dispatch = useDispatch()
     const orders = useSelector(state => state.getOrders.orders)
 
@@ -24,7 +26,7 @@ export const Orders = () => {
 
     return (
         <div className="product-page orders">
-            <Header title="سفارش ها"/>
+            <Header title="سفارش ها" modalShow={modalShow} setModalShow={setModalShow} />
             <Container className="m-auto">
                 {orders ? 
                     (orders.map(order => 
@@ -104,7 +106,7 @@ export const Orders = () => {
                     
                     : null}
                 
-                    
+                <OrderSearch show={modalShow} onHide={() => setModalShow(false)} />        
             </Container>
         </div>
     )
