@@ -10,19 +10,28 @@ export const customerService = {
 };
 
 
-function getCustomers() {
+function getCustomers(filter) {
     console.log("into customerService");
-    let filter = {
-        "family": "کو"
+
+    filter = {
+        "family": "کو",
+        "mobile": "0",
+        "createdAtFrom": "1900-01-01T05:42:13.845Z",
+        "createdAtTo": "1900-01-01T05:42:13.845Z",
+        "lastBuyFrom": "1900-01-01T05:42:13.845Z",
+        "lastBuyTo": "1900-01-01T05:42:13.845Z",
+        "orderFrom": "0",
+        "orderTo": "0",
+        "totalFrom": "0",
+        "totalTo": "0"
     }
 
     const requestOptions = {
-        headers: authHeader(),
-        params: filter
+        headers: authHeader()
     };
 
     return axios
-        .get(`${baseRoute}/customer`, requestOptions)
+        .get(`${baseRoute}/customer/${encodeURI(filter.family)}/${encodeURI(filter.mobile)}/${encodeURI(filter.createdAtFrom)}/${encodeURI(filter.createdAtTo)}/${encodeURI(filter.lastBuyFrom)}/${encodeURI(filter.lastBuyTo)}/${encodeURI(filter.orderFrom)}/${encodeURI(filter.orderTo)}/${encodeURI(filter.totalFrom)}/${encodeURI(filter.totalTo)}`, requestOptions)
         .then(res => {
             console.log("res.customers >> "); console.log(res.data.data);
             return res.data.data
