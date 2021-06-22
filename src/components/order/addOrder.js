@@ -68,7 +68,7 @@ export const AddOrder = () => {
                     <Row className="m-0 order-input align-self-start me-3 flex-row">
                         <Form.Group controlId="reminder">
                             <Row>
-                                <Col className="p-0 mt-3 col-3">
+                                <Col className="p-0 mt-3 col-3 order-inputs">
                                     <Form.Label>تاریخ یادآوری</Form.Label>
                                     <Form.Control className="text-center order-input" type="number" name="reminder" onChange={handleChange}/>
                                 </Col>

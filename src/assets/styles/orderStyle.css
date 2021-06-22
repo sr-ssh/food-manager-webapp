@@ -99,6 +99,10 @@
     box-shadow: none;
 }
 
+.basket-flex .btn-check:focus + .btn-primary, .btn-primary:focus {
+    background-color: var(--body-bachground);
+}
+
 .products-add{
     background-color: var(--body-bachground);
     border-radius: 11px;
@@ -122,10 +126,6 @@
 
 .basket-flex img{
     width: 1.5rem;
-}
-
-.orderTable {
-    min-height: 33vh;
 }
 
 .dropdownProductMenu {

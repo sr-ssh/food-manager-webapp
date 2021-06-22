@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { productActions } from '../../actions';
 import { Card , DropdownButton , Dropdown , Button , Table , Row , Col } from 'react-bootstrap';
+import TableScrollbar from 'react-table-scrollbar';
 
 //icons
 import deleteIcon from './../../assets/images/delete.svg'
@@ -111,8 +112,9 @@ export const Basket = ({order, insertOrder}) => {
                         </Col>
                     </Row>
                 
-                    <Row className="orderTable pt-2 px-2">
-                        <Table className="" borderless size="sm">
+                    <Row className="pt-2 px-2">
+                    <TableScrollbar rows={5}>
+                        <table className="" borderless size="sm">
                             <col width="40%" />
                             <col width="35%" />
                             <col width="20%" />
@@ -127,6 +129,12 @@ export const Basket = ({order, insertOrder}) => {
                             <tbody>
                                 <tr style={ order.length ? {"display": "none"} : {}}>
                                     <td></td>
+                                </tr>
+                                <tr>
+                                    <td>تست</td>
+                                    <td>20 تومان</td>
+                                    <td className="pe-3">1</td>
+                                    <td><img src={deleteIcon} alt="delete-icon"/></td>
                                 </tr>
                             {
                                 order.length 
@@ -144,7 +152,8 @@ export const Basket = ({order, insertOrder}) => {
                             }
                            
                             </tbody>
-                        </Table>
+                        </table>
+                        </TableScrollbar>
                         <Row className="border-top-blue pt-2 mt-auto">
                             <Col className="col-5">
                                 <span className="">جمع کل</span>
