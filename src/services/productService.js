@@ -37,9 +37,14 @@ function getProducts() {
 
 function addProduct(product) {
     console.log("into productService");
+
+    if(!product.description)
+        product.description = " "
+
     const requestOptions = {
         headers: authHeader()
     };
+
     return axios
         .post(`${baseRoute}/product`, product,{headers: requestOptions.headers} )
         .then(res => {
@@ -57,9 +62,14 @@ function addProduct(product) {
 
 function editProduct(product) {
     console.log("into productService");
+
+    if(!product.description)
+        product.description = " "
+
     const requestOptions = {
         headers: authHeader()
     };
+
     return axios
         .put(`${baseRoute}/product`, product,{headers: requestOptions.headers} )
         .then(res => {
