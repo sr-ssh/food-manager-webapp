@@ -53,9 +53,17 @@ function getOrders(filter = {}) {
 
 function addOrder(products, customer) {
     console.log("into orderService");
+
+    let reminder ;
+    if(!customer.birthday)
+        customer.birthday = "1900-01-01T05:42:13.845Z";
+    if(!customer.reminder)
+        reminder = -1;
+    else reminder = customer.reminder
+
     const requestOptions = {
         headers: authHeader(),
-        body: {products, customer}
+        body: {products, customer, reminder}
     };
 
     return axios

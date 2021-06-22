@@ -72,7 +72,7 @@ export const Register = () => {
                                     <Form.Group controlId="email" >
                                         <Image src={emailLogo} width="17px" className="mx-2"/>
                                         <Form.Label>ایمیل</Form.Label>
-                                        <Form.Control className="order-input login-input" type="email" onChange={handleChange}  required/>
+                                        <Form.Control className="order-input login-input" type="email" onChange={handleChange} />
                                     </Form.Group>
                                 </Col>
                             </Row>
@@ -82,7 +82,7 @@ export const Register = () => {
                                     <Form.Group controlId="company" >
                                         <Image src={companyLogo} width="17px" className="mx-2"/>
                                         <Form.Label>نام شرکت</Form.Label>
-                                        <Form.Control className="order-input login-input" type="text" onChange={handleChange}  required/>
+                                        <Form.Control className="order-input login-input" type="text" onChange={handleChange} />
                                     </Form.Group>
                                 </Col>
                             </Row>
