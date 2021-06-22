@@ -28,14 +28,9 @@ export const AddOrder = () => {
 
     return (
         <div className="order-page">
-        {console.log("===========orders======")}
-        {console.log(order)}
-        {console.log("============customer=======")}
-        {console.log(customer)}
-        {console.log("============")}
             <Header title="ثبت سفارش"/>
             <Container fluid className="pt-3 px-3 m-0">
-                <Form className="" onSubmit={formHandler} >
+                <Form onSubmit={formHandler} >
                     <Row className="m-0 p-0 order-inputs">
                         <Col className="p-0 col-5 orderInput">
                             <Form.Group >

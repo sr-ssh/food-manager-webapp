@@ -18,12 +18,27 @@ export const orderService = {
 function getOrders(filter = {}) {
     console.log("into orderService");
 
+    if(filter.customerName === "")
+        filter.customerName = "0"
+    if(filter.customerMobile === "")
+        filter.customerMobile = "0" 
+    if(filter.startDate === "")
+        filter.startDate = "0"
+    if(filter.endDate === "")
+        filter.endDate = "0"
+
+    let { 
+            customerName = '0', 
+            customerMobile = '0', 
+            startDate = '0', 
+            endDate = '0' 
+        } = filter
+    
     const requestOptions = {
         headers: authHeader()
     };
-    
     return axios
-        .get(`${baseRoute}/order/${encodeURI("شکوهی")}/${"09527841261"}/${"2021-05-31T05:42:13.845Z"}/${"2021-07-19T09:24:18.663Z"}`, requestOptions )
+        .get(`${baseRoute}/order/${encodeURI(customerName)}/${customerMobile}/${startDate}/${endDate}`, requestOptions )
         .then(res => {
             console.log("res.user >> "); console.log(res.data.data);
             return handleResponse(res)

@@ -3,32 +3,69 @@ import { useDispatch } from 'react-redux'
 import { orderActions } from '../../actions';
 import { Modal, Button, Row, Col, Form } from 'react-bootstrap'
 
+import closeIcon from '../../assets/images/close.svg'
+
 export const OrderSearch = (props) => {
 
-    const [inputs, setInputs] = useState({})
+    const [filters, setFilters] = useState({})
     const dispatch = useDispatch()
 
+    const handleChange = (e) => {
+        e.preventDefault()
 
-    const formHandeler = (e) => {
-        e.preventDefault();
-        dispatch(orderActions.setFilter(inputs))
+        setFilters({...filters, [e.target.name]: e.target.value})
     }
 
+    const formHandler = (e) => {
+        e.preventDefault();
+        dispatch(orderActions.getOrders(filters))
+        //dispatch(orderActions.setFilter(inputs))
+    }
 
     return(
-         <Modal
+        <Modal
             {...props}
             size="lg"
             aria-labelledby="contained-modal-title-vcenter"
             centered
         >
-            <Modal.Body className="bg-success">
-                <Row>
-                    <Col className="bg-danger">
-                        نام مشتری
-                    </Col>
-                </Row>
-                <Button onClick={props.onHide}>جست و جو</Button>
+            <Modal.Body className="order-filter-body">
+                
+                <Form onSubmit={formHandler} >
+                    <Row>
+                        <Col className="col-6 order-filter-input">
+                            <Form.Group>
+                                    <Form.Label className="pe-2">نام مشتری</Form.Label>
+                                    <Form.Control className="order-input" type="text" name="customerName" value={filters.customerName} onChange={handleChange} />
+                            </Form.Group>
+                        </Col>
+                    </Row>
+                    <Row className="my-3">
+                        <Col className="col-6  order-filter-input">
+                            <Form.Group>
+                                    <Form.Label className="pe-2">موبایل</Form.Label>
+                                    <Form.Control className="order-input" type="number" name="customerMobile" value={filters.customerMobile} onChange={handleChange} />
+                            </Form.Group>
+                        </Col>
+                    </Row>
+                    <Row className="my-3 justify-content-between">
+                        <Col className="col-6 order-filter-input">
+                            <Form.Group className="ms-2">
+                                    <Form.Label className="pe-2">تاریخ عضویت از</Form.Label>
+                                    <Form.Control className="order-input" type="date" name="startDate" value={filters.startDate} onChange={handleChange} />
+                            </Form.Group>
+                        </Col>
+                        <Col className="col-6 order-filter-input">
+                            <Form.Group className="me-2">
+                                <Form.Label className="pe-2">تا</Form.Label>
+                                <Form.Control className="order-input" type="date" name="endDate" value={filters.endDate} onChange={handleChange} />
+                            </Form.Group>
+                        </Col>
+                    </Row>
+                    <Row className="px-2 mt-4">
+                        <Button className="order-filter-button" type="submit">جست و جو</Button>
+                    </Row>
+                </Form> 
             </Modal.Body>
         </Modal>
     );
