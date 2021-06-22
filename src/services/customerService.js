@@ -12,9 +12,15 @@ export const customerService = {
 
 function getCustomers() {
     console.log("into customerService");
+    let filter = {
+        "family": "کو"
+    }
+
     const requestOptions = {
-        headers: authHeader()
+        headers: authHeader(),
+        params: filter
     };
+
     return axios
         .get(`${baseRoute}/customer`, requestOptions)
         .then(res => {

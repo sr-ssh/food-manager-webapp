@@ -1,4 +1,5 @@
 import { orderConstants } from '../constants'
+import { history } from '../helpers';
 import { orderService } from '../services'
 import { alertActions } from './alertActions';
 
@@ -39,6 +40,7 @@ function addOrder(products, customer) {
                     console.log("order added")
                     console.log(res)
                     dispatch(alertActions.success(res));
+                    history.go(0)
                 },
                 error => {
                     dispatch(failure(error.toString()));
