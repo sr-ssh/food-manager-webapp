@@ -10,21 +10,29 @@ export const customerService = {
 };
 
 
-function getCustomers(filter) {
+function getCustomers(filter = {}) {
     console.log("into customerService");
 
-    filter = {
-        "family": "کو",
-        "mobile": "0",
-        "createdAtFrom": "1900-01-01T05:42:13.845Z",
-        "createdAtTo": "1900-01-01T05:42:13.845Z",
-        "lastBuyFrom": "1900-01-01T05:42:13.845Z",
-        "lastBuyTo": "1900-01-01T05:42:13.845Z",
-        "orderFrom": "0",
-        "orderTo": "0",
-        "totalFrom": "0",
-        "totalTo": "0"
-    }
+    if(!filter.family)
+        filter.family = " "
+    if(!filter.mobile)
+        filter.mobile = "0"
+    if(!filter.createdAtFrom)
+        filter.createdAtFrom = "1900-01-01T05:42:13.845Z"
+    if(!filter.createdAtTo)
+        filter.createdAtTo = "1900-01-01T05:42:13.845Z"
+    if(!filter.lastBuyFrom)
+        filter.lastBuyFrom = "1900-01-01T05:42:13.845Z"
+    if(!filter.lastBuyTo)
+        filter.lastBuyTo = "1900-01-01T05:42:13.845Z"
+    if(!filter.orderFrom)
+        filter.orderFrom = "0"
+    if(!filter.orderTo)
+        filter.orderTo = "0"
+    if(!filter.totalFrom)
+        filter.totalFrom = "0"
+    if(!filter.totalTo)
+        filter.totalTo = "0"
 
     const requestOptions = {
         headers: authHeader()
