@@ -20,6 +20,8 @@ export const Basket = ({order, insertOrder}) => {
     let newOrder = (e) => {
         e.preventDefault();
         let product = products.find(item => item.name === selectedItem)
+        if(!product)
+            return
         console.log("producttttttttttt")
         console.log(product)
         console.log("producttttttttttt")
@@ -91,7 +93,7 @@ export const Basket = ({order, insertOrder}) => {
                                                     {index ? <Dropdown.Divider  /> : null}
                                                     <Dropdown.Item onClick={() => setItem(item.name) }>
                                                         <Row>
-                                                            <Col className="text-end">{item.name}</Col> 
+                                                            <Col className="text-end basket-dropdown-border-left pe-1">{item.name}</Col> 
                                                             <Col>{item.sellingPrice} <span className="orderInput">تومان</span></Col>
                                                         </Row>
                                                     </Dropdown.Item>
@@ -105,16 +107,17 @@ export const Basket = ({order, insertOrder}) => {
 
                         </Col>
 
-                        <Col className="col-2 p-0 text-center">
-                            <Button className="w-75 products-add border-0 py-1" onClick={(e) => newOrder(e)} type="button">
-                                <img className="d-flex m-auto" src={plusIcon} />
+                        <Col className="col-2 p-0 text-center products-add-btn">
+                            <Button className="products-add border-0 py-1" onClick={(e) => newOrder(e)} type="button">
+                                <img className="d-flex m-auto " src={plusIcon} />
                             </Button>
                         </Col>
                     </Row>
                 
                     <Row className="pt-2 px-2">
-                    <TableScrollbar rows={5}>
-                        <table className="" borderless size="sm">
+                    {/* <TableScrollbar rows={5}> */}
+                    <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                        <Table className="lh-lg" borderless size="sm">
                             <col width="40%" />
                             <col width="35%" />
                             <col width="20%" />
@@ -127,15 +130,15 @@ export const Basket = ({order, insertOrder}) => {
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr style={ order.length ? {"display": "none"} : {}}>
+                                {/* <tr style={ order.length ? {"display": "none"} : {}}>
                                     <td></td>
-                                </tr>
-                                <tr>
+                                </tr> */}
+                                {/* <tr>
                                     <td>تست</td>
                                     <td>20 تومان</td>
                                     <td className="pe-3">1</td>
                                     <td><img src={deleteIcon} alt="delete-icon"/></td>
-                                </tr>
+                                </tr> */}
                             {
                                 order.length 
                                 ? order.map(item => {
@@ -152,14 +155,15 @@ export const Basket = ({order, insertOrder}) => {
                             }
                            
                             </tbody>
-                        </table>
-                        </TableScrollbar>
+                        </Table>
+                        </div>
+                        {/* </TableScrollbar> */}
                         <Row className="border-top-blue pt-2 mt-auto">
                             <Col className="col-5">
                                 <span className="">جمع کل</span>
                             </Col>
                             <Col className="px-1">
-                                {totalPrice}
+                                {totalPrice} تومان
                             </Col>
                         </Row>
                     </Row>

@@ -16,10 +16,8 @@ function login(mobileOrEmail, password) {
         userService.login(mobileOrEmail, password)
             .then(
                 user => {
-                    //console.log(user)
                     console.log("user into userAction");
                     dispatch(success(user));
-                    history.push('/dashboard');
                     console.log("user entered")
                     dispatch(alertActions.success('با موفقیت وارد شدید'));
                 },

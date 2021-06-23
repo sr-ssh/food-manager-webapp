@@ -4,7 +4,8 @@ import { Route, Redirect } from 'react-router-dom';
 function PrivateRoute({ component:Component, ...rest }) {
     return (
         <Route {...rest} render={props => {
-            if (!JSON.parse(localStorage.getItem('user'))) {
+            let user = JSON.parse(localStorage.getItem('user'));
+            if (!(user && user.idToken)) {
                 // not logged in so redirect to login page with the return url
                 return <Redirect to={{ pathname: '/', state: { from: props.location } }} />
             }

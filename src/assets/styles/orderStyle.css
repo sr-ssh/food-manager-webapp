@@ -99,8 +99,21 @@
     box-shadow: none;
 }
 
-.basket-flex .btn-check:focus + .btn-primary, .btn-primary:focus {
+.basket-flex .products-add:focus + .btn-primary, .products-add:focus {
     background-color: var(--body-bachground);
+}
+
+.basket-flex .btn-primary:hover {
+    background-color: var(--body-bachground);
+}
+
+.basket-flex .dropdown-divider {
+    margin: 0.3rem 0;
+    border-top: 1px solid var(--text-color-one);
+}
+
+.basket-dropdown-border-left{
+    border-left: 1px solid var(--button-background);
 }
 
 .products-add{
@@ -217,4 +230,14 @@
     width: 50px;
     height: 50px;
     margin-right: auto;
+}
+
+.my-custom-scrollbar {
+    position: relative;
+    height: 24vh;
+    overflow: auto;
+}
+
+.table-wrapper-scroll-y {
+    display: block;
 }

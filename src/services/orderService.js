@@ -19,19 +19,19 @@ function getOrders(filter = {}) {
     console.log("into orderService");
 
     if(filter.customerName === "")
-        filter.customerName = "0"
+        filter.customerName = " "
     if(filter.customerMobile === "")
         filter.customerMobile = "0" 
     if(filter.startDate === "")
-        filter.startDate = "0"
+        filter.startDate = "1900-01-01T05:42:13.845Z"
     if(filter.endDate === "")
-        filter.endDate = "0"
+        filter.endDate = "1900-01-01T05:42:13.845Z"
 
     let { 
-            customerName = '0', 
+            customerName = ' ', 
             customerMobile = '0', 
-            startDate = '0', 
-            endDate = '0' 
+            startDate = "1900-01-01T05:42:13.845Z", 
+            endDate = "1900-01-01T05:42:13.845Z" 
         } = filter
     
     const requestOptions = {

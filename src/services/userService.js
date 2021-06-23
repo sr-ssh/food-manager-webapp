@@ -1,6 +1,7 @@
 
 import axios from 'axios';
 import { SERVER_URL } from '../config';
+import { history } from '../helpers';
 
 let baseRoute = SERVER_URL;
 
@@ -20,6 +21,8 @@ function login(mobileOrEmail, password) {
             console.log(res.data.data);
             // store user details and jwt token in local storage to keep user logged in between page refreshes
             localStorage.setItem('user', JSON.stringify(res.data.data));
+            if(res.data.success)
+                history.push('/dashboard');
             return res.data.data
         })
         .catch(function (error) {
