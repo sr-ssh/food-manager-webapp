@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux'
 import { customerActions } from '../../actions/customerActions';
 import { Modal, Button, Row, Col, Form } from 'react-bootstrap'
+import { DatePicker } from "jalali-react-datepicker";
 
 import closeIcon from '../../assets/images/close.svg'
 
@@ -12,7 +13,6 @@ export const CustomerSearch = (props) => {
 
     const handleChange = (e) => {
         e.preventDefault()
-
         setFilters({...filters, [e.target.name]: e.target.value})
     }
 
@@ -21,6 +21,11 @@ export const CustomerSearch = (props) => {
         console.log(filters)
         dispatch(customerActions.getCustomers(filters))
         props.onHide(false) 
+    }
+
+    const submitCalendar = ({ value }, name) => {
+        if(value._i)
+            setFilters({...filters, [name]: value._i.substr(0, 10)})
     }
 
     return(
@@ -39,71 +44,63 @@ export const CustomerSearch = (props) => {
                         <Col className="col-6 order-filter-input">
                             <Form.Group>
                                     <Form.Label className="pe-2">نام مشتری</Form.Label>
-                                    <Form.Control className="order-input" type="text" name="family" value={filters.family} onChange={handleChange} />
+                                    <Form.Control style={{"width":"94%"}} className="order-input h-100" type="text" name="family" value={filters.family} onChange={handleChange} />
                             </Form.Group>
                         </Col>
                     </Row>
-                    <Row className="my-3">
+                    <Row className="my-2">
                         <Col className="col-6  order-filter-input">
                             <Form.Group>
                                     <Form.Label className="pe-2">موبایل</Form.Label>
-                                    <Form.Control className="order-input" type="number" name="mobile" value={filters.mobile} onChange={handleChange} />
+                                    <Form.Control style={{"width":"94%"}} className="order-input h-100" type="number" name="mobile" value={filters.mobile} onChange={handleChange} />
                             </Form.Group>
                         </Col>
                     </Row>
                     <Row className="my-3 justify-content-between">
                         <Col className="col-6 order-filter-input">
                             <Form.Group className="ms-2">
-                                    <Form.Label className="pe-2">تاریخ عضویت از</Form.Label>
-                                    <Form.Control className="order-input" type="date" name="createdAtFrom" value={filters.createdAtFrom} onChange={handleChange} />
+                                <DatePicker label="تاریخ عضویت از" timePicker={false} DateIcon className="order-input p-2 w-100 h-100 mt-1" onClickSubmitButton={e => submitCalendar(e, "createdAtFrom")}/>
                             </Form.Group>
                         </Col>
                         <Col className="col-6 order-filter-input">
                             <Form.Group className="me-2">
-                                <Form.Label className="pe-2">تا</Form.Label>
-                                <Form.Control className="order-input" type="date" name="createdAtTo" value={filters.createdAtTo} onChange={handleChange} />
+                                <DatePicker label="تا" timePicker={false} DateIcon className="order-input p-2 w-100 h-100 mt-1" onClickSubmitButton={e => submitCalendar(e, "createdAtTo")}/>
                             </Form.Group>
                         </Col>
                     </Row>
                     <Row className="my-3 justify-content-between">
                         <Col className="col-6 order-filter-input">
                             <Form.Group className="ms-2">
-                                    <Form.Label className="pe-2">تاریخ آخرین خرید از</Form.Label>
-                                    <Form.Control className="order-input" type="date" name="lastBuyFrom" value={filters.lastBuyFrom} onChange={handleChange} />
+                                <DatePicker label="تاریخ آخرین خرید از" timePicker={false} DateIcon className="order-input p-2 w-100 h-100 mt-1" onClickSubmitButton={e => submitCalendar(e, "lastBuyFrom")}/>
                             </Form.Group>
                         </Col>
                         <Col className="col-6 order-filter-input">
                             <Form.Group className="me-2">
-                                <Form.Label className="pe-2">تا</Form.Label>
-                                <Form.Control className="order-input" type="date" name="lastBuyTo" value={filters.lastBuyTo} onChange={handleChange} />
+                                <DatePicker label="تا" timePicker={false} DateIcon className="order-input p-2 w-100 h-100 mt-1" onClickSubmitButton={e => submitCalendar(e, "lastBuyTo")}/>
                             </Form.Group>
                         </Col>
                     </Row>
                     <Row className="my-3 justify-content-between">
                         <Col className="col-6 order-filter-input">
                             <Form.Group className="ms-2">
-                                    <Form.Label className="pe-2">تعداد خرید از</Form.Label>
-                                    <Form.Control className="order-input" type="date" name="orderFrom" value={filters.orderFrom} onChange={handleChange} />
+                                <DatePicker label="تعداد خرید از" timePicker={false} DateIcon className="order-input p-2 w-100 h-100 mt-1" onClickSubmitButton={e => submitCalendar(e, "orderFrom")}/>
                             </Form.Group>
                         </Col>
                         <Col className="col-6 order-filter-input">
                             <Form.Group className="me-2">
-                                <Form.Label className="pe-2">تا</Form.Label>
-                                <Form.Control className="order-input" type="date" name="orderTo" value={filters.orderTo} onChange={handleChange} />
+                                <DatePicker label="تا" timePicker={false} DateIcon className="order-input p-2 w-100 h-100 mt-1" onClickSubmitButton={e => submitCalendar(e, "orderTo")}/>
                             </Form.Group>
                         </Col>
                     </Row>
                     <Row className="my-3 justify-content-between">
                         <Col className="col-6 order-filter-input">
                             <Form.Group className="ms-2">
-                                    <Form.Label className="pe-2">جمع خرید از</Form.Label>
-                                    <Form.Control className="order-input" type="date" name="totalFrom" value={filters.totalFrom} onChange={handleChange} />
+                                <DatePicker label="جمع خرید از" timePicker={false} DateIcon className="order-input p-2 w-100 h-100 mt-1" onClickSubmitButton={e => submitCalendar(e, "totalFrom")}/>
                             </Form.Group>
                         </Col>
                         <Col className="col-6 order-filter-input">
                             <Form.Group className="me-2">
-                                <Form.Label className="pe-2">تا</Form.Label>
-                                <Form.Control className="order-input" type="date" name="totalTo" value={filters.totalTo} onChange={handleChange} />
+                                <DatePicker label="تا" timePicker={false} DateIcon className="order-input p-2 w-100 h-100 mt-1" onClickSubmitButton={e => submitCalendar(e, "totalTo")}/>
                             </Form.Group>
                         </Col>
                     </Row>

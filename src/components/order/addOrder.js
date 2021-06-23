@@ -4,6 +4,7 @@ import { productActions, orderActions  } from '../../actions';
 import { Header } from '../base/header';
 import { Basket } from './basket';
 import { Container , Form , Button , Row , Col } from 'react-bootstrap';
+import { DatePicker } from "jalali-react-datepicker";
 
 
 export const AddOrder = () => {
@@ -24,6 +25,11 @@ export const AddOrder = () => {
         } else {
             console.log('empty order can not be sent')
         }
+    }
+
+    const submitCalendar = ({ value }, name) => {
+        if(value._i)
+            setCustomer({...customer, [name]: value._i.substr(0, 10)})
     }
 
     return (
@@ -48,8 +54,9 @@ export const AddOrder = () => {
                         </Col> 
                         <Col className="p-0 col-5 me-auto orderInput">
                             <Form.Group controlId="birthday">
-                                <Form.Label className="pe-2">تاریخ تولد</Form.Label>
-                                <Form.Control className="order-input" type="date" name="birthday" onChange={handleChange}/>
+                                <DatePicker label="تاریخ تولد" timePicker={false} DateIcon className="order-input p-2 w-100 h-100 mt-1" onClickSubmitButton={e => submitCalendar(e, "birthday")}/>
+                                {/* <Form.Label className="pe-2">تاریخ تولد</Form.Label>
+                                <Form.Control className="order-input" type="date" name="birthday" onChange={handleChange}/> */}
                             </Form.Group>
                         </Col>
                     </Row>
