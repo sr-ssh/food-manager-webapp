@@ -13,9 +13,12 @@ export const Orders = () => {
     const dispatch = useDispatch()
     const orders = useSelector(state => state.getOrders.orders)
 
-    const getTotalPrice = (item) => {
-        item = item.map(a => a.sellingPrice)
-        return item.reduce((a, b) => parseInt(a) + parseInt(b), 0);
+    const getTotalPrice = (order) => {
+        let total = 0
+        order.map(item => {
+            total += item.sellingPrice * item.quantity
+        })
+        return total
     }
     
     useEffect(() => {

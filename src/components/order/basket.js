@@ -22,9 +22,6 @@ export const Basket = ({order, insertOrder}) => {
         let product = products.find(item => item.name === selectedItem)
         if(!product)
             return
-        console.log("producttttttttttt")
-        console.log(product)
-        console.log("producttttttttttt")
         insertPrice(totalPrice + parseInt(product.sellingPrice))
         let newOrder = {
           _id: product._id,
