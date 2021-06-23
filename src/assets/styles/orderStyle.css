@@ -241,3 +241,29 @@
 .table-wrapper-scroll-y {
     display: block;
 }
+
+.customer-modal-close{
+    background-color: var(--dager-color);
+    border-radius: 10px;
+    padding: 3px;
+    position: absolute;
+    left: -2vw;
+    top: -2vh;
+}
+
+.customer-modal-close.products-add:focus + .btn-primary, .products-add:focus {
+    background-color: var(--dager-color);
+}
+
+.customer-modal-close.btn-primary:hover {
+    background-color: var(--dager-color);
+}
+
+.customer-modal-close-svg{
+    width: 24px;
+}
+
+.order-serach-modal{
+    left: auto;
+    width: 96%;
+}

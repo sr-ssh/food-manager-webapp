@@ -7,11 +7,11 @@ export const customerActions = {
     setFilter
 };
 
-function getCustomers() {
+function getCustomers(filter) {
     return dispatch => {
         dispatch(request());
         
-        customerService.getCustomers()
+        customerService.getCustomers(filter)
             .then(
                 customers => {
                     console.log(customers)

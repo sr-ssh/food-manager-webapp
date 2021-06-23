@@ -9,7 +9,6 @@ import { OrderSearch } from './search'
 
 export const Orders = () => {
 
-    const [filter, setFilter] = useState({})
     const [modalShow, setModalShow] = useState(false)
     const dispatch = useDispatch()
     const orders = useSelector(state => state.getOrders.orders)
@@ -20,8 +19,8 @@ export const Orders = () => {
     }
     
     useEffect(() => {
-        dispatch(orderActions.getOrders(filter))
-    }, [dispatch, filter])
+        dispatch(orderActions.getOrders())
+    }, [dispatch])
 
 
     return (
@@ -29,8 +28,8 @@ export const Orders = () => {
             <Header title="سفارش ها" modalShow={modalShow} setModalShow={setModalShow} />
             <Container className="m-auto">
                 {orders ? 
-                    (orders.map(order => 
-                        <Card className="m-auto mt-3 bg-light productCard border-0 lh-lg" >
+                    (orders.map((order, index) => 
+                        <Card key={index} className="m-auto mt-3 bg-light productCard border-0 lh-lg" >
                             <Card.Body className="pb-0 ps-1 rounded-3 text-gray">
                                 <Row className="p-0 ps-2 m-0 ">
                                     <Card className="background-blue border-0 customer-round">

@@ -23,8 +23,8 @@ export const Products = () => {
             <Header title="محصولات"/>
             <Container className="m-auto">
                 {products ? 
-                    (products.map(item => 
-                        <Card className="m-auto mt-3 bg-light productCard" >
+                    (products.map((item, index) => 
+                        <Card key={index} className="m-auto mt-3 bg-light productCard" >
                             <Card.Body className="pb-0 ps-1 rounded-3">
                                 <Card.Title>
                                     {item.active 

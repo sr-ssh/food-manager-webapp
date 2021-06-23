@@ -19,7 +19,7 @@ export const OrderSearch = (props) => {
     const formHandler = (e) => {
         e.preventDefault();
         dispatch(orderActions.getOrders(filters))
-        //dispatch(orderActions.setFilter(inputs))
+        props.onHide(false)
     }
 
     return(
@@ -30,7 +30,9 @@ export const OrderSearch = (props) => {
             centered
         >
             <Modal.Body className="order-filter-body">
-                
+                <Button className="border-0 customer-modal-close" type="button"  onClick={e => props.onHide(false)}>
+                    <img className="d-flex m-auto customer-modal-close-svg" src={closeIcon} alt="close-btn" />
+                </Button>
                 <Form onSubmit={formHandler} >
                     <Row>
                         <Col className="col-6 order-filter-input">

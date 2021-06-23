@@ -109,7 +109,7 @@ export const Basket = ({order, insertOrder}) => {
 
                         <Col className="col-2 p-0 text-center products-add-btn">
                             <Button className="products-add border-0 py-1" onClick={(e) => newOrder(e)} type="button">
-                                <img className="d-flex m-auto " src={plusIcon} />
+                                <img className="d-flex m-auto " src={plusIcon} alt="add-button" />
                             </Button>
                         </Col>
                     </Row>
@@ -130,15 +130,6 @@ export const Basket = ({order, insertOrder}) => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {/* <tr style={ order.length ? {"display": "none"} : {}}>
-                                    <td></td>
-                                </tr> */}
-                                {/* <tr>
-                                    <td>تست</td>
-                                    <td>20 تومان</td>
-                                    <td className="pe-3">1</td>
-                                    <td><img src={deleteIcon} alt="delete-icon"/></td>
-                                </tr> */}
                             {
                                 order.length 
                                 ? order.map(item => {
@@ -153,7 +144,6 @@ export const Basket = ({order, insertOrder}) => {
                                         })
                                 : null
                             }
-                           
                             </tbody>
                         </Table>
                         </div>
