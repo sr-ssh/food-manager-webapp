@@ -25,7 +25,7 @@ export const Reminders = () => {
 
     return(
         <div className="product-page orders">
-            <Header title="یادآوری"/>
+            <Header title="یادآوری" backLink="/dashboard"/>
             <Container className="m-auto">
                 {reminders ? 
                     (reminders.map((reminder, index) => 

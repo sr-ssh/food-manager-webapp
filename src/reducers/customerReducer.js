@@ -19,15 +19,3 @@ export function getCustomers(state = {}, action){
             return state;
     }
 }
-
-export function setCustomersFilter(state = {}, action){
-    
-    switch (action.type) {
-        case customerConstants.ADD_CUSTOMERS_FILTER:
-            return{
-                filter: action.filter
-            }
-        default:
-            return state;
-    }
-}

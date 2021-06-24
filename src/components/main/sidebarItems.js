@@ -23,7 +23,7 @@ export const SidebarItems = () => {
                     <Link to="/orders">سفارش ها</Link>
                 </Col>
                 <Col xs={10} sm={10} md={10} lg={10} className="py-3 mx-3 fw-bold sidebarItem">
-                    <Link to="/">یادآوری</Link>
+                    <Link to="/reminders">یادآوری</Link>
                 </Col>
                 <Col xs={10} sm={10} md={10} lg={10} className="py-3 mx-3 fw-bold sidebarItem">
                     <Link to="/products">محصولات</Link>

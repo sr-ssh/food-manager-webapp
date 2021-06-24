@@ -17,6 +17,7 @@ import { EditProduct } from './components/products/editProduct';
 import { Main } from './components/main/main';
 import { Orders } from './components/order/orders';
 import { Reminders } from './components/reminder/reminders';
+import { Discounts } from './components/discounts/discounts';
 
 function App() {
   return (    
@@ -31,6 +32,7 @@ function App() {
             <PrivateRoute path="/orders" component={Orders} ></PrivateRoute>
             <PrivateRoute path="/customers" component={Customers} ></PrivateRoute>
             <PrivateRoute path="/reminders" component={Reminders} ></PrivateRoute>
+            <PrivateRoute path="/discounts" component={Discounts} ></PrivateRoute>
             <PrivateRoute path="/finance" component={Finance}></PrivateRoute>
             <PrivateRoute path="/dashboard" component={Dashboard} ></PrivateRoute>
             <PrivateRoute path="/order/add" component={AddOrder} ></PrivateRoute>
