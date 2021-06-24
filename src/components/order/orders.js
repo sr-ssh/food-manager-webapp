@@ -16,6 +16,7 @@ export const Orders = () => {
     const getTotalPrice = (order) => {
         let total = 0
         order.map(item => {
+            console.log(item.sellingPrice * item.quantity)
             total += item.sellingPrice * item.quantity
         })
         return total

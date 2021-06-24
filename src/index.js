@@ -11,6 +11,7 @@ import './assets/styles/orderStyle.css';
 import './assets/styles/productListStyle.css';
 import './assets/styles/product.css'
 import './assets/styles/dashboardStyle.css';
+import './assets/styles/reminderStyle.css';
 
 ReactDOM.render(
   <Provider store={store}>

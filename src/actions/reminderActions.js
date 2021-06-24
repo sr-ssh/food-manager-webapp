@@ -12,9 +12,9 @@ function getReminders() {
         reminderService.getReminders()
             .then(
                 res => {
-                    dispatch(success(reminderConstants.GET_REMINDERS_SUCCESS, res.data));
+                    dispatch(success(reminderConstants.GET_REMINDERS_SUCCESS, res));
                     console.log("*********reminders received**********")
-                    console.log(res.data)
+                    console.log(res)
                     dispatch(alertActions.success(res));
                 },
                 error => {
