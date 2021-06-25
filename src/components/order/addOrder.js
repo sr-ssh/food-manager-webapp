@@ -4,8 +4,10 @@ import { productActions, orderActions  } from '../../actions';
 import { Header } from '../base/header';
 import { Basket } from './basket';
 import { Container , Form , Button , Row , Col } from 'react-bootstrap';
-import { DatePicker } from "jalali-react-datepicker";
-
+//import { DatePicker } from "jalali-react-datepicker";
+import DatePicker from "react-multi-date-picker";
+import moment from 'jalali-moment';
+import "react-multi-date-picker/styles/layouts/mobile.css"
 
 export const AddOrder = () => {
     
@@ -27,9 +29,10 @@ export const AddOrder = () => {
         }
     }
 
-    const submitCalendar = ({ value }, name) => {
-        if(value._i)
-            setCustomer({...customer, [name]: value._i.substr(0, 10)})
+    const submitCalendar = (value, name) => {
+        let birthDate = `${value.year}/${value.month.number}/${value.day}`
+        birthDate =  moment.from(birthDate, 'fa', 'YYYY/MM/DD').locale('en').format('YYYY-MM-DD');
+        setCustomer({...customer, [name]: birthDate})
     }
 
     return (
@@ -54,9 +57,20 @@ export const AddOrder = () => {
                         </Col> 
                         <Col className="p-0 col-5 me-auto orderInput">
                             <Form.Group controlId="birthday">
-                                <DatePicker label="تاریخ تولد" timePicker={false} DateIcon className="order-input p-2 w-100 h-100 mt-1" onClickSubmitButton={e => submitCalendar(e, "birthday")}/>
-                                {/* <Form.Label className="pe-2">تاریخ تولد</Form.Label>
-                                <Form.Control className="order-input" type="date" name="birthday" onChange={handleChange}/> */}
+                                <Form.Label className="pe-2">تاریخ تولد</Form.Label>
+                                <DatePicker 
+                                    style = {{
+                                        width: "100%"
+                                    }}
+                                    inputClass="search-input"
+                                    className="rmdp-mobile" 
+                                    calendar="persian" 
+                                    locale="fa" 
+                                    calendarPosition="auto-right" 
+                                    editable={false} 
+                                    animation
+                                    onChange={value => submitCalendar(value, 'birthday')}
+                                />
                             </Form.Group>
                         </Col>
                     </Row>

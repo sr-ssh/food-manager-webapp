@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux'
 import { customerActions } from '../../actions/customerActions';
 import { Modal, Button, Row, Col, Form } from 'react-bootstrap'
-import { DatePicker } from "jalali-react-datepicker";
+import DatePicker from "react-multi-date-picker";
+import moment from 'jalali-moment';
 
 import closeIcon from '../../assets/images/close.svg'
 
@@ -23,9 +24,10 @@ export const CustomerSearch = (props) => {
         props.onHide(false) 
     }
 
-    const submitCalendar = ({ value }, name) => {
-        if(value._i)
-            setFilters({...filters, [name]: value._i.substr(0, 10)})
+    const submitCalendar = (value, name) => {
+        let date = `${value.year}/${value.month.number}/${value.day}`
+        date =  moment.from(date, 'fa', 'YYYY/MM/DD').locale('en').format('YYYY-MM-DD');
+        setFilters({...filters, [name]: date})
     }
 
     return(
@@ -59,48 +61,128 @@ export const CustomerSearch = (props) => {
                     <Row className="my-3 justify-content-between">
                         <Col className="col-6 order-filter-input">
                             <Form.Group className="ms-2">
-                                <DatePicker label="تاریخ عضویت از" timePicker={false} DateIcon className="order-input p-2 w-100 h-100 mt-1" onClickSubmitButton={e => submitCalendar(e, "createdAtFrom")}/>
+                                <Form.Label className="pe-2">تاریخ عضویت از</Form.Label>
+                                <DatePicker 
+                                    inputClass="search-input"
+                                    className="rmdp-mobile" 
+                                    calendar="persian" 
+                                    locale="fa" 
+                                    calendarPosition="auto-right" 
+                                    editable={false} 
+                                    animation
+                                    onChange={value => submitCalendar(value, 'createdAtFrom')}
+                                />
                             </Form.Group>
                         </Col>
                         <Col className="col-6 order-filter-input">
                             <Form.Group className="me-2">
-                                <DatePicker label="تا" timePicker={false} DateIcon className="order-input p-2 w-100 h-100 mt-1" onClickSubmitButton={e => submitCalendar(e, "createdAtTo")}/>
+                                <Form.Label className="pe-2">تا</Form.Label>
+                                <DatePicker 
+                                    inputClass="search-input"
+                                    className="rmdp-mobile" 
+                                    calendar="persian" 
+                                    locale="fa" 
+                                    calendarPosition="auto-right" 
+                                    editable={false} 
+                                    animation
+                                    onChange={value => submitCalendar(value, 'createdAtTo')}
+                                />
                             </Form.Group>
                         </Col>
                     </Row>
                     <Row className="my-3 justify-content-between">
                         <Col className="col-6 order-filter-input">
                             <Form.Group className="ms-2">
-                                <DatePicker label="تاریخ آخرین خرید از" timePicker={false} DateIcon className="order-input p-2 w-100 h-100 mt-1" onClickSubmitButton={e => submitCalendar(e, "lastBuyFrom")}/>
+                                <Form.Label className="pe-2">تاریخ آخرین خرید از</Form.Label>
+                                <DatePicker 
+                                    inputClass="search-input"
+                                    className="rmdp-mobile" 
+                                    calendar="persian" 
+                                    locale="fa" 
+                                    calendarPosition="auto-right" 
+                                    editable={false} 
+                                    animation
+                                    onChange={value => submitCalendar(value, 'lastBuyFrom')}
+                                />
                             </Form.Group>
                         </Col>
                         <Col className="col-6 order-filter-input">
                             <Form.Group className="me-2">
-                                <DatePicker label="تا" timePicker={false} DateIcon className="order-input p-2 w-100 h-100 mt-1" onClickSubmitButton={e => submitCalendar(e, "lastBuyTo")}/>
+                                <Form.Label className="pe-2">تا</Form.Label>
+                                <DatePicker 
+                                    inputClass="search-input"
+                                    className="rmdp-mobile" 
+                                    calendar="persian" 
+                                    locale="fa" 
+                                    calendarPosition="auto-right" 
+                                    editable={false} 
+                                    animation
+                                    onChange={value => submitCalendar(value, 'lastBuyTo')}
+                                />
                             </Form.Group>
                         </Col>
                     </Row>
                     <Row className="my-3 justify-content-between">
                         <Col className="col-6 order-filter-input">
                             <Form.Group className="ms-2">
-                                <DatePicker label="تعداد خرید از" timePicker={false} DateIcon className="order-input p-2 w-100 h-100 mt-1" onClickSubmitButton={e => submitCalendar(e, "orderFrom")}/>
+                                <Form.Label className="pe-2">تعداد خرید از</Form.Label>
+                                <DatePicker 
+                                    inputClass="search-input"
+                                    className="rmdp-mobile" 
+                                    calendar="persian" 
+                                    locale="fa" 
+                                    calendarPosition="auto-right" 
+                                    editable={false} 
+                                    animation
+                                    onChange={value => submitCalendar(value, 'orderFrom')}
+                                />
                             </Form.Group>
                         </Col>
                         <Col className="col-6 order-filter-input">
                             <Form.Group className="me-2">
-                                <DatePicker label="تا" timePicker={false} DateIcon className="order-input p-2 w-100 h-100 mt-1" onClickSubmitButton={e => submitCalendar(e, "orderTo")}/>
+                                <Form.Label className="pe-2">تا</Form.Label>
+                                <DatePicker 
+                                    inputClass="search-input"
+                                    className="rmdp-mobile" 
+                                    calendar="persian" 
+                                    locale="fa" 
+                                    calendarPosition="auto-right" 
+                                    editable={false} 
+                                    animation
+                                    onChange={value => submitCalendar(value, 'orderTo')}
+                                />
                             </Form.Group>
                         </Col>
                     </Row>
                     <Row className="my-3 justify-content-between">
                         <Col className="col-6 order-filter-input">
                             <Form.Group className="ms-2">
-                                <DatePicker label="جمع خرید از" timePicker={false} DateIcon className="order-input p-2 w-100 h-100 mt-1" onClickSubmitButton={e => submitCalendar(e, "totalFrom")}/>
+                                <Form.Label className="pe-2">جمع خرید از</Form.Label>
+                                <DatePicker
+                                    inputClass="search-input"
+                                    className="rmdp-mobile" 
+                                    calendar="persian" 
+                                    locale="fa" 
+                                    calendarPosition="auto-right" 
+                                    editable={false} 
+                                    animation
+                                    onChange={value => submitCalendar(value, 'totalFrom')}
+                                />
                             </Form.Group>
                         </Col>
                         <Col className="col-6 order-filter-input">
                             <Form.Group className="me-2">
-                                <DatePicker label="تا" timePicker={false} DateIcon className="order-input p-2 w-100 h-100 mt-1" onClickSubmitButton={e => submitCalendar(e, "totalTo")}/>
+                                <Form.Label className="pe-2">تا</Form.Label>
+                                <DatePicker 
+                                    inputClass="search-input"
+                                    className="rmdp-mobile" 
+                                    calendar="persian" 
+                                    locale="fa" 
+                                    calendarPosition="auto-right" 
+                                    editable={false} 
+                                    animation
+                                    onChange={value => submitCalendar(value, 'totalTo')}
+                                />
                             </Form.Group>
                         </Col>
                     </Row>

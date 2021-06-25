@@ -65,3 +65,11 @@ body{
 .form-control:focus{
     box-shadow: none;
 }
+
+.search-input {
+    width: 90%;
+    height: calc(1.5em + 0.75rem + 1px);
+    font-size: 14px;
+    border-radius: 10px;
+    border: none;
+}

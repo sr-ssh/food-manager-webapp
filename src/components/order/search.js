@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux'
 import { orderActions } from '../../actions';
 import { Modal, Button, Row, Col, Form } from 'react-bootstrap'
-import { DatePicker } from "jalali-react-datepicker";
+//import { DatePicker } from "jalali-react-datepicker";
+import DatePicker from "react-multi-date-picker";
+import moment from 'jalali-moment';
 
 import closeIcon from '../../assets/images/close.svg'
 
@@ -23,11 +25,11 @@ export const OrderSearch = (props) => {
         props.onHide(false)
     }
 
-    const submitCalendar = ({ value }, name) => {
-        if(value._i)
-            setFilters({...filters, [name]: value._i.substr(0, 10)})
+    const submitCalendar = (value, name) => {
+        let date = `${value.year}/${value.month.number}/${value.day}`
+        date =  moment.from(date, 'fa', 'YYYY/MM/DD').locale('en').format('YYYY-MM-DD');
+        setFilters({...filters, [name]: date})
     }
-
     return(
         <Modal
             {...props}
@@ -59,16 +61,32 @@ export const OrderSearch = (props) => {
                     <Row className="my-3 justify-content-between">
                         <Col className="col-6 order-filter-input">
                             <Form.Group className="ms-2">
-                                <DatePicker label="تاریخ عضویت از" timePicker={false} DateIcon className="order-input p-2 w-100 h-100 mt-1" onClickSubmitButton={e => submitCalendar(e, "startDate")}/>
-                                    {/* <Form.Label className="pe-2">تاریخ عضویت از</Form.Label>
-                                    <Form.Control className="order-input" type="date" name="startDate" value={filters.startDate} onChange={handleChange} /> */}
+                                <Form.Label className="pe-2">تاریخ سفارش از</Form.Label>
+                                <DatePicker 
+                                    inputClass="search-input"
+                                    className="rmdp-mobile" 
+                                    calendar="persian" 
+                                    locale="fa" 
+                                    calendarPosition="auto-right" 
+                                    editable={false} 
+                                    animation
+                                    onChange={value => submitCalendar(value, 'startDate')}
+                                />
                             </Form.Group>
                         </Col>
                         <Col className="col-6 order-filter-input">
                             <Form.Group className="me-2">
-                                <DatePicker label="تا" timePicker={false} DateIcon className="order-input p-2 w-100 h-100 mt-1" onClickSubmitButton={e => submitCalendar(e, "endDate")}/>
-                                {/* <Form.Label className="pe-2">تا</Form.Label>
-                                <Form.Control className="order-input" type="date" name="endDate" value={filters.endDate} onChange={handleChange} /> */}
+                                <Form.Label className="pe-2">تا</Form.Label>
+                                <DatePicker 
+                                    inputClass="search-input"
+                                    className="rmdp-mobile" 
+                                    calendar="persian" 
+                                    locale="fa" 
+                                    calendarPosition="auto-right" 
+                                    editable={false} 
+                                    animation
+                                    onChange={value => submitCalendar(value, 'endDate')}
+                                />
                             </Form.Group>
                         </Col>
                     </Row>
