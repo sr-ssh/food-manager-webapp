@@ -9,6 +9,11 @@
     z-index: -1;
 }
 
+.add-order-download-btn {
+    background-color: white;
+    border-radius: 11px;
+}
+
 .order-flex {
     top: 47px;
 }

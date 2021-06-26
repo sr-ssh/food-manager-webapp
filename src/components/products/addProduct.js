@@ -2,12 +2,12 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { productActions } from '../../actions';
 import { Header } from '../base/header2';
-import { Container , Form , Button , Row , Col } from 'react-bootstrap';
+import { Container , Form , Button , Row , Col, Modal } from 'react-bootstrap';
+
+import closeIcon from '../../assets/images/close.svg'
 
 
-
-
-export const AddProduct = () => {
+export const AddProduct = (props) => {
     
     const [product, setProduct] = useState({})
     const dispatch = useDispatch()
@@ -23,50 +23,49 @@ export const AddProduct = () => {
     }
 
     return (
-        <div className="order-page add-product">
-        <Header title="اضافه کردن محصول" backLink="/products"/>
-        <Container className="m-auto align-items-center justify-content-center d-flex ">
-            
-            <Form className="order-inputs text-right d-flex flex-column justify-content-around position-absolute bottom-0 order-flex" onSubmit={formHandler} >
-
-                <Row className="m-0 p-0 d-flex justify-content-around align-items-center product-input-add">
-                    
-                    <Row>
-                        <Col>
+        <Modal
+            {...props}
+            size="lg"
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+            className=""
+            >
+            <Modal.Body className="add-product px-4">
+                <Button className="border-0 customer-modal-close" type="button"  onClick={e => props.onHide(false)}>
+                    <img className="d-flex m-auto customer-modal-close-svg" src={closeIcon} alt="close-btn" />
+                </Button>
+                <Form onSubmit={formHandler} >
+                    <Row className="mt-3">
+                        <Col className="col-6 order-filter-input">
                             <Form.Group controlId="name">
-                                <Form.Label>نام محصول</Form.Label>
-                                <Form.Control className="order-input border-0" type="text" onChange={handleChange}  required/>
+                                <Form.Label className="pe-3">نام محصول</Form.Label>
+                                <Form.Control className="order-input" type="text" onChange={handleChange} />
                             </Form.Group>
                         </Col>
-                        
-                        <Col> 
+                        <Col className="col-6 order-filter-input">
                             <Form.Group controlId="sellingPrice">
-                                <Form.Label>قیمت</Form.Label>
-                                <Form.Control className="order-input border-0" type="text" onChange={handleChange} required/>
+                                <Form.Label className="pe-3">قیمت</Form.Label>
+                                <Form.Control className="order-input" type="number" onChange={handleChange} />
                             </Form.Group>
                         </Col>
                     </Row>
-
                     <Row>
                         <Col>
-                            <Form.Group controlId="description">
-                                <Form.Label>توضیحات</Form.Label>
+                            <Form.Group controlId="description" className="order-filter-input mt-3">
+                                <Form.Label className="pe-3">توضیحات</Form.Label>
                                 <Form.Control className="order-input border-0 h-100" as="textarea" rows={6} onChange={handleChange}/>
                             </Form.Group>
                         </Col>
                     </Row>
-                </Row>
-
-                <Row className="p-0 m-0 d-flex justify-content-center align-items-center">
-                    <Col className="col-11">
-                        <Button className="order-submit fw-bold border-0 w-100" size="lg" type="submit" block>
-                            ثبت
-                        </Button>
-                    </Col>
-                </Row>
+                    <Row>
+                        <Col>
+                            <Button className="add-product-btn mt-4 w-100" type="submit">ثبت</Button>
+                        </Col>
+                    </Row>
+                </Form>
                 
-            </Form>
-        </Container>
-        </div>
+            </Modal.Body>
+            
+        </Modal>
     )
 }

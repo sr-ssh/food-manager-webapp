@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react'
-import { Header } from '../base/header';
+import React, { useEffect, useState } from 'react'
+import { Header } from '../base/productHeader';
 import { Container, Card } from 'react-bootstrap';
 import { AddProduct } from './addProduct'
+import { EditProduct } from './editProduct'
 import { useDispatch, useSelector } from 'react-redux'
 import { productActions } from '../../actions'
 import moment from 'jalali-moment';
@@ -10,6 +11,9 @@ import { history } from '../../helpers';
 import editIcon from '../../assets/images/Products/edit.svg'
 
 export const Products = () => {
+    const [addModalShow, setAddModalShow] = useState(false)
+    const [editModalShow, setEditModalShow] = useState(false)
+    const [product, setProduct] = useState({})
     const dispatch = useDispatch()
     const products = useSelector(state => state.getProducts.product)
     
@@ -19,7 +23,7 @@ export const Products = () => {
 
     return (
         <div className="product-page">
-            <Header title="محصولات"/>
+            <Header title="محصولات" modalShow={addModalShow} setModalShow={setAddModalShow} />
             <Container className="m-auto">
                 {products ? 
                     (products.map((item, index) => 
@@ -42,7 +46,7 @@ export const Products = () => {
                                 <Card.Text className="pt-1 ps-1">
                                     توضیحات :   {item.description}
                                 </Card.Text>
-                                <Card.Link className="editLogo w-100 d-block m-auto" onClick={e => history.push('/product/edit', item)}>
+                                <Card.Link className="editLogo w-100 d-block m-auto" onClick={() => {setEditModalShow(true); setProduct(item)}}>
                                     <img className="d-block me-auto" src={editIcon} height="42px" alt="back-icon" />
                                 </Card.Link>
                             </Card.Body>
@@ -51,7 +55,8 @@ export const Products = () => {
                     
                     : null}
                 
-                    
+                     <AddProduct show={addModalShow} onHide={() => setAddModalShow(false)} />
+                     <EditProduct show={editModalShow} onHide={() => setEditModalShow(false)} product={product} />
             </Container>
         </div>
     )

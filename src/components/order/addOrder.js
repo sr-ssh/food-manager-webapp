@@ -9,6 +9,8 @@ import DatePicker from "react-multi-date-picker";
 import moment from 'jalali-moment';
 import "react-multi-date-picker/styles/layouts/mobile.css"
 
+import downloadIcon from '../../assets/images/download.svg'
+
 export const AddOrder = () => {
     
     const [order, insertOrder] = useState([])
@@ -58,8 +60,8 @@ export const AddOrder = () => {
                                 <Form.Control className="order-input" type="number" name="mobile" onChange={handleChange} required/>
                             </Form.Group>
                         </Col>
-                        <Col className="col-4">
-                            {(oldCustomer && Object.keys(oldCustomer).length != 0) ? <Button onClick={(e) => handleOldCustomer(e)}>تکمیل اطلاعات مشتری</Button> : null}
+                        <Col className="col-4 align-self-end">
+                            {(oldCustomer && Object.keys(oldCustomer).length != 0) ? <img src={downloadIcon} className="add-order-download-btn p-1" onClick={(e) => handleOldCustomer(e)} height="40px" /> : null}
                         </Col>
                     </Row>
                     <Row className="m-0 p-0 mt-2 order-inputs">

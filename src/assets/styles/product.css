@@ -4,9 +4,18 @@
     border-radius: 10px;
 }
 
-.add-product .btn-primary {
-    color: #435668;
-    background-color: #64B5F6;
+.add-product {
+    background-color: var(--pages-background);
+    border-radius: 12px;
+    border: none;
+}
+
+.add-product-btn {
+    background-color: var(--button-background);
+    border: none;
+    border-radius: 11px;
+    font-weight: bold;
+    height: 50px;
 }
 
 .product-input-add{
@@ -18,7 +27,7 @@
 }
 
 .product-checkbox{
-    font-size: 14px;
+    font-size: 18px;
 }
 
 .was-validated .form-check-input:valid, .form-check-input.is-valid {
