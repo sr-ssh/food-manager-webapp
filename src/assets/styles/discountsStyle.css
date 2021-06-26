@@ -1,0 +1,9 @@
+.discount-sms-active {
+    font-size: 21px;
+    color: var(--button-color-two);
+}
+
+.dicount-sms-deActice {
+    font-size: 21px;
+    color: var(---dager-color)
+}

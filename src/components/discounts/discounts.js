@@ -4,7 +4,6 @@ import { discountActions } from '../../actions/discountActions';
 import { Container } from 'react-bootstrap';
 import { Header } from '../base/header';
 
-
 // components
 import { Discount } from './discount'
 
