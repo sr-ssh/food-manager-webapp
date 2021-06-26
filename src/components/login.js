@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { userActions } from '../actions/userActions';
 
@@ -26,6 +26,10 @@ export const Login = () => {
         e.preventDefault();
         mobileOrEmail && password && dispatch(userActions.login(mobileOrEmail, password));
     }
+
+    useEffect(() => {
+        dispatch(userActions.checkLogin())
+    }, [dispatch])
 
     return (
         <div className="order-page">

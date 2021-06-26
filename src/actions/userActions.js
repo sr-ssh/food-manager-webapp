@@ -5,7 +5,8 @@ import { alertActions } from './alertActions';
 
 export const userActions = {
     login,
-    register
+    register,
+    checkLogin
 };
 
 
@@ -33,6 +34,25 @@ function login(mobileOrEmail, password) {
     function request(user) { console.log("into request"); return { type: userConstants.LOGIN_REQUEST, user } }
     function success(user) { console.log("into success"); return { type: userConstants.LOGIN_SUCCESS, user } }
     function failure(error) { return { type: userConstants.LOGIN_FAILURE, error } }
+}
+
+function checkLogin() {
+    return dispatch => {
+        userService.getProducts()
+            .then(
+                res => {
+                    console.log("products received")
+                    console.log(res.data)
+                    dispatch(alertActions.success(res));
+                },
+                error => {
+                    console.log("occure error");
+                    console.log(error.toString());
+                    dispatch(alertActions.error(error.toString()));
+                }
+            );
+    };
+
 }
 
 function register(user) {
