@@ -99,7 +99,7 @@ export const Register = () => {
 
                             <Row className="w-100 me-0">
                                 <Col className="mt-4 register-link">
-                                    <a href="/">ورود</a>
+                                    <a href="/">قبلا ثبت نام شده اید؟</a>
                                 </Col>
                             </Row>
                             <Row className="registerSubmitContainer mt-2">

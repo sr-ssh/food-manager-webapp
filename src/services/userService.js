@@ -85,7 +85,6 @@ function appInfo() {
             if (error.response) {
                 console.log(error.response.data);
                 console.log(error.response.status);
-                history.push('/');
             }
         });
 }

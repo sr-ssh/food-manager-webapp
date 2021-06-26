@@ -65,7 +65,7 @@ export const Login = () => {
                             </Row>
                             <Row className="w-100 me-1">
                                 <Col className="mt-4 register-link">
-                                    <a href="/register">ثبت نام</a>
+                                    <a href="/register">ثبت نام نکرده اید؟</a>
                                 </Col>
                             </Row>
                             <Row className="registerSubmitContainer">

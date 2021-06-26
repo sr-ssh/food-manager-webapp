@@ -43,7 +43,7 @@ function appInfo() {
             .then(
                 res => {
                     console.log("user entered")
-                    console.log(res.data)
+                    console.log(res)
                     dispatch(alertActions.success(res));
                 },
                 error => {
@@ -87,5 +87,5 @@ function register(user) {
 function logout() {
     // remove user from local storage to log user out
     localStorage.removeItem('user');
-    console.log(JSON.parse(localStorage.getItem('user')))
+    history.push('/')
 }
