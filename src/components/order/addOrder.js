@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { productActions, orderActions  } from '../../actions';
+import { productActions, orderActions, customerActions  } from '../../actions';
 import { Header } from '../base/header2';
 import { Basket } from './basket';
 import { Container , Form , Button , Row , Col } from 'react-bootstrap';
