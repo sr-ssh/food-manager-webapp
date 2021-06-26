@@ -16,7 +16,6 @@ export const Customers = () => {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        console.log("Customers component mount")
         dispatch(customerActions.getCustomers());      
     }, [dispatch])
 

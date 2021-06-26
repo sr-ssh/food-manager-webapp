@@ -19,12 +19,10 @@ export const EditProduct = ({location}) => {
         else if (e.target.id === 'active0')
             setnewProduct({...newProduct, active: false})
         else setnewProduct({...newProduct, [e.target.id]: e.target.value})
-        console.log(newProduct)
     }
 
     let formHandler = (e) => {
         e.preventDefault()
-        console.log(location)
         dispatch(productActions.editProduct(newProduct))
     }
 

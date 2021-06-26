@@ -10,8 +10,6 @@ import deleteIcon from '../../assets/images/discounts/deletee.svg'
 export const Discount = ({discount}) => {
     return(
         <Card className="m-auto mt-3 bg-light productCard border-0 lh-lg pb-2" >
-        {console.log('======================')}
-        {console.log(history)}
             <Card.Body className="pb-0 ps-0 text-gray">
                 <Row className="pe-2">
                     <Row className="mt-2">
