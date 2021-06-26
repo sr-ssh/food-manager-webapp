@@ -29,7 +29,7 @@ export const Register = () => {
     const formHandeler = e => {
         e.preventDefault();
         let user = { name, family, company, password, email, mobile };
-        console.log(user)
+
         family && password && mobile && dispatch(userActions.register(user));     
     }
 

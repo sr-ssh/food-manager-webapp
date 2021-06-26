@@ -19,7 +19,6 @@ export const CustomerSearch = (props) => {
 
     const formHandler = (e) => {
         e.preventDefault();
-        console.log(filters)
         dispatch(customerActions.getCustomers(filters))
         props.onHide(false) 
     }

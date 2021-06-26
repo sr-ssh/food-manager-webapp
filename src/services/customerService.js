@@ -6,7 +6,8 @@ import { authHeader } from '../helpers';
 let baseRoute = SERVER_URL;
 
 export const customerService = {
-    getCustomers
+    getCustomers,
+    getCustomer
 };
 
 
@@ -52,4 +53,24 @@ function getCustomers(filter = {}) {
                 console.log(error.response.status);
             }
         });
+}
+
+function getCustomer(mobile) {
+    console.log("into customerService");
+    const requestOptions = {
+        headers: authHeader()
+    };
+    return axios
+        .get(`${baseRoute}/customer/${mobile}`, requestOptions)
+        .then(res => {
+            console.log("res.customer >> "); console.log(res.data.data);
+            return res.data.data
+        })
+        .catch(function (error) {
+            if (error.response) {
+                console.log(error.response.data);
+                console.log(error.response.status);
+            }
+        });
+        
 }

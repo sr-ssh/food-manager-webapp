@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { productActions, orderActions  } from '../../actions';
+import { productActions, orderActions, customerActions  } from '../../actions';
 import { Header } from '../base/header2';
 import { Basket } from './basket';
 import { Container , Form , Button , Row , Col } from 'react-bootstrap';
@@ -14,9 +14,20 @@ export const AddOrder = () => {
     const [order, insertOrder] = useState([])
     const [customer, setCustomer] = useState({})
     const dispatch = useDispatch()
+    let oldCustomer = {}
+    oldCustomer = useSelector(state => state.getCustomer.customer)
+
+
+    let handleOldCustomer = (e) => {
+        e.preventDefault()
+        setCustomer(oldCustomer)
+    }
 
     let handleChange = (e) => {
         e.preventDefault()
+        if(e.target.name === "mobile")
+            dispatch(customerActions.getCustomer(e.target.value))
+
         setCustomer({...customer, [e.target.name]: e.target.value})
     }
 
@@ -44,15 +55,18 @@ export const AddOrder = () => {
                         <Col className="p-0 col-5 orderInput">
                             <Form.Group >
                                 <Form.Label className="pe-2">موبایل</Form.Label>
-                                <Form.Control className="order-input" type="number" name="mobile" onChange={handleChange}  required/>
+                                <Form.Control className="order-input" type="number" name="mobile" onChange={handleChange} required/>
                             </Form.Group>
+                        </Col>
+                        <Col className="col-4">
+                            {(oldCustomer && Object.keys(oldCustomer).length != 0) ? <Button onClick={(e) => handleOldCustomer(e)}>تکمیل اطلاعات مشتری</Button> : null}
                         </Col>
                     </Row>
                     <Row className="m-0 p-0 mt-2 order-inputs">
                         <Col className="p-0 col-5 orderInput">
                             <Form.Group >
                                 <Form.Label className="pe-2">نام</Form.Label>
-                                <Form.Control className="order-input" type="text" name="family" onChange={handleChange}  required/>
+                                <Form.Control className="order-input" type="text" name="family" onChange={handleChange} value={customer.family} required/>
                             </Form.Group>
                         </Col> 
                         <Col className="p-0 col-5 me-auto orderInput">
@@ -66,6 +80,7 @@ export const AddOrder = () => {
                                     className="rmdp-mobile" 
                                     calendar="persian" 
                                     locale="fa" 
+                                    value={customer.birthday}
                                     calendarPosition="auto-right" 
                                     editable={false} 
                                     animation
