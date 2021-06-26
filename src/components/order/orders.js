@@ -52,7 +52,7 @@ export const Orders = () => {
                                                 </Col>
                                                 <Col>
                                                     <Card.Text>
-                                                        تاریخ : <span>{moment.from(order.customer.creadtedAt, 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD')}</span>
+                                                    تاریخ : <span>{moment.from(order.createdAt, 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD')}</span>
                                                     </Card.Text>
                                                 </Col>
                                             </Row>

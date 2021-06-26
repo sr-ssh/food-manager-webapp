@@ -35,6 +35,8 @@ function getCustomers(filter = {}) {
     if(!filter.totalTo)
         filter.totalTo = "0"
 
+        console.log(filter)
+
     const requestOptions = {
         headers: authHeader()
     };
