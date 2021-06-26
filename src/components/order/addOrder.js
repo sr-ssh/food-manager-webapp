@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { productActions, orderActions  } from '../../actions';
-import { Header } from '../base/header';
+import { Header } from '../base/header2';
 import { Basket } from './basket';
 import { Container , Form , Button , Row , Col } from 'react-bootstrap';
 //import { DatePicker } from "jalali-react-datepicker";
@@ -37,7 +37,7 @@ export const AddOrder = () => {
 
     return (
         <div className="order-page">
-            <Header title="ثبت سفارش"/>
+            <Header title="ثبت سفارش" backLink="/dashboard"/>
             <Container fluid className="pt-3 px-3 m-0">
                 <Form onSubmit={formHandler} >
                     <Row className="m-0 p-0 order-inputs">
@@ -89,7 +89,7 @@ export const AddOrder = () => {
                                     <Form.Control className="text-center order-input" type="number" name="reminder" onChange={handleChange}/>
                                 </Col>
                                 <Col className="align-self-end p-2">
-                                    <span className="mt-2 reminder-span" ><smal>روز دیگر</smal></span>
+                                    <span className="mt-2 reminder-span" >روز دیگر</span>
                                 </Col>
                             </Row>
                         </Form.Group>

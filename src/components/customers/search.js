@@ -126,31 +126,13 @@ export const CustomerSearch = (props) => {
                         <Col className="col-6 order-filter-input">
                             <Form.Group className="ms-2">
                                 <Form.Label className="pe-2">تعداد خرید از</Form.Label>
-                                <DatePicker 
-                                    inputClass="search-input"
-                                    className="rmdp-mobile" 
-                                    calendar="persian" 
-                                    locale="fa" 
-                                    calendarPosition="auto-right" 
-                                    editable={false} 
-                                    animation
-                                    onChange={value => submitCalendar(value, 'orderFrom')}
-                                />
+                                <Form.Control style={{"width":"94%"}} className="order-input h-100" type="number" name="orderFrom" value={filters.orderFrom} onChange={handleChange} />
                             </Form.Group>
                         </Col>
                         <Col className="col-6 order-filter-input">
                             <Form.Group className="me-2">
                                 <Form.Label className="pe-2">تا</Form.Label>
-                                <DatePicker 
-                                    inputClass="search-input"
-                                    className="rmdp-mobile" 
-                                    calendar="persian" 
-                                    locale="fa" 
-                                    calendarPosition="auto-right" 
-                                    editable={false} 
-                                    animation
-                                    onChange={value => submitCalendar(value, 'orderTo')}
-                                />
+                                <Form.Control style={{"width":"94%"}} className="order-input h-100" type="number" name="orderTo" value={filters.orderTo} onChange={handleChange} />
                             </Form.Group>
                         </Col>
                     </Row>
@@ -158,31 +140,13 @@ export const CustomerSearch = (props) => {
                         <Col className="col-6 order-filter-input">
                             <Form.Group className="ms-2">
                                 <Form.Label className="pe-2">جمع خرید از</Form.Label>
-                                <DatePicker
-                                    inputClass="search-input"
-                                    className="rmdp-mobile" 
-                                    calendar="persian" 
-                                    locale="fa" 
-                                    calendarPosition="auto-right" 
-                                    editable={false} 
-                                    animation
-                                    onChange={value => submitCalendar(value, 'totalFrom')}
-                                />
+                                <Form.Control style={{"width":"94%"}} className="order-input h-100" type="number" name="totalFrom" value={filters.totalFrom} onChange={handleChange} />
                             </Form.Group>
                         </Col>
                         <Col className="col-6 order-filter-input">
                             <Form.Group className="me-2">
                                 <Form.Label className="pe-2">تا</Form.Label>
-                                <DatePicker 
-                                    inputClass="search-input"
-                                    className="rmdp-mobile" 
-                                    calendar="persian" 
-                                    locale="fa" 
-                                    calendarPosition="auto-right" 
-                                    editable={false} 
-                                    animation
-                                    onChange={value => submitCalendar(value, 'totalTo')}
-                                />
+                                <Form.Control style={{"width":"94%"}} className="order-input h-100" type="number" name="totalTo" value={filters.totalTo} onChange={handleChange} />
                             </Form.Group>
                         </Col>
                     </Row>

@@ -113,11 +113,11 @@ export const Basket = ({order, insertOrder}) => {
                 
                     <Row className="pt-2 px-2">
                     {/* <TableScrollbar rows={5}> */}
-                    <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                    <div className="table-wrapper-scroll-y my-custom-scrollbar">
                         <Table className="lh-lg" borderless size="sm">
-                            <col width="40%" />
-                            <col width="35%" />
-                            <col width="20%" />
+                            {/* <Col width="40%" />
+                            <Col width="35%" />
+                            <Col width="20%" /> */}
                             <thead>
                                 <tr>
                                     <th className="fw-bold">سفارش</th>

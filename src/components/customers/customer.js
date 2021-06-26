@@ -17,7 +17,7 @@ export const Customer = ({customer}) => {
                                 </Col>
                                 <Col dir="ltr" className="col-9">
                                     <Card.Text>
-                                        تاریخ عضویت : <span>{moment.from(customer.creadtedAt, 'YYYY/MM/DD').locale('fa').format('DD MMMM YYYY')}</span>
+                                        تاریخ عضویت : <span>{moment.from(customer.createdAt, 'YYYY/MM/DD').locale('fa').format('DD MMMM YYYY')}</span>
                                     </Card.Text>
                                 </Col>
                             </Row>
