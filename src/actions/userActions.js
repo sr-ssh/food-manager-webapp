@@ -6,7 +6,7 @@ import { alertActions } from './alertActions';
 export const userActions = {
     login,
     register,
-    checkLogin
+    appInfo
 };
 
 
@@ -36,12 +36,12 @@ function login(mobileOrEmail, password) {
     function failure(error) { return { type: userConstants.LOGIN_FAILURE, error } }
 }
 
-function checkLogin() {
+function appInfo() {
     return dispatch => {
-        userService.getProducts()
+        userService.appInfo()
             .then(
                 res => {
-                    console.log("products received")
+                    console.log("user entered")
                     console.log(res.data)
                     dispatch(alertActions.success(res));
                 },

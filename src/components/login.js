@@ -28,7 +28,7 @@ export const Login = () => {
     }
 
     useEffect(() => {
-        dispatch(userActions.checkLogin())
+        dispatch(userActions.appInfo())
     }, [dispatch])
 
     return (
