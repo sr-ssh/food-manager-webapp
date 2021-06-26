@@ -9,7 +9,6 @@ let baseRoute = SERVER_URL;
 export const userService = {
     login,
     register,
-    logout,
     appInfo
 };
 
@@ -86,12 +85,9 @@ function appInfo() {
             if (error.response) {
                 console.log(error.response.data);
                 console.log(error.response.status);
+                history.push('/');
             }
         });
 }
 
-function logout() {
-    // remove user from local storage to log user out
-    localStorage.removeItem('user');
-}
 

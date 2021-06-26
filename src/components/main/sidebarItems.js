@@ -6,6 +6,7 @@ import teamxLogo from '../../assets/images/tem-x.png'
 import accountIcon from '../../assets/images/drawer/account.svg'
 import settingIcon from '../../assets/images/drawer/setting.svg'
 import exitIcon from '../../assets/images/drawer/exit.svg'
+import { userActions } from '../../actions'
 
 export const SidebarItems = () => {
     return (
@@ -40,13 +41,13 @@ export const SidebarItems = () => {
             </Row>
             <Row className="d-flex justify-content-center align-items-center mt-auto dashboardIcons">
                 <Col xs={4} sm={4} md={4} lg={4} className="my-3">
-                    <Link to="/"><img className="m-auto d-block" src={exitIcon} height="40px" /></Link>
+                    <Col onClick={e => userActions.logout()}><img className="m-auto d-block" src={exitIcon} height="40px" alt="exit-icon"/></Col>
                 </Col>
                 <Col xs={4} sm={4} md={4} lg={4} className="my-3">
-                    <Link to="/"><img className="m-auto d-block" src={settingIcon} height="40px" /></Link>
+                    <Link to="/"><img className="m-auto d-block" src={settingIcon} height="40px" alt="setting-icon" /></Link>
                 </Col>
                 <Col xs={4} sm={4} md={4} lg={4} className="my-3">
-                    <Link to="/"><img className="m-auto d-block" src={accountIcon} height="40px"/></Link>
+                    <Link to="/"><img className="m-auto d-block" src={accountIcon} height="40px" alt="acount-icon"/></Link>
                 </Col>
             </Row>
         </Container>

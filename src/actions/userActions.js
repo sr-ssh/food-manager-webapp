@@ -6,7 +6,8 @@ import { alertActions } from './alertActions';
 export const userActions = {
     login,
     register,
-    appInfo
+    appInfo,
+    logout
 };
 
 
@@ -81,4 +82,10 @@ function register(user) {
     function request(user) { console.log("into request"); return { type: userConstants.LOGIN_REQUEST, user } }
     function success(user) { console.log("into success"); return { type: userConstants.LOGIN_SUCCESS, user } }
     function failure(error) { return { type: userConstants.LOGIN_FAILURE, error } }
+}
+
+function logout() {
+    // remove user from local storage to log user out
+    localStorage.removeItem('user');
+    console.log(JSON.parse(localStorage.getItem('user')))
 }
