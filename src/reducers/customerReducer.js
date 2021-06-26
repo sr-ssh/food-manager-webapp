@@ -19,3 +19,20 @@ export function getCustomers(state = {}, action){
             return state;
     }
 }
+
+export function getCustomer(state = {}, action){
+    switch (action.type) {
+        case customerConstants.GET_CUSTOMER_REQUEST:
+            return{
+                success: false
+            }
+        case customerConstants.GET_CUSTOMER_SUCCESS:
+            return{
+                customer: action.customer,
+            }
+        case customerConstants.GET_CUSTOMER_FAILURE:
+            break;
+        default:
+            return state;
+    }
+}
