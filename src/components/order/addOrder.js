@@ -29,7 +29,7 @@ export const AddOrder = () => {
 
     let handleChange = (e) => {
         e.preventDefault()
-        if(e.target.name === "mobile")
+        if(e.target.name === "mobile" && e.target.value.length > 2)
             dispatch(customerActions.getCustomer(e.target.value))
 
         setCustomer({...customer, [e.target.name]: e.target.value})
