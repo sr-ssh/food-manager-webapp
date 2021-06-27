@@ -79,9 +79,9 @@ function register(user) {
             );
     };
 
-    function request(user) { console.log("into request"); return { type: userConstants.LOGIN_REQUEST, user } }
-    function success(user) { console.log("into success"); return { type: userConstants.LOGIN_SUCCESS, user } }
-    function failure(error) { return { type: userConstants.LOGIN_FAILURE, error } }
+    function request(user) { console.log("into request"); return { type: userConstants.REGISTER_REQUEST, user } }
+    function success(user) { console.log("into success"); return { type: userConstants.REGISTER_SUCCESS, user } }
+    function failure(error) { return { type: userConstants.REGISTER_FAILURE, error } }
 }
 
 function logout() {
