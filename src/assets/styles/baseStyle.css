@@ -80,3 +80,7 @@ body{
     bottom: 26vh;
     z-index: 2;
 }
+
+.no-result-filter {
+    height: 75vh;
+}

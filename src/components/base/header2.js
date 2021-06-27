@@ -11,8 +11,8 @@ export const Header = ({title, backLink}) => {
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="align-items-center justify-content-around w-100">
                     <Nav.Link className="me-auto ps-4"></Nav.Link>
-                    <Navbar.Text className="fs-6 text-light align-self-start">{title}</Navbar.Text>
-                    <Nav.Link href={backLink} className="me-auto ps-4"><img src={backIcon} height="30px" alt="back-icon" /></Nav.Link>
+                    <Navbar.Text className="fs-6 text-light align-self-start pe-4">{title}</Navbar.Text>
+                    <Nav.Link href={backLink} className="me-auto ps-3"><img src={backIcon} height="30px" alt="back-icon" /></Nav.Link>
                 </Nav>
             </Navbar.Collapse>
         </Navbar>

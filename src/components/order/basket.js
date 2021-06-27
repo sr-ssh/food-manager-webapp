@@ -80,7 +80,7 @@ export const Basket = ({order, insertOrder}) => {
                             <Dropdown onToggle={(e) => setDimStatus(!dimStatus)} onClick={(e) => productHandler(e)}>
                                 <Dropdown.Toggle className="d-flex">
                                     {selectedItem.length ? <span>{selectedItem}</span> : <span>محصولات</span>} 
-                                    <img className="me-auto" src={spinnerIcon} height="20px" />
+                                    <img className="me-auto" src={spinnerIcon} height="20px" alt="spinner-icon"/>
                                 </Dropdown.Toggle> 
                                 <Dropdown.Menu className={`${dimStatus ? "dim" : ""} dropdownProductMenu`}>
                                     {products 
@@ -131,7 +131,7 @@ export const Basket = ({order, insertOrder}) => {
                                                     <td>{item.name}</td>
                                                     <td>{item.quantity * item.sellingPrice} تومان</td>
                                                     <td className="pe-3">{item.quantity}</td>
-                                                    <td><img onClick={(e) => removeOrder(e, item)} src={deleteIcon} alt="delete-icon"/></td>
+                                                    <td onClick={(e) => removeOrder(e, item)}><img src={deleteIcon} alt="delete-icon"/></td>
                                                 </tr>
                                             )
                                         })
