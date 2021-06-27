@@ -17,6 +17,7 @@ export const Register = () => {
     let alertMessage = useSelector(state => state.alert.message)
     let alerType = useSelector(state => state.alert.type)
     
+    const [validated, setValidated] = useState(false);
     const [inputs, setInputs] = useState({ username: '', password: '' });
     const { name, family, password, email, mobile, company} = inputs;
     const dispatch = useDispatch()
@@ -30,6 +31,12 @@ export const Register = () => {
 
     const formHandeler = e => {
         e.preventDefault();
+        const form = e.currentTarget;
+        if (form.checkValidity() === false) {
+            e.stopPropagation();
+        }
+
+        setValidated(true);
         let user = { name, family, company, password, email, mobile };
 
         family && password && mobile && dispatch(userActions.register(user));     
@@ -54,14 +61,14 @@ export const Register = () => {
                 </Row>
                 <Row className="ms-0 registerForm mt-0">
                     <Col>
-                        <Form className="d-flex flex-column justify-content-center"  onSubmit={formHandeler}>
-
+                        <Form className="d-flex flex-column justify-content-center" noValidate validated={validated} onSubmit={formHandeler}>
+                            
                             <Row className="w-100 me-2 pe-2 order-inputs ">
                                 <Col >
                                     <Form.Group controlId="family" >
                                         <Image src={userLogo} width="17px" className="mx-2"/>
                                         <Form.Label>نام خانوادگی</Form.Label>
-                                        <Form.Control className="order-input login-input" type="text" onChange={handleChange}  required/>
+                                        <Form.Control className="order-input login-input" type="text" onChange={handleChange} required />
                                     </Form.Group>
                                 </Col>
                             </Row>
