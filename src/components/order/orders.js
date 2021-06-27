@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import moment from 'jalali-moment';
-import { Card , Table , Row , Col, Container } from 'react-bootstrap';
+import { Card , Table , Row , Col, Container, Alert } from 'react-bootstrap';
 
 import { orderActions } from '../../actions';
 import { Header } from '../base/serachHeader';
@@ -9,6 +9,9 @@ import { OrderSearch } from './search'
 
 export const Orders = () => {
 
+    let alertMessage = useSelector(state => state.alert.message)
+    let alerType = useSelector(state => state.alert.type)
+    
     const [modalShow, setModalShow] = useState(false)
     const dispatch = useDispatch()
     const orders = useSelector(state => state.getOrders.orders)
@@ -30,6 +33,14 @@ export const Orders = () => {
         <div className="product-page orders">
             <Header title="سفارش ها" modalShow={modalShow} setModalShow={setModalShow} />
             <Container className="m-auto">
+                {
+                alertMessage && 
+                <Row className="justify-content-center text-center ">
+                    <Alert variant={alerType}>
+                        {alertMessage}
+                    </Alert> 
+                </Row>
+                }
                 {orders ? 
                     (orders.map((order, index) => 
                         <Card key={index} className="m-auto mt-3 bg-light productCard border-0 lh-lg" >

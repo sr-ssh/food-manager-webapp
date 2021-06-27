@@ -19,9 +19,20 @@ function login(mobileOrEmail, password) {
             .then(
                 user => {
                     console.log("user into userAction");
-                    dispatch(success(user));
-                    console.log("user entered")
-                    dispatch(alertActions.success('با موفقیت وارد شدید'));
+
+                    if(user.success){
+                        console.log("user entered")
+                        dispatch(success(user));
+                        dispatch(alertActions.success(user.message));
+                        history.push('/dashboard');
+                    }else if(user.success === false)
+                        dispatch(alertActions.error(user.message));
+                    else if(user.success === undefined)
+                        dispatch(alertActions.error('ارتباط با سرور برقرار نیست'));
+                        
+                    setTimeout(() => {
+                        dispatch(alertActions.clear());
+                    }, 1500);
                 },
                 error => {
                     dispatch(failure(error.toString()));
@@ -63,12 +74,23 @@ function register(user) {
         userService.register(user)
             .then(
                 user => {
-                    console.log(user)
                     console.log("user into userAction");
-                    dispatch(success(user));
-                    history.push('/home');
-                    console.log("user registered")
-                    dispatch(alertActions.success('با موفقیت ثبت نام کردید'));
+                    console.log(user)
+
+                    if(user.success){
+                        console.log("user registered")
+                        dispatch(success(user));
+                        dispatch(alertActions.success(user.message));
+                        history.push('/home');
+                    }else if(user.success === false)
+                        dispatch(alertActions.error(user.message));
+                    else if(user.success === undefined)
+                        dispatch(alertActions.error('ثبت نام با موفقیت انجام نشد. ارتباط با سرور برقرار نیست'));
+
+                    setTimeout(() => {
+                        dispatch(alertActions.clear());
+                    }, 1500);
+                    
                 },
                 error => {
                     dispatch(failure(error.toString()));

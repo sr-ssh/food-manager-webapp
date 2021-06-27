@@ -8,10 +8,13 @@ import { Spinner } from 'react-bootstrap'
 import logo from './../assets/images/tem-x.png'
 import userLogo from './../assets/images/user.svg'
 import passwordLogo from './../assets/images/password.svg'
-import { Container, Button, Form, Row, Col, Image } from 'react-bootstrap';
+import { Container, Button, Form, Row, Col, Image, Alert } from 'react-bootstrap';
 
 
 export const Login = () => {
+
+    let alertMessage = useSelector(state => state.alert.message)
+    let alerType = useSelector(state => state.alert.type)
 
     const [inputs, setInputs] = useState({ username: '', password: '' });
     const { mobileOrEmail, password } = inputs;
@@ -37,6 +40,14 @@ export const Login = () => {
         <div className="order-page">
             <div id="triangle-up"></div>
             <Container fluid className="p-0 d-flex flex-column">
+                {
+                alertMessage && 
+                <Row className="justify-content-center text-center ">
+                    <Alert variant={alerType}>
+                        {alertMessage}
+                    </Alert> 
+                </Row>
+                }
                 <Row className="p-0 m-0 mzLogo">
                     <Col className="">
                         <img className="logo" src={logo} alt="logo" width="168px"/>

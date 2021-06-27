@@ -59,7 +59,7 @@ export const AddProduct = (props) => {
                     </Row>
                     <Row>
                         <Col>
-                            <Button className="add-product-btn mt-4 w-100" type="submit">ثبت</Button>
+                            <Button className="add-product-btn mt-4 w-100" type="submit" onClick={e => props.onHide(false)}>ثبت</Button>
                         </Col>
                     </Row>
                 </Form>

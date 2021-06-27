@@ -74,3 +74,9 @@ body{
     border-radius: 10px;
     border: none;
 }
+
+.alert {
+    position: absolute;
+    bottom: 26vh;
+    z-index: 2;
+}
