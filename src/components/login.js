@@ -16,6 +16,7 @@ export const Login = () => {
     let alertMessage = useSelector(state => state.alert.message)
     let alerType = useSelector(state => state.alert.type)
 
+    const [validated, setValidated] = useState(false);
     const [inputs, setInputs] = useState({ username: '', password: '' });
     const { mobileOrEmail, password } = inputs;
     const dispatch = useDispatch()
@@ -29,6 +30,12 @@ export const Login = () => {
 
     const formHandeler = e => {
         e.preventDefault();
+        const form = e.currentTarget;
+        if (form.checkValidity() === false) {
+            e.stopPropagation();
+        }
+        
+        setValidated(true);
         mobileOrEmail && password && dispatch(userActions.login(mobileOrEmail, password));
     }
 
@@ -58,7 +65,7 @@ export const Login = () => {
                 </Row>
                 <Row className="ms-0 loginForm">
                     <Col>
-                        <Form className="d-flex flex-column justify-content-center"  onSubmit={formHandeler}>
+                        <Form className="d-flex flex-column justify-content-center" noValidate validated={validated} onSubmit={formHandeler}>
                             <Row className="w-100 me-2 pe-2 order-inputs ">
                                 <Col >
                                     <Form.Group controlId="mobileOrEmail" >

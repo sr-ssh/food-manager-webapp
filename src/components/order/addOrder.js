@@ -24,7 +24,8 @@ export const AddOrder = () => {
 
     let handleOldCustomer = (e) => {
         e.preventDefault()
-        setCustomer(oldCustomer)
+        if(oldCustomer && Object.keys(oldCustomer).length !== 0)
+            setCustomer(oldCustomer)
     }
 
     let handleChange = (e) => {
@@ -65,7 +66,7 @@ export const AddOrder = () => {
                             </Form.Group>
                         </Col>
                         <Col className="col-4 align-self-end">
-                            {(oldCustomer && Object.keys(oldCustomer).length !== 0) ? <img src={downloadIcon} className="add-order-download-btn p-1" onClick={(e) => handleOldCustomer(e)} height="33vh" width="50vw" alt="down-icon"/> : null}
+                            <img src={downloadIcon} className="add-order-download-btn p-1" onClick={(e) => handleOldCustomer(e)} height="33vh" width="50vw" alt="down-icon"/>
                         </Col>
                     </Row>
                     <Row className="m-0 p-0 mt-2 order-inputs">

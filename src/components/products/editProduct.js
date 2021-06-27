@@ -39,17 +39,17 @@ export const EditProduct = (props) => {
                     <img className="d-flex m-auto customer-modal-close-svg" src={closeIcon} alt="close-btn" />
                 </Button>
                 <Form onSubmit={formHandler} >
-                    <Row className="my-3 mb-4">
-                        <Col className="col-4 ms-3">
+                    <Row className="my-3 mb-4 justify-content-center">
+                        <Col className="ms-3">
                             <Form.Group className="fw-bold product-checkbox" onChange={handleChange}>
                                 <Form.Check.Input name="activity" id="active1" defaultChecked={props.product.active} inline type="radio" isValid/>
-                                <Form.Check.Label htmlFor="active1" inline className="me-2">فعال</Form.Check.Label>
+                                <Form.Check.Label htmlFor="active1" inline className="me-1">فعال</Form.Check.Label>
                             </Form.Group>
                         </Col>
-                        <Col className="col-5 me-5">
+                        <Col>
                             <Form.Group className="fw-bold product-checkbox" onChange={handleChange}>
                                 <Form.Check.Input name="activity" id="active0" defaultChecked={!props.product.active} inline type="radio" isInvalid />
-                                <Form.Check.Label  htmlFor="active0" inline className="me-2">غیر فعال</Form.Check.Label>
+                                <Form.Check.Label htmlFor="active0" inline className="me-1">غیر فعال</Form.Check.Label>
                             </Form.Group>
                         </Col> 
                     </Row>

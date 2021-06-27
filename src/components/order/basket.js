@@ -85,6 +85,7 @@ export const Basket = ({order, insertOrder}) => {
                                     {products 
                                         ? products.map((item, index) =>  {
                                             return(
+                                                item.active && (
                                                 <Col key={index}>
                                                     {index ? <Dropdown.Divider  /> : null}
                                                     <Dropdown.Item onClick={() => setItem(item.name) }>
@@ -94,7 +95,7 @@ export const Basket = ({order, insertOrder}) => {
                                                         </Row>
                                                     </Dropdown.Item>
                                                 </Col>   
-                                                )    
+                                                ))    
                                             })  
                                         : null
                                     }

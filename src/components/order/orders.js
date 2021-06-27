@@ -46,7 +46,7 @@ export const Orders = () => {
                 }
                 {
                 orderLoading &&
-                    <Row classNmae="">
+                    <Row>
                         <Col className="col-3 mt-2 m-auto ">
                             <Spinner className="m-auto d-block" animation="border" />
                         </Col>
