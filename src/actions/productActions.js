@@ -18,7 +18,7 @@ function getProducts() {
                     dispatch(success(res.data));
                     console.log("products received")
                     console.log(res.data)
-                    dispatch(alertActions.success(res));
+                    dispatch(alertActions.success(res.message));
                 },
                 error => {
                     dispatch(failure(error.toString()));

@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { productActions, orderActions, customerActions  } from '../../actions';
+import { orderActions, customerActions  } from '../../actions';
 import { Header } from '../base/header2';
 import { Basket } from './basket';
-import { Container , Form , Button , Row , Col } from 'react-bootstrap';
-//import { DatePicker } from "jalali-react-datepicker";
+import { Container , Form , Button , Row , Col, Alert } from 'react-bootstrap';
 import DatePicker from "react-multi-date-picker";
 import moment from 'jalali-moment';
 import "react-multi-date-picker/styles/layouts/mobile.css"
@@ -12,6 +11,9 @@ import "react-multi-date-picker/styles/layouts/mobile.css"
 import downloadIcon from '../../assets/images/download.svg'
 
 export const AddOrder = () => {
+
+    let alertMessage = useSelector(state => state.alert.message)
+    let alerType = useSelector(state => state.alert.type)
     
     const [order, insertOrder] = useState([])
     const [customer, setCustomer] = useState({})
@@ -52,7 +54,9 @@ export const AddOrder = () => {
         <div className="order-page">
             <Header title="ثبت سفارش" backLink="/dashboard"/>
             <Container fluid className="pt-3 px-3 m-0">
+                
                 <Form onSubmit={formHandler} >
+                    
                     <Row className="m-0 p-0 order-inputs">
                         <Col className="p-0 col-5 orderInput">
                             <Form.Group >
@@ -119,6 +123,14 @@ export const AddOrder = () => {
                             </Button>
                         </Col>
                     </Row>
+                    {
+                        alertMessage && 
+                        <Row className="justify-content-center text-center ">
+                            <Alert variant={alerType}>
+                                {alertMessage}
+                            </Alert> 
+                        </Row>
+                    }
                 </Form>
             </Container>
         </div>

@@ -41,7 +41,7 @@ function getOrders(filter = {}) {
         .get(`${baseRoute}/order/${encodeURI(customerName)}/${customerMobile}/${startDate}/${endDate}`, requestOptions )
         .then(res => {
             console.log("res.user >> "); console.log(res.data.data);
-            return handleResponse(res)
+            return res.data
         })
         .catch(function (error) {
             if (error.response) {

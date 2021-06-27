@@ -14,10 +14,25 @@ function getOrders(filter) {
         orderService.getOrders(filter)
             .then(
                 res => {
-                    dispatch(success(orderConstants.GET_ORDERS_SUCCESS, res.data));
-                    console.log("orders received")
                     console.log(res.data)
-                    dispatch(alertActions.success(res));
+
+                    if(res.success){
+                        console.log("orders received")
+                        dispatch(success(orderConstants.GET_ORDERS_SUCCESS, res.data));
+                        dispatch(alertActions.success(res.message));
+                        setTimeout(() => {
+                            dispatch(alertActions.clear());
+                            history.go(0)
+                        }, 1500);
+                        
+                    }else if(res.success === false)
+                        dispatch(alertActions.error(ResizeObserver.message));
+                    else if(res.success === undefined)
+                        dispatch(alertActions.error('ارتباط با سرور برقرار نیست'));
+                        
+                    setTimeout(() => {
+                        dispatch(alertActions.clear());
+                    }, 1500);
                 },
                 error => {
                     dispatch(failure(orderConstants.GET_ORDERS_FAILURE, error.toString()));
@@ -36,11 +51,25 @@ function addOrder(products, customer) {
         orderService.addOrder(products, customer)
             .then(
                 res => {
-                    dispatch(success(products, customer));
-                    console.log("order added")
+                    
                     console.log(res)
-                    dispatch(alertActions.success(res));
-                    history.go(0)
+                    if(res.success){
+                        console.log("order added")
+                        dispatch(success(products, customer));
+                        dispatch(alertActions.success(res.message));
+                        setTimeout(() => {
+                            dispatch(alertActions.clear());
+                            history.go(0)
+                        }, 1500);
+                        
+                    }else if(res.success === false)
+                        dispatch(alertActions.error(ResizeObserver.message));
+                    else if(res.success === undefined)
+                        dispatch(alertActions.error('ارتباط با سرور برقرار نیست'));
+                        
+                    setTimeout(() => {
+                        dispatch(alertActions.clear());
+                    }, 1500);
                 },
                 error => {
                     dispatch(failure(error.toString()));
@@ -54,14 +83,6 @@ function addOrder(products, customer) {
     function request() { console.log("into request"); return { type: orderConstants.ADD_ORDER_REQUEST } }
     function success(order) { console.log("into success"); return { type: orderConstants.ADD_ORDER_SUCCESS, order } }
     function failure(error) { return { type: orderConstants.ADD_ORDER_FAILURE, error } }
-}
-
-function setFilter(filter) {
-    return dispatch => {
-        dispatch(success(filter))
-    };
-
-    function success(filter) { console.log("into success"); return { type: orderConstants.ADD_ORDER_FILTER, filter } }
 }
 
 function request(type) {
