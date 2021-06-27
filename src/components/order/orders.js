@@ -40,6 +40,18 @@ export const Orders = () => {
                                             <Row>
                                                 <Col>
                                                     <Card.Text>
+                                                    تاریخ : <span>{moment.from(order.createdAt, 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD')}</span>
+                                                    </Card.Text>
+                                                </Col>
+                                                <Col>
+                                                    <Card.Text>
+                                                    ساعت : <span>{moment.from(order.createdAt, 'HH:mm').locale('fa').format('HH:mm')}</span>
+                                                    </Card.Text>
+                                                </Col>
+                                            </Row>
+                                            <Row>
+                                                <Col>
+                                                    <Card.Text>
                                                         نام مشتری: <span>{order.customer.family}</span>
                                                     </Card.Text>
                                                 </Col>
@@ -50,18 +62,13 @@ export const Orders = () => {
                                                         موبایل: <span>{order.customer.mobile}</span>
                                                     </Card.Text>
                                                 </Col>
-                                                <Col>
-                                                    <Card.Text>
-                                                    تاریخ : <span>{moment.from(order.createdAt, 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD')}</span>
-                                                    </Card.Text>
-                                                </Col>
                                             </Row>
                                         </Card.Body>
                                     </Card>
                                 </Row>
                                 <Row className="mt-2">
                                     <Card.Text className="text-bold">
-                                        سبد خرید
+                                        سفارشات
                                     </Card.Text>
                                 </Row>
                                 
