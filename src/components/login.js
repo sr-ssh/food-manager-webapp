@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { userActions } from '../actions/userActions';
 
+import { Spinner } from 'react-bootstrap'
 
 //css
 import logo from './../assets/images/crm.svg'
@@ -19,6 +20,7 @@ export const Login = () => {
     const { mobileOrEmail, password } = inputs;
     const dispatch = useDispatch()
 
+    let loggingInLoading = useSelector(state => state.authentication.loading)
 
     const handleChange = (e) => {
         const { id, value } = e.target;
@@ -37,7 +39,6 @@ export const Login = () => {
     return (
         <div className="order-page">
             <div id="triangle-up"></div>
-
             <Container fluid className="p-0 d-flex flex-column">
                 {
                 alertMessage && 
@@ -81,7 +82,7 @@ export const Login = () => {
                             </Row>
                             <Row className="registerSubmitContainer">
                                 <Col xs={7} className="me-auto ms-4">
-                                    <Button className="form-submit w-100 me-auto d-block" type="submit" >ورود</Button>
+                                    <Button className="form-submit w-100 me-auto d-block" type="submit" >{loggingInLoading ? <Spinner animation="border" /> : "ورود"}</Button>
                                 </Col>
                             </Row>
                         </Form>

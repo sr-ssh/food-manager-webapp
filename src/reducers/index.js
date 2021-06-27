@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { authentication } from './authenticationReducer';
+import { authentication, register } from './authenticationReducer';
 import { alert } from './alertReducer';
 import { getCustomers, getCustomer } from './customerReducer'
 import { getProducts } from './productReducer'
@@ -11,6 +11,7 @@ import { addDiscount } from './discountReducer';
 
 export default combineReducers ({
     authentication,
+    register,
     alert,
     getProducts,
     getCustomers,

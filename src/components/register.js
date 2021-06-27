@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { userActions } from '../actions/userActions';
-import { Container, Button, Form, Row, Col, Image, Alert } from 'react-bootstrap';
+import { Container, Button, Form, Row, Col, Image, Alert, Spinner } from 'react-bootstrap';
 
 import logo from './../assets/images/tem-x.png'
 import userLogo from './../assets/images/user.svg'
@@ -10,7 +10,6 @@ import mobileLogo from './../assets/images/phone.svg'
 import emailLogo from './../assets/images/emaill.svg'
 import companyLogo from './../assets/images/company-name.svg'
 import passwordLogo from './../assets/images/password.svg'
-
 
 
 export const Register = () => {
@@ -21,7 +20,7 @@ export const Register = () => {
     const [inputs, setInputs] = useState({ username: '', password: '' });
     const { name, family, password, email, mobile, company} = inputs;
     const dispatch = useDispatch()
-
+    let registerLoading = useSelector(state => state.register.registering)
 
     const handleChange = (e) => {
         const { id, value } = e.target;
@@ -39,7 +38,6 @@ export const Register = () => {
     return (
         <div className="order-page">
             <div id="triangle-up"></div>
-
             <Container fluid className="p-0 d-flex flex-column">
                 {
                 alertMessage && 
@@ -115,7 +113,7 @@ export const Register = () => {
                             </Row>
                             <Row className="registerSubmitContainer mt-2">
                                 <Col xs={8} className="me-auto ms-4">
-                                    <Button className="form-submit w-75 me-auto d-block" type="submit">ثبت نام</Button>
+                                    <Button className="form-submit w-75 me-auto d-block" type="submit">{registerLoading ?  <Spinner animation="border" /> : "ثبت نام"}</Button>
                                 </Col>
                             </Row>
                         </Form>
