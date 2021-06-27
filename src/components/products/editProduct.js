@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux';
 import { productActions } from '../../actions';
-import { Header } from '../base/header2';
-import { Container , Form , Button , Row , Col, Modal } from 'react-bootstrap';
+import { Form , Button , Row , Col, Modal } from 'react-bootstrap';
 
 import closeIcon from '../../assets/images/close.svg'
 
@@ -11,7 +10,6 @@ export const EditProduct = (props) => {
     const dispatch = useDispatch()
 
     let handleChange = (e) => {
-        e.preventDefault()
         if(e.target.id === 'active1')
             setnewProduct({...newProduct, active: true})
         else if (e.target.id === 'active0')
@@ -46,13 +44,13 @@ export const EditProduct = (props) => {
                         <Col className="col-4 ms-3">
                             <Form.Group className="fw-bold product-checkbox" onChange={handleChange}>
                                 <Form.Check.Input name="activity" id="active1" defaultChecked={props.product.active} inline type="radio" isValid/>
-                                <Form.Check.Label inline className="me-2">فعال</Form.Check.Label>
+                                <Form.Check.Label htmlFor="active1" inline className="me-2">فعال</Form.Check.Label>
                             </Form.Group>
                         </Col>
-                        <Col className="col-4 me-5">
+                        <Col className="col-5 me-5">
                             <Form.Group className="fw-bold product-checkbox" onChange={handleChange}>
                                 <Form.Check.Input name="activity" id="active0" defaultChecked={!props.product.active} inline type="radio" isInvalid />
-                                <Form.Check.Label inline className="me-2">غیر فعال</Form.Check.Label>
+                                <Form.Check.Label  htmlFor="active0" inline className="me-2">غیر فعال</Form.Check.Label>
                             </Form.Group>
                         </Col> 
                     </Row>

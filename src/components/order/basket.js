@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { productActions } from '../../actions';
-import { Card , DropdownButton , Dropdown , Button , Table , Row , Col } from 'react-bootstrap';
-import TableScrollbar from 'react-table-scrollbar';
+import { Card , Dropdown , Button , Table , Row , Col } from 'react-bootstrap';
 
 //icons
 import deleteIcon from './../../assets/images/delete.svg'

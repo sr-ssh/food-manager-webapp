@@ -14,6 +14,14 @@
     border-radius: 11px;
 }
 
+.add-order-download-btn:active {
+    border: 1px solid var(--text-color-two);
+}
+
+.add-order-download-btn:focus {
+    border: 1px solid var(--text-color-two);
+}
+
 .order-flex {
     top: 47px;
 }
@@ -40,7 +48,7 @@
     border: none;
 }
 
-.order-input:focus{
+.order-input:focus {
     outline: var(--button-color-one);
     border: 1px solid var(--button-color-one);
 }
@@ -159,6 +167,7 @@
 
 .border-top-blue {
     border-top: 1px solid var(--button-background);
+    margin-right: 0vw;
 }
 
 .reminder-span{
