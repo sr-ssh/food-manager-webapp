@@ -30,26 +30,26 @@ export const SidebarItems = () => {
                 <Col xs={10} sm={10} md={10} lg={10} className="py-3 mx-3 fw-bold sidebarItem">
                     <Link to="/products">محصولات</Link>
                 </Col>
-                <Col xs={10} sm={10} md={10} lg={10} className="py-3 mx-3 fw-bold sidebarItem">
+                {/* <Col xs={10} sm={10} md={10} lg={10} className="py-3 mx-3 fw-bold sidebarItem">
                     <Link to="/finance">مالی</Link>
-                </Col>
+                </Col> */}
                 <Col xs={10} sm={10} md={10} lg={10} className="py-3 mx-3 fw-bold sidebarItem">
                     <Link to="/customers">مشتریان</Link>
                 </Col>
-                <Col xs={10} sm={10} md={10} lg={10} className="py-3 mx-3 fw-bold sidebarItem">
+                {/* <Col xs={10} sm={10} md={10} lg={10} className="py-3 mx-3 fw-bold sidebarItem">
                     <Link to="/discounts">تخفیف ها</Link>
-                </Col>
+                </Col> */}
             </Row>
             <Row className="d-flex justify-content-center align-items-center mt-auto dashboardIcons">
                 <Col xs={4} sm={4} md={4} lg={4} className="my-3">
                     <Col onClick={e => userActions.logout()}><img className="m-auto d-block" src={exitIcon} height="40px" alt="exit-icon"/></Col>
                 </Col>
-                <Col xs={4} sm={4} md={4} lg={4} className="my-3">
+                {/* <Col xs={4} sm={4} md={4} lg={4} className="my-3">
                     <Link to="/"><img className="m-auto d-block" src={settingIcon} height="40px" alt="setting-icon" /></Link>
                 </Col>
                 <Col xs={4} sm={4} md={4} lg={4} className="my-3">
                     <Col ><img className="m-auto d-block" src={accountIcon} height="40px" alt="acount-icon"/></Col>
-                </Col>
+                </Col> */}
             </Row>
         </Container>
     )

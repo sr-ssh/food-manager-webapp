@@ -56,7 +56,7 @@ export const AddProduct = (props) => {
                         <Col>
                             <Form.Group controlId="description" className="order-filter-input mt-3">
                                 <Form.Label className="pe-3">توضیحات</Form.Label>
-                                <Form.Control className="order-input border-0 h-100" as="textarea" rows={6} onChange={handleChange} required/>
+                                <Form.Control className="order-input border-0 h-100" as="textarea" rows={6} onChange={handleChange}/>
                             </Form.Group>
                         </Col>
                     </Row>
