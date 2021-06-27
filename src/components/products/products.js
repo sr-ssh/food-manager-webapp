@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Header } from '../base/productHeader';
-import { Container, Card, Row, Alert } from 'react-bootstrap';
+import { Container, Card, Row, Alert, Spinner, Col } from 'react-bootstrap';
 import { AddProduct } from './addProduct'
 import { EditProduct } from './editProduct'
 import { useDispatch, useSelector } from 'react-redux'
@@ -19,6 +19,9 @@ export const Products = () => {
     const [product, setProduct] = useState({})
     const dispatch = useDispatch()
     const products = useSelector(state => state.getProducts.product)
+    const productLoading = useSelector(state => state.getProducts.loading)
+    const addProductLoading = useSelector(state => state.addProduct.loading)
+    const editProductLoading = useSelector(state => state.editProduct.loading)
     
     useEffect(() => {
         dispatch(productActions.getProducts())
@@ -34,6 +37,14 @@ export const Products = () => {
                     <Alert variant={alerType}>
                         {alertMessage}
                     </Alert> 
+                </Row>
+                }
+                {
+                (productLoading || addProductLoading || editProductLoading) &&
+                <Row>
+                    <Col className="col-3 mt-2 m-auto ">
+                        <Spinner className="m-auto d-block" animation="border" />
+                    </Col>
                 </Row>
                 }
                 {products ? 

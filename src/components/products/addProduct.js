@@ -39,13 +39,13 @@ export const AddProduct = (props) => {
                         <Col className="col-6 order-filter-input">
                             <Form.Group controlId="name">
                                 <Form.Label className="pe-3">نام محصول</Form.Label>
-                                <Form.Control className="order-input" type="text" onChange={handleChange} />
+                                <Form.Control className="order-input" type="text" onChange={handleChange} required />
                             </Form.Group>
                         </Col>
                         <Col className="col-6 order-filter-input">
                             <Form.Group controlId="sellingPrice">
                                 <Form.Label className="pe-3">قیمت</Form.Label>
-                                <Form.Control className="order-input" type="number" onChange={handleChange} />
+                                <Form.Control className="order-input" type="number" onChange={handleChange} required />
                             </Form.Group>
                         </Col>
                     </Row>
@@ -53,7 +53,7 @@ export const AddProduct = (props) => {
                         <Col>
                             <Form.Group controlId="description" className="order-filter-input mt-3">
                                 <Form.Label className="pe-3">توضیحات</Form.Label>
-                                <Form.Control className="order-input border-0 h-100" as="textarea" rows={6} onChange={handleChange}/>
+                                <Form.Control className="order-input border-0 h-100" as="textarea" rows={6} onChange={handleChange} required/>
                             </Form.Group>
                         </Col>
                     </Row>

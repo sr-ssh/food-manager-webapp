@@ -54,9 +54,9 @@ function addProduct(product) {
                     else if(res.success){
                         console.log("product added")
                         dispatch(success(productConstants.ADD_PRODUCT_SUCCESS, product));
-                        dispatch(alertActions.success(res));
+                        dispatch(alertActions.success(res.message));
                     } else if (res.success === false)
-                        dispatch(alertActions.error(res.message));
+                        dispatch(alertActions.error(res.data.message));
 
                     setTimeout(() => {
                         dispatch(alertActions.clear());

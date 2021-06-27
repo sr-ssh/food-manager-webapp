@@ -49,6 +49,15 @@ export const Orders = () => {
                         </Col>
                     </Row>
                 }
+                { 
+                    (orders.length === 0 && !orderLoading) ? (
+                        <Row className="justify-content-center align-items-center no-result-filter">
+                            <Col className="col-8 text-center">
+                                هیج نتیجه ای یافت نشد!
+                            </Col>
+                        </Row>
+                    ) : null 
+                }
                 {(orders.length > 0) ? 
                     (orders.map((order, index) => 
                         <Card key={index} className="m-auto mt-3 bg-light productCard border-0 lh-lg" >
@@ -133,15 +142,7 @@ export const Orders = () => {
                     ))    
                     
                     : null}
-                { 
-                    (orders.length === 0 && !orderLoading) ? (
-                        <Row className="justify-content-center align-items-center no-result-filter">
-                            <Col className="col-8 text-center">
-                                هیج نتیجه ای یافت نشد!
-                            </Col>
-                        </Row>
-                    ) : null 
-                }
+                
                 <OrderSearch show={modalShow} onHide={() => setModalShow(false)} />        
             </Container>
         </div>
