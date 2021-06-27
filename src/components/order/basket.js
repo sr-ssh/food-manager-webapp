@@ -73,7 +73,7 @@ export const Basket = ({order, insertOrder}) => {
             <Card className="border-0 p-3 pt-2  basketContainer">
                 <Card.Body className="p-0 basket-flex">
                     <Row>
-                        <h6 className="order-input fw-bold">سبد خرید</h6>
+                        <h6 className="order-input fw-bold">سفارشات</h6>
                     </Row>
                     <Row>
                         <Col className="col-10 pe-2">
@@ -112,12 +112,8 @@ export const Basket = ({order, insertOrder}) => {
                     </Row>
                 
                     <Row className="pt-2 px-2">
-                    {/* <TableScrollbar rows={5}> */}
                     <div className="table-wrapper-scroll-y my-custom-scrollbar">
                         <Table className="lh-lg" borderless size="sm">
-                            {/* <Col width="40%" />
-                            <Col width="35%" />
-                            <Col width="20%" /> */}
                             <thead>
                                 <tr>
                                     <th className="fw-bold">سفارش</th>
@@ -144,7 +140,6 @@ export const Basket = ({order, insertOrder}) => {
                             </tbody>
                         </Table>
                         </div>
-                        {/* </TableScrollbar> */}
                         <Row className="border-top-blue pt-2 mt-auto">
                             <Col className="col-5">
                                 <span className="">جمع کل</span>

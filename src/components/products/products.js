@@ -46,16 +46,16 @@ export const Products = () => {
                                     : <div className="deActiveStatus"><span></span> غیرفعال</div>}
                                 </Card.Title>
                                 <Card.Text className="pt-1">
-                                    نام : {item.name}
+                                    <span style={{"color": "var(--text-color-one)"}}>نام : </span>{item.name}
                                 </Card.Text>
                                 <Card.Text className="pt-1">
-                                    قیمت فروش : {item.sellingPrice} تومان
+                                    <span style={{"color": "var(--text-color-one)"}}>قیمت فروش : </span>{item.sellingPrice} تومان
                                 </Card.Text>
                                 <Card.Text className="pt-1">
-                                    تاریخ ویرایش : {moment.from(item.updatedAt, 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD')}
+                                    <span style={{"color": "var(--text-color-one)"}}>تاریخ ویرایش : </span>{moment.from(item.updatedAt, 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD')}
                                 </Card.Text>
                                 <Card.Text className="pt-1 ps-1">
-                                    توضیحات :   {item.description}
+                                <span style={{"color": "var(--text-color-one)"}}>توضیحات :   </span>{item.description}
                                 </Card.Text>
                                 <Card.Link className="editLogo w-100 d-block m-auto" onClick={() => {setEditModalShow(true); setProduct(item)}}>
                                     <img className="d-block me-auto" src={editIcon} height="42px" alt="back-icon" />
