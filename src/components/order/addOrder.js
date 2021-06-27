@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { orderActions, customerActions  } from '../../actions';
 import { Header } from '../base/header2';
 import { Basket } from './basket';
-import { Container , Form , Button , Row , Col, Alert } from 'react-bootstrap';
+import { Container , Form , Button , Row , Col, Alert, Spinner } from 'react-bootstrap';
 import DatePicker from "react-multi-date-picker";
 import moment from 'jalali-moment';
 import "react-multi-date-picker/styles/layouts/mobile.css"
@@ -18,8 +18,8 @@ export const AddOrder = () => {
     const [order, insertOrder] = useState([])
     const [customer, setCustomer] = useState({})
     const dispatch = useDispatch()
-    let oldCustomer = {}
-    oldCustomer = useSelector(state => state.getCustomer.customer)
+    let oldCustomer = useSelector(state => state.getCustomer.customer)
+    let addOrderLoading = useSelector(state => state.addOrder.loading)
 
 
     let handleOldCustomer = (e) => {
@@ -29,7 +29,7 @@ export const AddOrder = () => {
 
     let handleChange = (e) => {
         e.preventDefault()
-        if(e.target.name === "mobile")
+        if(e.target.name === "mobile" && e.target.value.length > 2)
             dispatch(customerActions.getCustomer(e.target.value))
 
         setCustomer({...customer, [e.target.name]: e.target.value})
@@ -118,9 +118,24 @@ export const AddOrder = () => {
                     
                     <Row className="m-0 mt-4 justify-content-center w-100">
                         <Col className="col-12">
-                            <Button className="fw-bold order-submit border-0 w-100" size="lg" type="submit" block>
-                                ثبت
-                            </Button>
+                            {
+                                addOrderLoading ? (
+                                    <Button className="fw-bold order-submit border-0 w-100" size="lg" type="submit"  disabled>
+                                        <Spinner
+                                        as="span"
+                                        animation="grow"
+                                        size="sm"
+                                        role="status"
+                                        aria-hidden="true"
+                                        />
+                                        در حال ثبت سفارش...
+                                    </Button>
+                                ) : (
+                                    <Button className="fw-bold order-submit border-0 w-100" size="lg" type="submit" block>
+                                        ثبت
+                                    </Button>
+                                )
+                            }
                         </Col>
                     </Row>
                     {

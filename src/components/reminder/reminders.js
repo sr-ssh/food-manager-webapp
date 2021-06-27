@@ -2,13 +2,14 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { reminderActions } from '../../actions';
 import { Header } from './../base/header2'
-import { Card , Table , Row , Col, Container , Button } from 'react-bootstrap';
+import { Card , Table , Row , Col, Container , Button, Spinner } from 'react-bootstrap';
 import moment from 'jalali-moment';
 
 
 export const Reminders = () => {
 
     let reminders = useSelector(state => state.getReminders.reminders)
+    let reminderLoading = useSelector(state => state.getReminders.loading)
     const dispatch = useDispatch()
 
     const getTotalPrice = (order) => {
@@ -27,6 +28,23 @@ export const Reminders = () => {
         <div className="product-page orders">
             <Header title="یادآوری" backLink="/dashboard"/>
             <Container className="m-auto">
+                {
+                    reminderLoading &&
+                    <Row>
+                        <Col className="col-3 mt-2 m-auto ">
+                            <Spinner className="m-auto d-block" animation="border" />
+                        </Col>
+                    </Row>
+                }
+                { 
+                    (reminders.length === 0 && !reminderLoading) ? (
+                        <Row className="justify-content-center align-items-center no-result-filter">
+                            <Col className="col-8 text-center">
+                                هیچ یادآوری موجود نمیباشد!
+                            </Col>
+                        </Row>
+                    ) : null 
+                }
                 {reminders ? 
                     (reminders.map((reminder, index) => 
                         <Card key={index} className="m-auto mt-3 bg-light productCard border-0 lh-lg" >
