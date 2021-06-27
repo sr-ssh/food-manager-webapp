@@ -82,7 +82,7 @@ export const AddOrder = () => {
                                     className="rmdp-mobile" 
                                     calendar="persian" 
                                     locale="fa" 
-                                    value={customer.birthday}
+                                    value={customer.birthday ? moment(customer.birthday, 'YYYY-MM-DD').locale('fa').format('YYYY/MM/DD') : null}
                                     calendarPosition="auto-right" 
                                     editable={false} 
                                     animation
