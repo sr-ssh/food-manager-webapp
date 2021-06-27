@@ -34,7 +34,6 @@ export const EditProduct = (props) => {
             aria-labelledby="contained-modal-title-vcenter"
             centered
             >
-            {console.log(newProduct)}
             <Modal.Body className="add-product px-4">
                 <Button className="border-0 customer-modal-close" type="button"  onClick={e => props.onHide(false)}>
                     <img className="d-flex m-auto customer-modal-close-svg" src={closeIcon} alt="close-btn" />
