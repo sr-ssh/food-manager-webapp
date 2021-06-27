@@ -20,15 +20,15 @@ function login(mobileOrEmail, password) {
                 user => {
                     console.log("user into userAction");
 
-                    if(user.success){
+                    if(user === undefined)
+                        dispatch(alertActions.error('ارتباط با سرور برقرار نیست'));
+                    else if(user.success){
                         console.log("user entered")
                         dispatch(success(user));
                         dispatch(alertActions.success(user.message));
                         history.push('/dashboard');
                     }else if(user.success === false)
                         dispatch(alertActions.error(user.message));
-                    else if(user.success === undefined)
-                        dispatch(alertActions.error('ارتباط با سرور برقرار نیست'));
                         
                     setTimeout(() => {
                         dispatch(alertActions.clear());
@@ -77,15 +77,15 @@ function register(user) {
                     console.log("user into userAction");
                     console.log(user)
 
-                    if(user.success){
+                    if(user === undefined)
+                        dispatch(alertActions.error('ثبت نام با موفقیت انجام نشد. ارتباط با سرور برقرار نیست'));
+                    else if(user.success){
                         console.log("user registered")
                         dispatch(success(user));
                         dispatch(alertActions.success(user.message));
                         history.push('/home');
                     }else if(user.success === false)
                         dispatch(alertActions.error(user.message));
-                    else if(user.success === undefined)
-                        dispatch(alertActions.error('ثبت نام با موفقیت انجام نشد. ارتباط با سرور برقرار نیست'));
 
                     setTimeout(() => {
                         dispatch(alertActions.clear());

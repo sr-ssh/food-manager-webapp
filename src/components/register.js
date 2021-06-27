@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { userActions } from '../actions/userActions';
 import { Container, Button, Form, Row, Col, Image, Alert, Spinner } from 'react-bootstrap';
 
-import logo from './../assets/images/tem-x.png'
+import logo from './../assets/images/crm.svg'
 import userLogo from './../assets/images/user.svg'
 import mobileLogo from './../assets/images/phone.svg'
 import emailLogo from './../assets/images/emaill.svg'
