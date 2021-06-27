@@ -1,13 +1,12 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Sidebar from 'react-sidebar'
+import { Navbar , Nav } from 'react-bootstrap';
 
 import { SidebarItems } from './sidebarItems'
 
-import logo from "../../assets/images/back.svg"
-import { Navbar , Nav } from 'react-bootstrap';
-
 import menuIcon from './../../assets/images/menu.svg'
+import crmLogo from '../../assets/images/crm.svg'
 
 export const Dashboard = () => {
     const [isOpen, setIsOpen] = useState(false)
@@ -33,6 +32,9 @@ export const Dashboard = () => {
                         <Navbar.Collapse id="basic-navbar-nav">
                             <Nav className="align-items-center w-100">
                                 <Nav.Link onClick={() => setIsOpen(!isOpen)} className="ms-auto pe-3"><img src={menuIcon} height="40px" alt="plus-icon"  /></Nav.Link>
+                            </Nav>
+                            <Nav>
+                                <img src={crmLogo} height="50px" />
                             </Nav>
                         </Navbar.Collapse>
                     </Navbar>
