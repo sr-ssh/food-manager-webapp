@@ -4,7 +4,7 @@ import { userActions } from '../actions/userActions';
 
 
 //css
-import logo from './../assets/images/tem-x.png'
+import logo from './../assets/images/crm.svg'
 import userLogo from './../assets/images/user.svg'
 import passwordLogo from './../assets/images/password.svg'
 import { Container, Button, Form, Row, Col, Image, Alert } from 'react-bootstrap';
@@ -49,7 +49,7 @@ export const Login = () => {
                 }
                 <Row className="p-0 m-0 mzLogo">
                     <Col className="">
-                        <img className="logo" src={logo} alt="logo" width="168px"/>
+                        <img className="logo" src={logo} alt="logo" width="160px"/>
                     </Col>
                 </Row>
                 <Row className="ms-0 loginForm">
