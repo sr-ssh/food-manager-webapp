@@ -55,6 +55,7 @@ function addProduct(product) {
                         console.log("product added")
                         dispatch(success(productConstants.ADD_PRODUCT_SUCCESS, product));
                         dispatch(alertActions.success(res.message));
+                        history.go(0)
                     } else if (res.success === false)
                         dispatch(alertActions.error(res.data.message));
 
@@ -88,6 +89,7 @@ function editProduct(product) {
                         console.log("product edited")
                         dispatch(success(productConstants.EDIT_PRODUCT_SUCCESS, product));
                         dispatch(alertActions.success(res.message));
+                        history.go(0)
                     } else if (res.success === false)
                         dispatch(alertActions.error(res.message));
 

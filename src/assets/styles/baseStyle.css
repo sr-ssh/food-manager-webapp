@@ -78,7 +78,7 @@ body{
 .alert {
     position: absolute;
     bottom: 26vh;
-    z-index: 2;
+    z-index: 1050;
 }
 
 .no-result-filter {

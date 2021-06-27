@@ -125,11 +125,14 @@ export const AddOrder = () => {
                     </Row>
                     {
                         alertMessage && 
-                        <Row className="justify-content-center text-center ">
-                            <Alert variant={alerType}>
-                                {alertMessage}
-                            </Alert> 
-                        </Row>
+                        <>
+                        <div className="modal-backdrop show"></div>
+                            <Row className="justify-content-center text-center ">
+                                <Alert variant={alerType}>
+                                    {alertMessage}
+                                </Alert> 
+                            </Row>
+                        </>
                     }
                 </Form>
             </Container>

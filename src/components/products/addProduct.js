@@ -1,8 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState , useEffect } from 'react'
 import { useDispatch } from 'react-redux';
 import { productActions } from '../../actions';
-import { Header } from '../base/header2';
-import { Container , Form , Button , Row , Col, Modal } from 'react-bootstrap';
+import { Form , Button , Row , Col, Modal } from 'react-bootstrap';
 
 import closeIcon from '../../assets/images/close.svg'
 
@@ -13,7 +12,6 @@ export const AddProduct = (props) => {
     const dispatch = useDispatch()
 
     let handleChange = (e) => {
-        e.preventDefault()
         setProduct({...product, [e.target.id]: e.target.value})
     }
 
@@ -21,6 +19,11 @@ export const AddProduct = (props) => {
         e.preventDefault()
         dispatch(productActions.addProduct(product))
     }
+
+    useEffect(() => {
+        setProduct(props.product)
+    }, [props.product])
+
 
     return (
         <Modal

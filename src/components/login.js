@@ -42,11 +42,14 @@ export const Login = () => {
             <Container fluid className="p-0 d-flex flex-column">
                 {
                 alertMessage && 
-                <Row className="justify-content-center text-center ">
-                    <Alert variant={alerType}>
-                        {alertMessage}
-                    </Alert> 
-                </Row>
+                <>
+                <div className="modal-backdrop show"></div>
+                    <Row className="justify-content-center text-center ">
+                        <Alert variant={alerType}>
+                            {alertMessage}
+                        </Alert> 
+                    </Row>
+                </>
                 }
                 <Row className="p-0 m-0 mzLogo">
                     <Col className="">
