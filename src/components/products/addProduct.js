@@ -1,8 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState , useEffect } from 'react'
 import { useDispatch } from 'react-redux';
 import { productActions } from '../../actions';
-import { Header } from '../base/header2';
-import { Container , Form , Button , Row , Col, Modal } from 'react-bootstrap';
+import { Form , Button , Row , Col, Modal } from 'react-bootstrap';
 
 import closeIcon from '../../assets/images/close.svg'
 
@@ -13,7 +12,6 @@ export const AddProduct = (props) => {
     const dispatch = useDispatch()
 
     let handleChange = (e) => {
-        e.preventDefault()
         setProduct({...product, [e.target.id]: e.target.value})
     }
 
@@ -21,6 +19,11 @@ export const AddProduct = (props) => {
         e.preventDefault()
         dispatch(productActions.addProduct(product))
     }
+
+    useEffect(() => {
+        setProduct(props.product)
+    }, [props.product])
+
 
     return (
         <Modal
@@ -53,7 +56,7 @@ export const AddProduct = (props) => {
                         <Col>
                             <Form.Group controlId="description" className="order-filter-input mt-3">
                                 <Form.Label className="pe-3">توضیحات</Form.Label>
-                                <Form.Control className="order-input border-0 h-100" as="textarea" rows={6} onChange={handleChange} />
+                                <Form.Control className="order-input border-0 h-100" as="textarea" rows={6} onChange={handleChange}/>
                             </Form.Group>
                         </Col>
                     </Row>

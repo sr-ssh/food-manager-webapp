@@ -31,11 +31,14 @@ export const Customers = () => {
             <Container fluid className="m-auto">
                 {
                 alertMessage && 
-                <Row className="justify-content-center text-center ">
-                    <Alert variant={alerType}>
-                        {alertMessage}
-                    </Alert> 
-                </Row>
+                <>
+                <div className="modal-backdrop show"></div>
+                    <Row className="justify-content-center text-center ">
+                        <Alert variant={alerType}>
+                            {alertMessage}
+                        </Alert> 
+                    </Row>
+                </>
                 }
                 {
                     customers
