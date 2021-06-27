@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Container, Row, Col } from 'react-bootstrap'
 
-import teamxLogo from '../../assets/images/tem-x.png'
+import teamxLogo from '../../assets/images/crm.svg'
 import accountIcon from '../../assets/images/drawer/account.svg'
 import settingIcon from '../../assets/images/drawer/setting.svg'
 import exitIcon from '../../assets/images/drawer/exit.svg'
@@ -14,7 +14,7 @@ export const SidebarItems = () => {
         <Container fluid className="d-flex flex-column h-100">
             <Row className="my-2">
                 <Col>
-                    <img src={teamxLogo} height="60px" className="m-auto d-block" alt="logo" />
+                    <img src={teamxLogo} height="55px" className="m-auto d-block pt-2" alt="logo" />
                 </Col>
             </Row>
             <Row>
