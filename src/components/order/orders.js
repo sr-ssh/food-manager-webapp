@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import moment from 'jalali-moment';
-import { Card , Table , Row , Col, Container, Alert } from 'react-bootstrap';
+import { Card , Table , Row , Col, Container, Alert, Spinner } from 'react-bootstrap';
 
 import { orderActions } from '../../actions';
 import { Header } from '../base/serachHeader';
@@ -11,10 +11,10 @@ export const Orders = () => {
 
     let alertMessage = useSelector(state => state.alert.message)
     let alerType = useSelector(state => state.alert.type)
-    
     const [modalShow, setModalShow] = useState(false)
     const dispatch = useDispatch()
     const orders = useSelector(state => state.getOrders.orders)
+    let orderLoading = useSelector(state => state.getOrders.loading)
 
     const getTotalPrice = (order) => {
         let total = 0
@@ -41,7 +41,15 @@ export const Orders = () => {
                     </Alert> 
                 </Row>
                 }
-                {orders ? 
+                {
+                orderLoading &&
+                    <Row classNmae="">
+                        <Col className="col-3 mt-2 m-auto ">
+                            <Spinner className="m-auto d-block" animation="border" />
+                        </Col>
+                    </Row>
+                }
+                {(orders.length > 0) ? 
                     (orders.map((order, index) => 
                         <Card key={index} className="m-auto mt-3 bg-light productCard border-0 lh-lg" >
                             <Card.Body className="pb-0 ps-1 rounded-3 text-gray">
@@ -125,7 +133,15 @@ export const Orders = () => {
                     ))    
                     
                     : null}
-                
+                { 
+                    (orders.length === 0 && !orderLoading) ? (
+                        <Row className="justify-content-center align-items-center no-result-filter">
+                            <Col className="col-8 text-center">
+                                هیج نتیجه ای یافت نشد!
+                            </Col>
+                        </Row>
+                    ) : null 
+                }
                 <OrderSearch show={modalShow} onHide={() => setModalShow(false)} />        
             </Container>
         </div>
