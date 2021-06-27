@@ -78,4 +78,5 @@ body{
 .alert {
     position: absolute;
     bottom: 26vh;
+    z-index: 2;
 }

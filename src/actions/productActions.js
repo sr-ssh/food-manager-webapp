@@ -15,10 +15,17 @@ function getProducts() {
         productService.getProducts()
             .then(
                 res => {
-                    dispatch(success(res.data));
-                    console.log("products received")
-                    console.log(res.data)
-                    dispatch(alertActions.success(res.message));
+                    
+                    if(res === undefined)
+                        dispatch(alertActions.error('ارتباط با سرور برقرار نیست'));
+                    else if(res.success){
+                        console.log("products received")
+                        dispatch(success(res.data));
+                    }
+
+                    setTimeout(() => {
+                        dispatch(alertActions.clear());
+                    }, 1500);
                 },
                 error => {
                     dispatch(failure(error.toString()));
@@ -40,11 +47,20 @@ function addProduct(product) {
         productService.addProduct(product)
             .then(
                 res => {
-                    dispatch(success(productConstants.ADD_PRODUCT_SUCCESS, product));
-                    console.log("product added")
                     console.log(res)
-                    dispatch(alertActions.success(res));
-                    history.push('/products')
+                    
+                    if(res === undefined)
+                        dispatch(alertActions.error('ارتباط با سرور برقرار نیست.مجصول شما ثبت نشد'));
+                    else if(res.success){
+                        console.log("product added")
+                        dispatch(success(productConstants.ADD_PRODUCT_SUCCESS, product));
+                        dispatch(alertActions.success(res));
+                    } else if (res.success === false)
+                        dispatch(alertActions.error(res.message));
+
+                    setTimeout(() => {
+                        dispatch(alertActions.clear());
+                    }, 1500);
                 },
                 error => {
                     dispatch(failure(error.toString()));
@@ -63,11 +79,21 @@ function editProduct(product) {
         productService.editProduct(product)
             .then(
                 res => {
-                    dispatch(success(productConstants.EDIT_PRODUCT_SUCCESS, product));
-                    console.log("product edited")
+                    
                     console.log(res)
-                    dispatch(alertActions.success(res));
-                    history.push('/products')
+
+                    if(res === undefined)
+                        dispatch(alertActions.error('ارتباط با سرور برقرار نیست.مجصول شما ثبت نشد'));
+                    else if(res.success){
+                        console.log("product edited")
+                        dispatch(success(productConstants.EDIT_PRODUCT_SUCCESS, product));
+                        dispatch(alertActions.success(res.message));
+                    } else if (res.success === false)
+                        dispatch(alertActions.error(res.message));
+
+                    setTimeout(() => {
+                        dispatch(alertActions.clear());
+                    }, 1500);
                 },
                 error => {
                     dispatch(failure(error.toString()));

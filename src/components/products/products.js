@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import { Header } from '../base/productHeader';
-import { Container, Card } from 'react-bootstrap';
+import { Container, Card, Row, Alert } from 'react-bootstrap';
 import { AddProduct } from './addProduct'
 import { EditProduct } from './editProduct'
 import { useDispatch, useSelector } from 'react-redux'
 import { productActions } from '../../actions'
 import moment from 'jalali-moment';
-import { history } from '../../helpers';
 
 import editIcon from '../../assets/images/Products/edit.svg'
 
 export const Products = () => {
+
+    let alertMessage = useSelector(state => state.alert.message)
+    let alerType = useSelector(state => state.alert.type)
+    
     const [addModalShow, setAddModalShow] = useState(false)
     const [editModalShow, setEditModalShow] = useState(false)
     const [product, setProduct] = useState({})
@@ -19,12 +22,20 @@ export const Products = () => {
     
     useEffect(() => {
         dispatch(productActions.getProducts())
-    }, [])
+    }, [dispatch])
 
     return (
         <div className="product-page">
             <Header title="محصولات" modalShow={addModalShow} setModalShow={setAddModalShow} />
             <Container className="m-auto">
+                {
+                alertMessage && 
+                <Row className="justify-content-center text-center ">
+                    <Alert variant={alerType}>
+                        {alertMessage}
+                    </Alert> 
+                </Row>
+                }
                 {products ? 
                     (products.map((item, index) => 
                         <Card key={index} className="m-auto mt-3 bg-light productCard" >

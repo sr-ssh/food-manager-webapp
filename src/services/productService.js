@@ -24,7 +24,8 @@ function getProducts() {
         .get(`${baseRoute}/product`, requestOptions)
         .then(res => {
             console.log("res.user >> "); console.log(res.data.data);
-            return handleResponse(res)
+            handleResponse(res)
+            return res.data
         })
         .catch(function (error) {
             if (error.response) {
@@ -50,7 +51,8 @@ function addProduct(product) {
         .then(res => {
             console.log("res.user >> "); 
             console.log(res.data);
-            return handleResponse(res)
+            handleResponse(res)
+            return res.data
         })
         .catch(function (error) {
             if (error.response) {

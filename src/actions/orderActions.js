@@ -14,21 +14,12 @@ function getOrders(filter) {
         orderService.getOrders(filter)
             .then(
                 res => {
-                    console.log(res.data)
-
-                    if(res.success){
+                    if(res === undefined)
+                        dispatch(alertActions.error('ارتباط با سرور برقرار نیست'));
+                    else if(res.success){
                         console.log("orders received")
                         dispatch(success(orderConstants.GET_ORDERS_SUCCESS, res.data));
-                        dispatch(alertActions.success(res.message));
-                        setTimeout(() => {
-                            dispatch(alertActions.clear());
-                            history.go(0)
-                        }, 1500);
-                        
-                    }else if(res.success === false)
-                        dispatch(alertActions.error(ResizeObserver.message));
-                    else if(res.success === undefined)
-                        dispatch(alertActions.error('ارتباط با سرور برقرار نیست'));
+                    }
                         
                     setTimeout(() => {
                         dispatch(alertActions.clear());

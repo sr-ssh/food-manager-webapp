@@ -4,8 +4,7 @@ import { alertActions } from './alertActions';
 
 export const customerActions = {
     getCustomers,
-    getCustomer,
-    setFilter
+    getCustomer
 };
 
 function getCustomers(filter) {
@@ -14,12 +13,20 @@ function getCustomers(filter) {
         
         customerService.getCustomers(filter)
             .then(
-                customers => {
-                    console.log(customers)
-                    console.log("user into customerAction");
-                    dispatch(success(customers));
+                res => {
+                    
+                    
                     console.log("got the customers")
-                    dispatch(alertActions.success('مشتریان با موفقیت ارسال شدند'));
+                    if(res === undefined)
+                        dispatch(alertActions.error('ارتباط با سرور برقرار نیست'));
+                    else if(res.success){
+                        console.log("user into customerAction");
+                        dispatch(success(res.data));
+                    }
+
+                    setTimeout(() => {
+                        dispatch(alertActions.clear());
+                    }, 1500);
                 },
                 error => {
                     dispatch(failure(error.toString()));
@@ -41,12 +48,18 @@ function getCustomer(mobile) {
         
         customerService.getCustomer(mobile)
             .then(
-                customer => {
-                    console.log(customer)
-                    console.log("user into customerAction");
-                    dispatch(success(customer));
-                    console.log("got the customer")
-                    dispatch(alertActions.success('مشتری پیدا شد'));
+                res => {
+                    
+                    if(res === undefined)
+                        dispatch(alertActions.error('ارتباط با سرور برقرار نیست'));
+                    else if(res.success){
+                        console.log("user into customerAction");
+                        dispatch(success(res.data));
+                    }
+
+                    setTimeout(() => {
+                        dispatch(alertActions.clear());
+                    }, 1500);
                 },
                 error => {
                     dispatch(failure(error.toString()));
@@ -60,13 +73,4 @@ function getCustomer(mobile) {
     function request() { console.log("into request"); return { type: customerConstants.GET_CUSTOMER_REQUEST } }
     function success(customer) { console.log("into success"); return { type: customerConstants.GET_CUSTOMER_SUCCESS, customer } }
     function failure(error) { return { type: customerConstants.GET_CUSTOMER_FAILURE, error } }
-}
-
-function setFilter(filter) {
-    return dispatch => {
-        dispatch(success(filter))
-        
-    };
-
-    function success(filter) { console.log("into success"); return { type: customerConstants.ADD_CUSTOMERS_FILTER, filter } }
 }

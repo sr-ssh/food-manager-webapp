@@ -45,7 +45,7 @@ function getCustomers(filter = {}) {
         .get(`${baseRoute}/customer/${encodeURI(filter.family)}/${encodeURI(filter.mobile)}/${encodeURI(filter.createdAtFrom)}/${encodeURI(filter.createdAtTo)}/${encodeURI(filter.lastBuyFrom)}/${encodeURI(filter.lastBuyTo)}/${encodeURI(filter.orderFrom)}/${encodeURI(filter.orderTo)}/${encodeURI(filter.totalFrom)}/${encodeURI(filter.totalTo)}`, requestOptions)
         .then(res => {
             console.log("res.customers >> "); console.log(res.data.data);
-            return res.data.data
+            return res.data
         })
         .catch(function (error) {
             if (error.response) {
@@ -64,7 +64,7 @@ function getCustomer(mobile) {
         .get(`${baseRoute}/customer/${mobile}`, requestOptions)
         .then(res => {
             console.log("res.customer >> "); console.log(res.data.data);
-            return res.data.data
+            return res.data
         })
         .catch(function (error) {
             if (error.response) {
