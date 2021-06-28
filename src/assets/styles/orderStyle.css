@@ -224,8 +224,8 @@
 .order-filter-button {
     border-radius: 11px;
     padding: 10px 0 10px 0;
-    background-color: var(--button-color-two);
-    color: white;
+    background-color: var(--button-background);
+    color: var(--button-color-one);
     font-weight: bold;
     border: none;
 }

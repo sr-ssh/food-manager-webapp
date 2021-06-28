@@ -70,7 +70,7 @@ export const Register = () => {
                                 <Col >
                                     <Form.Group controlId="family" >
                                         <Image src={userLogo} width="17px" className="mx-2"/>
-                                        <Form.Label>نام خانوادگی</Form.Label>
+                                        <Form.Label>نام و نام خانوادگی</Form.Label>
                                         <Form.Control className="order-input login-input" type="text" onChange={handleChange} required />
                                     </Form.Group>
                                 </Col>

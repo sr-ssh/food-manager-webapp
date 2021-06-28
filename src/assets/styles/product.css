@@ -12,6 +12,7 @@
 
 .add-product-btn {
     background-color: var(--button-background);
+    color: var(--button-color-one);
     border: none;
     border-radius: 11px;
     font-weight: bold;
