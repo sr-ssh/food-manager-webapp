@@ -10,6 +10,7 @@ import mobileLogo from './../assets/images/phone.svg'
 import emailLogo from './../assets/images/emaill.svg'
 import companyLogo from './../assets/images/company-name.svg'
 import passwordLogo from './../assets/images/password.svg'
+import persianJs from 'persianjs/persian.min';
 
 
 export const Register = () => {
@@ -26,6 +27,8 @@ export const Register = () => {
     const handleChange = (e) => {
         const { id, value } = e.target;
         setInputs(inputs => ({ ...inputs, [id]: value }));
+        let a= "3";
+        console.log(persianJs(a).englishNumber().toString())
     }
 
 

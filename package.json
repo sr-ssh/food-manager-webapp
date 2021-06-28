@@ -10,6 +10,7 @@
     "bootstrap": "^5.0.1",
     "jalali-moment": "^3.3.10",
     "jalali-react-datepicker": "^1.2.1",
+    "persianjs": "^0.4.0",
     "react": "^17.0.2",
     "react-bootstrap": "^1.6.1",
     "react-dom": "^17.0.2",

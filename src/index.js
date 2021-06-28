@@ -5,6 +5,7 @@ import { store } from './helpers';
 import { Provider } from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.css';
 
+
 import './assets/styles/formStyle.css';
 import './assets/styles/baseStyle.css';
 import './assets/styles/orderStyle.css';

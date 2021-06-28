@@ -1,6 +1,8 @@
 import React from 'react';
 import moment from 'jalali-moment';
 import { Card , Row , Col } from 'react-bootstrap';
+import persianJs from 'persianjs/persian.min';
+
 
 export const Customer = ({customer}) => {
     return(
@@ -17,7 +19,7 @@ export const Customer = ({customer}) => {
                                 </Col>
                                 <Col dir="ltr" className="col-9">
                                     <Card.Text>
-                                        تاریخ عضویت : <span>{moment.from(customer.createdAt, 'YYYY/MM/DD').locale('fa').format('DD MMMM YYYY')}</span>
+                                        تاریخ عضویت : <span>{persianJs(moment.from(customer.createdAt, 'YYYY/MM/DD').locale('fa').format('DD MMMM YYYY')).englishNumber().toString()}</span>
                                     </Card.Text>
                                 </Col>
                             </Row>
@@ -33,7 +35,7 @@ export const Customer = ({customer}) => {
                         </Col>
                         <Col dir="ltr">
                             <Card.Text>
-                                <span>{customer.mobile}</span>
+                                <span>{persianJs(customer.mobile).englishNumber().toString()}</span>
                             </Card.Text>
                         </Col>
                     </Row>
@@ -45,7 +47,7 @@ export const Customer = ({customer}) => {
                         </Col>
                         <Col dir="ltr">
                             <Card.Text>
-                                <span dir="rtl">{moment.from(customer.birthday, 'YYYY/MM/DD').locale('fa').format('DD MMMM YYYY')}</span>
+                                <span dir="rtl">{customer.birthday && persianJs(moment.from(customer.birthday, 'YYYY/MM/DD').locale('fa').format('DD MMMM YYYY')).englishNumber().toString()}</span>
                             </Card.Text>
                         </Col>
                     </Row>
@@ -57,7 +59,7 @@ export const Customer = ({customer}) => {
                         </Col>
                         <Col dir="ltr">
                             <Card.Text>
-                                <span>{customer.order}</span>
+                                <span>{persianJs(customer.order).englishNumber().toString()}</span>
                             </Card.Text>
                         </Col>
                     </Row>
@@ -69,7 +71,7 @@ export const Customer = ({customer}) => {
                         </Col>
                         <Col dir="ltr">
                             <Card.Text>
-                                <span dir="rtl">{moment.from(customer.lastBuy, 'YYYY/MM/DD').locale('fa').format('DD MMMM YYYY')}</span>
+                                <span dir="rtl">{persianJs(moment.from(customer.lastBuy, 'YYYY/MM/DD').locale('fa').format('DD MMMM YYYY')).englishNumber().toString()}</span>
                             </Card.Text>
                         </Col>
                     </Row>
@@ -81,7 +83,7 @@ export const Customer = ({customer}) => {
                         </Col>
                         <Col dir="ltr">
                             <Card.Text>
-                                <span>{customer.total}</span>
+                                <span>{persianJs(customer.total).englishNumber().toString()}</span>
                             </Card.Text>
                         </Col>
                     </Row>

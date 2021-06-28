@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { productActions } from '../../actions';
 import { Card , Dropdown , Button , Table , Row , Col } from 'react-bootstrap';
+import persianJs from 'persianjs/persian.min';
+
 
 //icons
 import deleteIcon from './../../assets/images/delete.svg'
@@ -11,7 +13,7 @@ import plusIcon from './../../assets/images/plus.svg'
 export const Basket = ({order, insertOrder}) => {
 
     const [dimStatus, setDimStatus] = useState(false)
-    const [totalPrice, insertPrice] = useState(0)
+    const [totalPrice, insertPrice] = useState("0")
     const [selectedItem, setItem] = useState("")
     const products = useSelector(state => state.getProducts.product)
     const dispatch = useDispatch()
@@ -21,7 +23,7 @@ export const Basket = ({order, insertOrder}) => {
         let product = products.find(item => item.name === selectedItem)
         if(!product)
             return
-        insertPrice(totalPrice + parseInt(product.sellingPrice))
+        insertPrice(parseInt(totalPrice) + parseInt(product.sellingPrice))
         let newOrder = {
           _id: product._id,
           name: product.name,
@@ -91,7 +93,7 @@ export const Basket = ({order, insertOrder}) => {
                                                     <Dropdown.Item onClick={() => setItem(item.name) }>
                                                         <Row>
                                                             <Col className="text-end basket-dropdown-border-left pe-1">{item.name}</Col> 
-                                                            <Col>{item.sellingPrice} <span className="orderInput">تومان</span></Col>
+                                                            <Col>{persianJs(item.sellingPrice).englishNumber().toString()} <span className="orderInput">تومان</span></Col>
                                                         </Row>
                                                     </Dropdown.Item>
                                                 </Col>   
@@ -128,9 +130,9 @@ export const Basket = ({order, insertOrder}) => {
                                 ? order.map(item => {
                                             return (
                                                 <tr key={item.name}>
-                                                    <td>{item.name}</td>
-                                                    <td>{item.quantity * item.sellingPrice} تومان</td>
-                                                    <td className="pe-3">{item.quantity}</td>
+                                                    <td>{persianJs(item.name).englishNumber().toString()}</td>
+                                                    <td>{persianJs(item.quantity * item.sellingPrice).englishNumber().toString()} تومان</td>
+                                                    <td className="pe-3">{persianJs(item.quantity).englishNumber().toString()}</td>
                                                     <td onClick={(e) => removeOrder(e, item)}><img src={deleteIcon} alt="delete-icon"/></td>
                                                 </tr>
                                             )
@@ -145,7 +147,7 @@ export const Basket = ({order, insertOrder}) => {
                                 <span className="">جمع کل</span>
                             </Col>
                             <Col className="px-1">
-                                {totalPrice} تومان
+                                {persianJs(totalPrice).englishNumber().toString()} تومان
                             </Col>
                         </Row>
                     </Row>

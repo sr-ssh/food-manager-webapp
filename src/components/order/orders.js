@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import moment from 'jalali-moment';
 import { Card , Table , Row , Col, Container, Alert, Spinner } from 'react-bootstrap';
+import persianJs from 'persianjs/persian.min';
 
 import { orderActions } from '../../actions';
 import { Header } from '../base/serachHeader';
@@ -71,12 +72,12 @@ export const Orders = () => {
                                             <Row>
                                                 <Col>
                                                     <Card.Text>
-                                                    تاریخ : <span>{moment.from(order.createdAt, 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD')}</span>
+                                                    تاریخ عضویت : <span>{persianJs(moment.from(order.createdAt, 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD')).englishNumber().toString()}</span>
                                                     </Card.Text>
                                                 </Col>
                                                 <Col>
                                                     <Card.Text>
-                                                    ساعت : <span>{moment.from(order.createdAt, 'HH:mm').locale('fa').format('HH:mm')}</span>
+                                                    ساعت : <span>{persianJs(moment.from(order.createdAt, 'HH:mm').locale('fa').format('HH:mm')).englishNumber().toString()}</span>
                                                     </Card.Text>
                                                 </Col>
                                             </Row>
@@ -90,7 +91,7 @@ export const Orders = () => {
                                             <Row className="flex-nowrap mt-2">
                                                 <Col>
                                                     <Card.Text>
-                                                        موبایل: <span>{order.customer.mobile}</span>
+                                                        موبایل: <span>{persianJs(order.customer.mobile).englishNumber().toString()}</span>
                                                     </Card.Text>
                                                 </Col>
                                             </Row>
@@ -120,9 +121,9 @@ export const Orders = () => {
                                             ? order.products.map(item => {
                                                         return (
                                                             <tr key={item.name}>
-                                                                <td>{item.name}</td>
-                                                                <td>{item.quantity * item.sellingPrice} تومان</td>
-                                                                <td>{item.quantity}</td>
+                                                                <td>{persianJs(item.name).englishNumber().toString()}</td>
+                                                                <td>{persianJs(item.quantity * item.sellingPrice).englishNumber().toString()} تومان</td>
+                                                                <td>{persianJs(item.quantity).englishNumber().toString()}</td>
                                                             </tr>
                                                         )
                                                     })
@@ -131,7 +132,7 @@ export const Orders = () => {
                                         }
                                         <tr className="border-top-blue">
                                             <td>جمع کل:</td>
-                                            <td className="fs-6">{getTotalPrice(order.products)} تومان</td>
+                                            <td className="fs-6">{persianJs(getTotalPrice(order.products)).englishNumber().toString()} تومان</td>
                                             <td></td>
                                             <td></td>
                                         </tr>

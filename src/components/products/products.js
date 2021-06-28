@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { productActions } from '../../actions'
 import moment from 'jalali-moment';
 
+import persianJs from 'persianjs/persian.min';
+
 import editIcon from '../../assets/images/Products/edit.svg'
 
 export const Products = () => {
@@ -60,16 +62,16 @@ export const Products = () => {
                                     : <div className="deActiveStatus"><span></span> غیرفعال</div>}
                                 </Card.Title>
                                 <Card.Text className="pt-1">
-                                    <span style={{"color": "var(--text-color-one)"}}>نام : </span>{item.name}
+                                    <span style={{"color": "var(--text-color-one)"}}>نام : </span>{persianJs(item.name).englishNumber().toString()}
                                 </Card.Text>
                                 <Card.Text className="pt-1">
-                                    <span style={{"color": "var(--text-color-one)"}}>قیمت فروش : </span>{item.sellingPrice} تومان
+                                    <span style={{"color": "var(--text-color-one)"}}>قیمت فروش : </span>{persianJs(item.sellingPrice).englishNumber().toString()} تومان
                                 </Card.Text>
                                 <Card.Text className="pt-1">
-                                    <span style={{"color": "var(--text-color-one)"}}>تاریخ ویرایش : </span>{moment.from(item.updatedAt, 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD')}
+                                    <span style={{"color": "var(--text-color-one)"}}>تاریخ ویرایش : </span>{persianJs(moment.from(item.updatedAt, 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD')).englishNumber().toString()}
                                 </Card.Text>
                                 <Card.Text className="pt-1 ps-1">
-                                <span style={{"color": "var(--text-color-one)"}}>توضیحات :   </span>{item.description}
+                                <span style={{"color": "var(--text-color-one)"}}>توضیحات :   </span>{item.description && persianJs(item.description).englishNumber().toString()}
                                 </Card.Text>
                                 <Card.Link className="editLogo w-100 d-block m-auto" onClick={() => {setEditModalShow(true); setProduct(item)}}>
                                     <img className="d-block me-auto" src={editIcon} height="42px" alt="back-icon" />
