@@ -18,6 +18,7 @@ export const AddProduct = (props) => {
     let formHandler = (e) => {
         e.preventDefault()
         dispatch(productActions.addProduct(product))
+        props.onHide(false)
     }
 
     useEffect(() => {
@@ -48,7 +49,7 @@ export const AddProduct = (props) => {
                         <Col className="col-6 order-filter-input">
                             <Form.Group controlId="sellingPrice">
                                 <Form.Label className="pe-3">قیمت</Form.Label>
-                                <Form.Control className="order-input" type="number" onChange={handleChange} required />
+                                <Form.Control className="order-input" type="number" min="0" onChange={handleChange} required />
                             </Form.Group>
                         </Col>
                     </Row>
@@ -62,7 +63,7 @@ export const AddProduct = (props) => {
                     </Row>
                     <Row>
                         <Col>
-                            <Button className="add-product-btn mt-4 w-100" type="submit" onClick={e => props.onHide(false)}>ثبت</Button>
+                            <Button className="add-product-btn mt-4 w-100" type="submit" >ثبت</Button>
                         </Col>
                     </Row>
                 </Form>

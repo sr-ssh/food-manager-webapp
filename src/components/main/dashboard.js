@@ -19,11 +19,11 @@ export const Dashboard = () => {
                 onSetOpen={setIsOpen}
                 pullRight={true}
                 styles={{ 
-                    sidebar: { background: "white", width : "42vw", "zIndex": "1021" },
-                    overlay: { backgroundColor: "none" }
+                    sidebar: { background: "white", width : "42vw", "zIndex": "1040" },
+                    overlay: { zIndex: "1030"}
                 }}
                 overlayClassName="test3"
-                shadow={false}
+                shadow={true}
                 touch={false}
             >
                 <div className="mainPage h-100">

@@ -91,6 +91,7 @@ export const AddOrder = () => {
                                     calendarPosition="auto-right" 
                                     editable={false} 
                                     animation
+                                    maxDate={new Date()}
                                     onChange={value => submitCalendar(value, 'birthday')}
                                 />
                             </Form.Group>
@@ -108,7 +109,7 @@ export const AddOrder = () => {
                             <Row>
                                 <Col className="p-0 mt-3 col-3 order-inputs">
                                     <Form.Label>تاریخ یادآوری</Form.Label>
-                                    <Form.Control className="text-center order-input" type="number" name="reminder" onChange={handleChange}/>
+                                    <Form.Control className="text-center order-input" type="number" name="reminder" min="0" onChange={handleChange}/>
                                 </Col>
                                 <Col className="align-self-end p-2">
                                     <span className="mt-2 reminder-span" >روز دیگر</span>

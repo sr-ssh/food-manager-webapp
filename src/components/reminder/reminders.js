@@ -40,7 +40,7 @@ export const Reminders = () => {
                     (reminders.length === 0 && !reminderLoading) ? (
                         <Row className="justify-content-center align-items-center no-result-filter">
                             <Col className="col-8 text-center">
-                                هیچ یادآوری موجود نمیباشد!
+                                هیچ یادآوری موجود نمی باشد!
                             </Col>
                         </Row>
                     ) : null 

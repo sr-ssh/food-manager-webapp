@@ -125,7 +125,7 @@ export const CustomerSearch = (props) => {
                         <Col className="col-6 order-filter-input">
                             <Form.Group className="ms-2">
                                 <Form.Label className="pe-2">تعداد خرید از</Form.Label>
-                                <Form.Control style={{"width":"94%"}} className="order-input h-100" type="number" name="orderFrom" value={filters.orderFrom} onChange={handleChange} />
+                                <Form.Control style={{"width":"94%"}} className="order-input h-100" type="number" name="orderFrom" min="0" value={filters.orderFrom} onChange={handleChange} />
                             </Form.Group>
                         </Col>
                         <Col className="col-6 order-filter-input">
@@ -139,7 +139,7 @@ export const CustomerSearch = (props) => {
                         <Col className="col-6 order-filter-input">
                             <Form.Group className="ms-2">
                                 <Form.Label className="pe-2">جمع خرید از</Form.Label>
-                                <Form.Control style={{"width":"94%"}} className="order-input h-100" type="number" name="totalFrom" value={filters.totalFrom} onChange={handleChange} />
+                                <Form.Control style={{"width":"94%"}} className="order-input h-100" type="number" name="totalFrom" min="0" value={filters.totalFrom} onChange={handleChange} />
                             </Form.Group>
                         </Col>
                         <Col className="col-6 order-filter-input">
