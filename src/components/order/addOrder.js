@@ -26,10 +26,11 @@ export const AddOrder = () => {
     let handleOldCustomer = (e) => {
         e.preventDefault()
         
-        if(oldCustomer && Object.keys(oldCustomer).length !== 0)
+        if(oldCustomer && Object.keys(oldCustomer).length !== 0) {
             setCustomer(oldCustomer)
+            setValidated(false)
+        }
         else {
-            //setCustomer(prevState => ({ mobile: prevState.mobile, family:"", birthday: ""}))
             setValidated(true);
         }
     }
@@ -38,15 +39,13 @@ export const AddOrder = () => {
         e.preventDefault()
         let value = e.target.value
         let name = e.target.name
-        if(name === "mobile" && value.length > 2)
-            dispatch(customerActions.getCustomer(e.target.value))
 
-        // if(name === "mobile" && value != customer.mobile) {
-        //     setCustomer({ mobile: value, family:"", birthday: ""})
-        //     return
-        // }
+        if(name === "mobile" && value.length > 2) {
+            dispatch(customerActions.getCustomer(value))
+            setValidated(false)
+        }
 
-        setCustomer({...customer, [e.target.name]: e.target.value})
+        setCustomer({...customer, [name]: value})
     }
 
     let formHandler = (e) => {
@@ -68,14 +67,13 @@ export const AddOrder = () => {
         <div className="order-page">
             <Header title="ثبت سفارش" backLink="/dashboard"/>
             <Container fluid className="pt-3 px-3 m-0">
-                {console.log(customer)}
-                <Form onSubmit={formHandler} noValidate validated={validated} >
+                <Form onSubmit={formHandler} noValidate >
                     
                     <Row className="m-0 p-0 order-inputs">
                         <Col className="p-0 col-5 orderInput">
                             <Form.Group >
                                 <Form.Label className="pe-2">موبایل</Form.Label>
-                                <Form.Control className="order-input" type="number" name="mobile" onChange={handleChange} required/>
+                                <Form.Control className="order-input" type="number" name="mobile" isInvalid={validated} onChange={handleChange} required/>
                             </Form.Group>
                         </Col>
                         <Col className="col-4 align-self-end">
