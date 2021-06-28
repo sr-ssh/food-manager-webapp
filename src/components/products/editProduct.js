@@ -33,7 +33,7 @@ export const EditProduct = (props) => {
             {...props}
             size="lg"
             aria-labelledby="contained-modal-title-vcenter"
-            centered
+            centered className="mx-3 order-serach-modal"
             >
             <Modal.Body className="add-product px-4">
                 <Button className="border-0 customer-modal-close" type="button"  onClick={e => props.onHide(false)}>

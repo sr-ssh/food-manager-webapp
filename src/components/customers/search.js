@@ -34,7 +34,7 @@ export const CustomerSearch = (props) => {
             {...props}
             size="lg"
             aria-labelledby="contained-modal-title-vcenter"
-            centered className="mx-2 order-serach-modal"
+            centered className="mx-3 order-serach-modal"
         >
             <Modal.Body className="order-filter-body">
                 <Button className="border-0 customer-modal-close" type="button"  onClick={e => props.onHide(false)}>
