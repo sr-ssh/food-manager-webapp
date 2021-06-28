@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { customerActions } from '../../actions/customerActions';
-import { Container } from 'react-bootstrap';
+import { Container, Spinner, Col } from 'react-bootstrap';
 import { Header } from '../base/serachHeader';
 import { Row, Alert } from 'react-bootstrap';
 
@@ -17,6 +17,7 @@ export const Customers = () => {
 
     const [modalShow, setModalShow] = useState(false)
     let customers = useSelector(state => state.getCustomers.customers)
+    let customerLoading = useSelector(state => state.getCustomers.loading)
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -29,6 +30,23 @@ export const Customers = () => {
         <div className="product-page orders">
             <Header title="مشتریان" modalShow={modalShow} setModalShow={setModalShow} />
             <Container fluid className="m-auto">
+                {  
+                customerLoading &&
+                    <Row>
+                        <Col className="col-3 mt-2 m-auto ">
+                            <Spinner className="m-auto d-block" animation="border" />
+                        </Col>
+                    </Row>
+                }
+                { 
+                    (customers.length === 0 && !customerLoading) ? (
+                        <Row className="justify-content-center align-items-center no-result-filter">
+                            <Col className="col-8 text-center">
+                                هیج نتیجه ای یافت نشد!
+                            </Col>
+                        </Row>
+                    ) : null 
+                }
                 {
                 alertMessage && 
                 <>

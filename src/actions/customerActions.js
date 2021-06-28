@@ -14,9 +14,8 @@ function getCustomers(filter) {
         customerService.getCustomers(filter)
             .then(
                 res => {
-                    
-                    
                     console.log("got the customers")
+                    
                     if(res === undefined)
                         dispatch(alertActions.error('ارتباط با سرور برقرار نیست'));
                     else if(res.success){
