@@ -65,7 +65,7 @@ export const Login = () => {
                 </Row>
                 <Row className="ms-0 loginForm">
                     <Col>
-                        <Form className="d-flex flex-column justify-content-center" noValidate validated={validated} onSubmit={formHandeler}>
+                        <Form className="d-flex flex-column justify-content-center" noValidate validated={validated} onSubmit={formHandeler} >
                             <Row className="w-100 me-2 pe-2 order-inputs ">
                                 <Col >
                                     <Form.Group controlId="mobileOrEmail" >
