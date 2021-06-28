@@ -67,6 +67,7 @@ export const OrderSearch = (props) => {
                                     className="rmdp-mobile" 
                                     calendar="persian" 
                                     locale="fa" 
+                                    value={filters.startDate && filters.startDate !== "1900-01-01T05:42:13.845Z" && moment(filters.startDate, 'YYYY-MM-DD').locale('fa').format('YYYY/MM/DD')}
                                     calendarPosition="auto-right" 
                                     editable={false} 
                                     animation
@@ -82,6 +83,7 @@ export const OrderSearch = (props) => {
                                     className="rmdp-mobile" 
                                     calendar="persian" 
                                     locale="fa" 
+                                    value={filters.endDate && filters.endDate !== "1900-01-01T05:42:13.845Z" && moment(filters.endDate, 'YYYY-MM-DD').locale('fa').format('YYYY/MM/DD')}
                                     calendarPosition="auto-right" 
                                     editable={false} 
                                     animation
