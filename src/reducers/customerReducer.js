@@ -1,18 +1,29 @@
 import { customerConstants } from '../constants'
 
-export function getCustomers(state = {}, action){
+const initialState = {
+    customers: [],
+    loading: false
+}
+
+
+export function getCustomers(state = initialState, action){
     
     switch (action.type) {
         case customerConstants.GET_CUSTOMERS_REQUEST:
-            return{
+            return {
+                ...state,
                 loading: true
             }
         case customerConstants.GET_CUSTOMERS_SUCCESS:
-            return{
-                customers: action.customers
+            return {
+                ...state,
+                customers: action.customers,
+                loading: false
             }
         case customerConstants.GET_CUSTOMERS_FAILURE:
-    
+            return {
+                loading: false
+            }
             break;
     
         default:
@@ -20,7 +31,7 @@ export function getCustomers(state = {}, action){
     }
 }
 
-export function getCustomer(state = {}, action){
+export function getCustomer(state = initialState, action){
     switch (action.type) {
         case customerConstants.GET_CUSTOMER_REQUEST:
             return{
