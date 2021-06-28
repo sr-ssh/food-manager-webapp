@@ -15,6 +15,7 @@ export const AddOrder = () => {
     let alertMessage = useSelector(state => state.alert.message)
     let alerType = useSelector(state => state.alert.type)
     
+    const [validated, setValidated] = useState(false);
     const [order, insertOrder] = useState([])
     const [customer, setCustomer] = useState({})
     const dispatch = useDispatch()
@@ -24,14 +25,26 @@ export const AddOrder = () => {
 
     let handleOldCustomer = (e) => {
         e.preventDefault()
+        
         if(oldCustomer && Object.keys(oldCustomer).length !== 0)
             setCustomer(oldCustomer)
+        else {
+            //setCustomer(prevState => ({ mobile: prevState.mobile, family:"", birthday: ""}))
+            setValidated(true);
+        }
     }
 
     let handleChange = (e) => {
         e.preventDefault()
-        if(e.target.name === "mobile" && e.target.value.length > 2)
+        let value = e.target.value
+        let name = e.target.name
+        if(name === "mobile" && value.length > 2)
             dispatch(customerActions.getCustomer(e.target.value))
+
+        // if(name === "mobile" && value != customer.mobile) {
+        //     setCustomer({ mobile: value, family:"", birthday: ""})
+        //     return
+        // }
 
         setCustomer({...customer, [e.target.name]: e.target.value})
     }
@@ -55,8 +68,8 @@ export const AddOrder = () => {
         <div className="order-page">
             <Header title="ثبت سفارش" backLink="/dashboard"/>
             <Container fluid className="pt-3 px-3 m-0">
-                
-                <Form onSubmit={formHandler} >
+                {console.log(customer)}
+                <Form onSubmit={formHandler} noValidate validated={validated} >
                     
                     <Row className="m-0 p-0 order-inputs">
                         <Col className="p-0 col-5 orderInput">
@@ -93,6 +106,7 @@ export const AddOrder = () => {
                                     animation
                                     maxDate={new Date()}
                                     onChange={value => submitCalendar(value, 'birthday')}
+                                    required
                                 />
                             </Form.Group>
                         </Col>

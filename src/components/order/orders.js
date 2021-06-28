@@ -72,11 +72,11 @@ export const Orders = () => {
                                             <Row>
                                                 <Col>
                                                     <Card.Text>
-                                                    تاریخ عضویت : <span>{persianJs(moment.from(order.createdAt, 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD')).englishNumber().toString()}</span>
+                                                    تاریخ سفارش : <span>{persianJs(moment.from(order.createdAt, 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD')).englishNumber().toString()}</span>
                                                     </Card.Text>
                                                 </Col>
-                                                <Col>
-                                                    <Card.Text>
+                                                <Col className="col-5">
+                                                    <Card.Text className="text-center">
                                                     ساعت : <span>{persianJs(moment.from(order.createdAt, 'HH:mm').locale('fa').format('HH:mm')).englishNumber().toString()}</span>
                                                     </Card.Text>
                                                 </Col>

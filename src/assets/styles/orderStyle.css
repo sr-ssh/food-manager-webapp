@@ -281,7 +281,13 @@
     width: 91%;
 }
 
-
+/* 
+.form-control.is-valid:focus, .was-validated :valid.form-control {
+    padding: inherit !important;
+    border-color: inherit !important;    
+    background-image: none !important;
+    box-shadow: none !important;
+} */
 /*calendar time button*/
 .eVqaMu {
     display: none;
