@@ -66,6 +66,7 @@ export const CustomerSearch = (props) => {
                                     className="rmdp-mobile" 
                                     calendar="persian" 
                                     locale="fa" 
+                                    value={filters.createdAtFrom && filters.createdAtFrom !== "1900-01-01T05:42:13.845Z" && moment(filters.createdAtFrom, 'YYYY-MM-DD').locale('fa').format('YYYY/MM/DD')}
                                     calendarPosition="auto-right" 
                                     editable={false} 
                                     animation
@@ -81,6 +82,7 @@ export const CustomerSearch = (props) => {
                                     className="rmdp-mobile" 
                                     calendar="persian" 
                                     locale="fa" 
+                                    value={filters.createdAtTo && filters.createdAtTo !== "1900-01-01T05:42:13.845Z" && moment(filters.createdAtTo, 'YYYY-MM-DD').locale('fa').format('YYYY/MM/DD')}
                                     calendarPosition="auto-right" 
                                     editable={false} 
                                     animation
@@ -98,6 +100,7 @@ export const CustomerSearch = (props) => {
                                     className="rmdp-mobile" 
                                     calendar="persian" 
                                     locale="fa" 
+                                    value={filters.lastBuyFrom && filters.lastBuyFrom !== "1900-01-01T05:42:13.845Z" && moment(filters.lastBuyFrom, 'YYYY-MM-DD').locale('fa').format('YYYY/MM/DD')}
                                     calendarPosition="auto-right" 
                                     editable={false} 
                                     animation
@@ -113,6 +116,7 @@ export const CustomerSearch = (props) => {
                                     className="rmdp-mobile" 
                                     calendar="persian" 
                                     locale="fa" 
+                                    value={filters.lastBuyTo && filters.lastBuyTo !== "1900-01-01T05:42:13.845Z" && moment(filters.lastBuyTo, 'YYYY-MM-DD').locale('fa').format('YYYY/MM/DD')}
                                     calendarPosition="auto-right" 
                                     editable={false} 
                                     animation
