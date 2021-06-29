@@ -1,9 +1,12 @@
 import { employeeConstants } from '../constants';
 import { employeeService } from '../services';
 import { alertActions } from './alertActions';
+import { history } from '../helpers';
+
 
 export const employeeActions = {
-    getEmployees
+    getEmployees,
+    addEmployee
 };
 
 function getEmployees() {
@@ -31,6 +34,39 @@ function getEmployees() {
                 }
             );
     };
+
+}
+
+function addEmployee(employee) {
+    return dispatch => {
+        dispatch(request(employeeConstants.ADD_EMPLOYEE_REQUEST))
+        employeeService.addEmployee(employee)
+            .then(
+                res => {
+                    console.log(res)
+                    
+                    if(res === undefined)
+                        dispatch(alertActions.error('ارتباط با سرور برقرار نیست.مجصول شما ثبت نشد'));
+                    else if(res.success){
+                        console.log("employee added")
+                        dispatch(success(employeeConstants.ADD_EMPLOYEE_SUCCESS, employee));
+                        dispatch(alertActions.success(res.message));
+                        history.go(0)
+                    } else if (res.success === false)
+                        dispatch(alertActions.error(res.data.message));
+
+                    setTimeout(() => {
+                        dispatch(alertActions.clear());
+                    }, 1500);
+                },
+                error => {
+                    dispatch(failure(error.toString()));
+                    console.log("occure error");
+                    console.log(error.toString());
+                    dispatch(alertActions.error(employeeConstants.ADD_EMPLOYEE_FAILURE, error.toString()));
+                }
+            );
+    }
 
 }
 

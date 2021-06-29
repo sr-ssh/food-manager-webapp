@@ -1,13 +1,22 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Modal, Row, Col, Form, Button } from 'react-bootstrap'
+import { useDispatch, useSelector } from 'react-redux'
+import { employeeActions } from '../../actions/employeeActions'
+
+
 
 import closeIcon from '../../assets/images/close.svg'
 
 export const AddEmployee = (props) => {
 
+    const [ employee, setEmployee ] = useState({"usernameOrMobile":"0903" })
+    const dispatch = useDispatch()
+
     const formHandler = (e) => {
         e.preventDefault()
+        dispatch(employeeActions.addEmployee(employee))
     }
+
 
     return (
         <Modal

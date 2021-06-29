@@ -7,7 +7,8 @@ import { handleResponse, handleError } from '../helpers'
 let baseRoute = SERVER_URL;
 
 export const employeeService = {
-    getEmployees
+    getEmployees,
+    addEmployee
 };
 
 
@@ -22,6 +23,29 @@ function getEmployees() {
         .get(`${baseRoute}/employee`, requestOptions)
         .then(res => {
             console.log("res.user >> "); console.log(res.data.data);
+            handleResponse(res)
+            return res.data
+        })
+        .catch(function (error) {
+            if (error.response) {
+                console.log(error.response.data);
+                handleError(error.response.status)
+            }
+        });
+}
+
+function addEmployee(employee) {
+    console.log("into employeeService");
+
+    const requestOptions = {
+        headers: authHeader()
+    };
+
+    return axios
+        .post(`${baseRoute}/employee`, employee,{headers: requestOptions.headers} )
+        .then(res => {
+            console.log("res.user >> "); 
+            console.log(res.data);
             handleResponse(res)
             return res.data
         })
