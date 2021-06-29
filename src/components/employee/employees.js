@@ -7,6 +7,7 @@ import moment from 'jalali-moment';
 import persianJs from 'persianjs/persian.min';
 
 import { AddEmployee } from './addEmployee'
+import { EditEmployee } from './editEmployee'
 
 import editIcon from '../../assets/images/Products/edit.svg'
 
@@ -29,7 +30,6 @@ export const Employees = () => {
                     (employees.map((item, index) => 
                         <Card key={index} className="m-auto mt-3 bg-light productCard" >
                             <Card.Body className="pb-0 ps-1 rounded-3">
-        
                                 <Card.Text className="pt-1">
                                     <span style={{"color": "var(--text-color-one)"}}>نام : </span>{persianJs(item.family).englishNumber().toString()}
                                 </Card.Text>
@@ -51,6 +51,7 @@ export const Employees = () => {
                     : null}
             </Container>
             <AddEmployee show={addModalShow} onHide={() => setAddModalShow(false)} />
+            <EditEmployee show={editModalShow} onHide={() => setEditModalShow(false)} employee={employee} />
         </div>
     )
 }

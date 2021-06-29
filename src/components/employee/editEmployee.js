@@ -1,34 +1,22 @@
-import React, { useState, useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { employeeActions } from '../../actions/employeeActions'
-import { Modal, Row, Col, Form, Button, Spinner, Alert } from 'react-bootstrap'
+import React, { useState } from 'react'
+import { Modal, Button, Row, Col, Alert, Form, Spinner } from 'react-bootstrap'
+import { useSelector } from 'react-redux'
 
 import closeIcon from '../../assets/images/close.svg'
 
-export const AddEmployee = (props) => {
+export const EditEmployee = (props) => {
     const [validated, setValidated] = useState(false)
     const [employee, setEmployee] = useState({})
 
-    let addEmployeeLoading = useSelector(state => state.addEmployee.loading)
-    let test = useSelector(state => state)
-    let alert = useSelector(state => state.alert)
-    const dispatch = useDispatch()
+    let editEmployeeLoading = useSelector(state => state.editEmployee.loading)
+
     const handleChange = (e) => {
         e.preventDefault()
-        setEmployee({...employee, [e.target.name]: e.target.value})
     }
 
     const formHandler = (e) => {
         e.preventDefault()
-        let form = e.currentTarget
-        if (form.checkValidity() === false) {
-            e.stopPropagation()
-        } else {
-            dispatch(employeeActions.addEmployee(employee))
-        }
-        setValidated(true)
     }
-
 
     return (
         <Modal
@@ -64,7 +52,7 @@ export const AddEmployee = (props) => {
                     </Row>
 
                     {
-                        addEmployeeLoading ? (
+                        editEmployeeLoading ? (
                             <Button className="fw-bold order-submit border-0 w-100 mt-4" size="lg" type="submit"  disabled>
                                 <Spinner
                                 as="span"
@@ -77,7 +65,7 @@ export const AddEmployee = (props) => {
                             </Button>
                         ) : (
                             <Button className="fw-bold order-submit border-0 w-100 mt-4" size="lg" type="submit" block>
-                                افزودن
+                                ویرایش کردن
                             </Button>
                         )
                     }
