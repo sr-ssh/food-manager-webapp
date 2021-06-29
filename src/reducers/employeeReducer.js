@@ -29,7 +29,7 @@ export function getEmployees(state = initialState, action) {
     }
 }
 
-export function addEmployee(state = {}, action) {
+export function addEmployee(state = initialState, action) {
     switch (action.type) {
         case employeeConstants.ADD_EMPLOYEE_REQUEST:
             return {
@@ -44,6 +44,7 @@ export function addEmployee(state = {}, action) {
             }
         case employeeConstants.ADD_EMPLOYEE_FAILURE:
             return {
+                loading: false,
                 err: action.error
             }
         default:

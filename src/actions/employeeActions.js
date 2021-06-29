@@ -47,14 +47,16 @@ function addEmployee(employee) {
                     console.log(res)
                     
                     if(res === undefined)
-                        dispatch(alertActions.error('ارتباط با سرور برقرار نیست.مجصول شما ثبت نشد'));
+                        dispatch(alertActions.error('ارتباط با سرور برقرار نیست.عملیات ناموفق'));
                     else if(res.success){
                         console.log("employee added")
                         dispatch(success(employeeConstants.ADD_EMPLOYEE_SUCCESS, employee));
                         dispatch(alertActions.success(res.message));
-                        history.go(0)
-                    } else if (res.success === false)
-                        dispatch(alertActions.error(res.data.message));
+                        //history.go(0)
+                    } else if (res.success === false) {
+                        dispatch(alertActions.error(res.message));
+                        dispatch(success(employeeConstants.ADD_EMPLOYEE_SUCCESS, employee));
+                    }
 
                     setTimeout(() => {
                         dispatch(alertActions.clear());

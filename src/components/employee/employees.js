@@ -19,7 +19,7 @@ export const Employees = () => {
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(employeeActions.getEmployees())
-    }, [dispatch])
+    }, [dispatch, addModalShow])
 
     return (
         <div className="product-page">
