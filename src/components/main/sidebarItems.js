@@ -36,6 +36,9 @@ export const SidebarItems = () => {
                 <Col xs={10} sm={10} md={10} lg={10} className="py-3 mx-3 fw-bold sidebarItem">
                     <Link to="/customers">مشتریان</Link>
                 </Col>
+                <Col xs={10} sm={10} md={10} lg={10} className="py-3 mx-3 fw-bold sidebarItem">
+                    <Link to="/employees">کارمندان</Link>
+                </Col>
                 {/* <Col xs={10} sm={10} md={10} lg={10} className="py-3 mx-3 fw-bold sidebarItem">
                     <Link to="/discounts">تخفیف ها</Link>
                 </Col> */}

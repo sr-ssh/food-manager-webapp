@@ -91,7 +91,7 @@ export const Register = () => {
 
                             <Row className="w-100 me-2 pe-2 order-inputs mt-2">
                                 <Col >
-                                    <Form.Group controlId="email" >
+                                    <Form.Group controlId="email">
                                         <Image src={emailLogo} width="17px" className="mx-2"/>
                                         <Form.Label>ایمیل</Form.Label>
                                         <Form.Control className="order-input login-input" type="email" onChange={handleChange} />
