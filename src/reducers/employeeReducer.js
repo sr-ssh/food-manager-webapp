@@ -3,7 +3,8 @@ import { employeeConstants } from '../constants'
 const initialState = {
     loading: false,
     employees: [],
-    employee: {}
+    employee: {},
+    editEmployee: {}
 }
 
 export function getEmployees(state = initialState, action) {
@@ -30,18 +31,40 @@ export function getEmployees(state = initialState, action) {
 
 export function addEmployee(state = {}, action) {
     switch (action.type) {
-        case employeeConstants.ADD_PRODUCT_REQUEST:
+        case employeeConstants.ADD_EMPLOYEE_REQUEST:
             return {
                 ...state, 
                 loading: true,
             }
-        case employeeConstants.ADD_PRODUCT_SUCCESS: 
+        case employeeConstants.ADD_EMPLOYEE_SUCCESS: 
             return {
                 ...state,
                 loading: false,
                 employee: action.data
             }
-        case employeeConstants.ADD_PRODUCT_FAILURE:
+        case employeeConstants.ADD_EMPLOYEE_FAILURE:
+            return {
+                err: action.error
+            }
+        default:
+            return state;
+    }
+}
+
+export function editEmployee(state = {}, action) {
+    switch (action.type) {
+        case employeeConstants.EDIT_PRODUCT_REQUEST:
+            return {
+                ...state, 
+                loading: true,
+            }
+        case employeeConstants.EDIT_PRODUCT_SUCCESS: 
+            return {
+                ...state,
+                loading: false,
+                editEmployee: action.data
+            }
+        case employeeConstants.EDIT_PRODUCT_FAILURE:
             return {
                 err: action.error
             }

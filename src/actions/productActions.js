@@ -84,7 +84,7 @@ function editProduct(product) {
                     console.log(res)
 
                     if(res === undefined)
-                        dispatch(alertActions.error('ارتباط با سرور برقرار نیست.مجصول شما ثبت نشد'));
+                        dispatch(alertActions.error('ارتباط با سرور برقرار نیست.مجصول شما ویرایش نشد'));
                     else if(res.success){
                         console.log("product edited")
                         dispatch(success(productConstants.EDIT_PRODUCT_SUCCESS, product));

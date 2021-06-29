@@ -9,6 +9,8 @@ import { getReminders } from './reminderReducer'
 import { getDiscounts } from './discountReducer';
 import { addDiscount } from './discountReducer';
 import { getEmployees } from './employeeReducer';
+import { editEmployee } from './employeeReducer';
+import { addEmployee } from './employeeReducer';
 
 export default combineReducers ({
     authentication,
@@ -27,5 +29,7 @@ export default combineReducers ({
     getReminders,
     getDiscounts,
     addDiscount,
-    getEmployees
+    getEmployees,
+    editEmployee,
+    addEmployee
 })

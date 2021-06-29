@@ -9,12 +9,13 @@ import closeIcon from '../../assets/images/close.svg'
 
 export const AddEmployee = (props) => {
 
-    const [ employee, setEmployee ] = useState({"usernameOrMobile":"0903" })
+    const [ employee, setEmployee ] = useState({})
     const dispatch = useDispatch()
 
     const formHandler = (e) => {
         e.preventDefault()
-        dispatch(employeeActions.addEmployee(employee))
+        // dispatch(employeeActions.addEmployee(employee))
+        dispatch(employeeActions.editEmployee(employee))
     }
 
 
