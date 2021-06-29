@@ -7,7 +7,8 @@ import { history } from '../helpers';
 export const employeeActions = {
     getEmployees,
     addEmployee,
-    editEmployee
+    editEmployee,
+    getPermissions
 };
 
 function getEmployees() {
@@ -105,7 +106,33 @@ function editEmployee(employee) {
 
 }
 
+function getPermissions() {
+    return dispatch => {
+        dispatch(request(employeeConstants.GET_PERMISSIONS_REQUEST))
+        employeeService.getPermissions()
+            .then(
+                res => {
+                    if(res === undefined)
+                        dispatch(alertActions.error('ارتباط با سرور برقرار نیست'));
+                    else if(res.success){
+                        console.log("permissions received")
+                        dispatch(success(employeeConstants.GET_PERMISSIONS_SUCCESS, res.data));
+                    }
+                        
+                    setTimeout(() => {
+                        dispatch(alertActions.clear());
+                    }, 1500);
+                },
+                error => {
+                    dispatch(failure(employeeConstants.GET_PERMISSIONS_FAILURE, error.toString()));
+                    console.log("occure error");
+                    console.log(error.toString());
+                    dispatch(alertActions.error(error.toString()));
+                }
+            );
+    };
 
+}
 
 
 function request(type) {

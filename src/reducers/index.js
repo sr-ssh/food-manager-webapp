@@ -11,6 +11,7 @@ import { addDiscount } from './discountReducer';
 import { getEmployees } from './employeeReducer';
 import { editEmployee } from './employeeReducer';
 import { addEmployee } from './employeeReducer';
+import { getPermissions } from './employeeReducer';
 
 export default combineReducers ({
     authentication,
@@ -31,5 +32,6 @@ export default combineReducers ({
     addDiscount,
     getEmployees,
     editEmployee,
-    addEmployee
+    addEmployee,
+    getPermissions
 })
