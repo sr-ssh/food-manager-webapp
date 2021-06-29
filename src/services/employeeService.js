@@ -9,7 +9,8 @@ let baseRoute = SERVER_URL;
 export const employeeService = {
     getEmployees,
     addEmployee,
-    editEmployee
+    editEmployee,
+    getPermissions
 };
 
 
@@ -79,4 +80,26 @@ function editEmployee(employee) {
                 handleError(error.response.status)
             }
         });
+}
+
+function getPermissions() {
+console.log("into employeeService");
+
+const requestOptions = {
+    headers: authHeader()
+};
+
+return axios
+    .get(`${baseRoute}/employee/permission`, requestOptions)
+    .then(res => {
+        console.log("res.user >> "); console.log(res.data.data);
+        handleResponse(res)
+        return res.data
+    })
+    .catch(function (error) {
+        if (error.response) {
+            console.log(error.response.data);
+            handleError(error.response.status)
+        }
+    });
 }
