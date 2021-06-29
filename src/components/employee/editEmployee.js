@@ -1,22 +1,40 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Modal, Button, Row, Col, Alert, Form, Spinner } from 'react-bootstrap'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import persianJs from 'persianjs/persian.min';
+import {  employeeActions } from '../../actions/employeeActions'
 
 import closeIcon from '../../assets/images/close.svg'
 
 export const EditEmployee = (props) => {
     const [validated, setValidated] = useState(false)
-    const [employee, setEmployee] = useState({})
-
-    let editEmployeeLoading = useSelector(state => state.editEmployee.loading)
+    const [newPermission, setNewPermission] = useState([])
+    const dispatch = useDispatch()
+    let editEmployeeLoading = useSelector(state => state)
 
     const handleChange = (e) => {
-        e.preventDefault()
+        if(e.target.type != "checkbox") {
+            e.preventDefault()
+        }
+        setNewPermission(
+            newPermission.map(item =>
+            item.no == e.target.id
+                ? { ...item, status: e.target.checked }
+                : item
+            )
+        )
+        
     }
 
     const formHandler = (e) => {
         e.preventDefault()
+        let employee = {permissions: newPermission, _id: props.employee._id}
+        dispatch(employeeActions.editEmployee(employee))
     }
+    
+    useEffect(() => {
+        setNewPermission(props.employee.permission)
+    }, [props.employee, props.show])
 
     return (
         <Modal
@@ -31,28 +49,74 @@ export const EditEmployee = (props) => {
                     <img className="d-flex m-auto customer-modal-close-svg" src={closeIcon} alt="close-btn" />
                 </Button>
                 {
-                alert.message && 
-                <>
-                <div className="modal-backdrop show"></div>
-                    <Row className="justify-content-center text-center ">
-                        <Alert variant={alert.type}>
-                            {alert.message}
-                        </Alert> 
-                    </Row>
-                </>
+                    alert.message && 
+                    <>
+                        <div className="modal-backdrop show"></div>
+                        <Row className="justify-content-center text-center ">
+                            <Alert variant={alert.type}>
+                                {alert.message}
+                            </Alert> 
+                        </Row>
+                    </>
                 }
+                <Row>
+                    <Col>
+                        <span className="ms-2">نام کارمند:</span>
+                        <span>{props.employee.family}</span>
+                    </Col>
+                </Row>
+                <Row className="my-2">
+                    <Col>
+                        <span className="ms-2">شماره تماس:</span>
+                        {props.show && persianJs(props.employee.mobile).englishNumber().toString()}
+                    </Col>
+                </Row>
+                {console.log(editEmployeeLoading)}
                 <Form onSubmit={formHandler} noValidate validated={validated}>
-                    <Row className="mt-3">
-                        <Col className="order-filter-input">
-                            <Form.Group controlId="name">
-                                <Form.Label className="pe-3">شماره موبایل کارمند جدید را وارد کنید:</Form.Label>
-                                <Form.Control className="order-input" type="number" name="usernameOrMobile" defaultValue={employee.usernameOrMobile} onChange={handleChange} required />
-                            </Form.Group>
-                        </Col>
-                    </Row>
-
                     {
-                        editEmployeeLoading ? (
+                        props.show && props.employee.permission.map((item, index) => {
+                            return(
+                                <Form.Group key={index} className="fw-bold" onChange={handleChange}>
+                                    <Row className="my-2">
+                                        <Col  className="col-6">
+                                            <Form.Check.Label className="ms-2" htmlFor="active1">
+                                                {(() => {
+                                                switch (item.no) {
+                                                    case 1:
+                                                        return "ثبت سفارش";
+                                                        break;
+                                                    case 2:
+                                                        return "سفارش ها";
+                                                        break;
+                                                    case 3:
+                                                        return "یادآوری";
+                                                        break;
+                                                    case 4:
+                                                        return "محصولات";
+                                                        break;
+                                                    case 5:
+                                                        return "مشتریان";
+                                                        break;
+                                                    case 6:
+                                                        return "کارمندان";
+                                                        break;
+                                                    default:
+                                                        return;
+                                                }
+                                                })()}
+                                            </Form.Check.Label>
+                                        </Col>
+                                        <Col>
+                                            <Form.Check.Input name="no" id={`${item.no}`} defaultChecked={item.status} type="checkbox" />
+                                        </Col>
+                                    </Row>
+
+                                </Form.Group>
+                            )
+                        })
+                    }
+                    {
+                        false ? (
                             <Button className="fw-bold order-submit border-0 w-100 mt-4" size="lg" type="submit"  disabled>
                                 <Spinner
                                 as="span"

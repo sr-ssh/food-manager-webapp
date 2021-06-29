@@ -53,7 +53,7 @@ export function addEmployee(state = initialState, action) {
     }
 }
 
-export function editEmployee(state = initialState, action) {
+export function editEmployee(state = {}, action) {
     switch (action.type) {
         case employeeConstants.EDIT_PRODUCT_REQUEST:
             return {

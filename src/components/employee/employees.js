@@ -34,11 +34,33 @@ export const Employees = () => {
                                     <span style={{"color": "var(--text-color-one)"}}>نام : </span>{persianJs(item.family).englishNumber().toString()}
                                 </Card.Text>
                                 <Card.Text className="pt-1">
-                                    <span style={{"color": "var(--text-color-one)"}}>شماره تماس : </span>{persianJs(item.mobile).englishNumber().toString()} تومان
+                                    <span style={{"color": "var(--text-color-one)"}}>شماره تماس : </span>{persianJs(item.mobile).englishNumber().toString()}
                                 </Card.Text>
-
                                 <Card.Text className="pt-1">
-                                    <span style={{"color": "var(--text-color-one)"}}>سطح دسترسی: </span>{item.permission.map(per => per.status ? per.no : null ) }
+                                    <span style={{"color": "var(--text-color-one)"}}>سطح دسترسی: </span>
+                                    {
+                                        item.permission.map(per => {
+                                            if(per.status) {
+                                                switch (per.no) {
+                                                    case 1:
+                                                        return <span> ثبت سفارش </span>
+                                                    case 2:
+                                                        return <span> سفارش ها </span>
+                                                    case 3:
+                                                        return <span> یادآوری </span>
+                                                    case 4:
+                                                        return <span> محصولات </span>
+                                                    case 5:
+                                                        return <span> مشتریان </span>
+                                                    case 6:
+                                                        return <span> کارمندان </span>
+                                                    default:
+                                                        return
+                                                }
+                            
+                                            }
+                                        }) 
+                                    }
                                 </Card.Text>
                                 
                                 <Card.Link className="editLogo w-100 d-block m-auto" onClick={() => {setEditModalShow(true); setEmployee(item)}}>

@@ -93,6 +93,7 @@ return axios
     .get(`${baseRoute}/employee/permission`, requestOptions)
     .then(res => {
         console.log("res.user >> "); console.log(res.data.data);
+        localStorage.setItem('permissions', JSON.stringify(res.data.data.permission));
         handleResponse(res)
         return res.data
     })

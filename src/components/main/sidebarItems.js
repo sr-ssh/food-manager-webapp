@@ -14,13 +14,16 @@ import { useSelector } from 'react-redux'
 
 export const SidebarItems = () => {
 
-    let permissions = useSelector(state => state.getPermissions.permissions.permission)
+    let permissions = JSON.parse(localStorage.getItem('permissions'));
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(employeeActions.getPermissions())
-        console.log(permissions)
-    }, [dispatch])
+
+        if (!(permissions && permissions.length)) 
+            dispatch(employeeActions.getPermissions())
+            
+    }, [dispatch, permissions])
+
     return (
         <Container fluid className="d-flex flex-column h-100">
             <Row className="my-2">

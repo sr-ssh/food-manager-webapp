@@ -87,7 +87,7 @@ function editEmployee(employee) {
                         console.log("employee edited")
                         dispatch(success(employeeConstants.EDIT_EMPLOYEE_SUCCESS, employee));
                         dispatch(alertActions.success(res.message));
-                        history.go(0)
+                       //history.go(0)
                     } else if (res.success === false)
                         dispatch(alertActions.error(res.data.message));
 
