@@ -36,6 +36,10 @@ export const Employees = () => {
                                 <Card.Text className="pt-1">
                                     <span style={{"color": "var(--text-color-one)"}}>شماره تماس : </span>{persianJs(item.mobile).englishNumber().toString()} تومان
                                 </Card.Text>
+
+                                <Card.Text className="pt-1">
+                                    <span style={{"color": "var(--text-color-one)"}}>سطح دسترسی: </span>{item.permission.map(per => per.status ? per.no : null ) }
+                                </Card.Text>
                                 
                                 <Card.Link className="editLogo w-100 d-block m-auto" onClick={() => {setEditModalShow(true); setEmployee(item)}}>
                                     <img className="d-block me-auto" src={editIcon} height="42px" alt="back-icon" />
@@ -46,7 +50,7 @@ export const Employees = () => {
                     
                     : null}
             </Container>
-            <AddEmployee show={addModalShow} onHide={() => setEditModalShow(false)} />
+            <AddEmployee show={addModalShow} onHide={() => setAddModalShow(false)} />
         </div>
     )
 }
