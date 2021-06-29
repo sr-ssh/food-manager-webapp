@@ -1,10 +1,20 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Row, Button } from 'react-bootstrap'
 import { Header } from '../base/employeeHeader'
+import { useDispatch, useSelector } from 'react-redux'
+import { employeeActions } from '../../actions/employeeActions'
+
 import { AddEmployee } from './addEmployee'
 
 export const Employees = () => {
     const [modalShow, setModalShow] = useState(false)
+
+    let employees = useSelector(state => state.getEmployees.employees)
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(employeeActions.getEmployees())
+    }, [dispatch])
 
     return (
         <>
