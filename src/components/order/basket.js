@@ -93,7 +93,7 @@ export const Basket = ({order, insertOrder}) => {
                                                     <Dropdown.Item onClick={() => setItem(item.name) }>
                                                         <Row>
                                                             <Col className="text-end basket-dropdown-border-left pe-1">{item.name}</Col> 
-                                                            <Col>{persianJs(item.sellingPrice).englishNumber().toString()} <span className="orderInput">تومان</span></Col>
+                                                            <Col>{item.sellingPrice && persianJs(item.sellingPrice).englishNumber().toString()} <span className="orderInput">تومان</span></Col>
                                                         </Row>
                                                     </Dropdown.Item>
                                                 </Col>   
@@ -130,9 +130,9 @@ export const Basket = ({order, insertOrder}) => {
                                 ? order.map(item => {
                                             return (
                                                 <tr key={item.name}>
-                                                    <td>{persianJs(item.name).englishNumber().toString()}</td>
-                                                    <td>{persianJs(item.quantity * item.sellingPrice).englishNumber().toString()} تومان</td>
-                                                    <td className="pe-3">{persianJs(item.quantity).englishNumber().toString()}</td>
+                                                    <td>{item.name && persianJs(item.name).englishNumber().toString()}</td>
+                                                    <td>{(item.quantity * item.sellingPrice) && persianJs(item.quantity * item.sellingPrice).englishNumber().toString()} تومان</td>
+                                                    <td className="pe-3">{item.quantity && persianJs(item.quantity).englishNumber().toString()}</td>
                                                     <td onClick={(e) => removeOrder(e, item)}><img src={deleteIcon} alt="delete-icon"/></td>
                                                 </tr>
                                             )
@@ -147,7 +147,7 @@ export const Basket = ({order, insertOrder}) => {
                                 <span className="">جمع کل</span>
                             </Col>
                             <Col className="px-1">
-                                {persianJs(totalPrice).englishNumber().toString()} تومان
+                                {totalPrice && persianJs(totalPrice).englishNumber().toString()} تومان
                             </Col>
                         </Row>
                     </Row>

@@ -19,7 +19,7 @@ export const Customer = ({customer}) => {
                                 </Col>
                                 <Col dir="ltr" className="col-9">
                                     <Card.Text>
-                                        تاریخ عضویت : <span>{persianJs(moment.from(customer.createdAt, 'YYYY/MM/DD').locale('fa').format('DD MMMM YYYY')).englishNumber().toString()}</span>
+                                        تاریخ عضویت : <span>{customer.createdAt && persianJs(moment.from(customer.createdAt, 'YYYY/MM/DD').locale('fa').format('DD MMMM YYYY')).englishNumber().toString()}</span>
                                     </Card.Text>
                                 </Col>
                             </Row>
@@ -35,7 +35,7 @@ export const Customer = ({customer}) => {
                         </Col>
                         <Col dir="ltr">
                             <Card.Text>
-                                <span>{persianJs(customer.mobile).englishNumber().toString()}</span>
+                                <span>{customer.mobile && persianJs(customer.mobile).englishNumber().toString()}</span>
                             </Card.Text>
                         </Col>
                     </Row>
@@ -59,7 +59,7 @@ export const Customer = ({customer}) => {
                         </Col>
                         <Col dir="ltr">
                             <Card.Text>
-                                <span>{persianJs(customer.order).englishNumber().toString()}</span>
+                                <span>{customer.order && persianJs(customer.order).englishNumber().toString()}</span>
                             </Card.Text>
                         </Col>
                     </Row>
@@ -71,7 +71,7 @@ export const Customer = ({customer}) => {
                         </Col>
                         <Col dir="ltr">
                             <Card.Text>
-                                <span dir="rtl">{persianJs(moment.from(customer.lastBuy, 'YYYY/MM/DD').locale('fa').format('DD MMMM YYYY')).englishNumber().toString()}</span>
+                                <span dir="rtl">{customer.lastBuy && persianJs(moment.from(customer.lastBuy, 'YYYY/MM/DD').locale('fa').format('DD MMMM YYYY')).englishNumber().toString()}</span>
                             </Card.Text>
                         </Col>
                     </Row>
@@ -83,7 +83,7 @@ export const Customer = ({customer}) => {
                         </Col>
                         <Col dir="ltr">
                             <Card.Text>
-                                <span>{persianJs(customer.total).englishNumber().toString()}</span>
+                                <span>{customer.total && persianJs(customer.total).englishNumber().toString()}</span>
                             </Card.Text>
                         </Col>
                     </Row>

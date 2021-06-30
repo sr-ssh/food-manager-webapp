@@ -62,7 +62,7 @@ export const Reminders = () => {
                                                 </Col>
                                                 <Col dir="ltr">
                                                     <Card.Text>
-                                                        موبایل: <span>{persianJs(reminder.customer.mobile).englishNumber().toString()}</span>
+                                                        موبایل: <span>{reminder.customer.mobile && persianJs(reminder.customer.mobile).englishNumber().toString()}</span>
                                                     </Card.Text>
                                                 </Col>
                                             </Row>
@@ -74,7 +74,7 @@ export const Reminders = () => {
                                                 </Col>
                                                 <Col dir="ltr">
                                                     <Card.Text>
-                                                        <span dir="rtl">{persianJs(moment.from(reminder.customer.birthday, 'YYYY/MM/DD').locale('fa').format('DD MMMM YYYY')).englishNumber().toString()}</span>
+                                                        <span dir="rtl">{reminder.customer.birthday && persianJs(moment.from(reminder.customer.birthday, 'YYYY/MM/DD').locale('fa').format('DD MMMM YYYY')).englishNumber().toString()}</span>
                                                     </Card.Text>
                                                 </Col>
                                             </Row>
@@ -104,9 +104,9 @@ export const Reminders = () => {
                                             ? reminder.order.products.map(item => {
                                                         return (
                                                             <tr key={item.name}>
-                                                                <td>{persianJs(item.name).englishNumber().toString()}</td>
-                                                                <td>{persianJs(item.quantity * item.sellingPrice).englishNumber().toString()} تومان</td>
-                                                                <td>{persianJs(item.quantity).englishNumber().toString()}</td>
+                                                                <td>{item.name && persianJs(item.name).englishNumber().toString()}</td>
+                                                                <td>{(item.quantity * item.sellingPrice) && persianJs(item.quantity * item.sellingPrice).englishNumber().toString()} تومان</td>
+                                                                <td>{item.quantity && persianJs(item.quantity).englishNumber().toString()}</td>
                                                             </tr>
                                                         )
                                                     })
@@ -115,7 +115,7 @@ export const Reminders = () => {
                                         }
                                         <tr className="border-top-blue">
                                             <td>جمع کل:</td>
-                                            <td className="fs-6">{persianJs(getTotalPrice(reminder.order.products)).englishNumber().toString()} تومان</td>
+                                            <td className="fs-6">{(getTotalPrice(reminder.order.products)) && persianJs(getTotalPrice(reminder.order.products)).englishNumber().toString()} تومان</td>
                                             <td></td>
                                             <td></td>
                                         </tr>

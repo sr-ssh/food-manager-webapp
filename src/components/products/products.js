@@ -62,13 +62,14 @@ export const Products = () => {
                                     : <div className="deActiveStatus"><span></span> غیرفعال</div>}
                                 </Card.Title>
                                 <Card.Text className="pt-1">
-                                    <span style={{"color": "var(--text-color-one)"}}>نام : </span>{persianJs(item.name).englishNumber().toString()}
+                                    <span style={{"color": "var(--text-color-one)"}}>نام : </span>{item.name && persianJs(item.name).englishNumber().toString()}
                                 </Card.Text>
                                 <Card.Text className="pt-1">
-                                    <span style={{"color": "var(--text-color-one)"}}>قیمت فروش : </span>{persianJs(item.sellingPrice).englishNumber().toString()} تومان
+                                    <span style={{"color": "var(--text-color-one)"}}>قیمت فروش : </span>{item.sellingPrice && persianJs(item.sellingPrice).englishNumber().toString()} تومان
                                 </Card.Text>
                                 <Card.Text className="pt-1">
-                                    <span style={{"color": "var(--text-color-one)"}}>تاریخ ویرایش : </span>{persianJs(moment.from(item.updatedAt, 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD')).englishNumber().toString()}
+                                    <span style={{"color": "var(--text-color-one)"}}>تاریخ ویرایش : </span>{item.updatedAt && persianJs(moment.from(item.updatedAt, 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD')).englishNumber().toString()}
+                                    <span style={{"color": "var(--text-color-one)"}}>تاریخ ویرایش : </span>{item.updatedAt && persianJs(moment.from(item.updatedAt, 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD')).englishNumber().toString()}
                                 </Card.Text>
                                 <Card.Text className="pt-1 ps-1">
                                 <span style={{"color": "var(--text-color-one)"}}>توضیحات :   </span>{item.description && persianJs(item.description).englishNumber().toString()}
