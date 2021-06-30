@@ -81,12 +81,6 @@ export const AddDiscount = (props) => {
                         </Col>
                     </Row>
                     <Row className="my-3 justify-content-between">
-                        <Col className="col-6 order-filter-input">
-                            <Form.Group>
-                                    <Form.Label className="pe-2">درصد تخفیف</Form.Label>
-                                    <Form.Control style={{"width":"94%"}} className="order-input h-100" type="number" name="percentage" min="0" max="100" value={filters.family} onChange={handleChange} />
-                            </Form.Group>
-                        </Col>
                         {
                             !selectedItem 
                             ?<Col className="col-6 order-filter-input">
@@ -97,6 +91,12 @@ export const AddDiscount = (props) => {
                             </Col>
                             : null
                         }
+                        <Col className="col-6 order-filter-input">
+                            <Form.Group>
+                                    <Form.Label className="pe-2">درصد تخفیف</Form.Label>
+                                    <Form.Control style={{"width":"94%"}} className="order-input h-100" type="number" name="percentage" min="0" max="100" value={filters.family} onChange={handleChange} />
+                            </Form.Group>
+                        </Col>
                     </Row>
                     <Row>
                         <Col className="col-6 order-filter-input mt-1 pe-4">
