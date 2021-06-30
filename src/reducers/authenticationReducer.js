@@ -7,7 +7,7 @@ export function authentication(state = initialState, action) {
   //  console.log("action.type"); console.log(action.type);
     switch (action.type) {
         case userConstants.LOGIN_REQUEST:
-            console.log("action into authentication reducer");   console.log(action);
+            //console.log("action into authentication reducer");   console.log(action);
             return {
                 loggingIn: true,
                 loading: true,
@@ -20,7 +20,9 @@ export function authentication(state = initialState, action) {
                 user: action.user
             };
         case userConstants.LOGIN_FAILURE:
-            return {};
+            return {
+                loading: false
+            };
         case userConstants.LOGOUT:
             return {};
         default:
@@ -36,16 +38,20 @@ export function register(state = initialState, action) {
               return {
                   ...state,
                   registering: true,
+                  loading: true,
                   user: action.user
               };
           case userConstants.REGISTER_SUCCESS:
               return {
                   ...state,
                   registering: false,
+                  loading: false,
                   user: action.user
               };
           case userConstants.REGISTER_FAILURE:
-              return {};
+                return {
+                    loading: false
+                };
           default:
               return state
       }

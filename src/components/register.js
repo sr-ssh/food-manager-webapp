@@ -22,13 +22,11 @@ export const Register = () => {
     const [inputs, setInputs] = useState({ username: '', password: '' });
     const { name, family, password, email, mobile, company} = inputs;
     const dispatch = useDispatch()
-    let registerLoading = useSelector(state => state.register.registering)
+    let registerLoading = useSelector(state => state.register.loading)
 
     const handleChange = (e) => {
         const { id, value } = e.target;
         setInputs(inputs => ({ ...inputs, [id]: value }));
-        let a= "3";
-        console.log(persianJs(a).englishNumber().toString())
     }
 
 
@@ -95,6 +93,7 @@ export const Register = () => {
                                         <Image src={emailLogo} width="17px" className="mx-2"/>
                                         <Form.Label>ایمیل</Form.Label>
                                         <Form.Control className="order-input login-input" type="email" onChange={handleChange} />
+                                        <Form.Control.Feedback className="me-2">ایمیل اجباری نمیباشد!</Form.Control.Feedback>
                                     </Form.Group>
                                 </Col>
                             </Row>
@@ -105,6 +104,7 @@ export const Register = () => {
                                         <Image src={companyLogo} width="17px" className="mx-2"/>
                                         <Form.Label>نام شرکت</Form.Label>
                                         <Form.Control className="order-input login-input" type="text" onChange={handleChange} />
+                                        <Form.Control.Feedback className="me-2">نام شرکت اجباری نمیباشد!</Form.Control.Feedback>
                                     </Form.Group>
                                 </Col>
                             </Row>

@@ -15,13 +15,12 @@ export const Login = () => {
 
     let alertMessage = useSelector(state => state.alert.message)
     let alerType = useSelector(state => state.alert.type)
+    let loggingInLoading = useSelector(state => state.authentication.loading)
 
     const [validated, setValidated] = useState(false);
     const [inputs, setInputs] = useState({ username: '', password: '' });
     const { mobileOrEmail, password } = inputs;
     const dispatch = useDispatch()
-
-    let loggingInLoading = useSelector(state => state.authentication.loading)
 
     const handleChange = (e) => {
         const { id, value } = e.target;
