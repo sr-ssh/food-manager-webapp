@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { discountActions } from '../../actions/discountActions';
 import { Container } from 'react-bootstrap';
-import { Header } from '../base/header';
+import { Header } from '../base/productHeader';
 
 // components
 import { Discount } from './discount'
+import { AddDiscount } from './addDiscount';
 
 export const Discounts = () => {
 
@@ -22,7 +23,7 @@ export const Discounts = () => {
     return(
         <>
         <div className="product-page orders">
-            <Header title="تخفیفات"/>
+            <Header title="تخفیفات"  modalShow={modalShow} setModalShow={setModalShow} />
             <Container fluid className="m-auto">
                 {
                     discounts
@@ -30,7 +31,7 @@ export const Discounts = () => {
                     : null
                 }
                 {discounts?console.log(discounts):null   }
-                {/* <AddDiscount show={modalShow} onHide={() => setModalShow(false)} />     */}
+                <AddDiscount show={modalShow} onHide={() => setModalShow(false)} />    
             </Container>
         </div>
         </>

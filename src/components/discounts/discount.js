@@ -32,17 +32,17 @@ export const Discount = ({discount}) => {
                         </Col>
                     </Row>
                     <Row className="mt-2">
-                        <Col className="col-2">
-                            <Card.Text className={`${discount.sms ? "discount-sms-active" : "discount-sms-deActive"}`}>
+                        <Col>
+                            <Card.Text className={`fw-bold ${discount.sms ? 'discount-sms-active' : 'discount-sms-deActive'}`}>
                                 sms 
                             </Card.Text>
                         </Col>
 
                         <Col className="d-flex justify-content-end mt-3">
                             <Card.Link onClick={e => history.push('/product/edit', discount)} >
-                                <img className="ms-1" src={editIcon} height="38px" />
+                                <img className="ms-1" src={editIcon} height="33px" />
                             </Card.Link>
-                            <img src={deleteIcon} height="30px" />
+                            <img src={deleteIcon} height="27px" />
                         </Col>
                     </Row>
                 </Row>
