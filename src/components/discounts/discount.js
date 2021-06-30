@@ -31,6 +31,17 @@ export const Discount = ({discount}) => {
                             </Card.Text>
                         </Col>
                     </Row>
+                    {
+                        discount.type === 0 
+                        ? <Row className="mt-2">
+                            <Col>
+                                <Card.Text>
+                                    نام مشتری: <span>{discount.customer.family}</span>
+                                </Card.Text>
+                            </Col>
+                        </Row>
+                        : null
+                    }
                     <Row className="mt-2">
                         <Col>
                             <Card.Text className={`fw-bold ${discount.sms ? 'discount-sms-active' : 'discount-sms-deActive'}`}>
@@ -39,7 +50,7 @@ export const Discount = ({discount}) => {
                         </Col>
 
                         <Col className="d-flex justify-content-end mt-3">
-                            <Card.Link onClick={e => history.push('/product/edit', discount)} >
+                            <Card.Link>
                                 <img className="ms-1" src={editIcon} height="33px" />
                             </Card.Link>
                             <img src={deleteIcon} height="27px" />

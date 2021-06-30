@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux'
-import { customerActions } from '../../actions/customerActions';
 import { Modal, Button, Row, Col, Form , Dropdown } from 'react-bootstrap'
 import { discountActions } from '../../actions/discountActions';
 
@@ -11,18 +10,26 @@ import spinnerIcon from './../../assets/images/sppiner.svg'
 export const AddDiscount = (props) => {
 
     const [dimStatus, setDimStatus] = useState(false)
-    const [filters, setFilters] = useState({})
+    const [filters, setFilters] = useState({"sms": false})
     const [selectedItem, setItem] = useState(-1)
     const dispatch = useDispatch()
 
     const handleChange = (e) => {
-        setFilters({...filters, [e.target.name]: e.target.value})
+        if(e.target.type === 'checkbox')
+            setFilters({...filters, [e.target.name]: e.target.checked})
+        else 
+            setFilters({...filters, [e.target.name]: e.target.value})
         console.log(filters)
+    }
+
+    const handleDropdown = (n) => {
+        setItem(n)
+        setFilters({...filters, "type": n})
     }
 
     const formHandler = (e) => {
         e.preventDefault();
-        console.log(filters)
+        setFilters({...filters, type: selectedItem})
         dispatch(discountActions.addDiscount(filters))
         props.onHide(false) 
     }
@@ -61,11 +68,11 @@ export const AddDiscount = (props) => {
                                     {selectedItem !== -1 ? <span>{selectedItem ? 'تولد' : 'فرد'}</span> : null}
                                 </Dropdown.Toggle> 
                                 <Dropdown.Menu className={`${dimStatus ? "dim" : ""} dropdownProductMenu`}>
-                                    <Dropdown.Item onClick={() => setItem(0)} >
+                                    <Dropdown.Item onClick={() => handleDropdown(0)} >
                                         <Col className="text-end pe-1 order-filter-input">فرد</Col> 
                                     </Dropdown.Item>
                                     <Dropdown.Divider/>
-                                    <Dropdown.Item onClick={() => setItem(1)} >
+                                    <Dropdown.Item onClick={() => handleDropdown(1)} >
                                         <Col className="text-end pe-1 order-filter-input">تولد</Col>
                                     </Dropdown.Item>
                                 </Dropdown.Menu>
@@ -94,7 +101,7 @@ export const AddDiscount = (props) => {
                     <Row>
                         <Col className="col-6 order-filter-input mt-1 pe-4">
                             <Form.Group>
-                                <Form.Check.Input name="sms" id="sms" defaultChecked="false" type="checkbox" className="border-1" onChange={handleChange}/>
+                                <Form.Check.Input name="sms" id="sms" defaultChecked={filters.sms} type="checkbox" className="border-1" onChange={handleChange}/>
                                 <Form.Check.Label className="pe-2" htmlFor="sms">فرستادن sms</Form.Check.Label>
                             </Form.Group>
                         </Col>

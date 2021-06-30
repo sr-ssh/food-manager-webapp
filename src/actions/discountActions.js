@@ -14,10 +14,18 @@ function getDiscounts() {
         discountService.getDiscounts()
             .then(
                 res => {
-                    dispatch(success(discountConstants.GET_DISCOUNTS_SUCCESS, res.data));
-                    console.log("discounts received")
-                    console.log(res.data)
-                    dispatch(alertActions.success(res));
+                    
+                    if(res === undefined)
+                        dispatch(alertActions.error('ارتباط با سرور برقرار نیست'));
+                    else if(res.success){
+                        console.log("discounts received")
+                        dispatch(success(discountConstants.GET_DISCOUNTS_SUCCESS, res.data));
+                        dispatch(alertActions.success(res));
+                    }
+
+                    setTimeout(() => {
+                        dispatch(alertActions.clear());
+                    }, 1500);
                 },
                 error => {
                     dispatch(failure(discountConstants.GET_DISCOUNTS_FAILURE, error.toString()));
@@ -40,7 +48,7 @@ function addDiscount(discount) {
                     console.log("discont added")
                     console.log(res)
                     dispatch(alertActions.success(res));
-                    history.push('/discounts')
+                    history.go(0)
                 },
                 error => {
                     dispatch(failure(error.toString()));
