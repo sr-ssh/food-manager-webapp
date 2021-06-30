@@ -76,6 +76,28 @@ export function editEmployee(state = initialState, action) {
     }
 }
 
+export function deleteEmployee(state = initialState, action) {
+    switch (action.type) {
+        case employeeConstants.DELETE_EMPLOYEE_REQUEST:
+            return {
+                ...state, 
+                loading: true,
+            }
+        case employeeConstants.DELETE_EMPLOYEE_SUCCESS: 
+            return {
+                ...state,
+                loading: false
+            }
+        case employeeConstants.DELETE_EMPLOYEE_FAILURE:
+            return {
+                loading: false,
+                err: action.error
+            }
+        default:
+            return state;
+    }
+}
+
 export function getPermissions(state = initialState, action) {
     switch (action.type) {
         case employeeConstants.GET_PERMISSIONS_REQUEST:

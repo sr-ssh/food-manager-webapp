@@ -8,7 +8,8 @@ export const employeeActions = {
     getEmployees,
     addEmployee,
     editEmployee,
-    getPermissions
+    getPermissions,
+    deleteEmployee
 };
 
 function getEmployees() {
@@ -81,15 +82,17 @@ function editEmployee(employee) {
                 res => {
                     console.log(res)
                     
-                    if(res === undefined)
-                        dispatch(alertActions.error('ارتباط با سرور برقرار نیست.مجصول شما ویرایش نشد'));
+                    if(res === undefined) {
+                        dispatch(alertActions.error('ارتباط با سرور برقرار نیست.عملیات ناموفق'));
+                        dispatch(failure(employeeConstants.EDIT_EMPLOYEE_FAILURE, "bad loading"))
+                    }
                     else if(res.success){
                         console.log("employee edited")
                         dispatch(success(employeeConstants.EDIT_EMPLOYEE_SUCCESS, employee));
                         dispatch(alertActions.success(res.message));
                        //history.go(0)
                     } else if (res.success === false)
-                        dispatch(alertActions.error(res.data.message));
+                        dispatch(alertActions.error(res.message));
 
                     setTimeout(() => {
                         dispatch(alertActions.clear());
@@ -104,6 +107,38 @@ function editEmployee(employee) {
             );
     }
 
+}
+
+function deleteEmployee(employee) {
+    return dispatch => {
+        dispatch(request(employeeConstants.DELETE_EMPLOYEE_REQUEST))
+        employeeService.deleteEmployee(employee)
+            .then(
+                res => {
+                    console.log(res)
+                    
+                    if(res === undefined)
+                        dispatch(alertActions.error('ارتباط با سرور برقرار نیست.عملیات انجام نشد'));
+                    else if(res.success){
+                        console.log("employee deleted")
+                        dispatch(success(employeeConstants.DELETE_EMPLOYEE_SUCCESS, employee));
+                        dispatch(alertActions.success(res.message));
+                       //history.go(0)
+                    } else if (res.success === false)
+                        dispatch(alertActions.error(res.message));
+
+                    setTimeout(() => {
+                        dispatch(alertActions.clear());
+                    }, 1500);
+                },
+                error => {
+                    dispatch(failure(error.toString()));
+                    console.log("occure error");
+                    console.log(error.toString());
+                    dispatch(alertActions.error(employeeConstants.DELETE_EMPLOYEE_FAILURE, error.toString()));
+                }
+            );
+    }
 }
 
 function getPermissions() {

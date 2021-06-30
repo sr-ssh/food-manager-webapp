@@ -10,7 +10,6 @@ export const AddEmployee = (props) => {
     const [employee, setEmployee] = useState({})
 
     let addEmployeeLoading = useSelector(state => state.addEmployee.loading)
-    let test = useSelector(state => state)
     let alert = useSelector(state => state.alert)
     const dispatch = useDispatch()
     const handleChange = (e) => {

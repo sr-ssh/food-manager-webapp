@@ -60,17 +60,7 @@ export const EditEmployee = (props) => {
                         </Row>
                     </>
                 }
-                {
-                    alert.message && 
-                    <>
-                        <div className="modal-backdrop show"></div>
-                        <Row className="justify-content-center text-center ">
-                            <Alert variant={alert.type}>
-                                {alert.message}
-                            </Alert> 
-                        </Row>
-                    </>
-                }
+                
                 <Row>
                     <Col>
                         <span className="ms-2">نام کارمند:</span>

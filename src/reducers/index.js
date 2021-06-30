@@ -8,7 +8,7 @@ import { addOrder, getOrders, setOrdersFilter } from './orderReducer'
 import { getReminders } from './reminderReducer'
 import { getDiscounts } from './discountReducer';
 import { addDiscount } from './discountReducer';
-import { getEmployees, editEmployee, addEmployee } from './employeeReducer';
+import { getEmployees, editEmployee, addEmployee, deleteEmployee } from './employeeReducer';
 import { getPermissions } from './employeeReducer';
 
 export default combineReducers ({
@@ -31,5 +31,6 @@ export default combineReducers ({
     getEmployees,
     editEmployee,
     addEmployee,
+    deleteEmployee,
     getPermissions
 })
