@@ -64,9 +64,13 @@ export const Employees = () => {
                                                     case 4:
                                                         return <span> محصولات </span>
                                                     case 5:
-                                                        return <span> مشتریان </span>
+                                                        return <span> مالی </span>
                                                     case 6:
+                                                        return <span> مشتریان </span>
+                                                    case 7:
                                                         return <span> کارمندان </span>
+                                                    case 8:
+                                                        return <span> تخفیف ها </span>
                                                     default:
                                                         return
                                                 }

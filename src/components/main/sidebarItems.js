@@ -56,24 +56,30 @@ export const SidebarItems = () => {
                         <Link to="/products">محصولات</Link>
                     </Col>
                 }
-                {/* <Col xs={10} sm={10} md={10} lg={10} className="py-3 mx-3 fw-bold sidebarItem">
+                {
+                /* permissions && permissions.find(per => per.no === 5 && per.status === true) &&
+                <Col xs={10} sm={10} md={10} lg={10} className="py-3 mx-3 fw-bold sidebarItem">
                     <Link to="/finance">مالی</Link>
-                </Col> */}
+                </Col>  */
+                }
                 {   
-                    permissions && permissions.find(per => per.no === 5 && per.status === true) && 
+                    permissions && permissions.find(per => per.no === 6 && per.status === true) && 
                     <Col xs={10} sm={10} md={10} lg={10} className="py-3 mx-3 fw-bold sidebarItem">
                         <Link to="/customers">مشتریان</Link>
                     </Col>
                 }
                 {   
-                    permissions && permissions.find(per => per.no === 6 && per.status === true) && 
+                    permissions && permissions.find(per => per.no === 7 && per.status === true) && 
                     <Col xs={10} sm={10} md={10} lg={10} className="py-3 mx-3 fw-bold sidebarItem">
                         <Link to="/employees">کارمندان</Link>
                     </Col>
                 }
-                <Col xs={10} sm={10} md={10} lg={10} className="py-3 mx-3 fw-bold sidebarItem">
-                    <Link to="/discounts">تخفیف ها</Link>
-                </Col>
+                {
+                    permissions && permissions.find(per => per.no === 8 && per.status === true) && 
+                    <Col xs={10} sm={10} md={10} lg={10} className="py-3 mx-3 fw-bold sidebarItem">
+                        <Link to="/discounts">تخفیف ها</Link>
+                    </Col>
+                }
             </Row>
             
             <Row className="d-flex justify-content-center align-items-center mt-auto dashboardIcons">

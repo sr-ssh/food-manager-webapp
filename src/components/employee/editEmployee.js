@@ -96,10 +96,16 @@ export const EditEmployee = (props) => {
                                                         return "محصولات";
                                                         break;
                                                     case 5:
-                                                        return "مشتریان";
+                                                        return "مالی";
                                                         break;
                                                     case 6:
+                                                        return "مشتریان";
+                                                        break;
+                                                    case 7:
                                                         return "کارمندان";
+                                                        break;
+                                                    case 8:
+                                                        return "تخفیف ها";
                                                         break;
                                                     default:
                                                         return;
