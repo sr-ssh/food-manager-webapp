@@ -53,21 +53,22 @@ export function addEmployee(state = initialState, action) {
     }
 }
 
-export function editEmployee(state = {}, action) {
+export function editEmployee(state = initialState, action) {
     switch (action.type) {
-        case employeeConstants.EDIT_PRODUCT_REQUEST:
+        case employeeConstants.EDIT_EMPLOYEE_REQUEST:
             return {
                 ...state, 
                 loading: true,
             }
-        case employeeConstants.EDIT_PRODUCT_SUCCESS: 
+        case employeeConstants.EDIT_EMPLOYEE_SUCCESS: 
             return {
                 ...state,
                 loading: false,
                 editEmployee: action.data
             }
-        case employeeConstants.EDIT_PRODUCT_FAILURE:
+        case employeeConstants.EDIT_EMPLOYEE_FAILURE:
             return {
+                loading: false,
                 err: action.error
             }
         default:
