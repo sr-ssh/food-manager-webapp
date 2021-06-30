@@ -3,6 +3,13 @@
     margin-top: 50vh;
 }
 
+.form-page {
+    height: 100%;
+    min-height: 90vh;
+    background: var(--pages-background);
+    z-index: -1;
+}
+
 .form-input {
     border: none;
     outline: 0;

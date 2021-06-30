@@ -21,6 +21,8 @@
 body{
     font-family: 'IranSans';
     background-color: var(--body-bachground);
+    margin: 0;
+    padding: 0;
 }
 
 #triangle-up {

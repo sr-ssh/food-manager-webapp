@@ -44,7 +44,7 @@ export const Register = () => {
     }
 
     return (
-        <div className="order-page">
+        <div className="form-page">
             <div id="triangle-up"></div>
             <Container fluid className="p-0 d-flex flex-column">
                 {
