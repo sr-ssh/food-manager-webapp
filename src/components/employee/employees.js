@@ -44,10 +44,10 @@ export const Employees = () => {
                         <Card key={index} className="m-auto mt-3 bg-light productCard" >
                             <Card.Body className="pb-0 ps-1 rounded-3">
                                 <Card.Text className="pt-1">
-                                    <span style={{"color": "var(--text-color-one)"}}>نام : </span>{persianJs(item.family).englishNumber().toString()}
+                                    <span style={{"color": "var(--text-color-one)"}}>نام : </span>{item.family && persianJs(item.family).englishNumber().toString()}
                                 </Card.Text>
                                 <Card.Text className="pt-1">
-                                    <span style={{"color": "var(--text-color-one)"}}>شماره تماس : </span>{persianJs(item.mobile).englishNumber().toString()}
+                                    <span style={{"color": "var(--text-color-one)"}}>شماره تماس : </span>{item.mobile && persianJs(item.mobile).englishNumber().toString()}
                                 </Card.Text>
                                 <Card.Text className="pt-1">
                                     <span style={{"color": "var(--text-color-one)"}}>سطح دسترسی: </span>
