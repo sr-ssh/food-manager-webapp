@@ -10,7 +10,8 @@ export const EditEmployee = (props) => {
     const [validated, setValidated] = useState(false)
     const [newPermission, setNewPermission] = useState([])
     const dispatch = useDispatch()
-    let editEmployeeLoading = useSelector(state => state)
+    let editEmployeeLoading = useSelector(state => state.editEmployee.loading)
+    let alert = useSelector(state => state.alert)
 
     const handleChange = (e) => {
         if(e.target.type != "checkbox") {
@@ -59,6 +60,17 @@ export const EditEmployee = (props) => {
                         </Row>
                     </>
                 }
+                {
+                    alert.message && 
+                    <>
+                        <div className="modal-backdrop show"></div>
+                        <Row className="justify-content-center text-center ">
+                            <Alert variant={alert.type}>
+                                {alert.message}
+                            </Alert> 
+                        </Row>
+                    </>
+                }
                 <Row>
                     <Col>
                         <span className="ms-2">نام کارمند:</span>
@@ -71,7 +83,6 @@ export const EditEmployee = (props) => {
                         {props.show && persianJs(props.employee.mobile).englishNumber().toString()}
                     </Col>
                 </Row>
-                {console.log(editEmployeeLoading)}
                 <Form onSubmit={formHandler} noValidate validated={validated}>
                     {
                         props.show && props.employee.permission.map((item, index) => {
@@ -116,7 +127,7 @@ export const EditEmployee = (props) => {
                         })
                     }
                     {
-                        false ? (
+                        editEmployeeLoading ? (
                             <Button className="fw-bold order-submit border-0 w-100 mt-4" size="lg" type="submit"  disabled>
                                 <Spinner
                                 as="span"
