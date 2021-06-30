@@ -9,6 +9,8 @@ import logo from './../assets/images/crm.svg'
 import userLogo from './../assets/images/user.svg'
 import passwordLogo from './../assets/images/password.svg'
 import { Container, Button, Form, Row, Col, Image, Alert } from 'react-bootstrap';
+import persianJs from 'persianjs/persian.min';
+
 
 
 export const Login = () => {
@@ -23,7 +25,9 @@ export const Login = () => {
     const dispatch = useDispatch()
 
     const handleChange = (e) => {
-        const { id, value } = e.target;
+        let { id, value } = e.target;
+        if(id === "mobileOrEmail" && value)
+            value = persianJs(value).toEnglishNumber().toString();
         setInputs(inputs => ({ ...inputs, [id]: value }));
     }
 
