@@ -26,8 +26,9 @@ export const Products = () => {
     const editProductLoading = useSelector(state => state.editProduct.loading)
     
     useEffect(() => {
-        dispatch(productActions.getProducts())
-    }, [dispatch])
+        if(!editModalShow)
+            dispatch(productActions.getProducts())
+    }, [dispatch, editModalShow])
 
     return (
         <div className="product-page">
@@ -68,7 +69,6 @@ export const Products = () => {
                                     <span style={{"color": "var(--text-color-one)"}}>قیمت فروش : </span>{item.sellingPrice && persianJs(item.sellingPrice).englishNumber().toString()} تومان
                                 </Card.Text>
                                 <Card.Text className="pt-1">
-                                    <span style={{"color": "var(--text-color-one)"}}>تاریخ ویرایش : </span>{item.updatedAt && persianJs(moment.from(item.updatedAt, 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD')).englishNumber().toString()}
                                     <span style={{"color": "var(--text-color-one)"}}>تاریخ ویرایش : </span>{item.updatedAt && persianJs(moment.from(item.updatedAt, 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD')).englishNumber().toString()}
                                 </Card.Text>
                                 <Card.Text className="pt-1 ps-1">
