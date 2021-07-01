@@ -18,6 +18,7 @@ import { Orders } from './components/order/orders';
 import { Reminders } from './components/reminder/reminders';
 import { Discounts } from './components/discounts/discounts';
 import { Employees } from './components/employee/employees';
+import Bills from './components/finance/bills';
 
 function App() {
   return (    
@@ -31,6 +32,7 @@ function App() {
             <PrivateRoute path="/reminders" component={Reminders} ></PrivateRoute>
             <PrivateRoute path="/discounts" component={Discounts} ></PrivateRoute>
             <PrivateRoute path="/finance" component={Finance}></PrivateRoute>
+            <PrivateRoute path="/bills" component={Bills}></PrivateRoute>
             <PrivateRoute path="/dashboard" component={Dashboard} ></PrivateRoute>
             <PrivateRoute path="/order/add" component={AddOrder} ></PrivateRoute>
             <PrivateRoute path="/employees" component={Employees} ></PrivateRoute>

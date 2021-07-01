@@ -48,10 +48,11 @@ function getBills() {
         });
 }
 
-function addBill(name, cost) {
+function addBill(bill) {
     console.log("into financeService");
+
     return axios
-        .post(`${baseRoute}/finance/bill`, {requestOptions, name, cost})
+        .post(`${baseRoute}/finance/bill`, bill , {headers: requestOptions.headers})
         .then(res => {
             return res.data.data
         })

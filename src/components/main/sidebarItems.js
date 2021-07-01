@@ -57,10 +57,10 @@ export const SidebarItems = () => {
                     </Col>
                 }
                 {
-                /* permissions && permissions.find(per => per.no === 5 && per.status === true) &&
-                <Col xs={10} sm={10} md={10} lg={10} className="py-3 mx-3 fw-bold sidebarItem">
-                    <Link to="/finance">مالی</Link>
-                </Col>  */
+                    permissions && permissions.find(per => per.no === 5 && per.status === true) &&
+                    <Col xs={10} sm={10} md={10} lg={10} className="py-3 mx-3 fw-bold sidebarItem">
+                        <Link to="/finance">مالی</Link>
+                    </Col> 
                 }
                 {   
                     permissions && permissions.find(per => per.no === 6 && per.status === true) && 
