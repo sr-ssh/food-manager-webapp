@@ -15,12 +15,18 @@ function getFinanceSummary() {
         
         financeService.getFinanceSummary()
             .then(
-                summary => {
-                    console.log(summary)
-                    console.log("user into financeAction");
-                    dispatch(success(financeConstants.FINANCE_SUMMARY_SUCCESS, summary));
-                    console.log("got the finance summary")
-                    dispatch(alertActions.success('خلاصه گزارش مالی با موفقیت ارسال شد'));
+                res => {
+
+                    if(res === undefined)
+                        dispatch(alertActions.error('ارتباط با سرور برقرار نیست'));
+                    else if(res.success){
+                        console.log("user into financeAction");
+                        dispatch(success(financeConstants.FINANCE_SUMMARY_SUCCESS, res.data));
+                    }
+                        
+                    setTimeout(() => {
+                        dispatch(alertActions.clear());
+                    }, 1500);
                 },
                 error => {
                     dispatch(failure(financeConstants.FINANCE_SUMMARY_FAILURE, error.toString()));

@@ -3,11 +3,6 @@
     color: var(--button-color-two);
 }
 
-.discount-sms-deActive {
-    font-size: 19px;
-    color: var(---dager-color)
-}
-
 .add-discount .btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active, .show > .btn-primary.dropdown-toggle {
     color: var(--text-color-one);
     background-color: var(--body-bachground);

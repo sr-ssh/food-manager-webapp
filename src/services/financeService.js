@@ -22,7 +22,7 @@ function getFinanceSummary() {
         .get(`${baseRoute}/finance/summary`, requestOptions)
         .then(res => {
             console.log("res.finance >> "); console.log(res.data.data);
-            return res.data.data
+            return res.data
         })
         .catch(function (error) {
             if (error.response) {

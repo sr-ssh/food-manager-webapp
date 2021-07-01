@@ -3,7 +3,6 @@ import { Header } from '../base/employeeHeader'
 import { useDispatch, useSelector } from 'react-redux'
 import { employeeActions } from '../../actions/employeeActions'
 import { Row, Button, Container, Card, Col, Spinner } from 'react-bootstrap'
-import moment from 'jalali-moment';
 import persianJs from 'persianjs/persian.min';
 
 import { AddEmployee } from './addEmployee'

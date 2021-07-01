@@ -4,11 +4,14 @@ export function financeSummary(state = {}, action){
     
     switch (action.type) {
         case financeConstants.FINANCE_SUMMARY_REQUEST:
-            return{
-                loading: true
+            return {
+                ...state, 
+                loading: true,
             }
         case financeConstants.FINANCE_SUMMARY_SUCCESS:
-            return{
+            return {
+                ...state,
+                loading: false,
                 data: action.data
             }
         case financeConstants.FINANCE_SUMMARY_FAILURE:
@@ -24,11 +27,14 @@ export function bill(state = {}, action){
     
     switch (action.type) {
         case financeConstants.GET_BILLS_REQUEST:
-            return{
-                loading: true
+            return {
+                ...state, 
+                loading: true,
             }
         case financeConstants.GET_BILLS_SUCCESS:
-            return{
+            return {
+                ...state,
+                loading: false,
                 items: action.data
             }
         case financeConstants.GET_BILLS_FAILURE:
@@ -36,8 +42,9 @@ export function bill(state = {}, action){
             break;
 
         case financeConstants.ADD_BILLS_REQUEST:
-            return{
-                loading: true
+            return {
+                ...state, 
+                loading: true,
             }
         case financeConstants.ADD_BILLS_SUCCESS:
             return state;

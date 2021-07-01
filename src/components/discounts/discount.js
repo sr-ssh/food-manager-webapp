@@ -44,21 +44,20 @@ export const Discount = ({discount}) => {
                         </Row>
                         : null
                     }
-                    <Row className="mt-2 px-1">
-                        <Col>
-                            <Card.Text className={`fw-bold ${discount.sms ? 'discount-sms-active' : 'discount-sms-deActive'}`}>
-                            {
-                                discount.sms && <img src={tickIcon} height="25px" alt="tick-icon"/>
-                            }
-                                sms 
+                    <Row className="mt-1 px-1">
+                        {
+                            discount.sms && 
+                            <Col>
+                            <Card.Text className={`fw-bold ${discount.sms ? 'discount-sms-active' : null }`}>
+                                <img src={tickIcon} height="25px" alt="tick-icon"/>sms
                             </Card.Text>
-                        </Col>
-
+                            </Col>
+                        }
                         <Col className="d-flex justify-content-end mt-3">
                             <Card.Link>
-                                <img className="ms-1" src={editIcon} height="33px" />
+                                <img className="ms-1" src={editIcon} height="33px" alt="edit-icon"/>
                             </Card.Link>
-                            <img src={deleteIcon} height="27px" />
+                            <img src={deleteIcon} height="27px" alt="delete-icon"/>
                         </Col>
                     </Row>
                 </Row>

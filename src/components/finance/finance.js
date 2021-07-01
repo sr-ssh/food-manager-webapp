@@ -2,12 +2,16 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { financeActions } from '../../actions'
 import { Header } from '../base/header2';
-import { Container, Button, Col, Card , Row } from 'react-bootstrap';
+import { Container, Button, Col, Card , Row, Alert, Spinner } from 'react-bootstrap';
 import persianJs from 'persianjs/persian.min';
 import { history } from '../../helpers';
 
+
 export const Finance = () => {
 
+    let alertMessage = useSelector(state => state.alert.message)
+    let alerType = useSelector(state => state.alert.type)
+    let loading = useSelector(state => state.financeSummary.loading)
     let summary = useSelector(state => state.financeSummary.data)
     const dispatch = useDispatch()
 
@@ -20,6 +24,14 @@ export const Finance = () => {
         <div className="finance-page orders">
             <Header title="مالی" backLink="/dashboard" />
             <Container className="m-0 align-items-between d-flex flex-column finance-page-container">
+                {  
+                    loading &&
+                    <Row>
+                        <Col className="col-3 mt-2 m-auto ">
+                            <Spinner className="m-auto d-block" animation="border" />
+                        </Col>
+                    </Row>
+                }
                 {
                     summary 
                     ? <Card className="mx-2 mb-auto mt-3 bg-light productCard border-0 lh-lg pb-2" >
@@ -35,7 +47,7 @@ export const Finance = () => {
                                             </Col>
                                             <Col className="col-3 ms-0 text-start">
                                                 <Card.Text>
-                                                <span>{summary.income}</span>
+                                                <span>{summary.income  && persianJs(summary.income).englishNumber().toString()}</span>
                                                 </Card.Text>
                                             </Col>
                                         </Row>
@@ -79,6 +91,17 @@ export const Finance = () => {
                         </Button>
                     </Col>
                 </Row>
+                {
+                    alertMessage && 
+                    <>
+                    <div className="modal-backdrop show"></div>
+                        <Row className="justify-content-center text-center ">
+                            <Alert variant={alerType}>
+                                {alertMessage}
+                            </Alert> 
+                        </Row>
+                    </>
+                }
             </Container>
         </div>
         </>
