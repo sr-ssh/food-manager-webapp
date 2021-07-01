@@ -13,8 +13,6 @@ import editIcon from '../../assets/images/Products/edit.svg'
 
 export const Products = () => {
 
-    let alertMessage = useSelector(state => state.alert.message)
-    let alerType = useSelector(state => state.alert.type)
     
     const [addModalShow, setAddModalShow] = useState(false)
     const [editModalShow, setEditModalShow] = useState(false)
@@ -23,30 +21,18 @@ export const Products = () => {
     const products = useSelector(state => state.getProducts.product)
     const productLoading = useSelector(state => state.getProducts.loading)
     const addProductLoading = useSelector(state => state.addProduct.loading)
-    const editProductLoading = useSelector(state => state.editProduct.loading)
     
     useEffect(() => {
-        if(!editModalShow)
-            dispatch(productActions.getProducts())
-    }, [dispatch, editModalShow])
+            if(!editModalShow && !addModalShow)
+                dispatch(productActions.getProducts())
+    }, [dispatch, editModalShow, addModalShow])
 
     return (
         <div className="product-page">
             <Header title="محصولات" modalShow={addModalShow} setModalShow={setAddModalShow} />
             <Container className="m-auto">
                 {
-                alertMessage && 
-                <>
-                <div className="modal-backdrop show"></div>
-                    <Row className="justify-content-center text-center ">
-                        <Alert variant={alerType}>
-                            {alertMessage}
-                        </Alert> 
-                    </Row>
-                </>
-                }
-                {
-                (productLoading || addProductLoading || editProductLoading) &&
+                (productLoading) &&
                 <Row>
                     <Col className="col-3 mt-2 m-auto ">
                         <Spinner className="m-auto d-block" animation="border" />

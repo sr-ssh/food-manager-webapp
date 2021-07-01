@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { productActions } from '../../actions';
-import { Form , Button , Row , Col, Modal } from 'react-bootstrap';
+import { Form , Button , Row , Col, Modal, Spinner, Alert } from 'react-bootstrap';
 
 import closeIcon from '../../assets/images/close.svg'
 
 export const EditProduct = (props) => {
     const [newProduct, setnewProduct] = useState(props.product)
+    const editProductLoading = useSelector(state => state.editProduct.loading)
+    const alert = useSelector(state => state.alert)
     const dispatch = useDispatch()
 
     let handleChange = (e) => {
@@ -20,7 +22,6 @@ export const EditProduct = (props) => {
     let formHandler = (e) => {
         e.preventDefault()
         dispatch(productActions.editProduct(newProduct))
-        props.onHide(false)
     }
 
     useEffect(() => {
@@ -39,6 +40,17 @@ export const EditProduct = (props) => {
                 <Button className="border-0 customer-modal-close" type="button"  onClick={e => props.onHide(false)}>
                     <img className="d-flex m-auto customer-modal-close-svg" src={closeIcon} alt="close-btn" />
                 </Button>
+                {
+                    alert.message && 
+                    <>
+                        <div className="modal-backdrop show"></div>
+                        <Row className="justify-content-center text-center ">
+                            <Alert variant={alert.type}>
+                                {alert.message}
+                            </Alert> 
+                        </Row>
+                    </>
+                }
                 <Form onSubmit={formHandler} >
                     <Row className="my-3 mb-4 justify-content-center">
                         <Col className="ms-3">
@@ -78,7 +90,24 @@ export const EditProduct = (props) => {
                     </Row>
                     <Row>
                         <Col>
-                            <Button className="add-product-btn mt-4 w-100" type="submit">ثبت</Button>
+                            {
+                                editProductLoading ? (
+                                    <Button className="fw-bold order-submit border-0 w-100 mt-4" size="lg" type="submit"  disabled>
+                                        <Spinner
+                                        as="span"
+                                        animation="grow"
+                                        size="sm"
+                                        role="status"
+                                        aria-hidden="true"
+                                        />
+                                        در حال انجام عملیات...
+                                    </Button>
+                                ) : (
+                                    <Button className="fw-bold order-submit border-0 w-100 mt-4" size="lg" type="submit" block>
+                                        ویرایش کردن
+                                    </Button>
+                                )
+                            }
                         </Col>
                     </Row>
                 </Form>
