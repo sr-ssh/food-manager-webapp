@@ -1,0 +1,9 @@
+.main-button{
+    background-color: var(--button-color-one);
+    border: none;
+    border-radius: 11px;
+    font-size: 14px;
+    font-weight: bold;
+    /* height: 65px; */
+    font-family: 'IranSans';
+}

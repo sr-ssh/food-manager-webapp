@@ -6,6 +6,8 @@ import { history } from '../../helpers';
 // icons 
 import editIcon from '../../assets/images/discounts/edit.svg'
 import deleteIcon from '../../assets/images/discounts/deletee.svg'
+import tickIcon from '../../assets/images/tick.svg'
+
 
 export const Discount = ({discount}) => {
     return(
@@ -42,9 +44,12 @@ export const Discount = ({discount}) => {
                         </Row>
                         : null
                     }
-                    <Row className="mt-2">
+                    <Row className="mt-2 px-1">
                         <Col>
                             <Card.Text className={`fw-bold ${discount.sms ? 'discount-sms-active' : 'discount-sms-deActive'}`}>
+                            {
+                                discount.sms && <img src={tickIcon} height="25px" alt="tick-icon"/>
+                            }
                                 sms 
                             </Card.Text>
                         </Col>
