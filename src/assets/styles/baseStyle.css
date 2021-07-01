@@ -18,6 +18,7 @@
     src: url('./../font/ir_sans.ttf');  
 }
 
+
 body{
     font-family: 'IranSans';
     background-color: var(--body-bachground);
