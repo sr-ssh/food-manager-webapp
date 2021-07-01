@@ -10,6 +10,7 @@ import persianJs from 'persianjs/persian.min';
 
 // components
 import Bills from './bills'
+import { history } from '../../helpers';
 
 export const Finance = () => {
 
@@ -38,7 +39,7 @@ export const Finance = () => {
                                                     درآمد:
                                                 </Card.Text>
                                             </Col>
-                                            <Col className="col-3 ps-0 ms-0">
+                                            <Col className="col-3 ms-0 text-start">
                                                 <Card.Text>
                                                 <span>{summary.income}</span>
                                                 </Card.Text>
@@ -79,7 +80,7 @@ export const Finance = () => {
                 }
                 <Row className="m-0 mt-4 justify-content-center w-100">
                     <Col className="col-12">
-                        <Button className="fw-bold order-submit border-0 w-100" size="lg" type="submit" block>
+                        <Button className="fw-bold order-submit border-0 w-100" size="lg" type="submit" block onClick={() => history.push('/bills')}>
                            هزینه های جاری
                         </Button>
                     </Col>

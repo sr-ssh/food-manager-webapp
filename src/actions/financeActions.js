@@ -1,6 +1,7 @@
 import { financeConstants } from '../constants';
 import { financeService } from '../services';
 import { alertActions } from './alertActions';
+import { history } from '../helpers';
 
 export const financeActions = {
     getFinanceSummary,
@@ -54,17 +55,18 @@ function getBills() {
     };
 }
 
-function addBill() {
+function addBill(bill) {
     return dispatch => {
         dispatch(request(financeConstants.ADD_BILLS_REQUEST));
         
-        financeService.getFinanceSummary()
+        financeService.addBill(bill)
             .then(
                 data => {
                     console.log("user into financeAction");
                     dispatch(success(financeConstants.ADD_BILLS_SUCCESS, data));
                     console.log("added the bill")
                     dispatch(alertActions.success('هزینه وارد شده با موفقیت اضافه شد'));
+                    history.go(0)
                 },
                 error => {
                     dispatch(failure(financeConstants.ADD_BILLS_FAILURE, error.toString()));
