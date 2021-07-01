@@ -20,26 +20,34 @@ export const Login = () => {
     let loggingInLoading = useSelector(state => state.authentication.loading)
 
     const [validated, setValidated] = useState(false);
-    const [inputs, setInputs] = useState({ username: '', password: '' });
+    const [inputs, setInputs] = useState({  password: '' });
     const { mobileOrEmail, password } = inputs;
     const dispatch = useDispatch()
 
+    const usernameHandler = (value) => {
+        let res = value.length > 4
+        if(res)
+            return value
+        else
+            return false
+    }
     const handleChange = (e) => {
         let { id, value } = e.target;
-        if(id === "mobileOrEmail" && value)
+        if(id === "mobileOrEmail" && value) {
             value = persianJs(value).toEnglishNumber().toString();
+            value = usernameHandler(value)
+        }
+
         setInputs(inputs => ({ ...inputs, [id]: value }));
     }
 
     const formHandeler = e => {
         e.preventDefault();
-        const form = e.currentTarget;
-        if (form.checkValidity() === false) {
-            e.stopPropagation();
-        }
-        
-        setValidated(true);
-        mobileOrEmail && password && dispatch(userActions.login(mobileOrEmail, password));
+
+        if(mobileOrEmail && password)
+            dispatch(userActions.login(mobileOrEmail, password));
+        else
+            setValidated(true);
     }
 
     useEffect(() => {
@@ -68,13 +76,18 @@ export const Login = () => {
                 </Row>
                 <Row className="ms-0 loginForm">
                     <Col>
-                        <Form className="d-flex flex-column justify-content-center" noValidate validated={validated} onSubmit={formHandeler} >
+                        <Form className="d-flex flex-column justify-content-center" noValidate onSubmit={formHandeler} >
                             <Row className="w-100 me-2 pe-2 order-inputs ">
                                 <Col >
                                     <Form.Group controlId="mobileOrEmail" >
                                         <Image src={userLogo} width="17px" className="mx-2"/>
                                         <Form.Label>ایمیل / موبایل</Form.Label>
-                                        <Form.Control className="order-input login-input" type="text" onChange={handleChange}  required/>
+                                        <Form.Control className="order-input login-input" type="text" 
+                                        onChange={handleChange}
+                                        isValid= {inputs.mobileOrEmail != false && validated && true}
+                                        isInvalid= {!inputs.mobileOrEmail && validated && true}
+                                        required
+                                        />
                                     </Form.Group>
                                 </Col>
                             </Row>
@@ -84,7 +97,12 @@ export const Login = () => {
                                     <Form.Group controlId="password">
                                         <Image src={passwordLogo} width="17px" className="mx-2"/>
                                         <Form.Label>رمز عبور</Form.Label>
-                                        <Form.Control className="order-input login-input" type="password" onChange={handleChange}  required/>
+                                        <Form.Control className="order-input login-input" type="password" 
+                                        onChange={handleChange}  
+                                        required
+                                        isValid={inputs.password.length > 3 && validated && true}
+                                        isInvalid={inputs.password.length <= 3 && validated && true}
+                                        />
                                     </Form.Group>
                                 </Col>
                             </Row>

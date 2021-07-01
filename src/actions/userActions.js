@@ -89,10 +89,16 @@ function register(user) {
                         console.log("user registered")
                         dispatch(success(user));
                         dispatch(alertActions.success(user.message));
-                        history.push('/home');
+                        setTimeout(() => {
+                            history.push('/home');                            
+                        }, 1500);
+
                     }else if(user.success === false) {
                         dispatch(alertActions.error(user.message));
                         dispatch(failure(user.message))
+                    } else {
+                        dispatch(alertActions.error("مشکلی وجود دارد"));
+                        dispatch(failure("مشکلی وجود دارد"))
                     }
 
                     setTimeout(() => {

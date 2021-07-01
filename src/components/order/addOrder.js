@@ -78,7 +78,7 @@ export const AddOrder = () => {
                                 isValid={(customer.mobile && validated && true)} 
                                 onChange={handleChange} 
                                 required
-                            />
+                                />
                             </Form.Group>
                         </Col>
                         <Col className="col-4 align-self-end">

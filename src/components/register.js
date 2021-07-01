@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { userActions } from '../actions/userActions';
-import { Container, Button, Form, Row, Col, Image, Alert, Spinner } from 'react-bootstrap';
+import { Container, Button, Form, Row, Col, Image, Alert, Spinner, Tooltip, OverlayTrigger } from 'react-bootstrap';
 
 import logo from './../assets/images/crm.svg'
 import userLogo from './../assets/images/user.svg'
@@ -24,29 +24,57 @@ export const Register = () => {
     const dispatch = useDispatch()
     let registerLoading = useSelector(state => state.register.loading)
 
+    const mobileHandler = (value) => {
+        let res = value.length === 11 && value[0] === "0" && value[1] === "9"
+        if(res)
+            return value
+        else
+            return false
+    }
+
+    const emailHandler = (value) => {
+        let res = value.indexOf('@') > 2
+        if(res)
+            return value
+        else
+            return false
+    }
+
+    const passwordHandler = (value) => {
+        let res = value.length > 3 
+        if(res)
+            return value
+        else 
+            return false
+    }
+
     const handleChange = (e) => {
-        const { id, value } = e.target;
+        let { id, value } = e.target;
+        if(id === "email")
+            value = emailHandler(value)
+        if(id === "mobile")
+            value = mobileHandler(value)
+        if(id === "password")
+            value = passwordHandler(value)
+
         setInputs(inputs => ({ ...inputs, [id]: value }));
     }
 
-
     const formHandeler = e => {
         e.preventDefault();
-        const form = e.currentTarget;
-        if (form.checkValidity() === false) {
-            e.stopPropagation();
-        }
-
-        setValidated(true);
         let user = { name, family, company, password, email, mobile };
 
-        family && password && mobile && dispatch(userActions.register(user));     
+        if(email != false && family && password && mobile)
+            dispatch(userActions.register(user));
+        else 
+            setValidated(true);
     }
 
     return (
         <div className="form-page">
             <div id="triangle-up"></div>
             <Container fluid className="p-0 d-flex flex-column">
+                {console.log(inputs)}
                 {
                 alertMessage && 
                 <>
@@ -65,14 +93,19 @@ export const Register = () => {
                 </Row>
                 <Row className="ms-0 registerForm mt-0">
                     <Col>
-                        <Form className="d-flex flex-column justify-content-center" noValidate validated={validated} onSubmit={formHandeler}>
-                            
+                        <Form className="d-flex flex-column justify-content-center" noValidate onSubmit={formHandeler}>
                             <Row className="w-100 me-2 pe-2 order-inputs ">
                                 <Col >
                                     <Form.Group controlId="family" >
                                         <Image src={userLogo} width="17px" className="mx-2"/>
                                         <Form.Label>نام و نام خانوادگی</Form.Label>
-                                        <Form.Control className="order-input login-input" type="text" onChange={handleChange} required />
+                                        <Form.Control className="order-input login-input" type="text" 
+                                        onChange={handleChange} 
+                                        isValid={inputs.family && validated && true}
+                                        isInvalid={!inputs.family && validated && true}
+                                        required 
+                                        />
+                                    <Form.Control.Feedback className="me-2" type="invalid">نام و نام خانوادگی خود را وارد کنید!</Form.Control.Feedback>
                                     </Form.Group>
                                 </Col>
                             </Row>
@@ -82,7 +115,12 @@ export const Register = () => {
                                     <Form.Group controlId="mobile" >
                                         <Image src={mobileLogo} width="17px" className="mx-2"/>
                                         <Form.Label>موبایل</Form.Label>
-                                        <Form.Control className="order-input login-input" type="number" onChange={handleChange}  required/>
+                                        <Form.Control className="order-input login-input" type="number" 
+                                        onChange={handleChange}  
+                                        isValid={inputs.mobile && inputs.mobile != false && validated && true}
+                                        isInvalid={!inputs.mobile && validated && true}
+                                        required/>
+                                    <Form.Control.Feedback className="me-2" type="invalid">شماره موبایل صحیح نیست!</Form.Control.Feedback>
                                     </Form.Group>
                                 </Col>
                             </Row>
@@ -92,8 +130,12 @@ export const Register = () => {
                                     <Form.Group controlId="email">
                                         <Image src={emailLogo} width="17px" className="mx-2"/>
                                         <Form.Label>ایمیل</Form.Label>
-                                        <Form.Control className="order-input login-input" type="email" onChange={handleChange} />
-                                        <Form.Control.Feedback className="me-2">ایمیل اجباری نمیباشد!</Form.Control.Feedback>
+                                        <Form.Control className="order-input login-input" type="email" 
+                                        isValid={inputs.email && inputs.email != false && validated && true}
+                                        isInvalid={inputs.email === false && validated && true} 
+                                        onChange={handleChange} 
+                                        />
+                                        <Form.Control.Feedback className="me-2" type="invalid">ایمیل بدرستی وارد نشده است!</Form.Control.Feedback>
                                     </Form.Group>
                                 </Col>
                             </Row>
@@ -103,8 +145,10 @@ export const Register = () => {
                                     <Form.Group controlId="company" >
                                         <Image src={companyLogo} width="17px" className="mx-2"/>
                                         <Form.Label>نام شرکت</Form.Label>
-                                        <Form.Control className="order-input login-input" type="text" onChange={handleChange} />
-                                        <Form.Control.Feedback className="me-2">نام شرکت اجباری نمیباشد!</Form.Control.Feedback>
+                                        <Form.Control className="order-input login-input" type="text" 
+                                        isValid={inputs.company && validated && true}
+                                        onChange={handleChange}
+                                        />
                                     </Form.Group>
                                 </Col>
                             </Row>
@@ -114,11 +158,16 @@ export const Register = () => {
                                     <Form.Group controlId="password" >
                                         <Image src={passwordLogo} width="17px" className="mx-2"/>
                                         <Form.Label>رمز عبور</Form.Label>
-                                        <Form.Control className="order-input login-input" type="password" onChange={handleChange}  required/>
+                                        <Form.Control className="order-input login-input" type="password" 
+                                        isValid={inputs.password && inputs.password != false && validated && true}
+                                        isInvalid = {!inputs.password && validated && true}
+                                        onChange={handleChange}  
+                                        required
+                                        />
+                                        <Form.Control.Feedback className="me-2" type="invalid">رمز عبور طولانی تری انتخاب کنید!</Form.Control.Feedback>
                                     </Form.Group>
                                 </Col>
                             </Row>
-
                             <Row className="w-100 me-0">
                                 <Col className="mt-4 register-link">
                                     <a href="/">قبلا ثبت نام شده اید؟</a>
