@@ -15,6 +15,8 @@ import './assets/styles/dashboardStyle.css';
 import './assets/styles/reminderStyle.css';
 import './assets/styles/discountsStyle.css';
 import './assets/styles/mainStyle.css';
+import './assets/styles/financeStyle.css';
+
 
 
 ReactDOM.render(

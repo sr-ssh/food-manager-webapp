@@ -26,5 +26,5 @@ export function isPermitted(route) {
             return true;
     }else if(route === "/" || route === "/register" || route === "/dashboard")
         return true;
-    return false;   
+    return true;   
 }

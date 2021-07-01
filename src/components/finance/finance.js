@@ -1,6 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { useEffect , useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { financeActions } from '../../actions'
+import { Header } from '../base/header2';
+import { Container, Button, Col } from 'react-bootstrap';
+import { Card , Row } from 'react-bootstrap';
+import persianJs from 'persianjs/persian.min';
+
+
 
 // components
 import Bills from './bills'
@@ -16,14 +22,70 @@ export const Finance = () => {
 
     return(
         <>
-        {/* <p>درآمد: {income}</p> */}
-        {
-            summary 
-            ? <><p>درآمد: {summary.income}</p><p>مخارج: {summary.outcome}</p></>
-            : null
-        }
-        <Bills/>
-        <p>مجموع هزینه ها: </p>
+        <div className="finance-page orders">
+            <Header title="مالی" backLink="/dashboard" />
+            <Container className="m-0 align-items-between d-flex flex-column finance-page-container">
+                {
+                    summary 
+                    ? <Card className="mx-2 mb-auto mt-3 bg-light productCard border-0 lh-lg pb-2" >
+                        <Card.Body className="pb-0 ps-0 text-gray">
+                            <Row className="p-0 ps-3 m-0">
+                                <Card className="background-blue border-0 customer-round">
+                                    <Card.Body className="py-2 px-0">
+                                        <Row>
+                                            <Col>
+                                                <Card.Text>
+                                                    درآمد:
+                                                </Card.Text>
+                                            </Col>
+                                            <Col className="col-3 ps-0 ms-0">
+                                                <Card.Text>
+                                                <span>{summary.income}</span>
+                                                </Card.Text>
+                                            </Col>
+                                        </Row>
+                                    </Card.Body>
+                                </Card>
+                            </Row>
+                            <Row className="pe-2">
+                                <Row className="mt-2">
+                                    <Col>
+                                        <Card.Text>
+                                            هزینه جاری:
+                                        </Card.Text>
+                                    </Col>
+                                    <Col dir="ltr">
+                                        <Card.Text>
+                                            <span>{summary.bills && persianJs(summary.bills).englishNumber().toString()}</span>
+                                        </Card.Text>
+                                    </Col>
+                                </Row>
+                                <Row className="mt-2">
+                                    <Col>
+                                        <Card.Text>
+                                            سود:
+                                        </Card.Text>
+                                    </Col>
+                                    <Col dir="ltr">
+                                        <Card.Text>
+                                            <span>{(summary.income - summary.bills) && persianJs(summary.income - summary.bills).englishNumber().toString()}</span>
+                                        </Card.Text>
+                                    </Col>
+                                </Row>
+                            </Row>
+                        </Card.Body>
+                    </Card>
+                    : null
+                }
+                <Row className="m-0 mt-4 justify-content-center w-100">
+                    <Col className="col-12">
+                        <Button className="fw-bold order-submit border-0 w-100" size="lg" type="submit" block>
+                           هزینه های جاری
+                        </Button>
+                    </Col>
+                </Row>
+            </Container>
+        </div>
         </>
     )
 }
