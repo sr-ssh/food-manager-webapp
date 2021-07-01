@@ -10,6 +10,8 @@ import mobileLogo from './../assets/images/phone.svg'
 import emailLogo from './../assets/images/emaill.svg'
 import companyLogo from './../assets/images/company-name.svg'
 import passwordLogo from './../assets/images/password.svg'
+import notSeenIcon from '../assets/images/Not-seen.svg'
+import beSeenIcon from '../assets/images/be-seen.svg'
 import persianJs from 'persianjs/persian.min';
 
 
@@ -18,6 +20,7 @@ export const Register = () => {
     let alertMessage = useSelector(state => state.alert.message)
     let alerType = useSelector(state => state.alert.type)
     
+    const [showPassword, setShowPassword] = useState(false)
     const [validated, setValidated] = useState(false);
     const [inputs, setInputs] = useState({ username: '', password: '' });
     const { name, family, password, email, mobile, company} = inputs;
@@ -155,10 +158,11 @@ export const Register = () => {
 
                             <Row className="w-100 me-2 pe-2 order-inputs mt-2">
                                 <Col >
-                                    <Form.Group controlId="password" >
+                                    <Form.Group className="inputWithButton login-input" controlId="password" >
                                         <Image src={passwordLogo} width="17px" className="mx-2"/>
                                         <Form.Label>رمز عبور</Form.Label>
-                                        <Form.Control className="order-input login-input" type="password" 
+                                        <img src={showPassword ? beSeenIcon : notSeenIcon} onClick={(e) => setShowPassword(!showPassword)} height="25px" className="eye-button" />
+                                        <Form.Control className="w-100 eye-input order-input login-input" type={`${showPassword ? "text" : "password"}`}  
                                         isValid={inputs.password && inputs.password != false && validated && true}
                                         isInvalid = {!inputs.password && validated && true}
                                         onChange={handleChange}  

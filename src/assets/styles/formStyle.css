@@ -54,6 +54,21 @@
     left: 5px;
 }
 
+.inputWithButton {
+    position: relative;
+}
+
+.eye-input {
+    width: 100%;
+    padding-left: 35px;
+}
+
+.eye-button {   
+  position: absolute;
+  left: 7px;
+  top : 30px;
+}
+
 .form-icon{
     position: relative;
     top: 13px;

@@ -11,7 +11,8 @@ import passwordLogo from './../assets/images/password.svg'
 import { Container, Button, Form, Row, Col, Image, Alert } from 'react-bootstrap';
 import persianJs from 'persianjs/persian.min';
 
-
+import notSeenIcon from '../assets/images/Not-seen.svg'
+import beSeenIcon from '../assets/images/be-seen.svg'
 
 export const Login = () => {
 
@@ -19,6 +20,7 @@ export const Login = () => {
     let alerType = useSelector(state => state.alert.type)
     let loggingInLoading = useSelector(state => state.authentication.loading)
 
+    const [showPassword, setShowPassword] = useState(false)
     const [validated, setValidated] = useState(false);
     const [inputs, setInputs] = useState({  password: '' });
     const { mobileOrEmail, password } = inputs;
@@ -94,15 +96,17 @@ export const Login = () => {
 
                             <Row className="w-100 me-2 mt-4 pe-2 order-inputs ">
                                 <Col>
-                                    <Form.Group controlId="password">
+                                    <Form.Group className="inputWithButton login-input" controlId="password">
                                         <Image src={passwordLogo} width="17px" className="mx-2"/>
-                                        <Form.Label>رمز عبور</Form.Label>
-                                        <Form.Control className="order-input login-input" type="password" 
+                                        <Form.Label className="">رمز عبور</Form.Label>
+                                        <img src={showPassword ? beSeenIcon : notSeenIcon} onClick={(e) => setShowPassword(!showPassword)} height="25px" className="eye-button" />
+                                        <Form.Control className="order-input eye-input" type={`${showPassword ? "text" : "password"}`} 
                                         onChange={handleChange}  
                                         required
                                         isValid={inputs.password.length > 3 && validated && true}
                                         isInvalid={inputs.password.length <= 3 && validated && true}
-                                        />
+                                    />
+                                        
                                     </Form.Group>
                                 </Col>
                             </Row>
