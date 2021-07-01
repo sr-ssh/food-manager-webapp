@@ -109,7 +109,7 @@ export const AddOrder = () => {
                                     className="rmdp-mobile" 
                                     calendar="persian" 
                                     locale="fa" 
-                                    value={customer.birthday ? moment(customer.birthday, 'YYYY-MM-DD').locale('fa').format('YYYY/MM/DD') : null}
+                                    value={customer.birthday !== "1900-01-01T05:42:13.845Z" && customer.birthday ? moment(customer.birthday, 'YYYY-MM-DD').locale('fa').format('YYYY/MM/DD') : null}
                                     calendarPosition="auto-right" 
                                     editable={false} 
                                     animation
@@ -132,7 +132,6 @@ export const AddOrder = () => {
                                 <Col className="p-0 mt-3 col-3 order-inputs">
                                     <Form.Label className="pe-1">تاریخ یادآوری</Form.Label>
                                     <Form.Control className="text-center order-input" type="number" name="reminder" min="0" onChange={handleChange} isInvalid={false} isValid={false} />
-                                    
                                 </Col>
                                 <Col className="align-self-end mt-3 col-2">
                                     <span className="reminder-span" >روز دیگر</span>

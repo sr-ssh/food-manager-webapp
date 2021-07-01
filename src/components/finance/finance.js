@@ -1,15 +1,9 @@
-import React, { useEffect , useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { financeActions } from '../../actions'
 import { Header } from '../base/header2';
-import { Container, Button, Col } from 'react-bootstrap';
-import { Card , Row } from 'react-bootstrap';
+import { Container, Button, Col, Card , Row } from 'react-bootstrap';
 import persianJs from 'persianjs/persian.min';
-
-
-
-// components
-import Bills from './bills'
 import { history } from '../../helpers';
 
 export const Finance = () => {
