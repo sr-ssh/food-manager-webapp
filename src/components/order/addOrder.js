@@ -42,7 +42,6 @@ export const AddOrder = () => {
 
         if(name === "mobile" && value.length > 2) {
             dispatch(customerActions.getCustomer(value))
-            setValidated(false)
         }
 
         setCustomer({...customer, [name]: value})
@@ -50,10 +49,11 @@ export const AddOrder = () => {
 
     let formHandler = (e) => {
         e.preventDefault()
-        if(order.length) {
+        if(order.length && customer.family && customer.mobile) {
             dispatch(orderActions.addOrder(order, customer))
         } else {
             console.log('empty order can not be sent')
+            setValidated(true);
         }
     }
 
@@ -73,7 +73,12 @@ export const AddOrder = () => {
                         <Col className="p-0 col-5 orderInput">
                             <Form.Group >
                                 <Form.Label className="pe-2">موبایل</Form.Label>
-                                <Form.Control className="order-input" type="number" name="mobile" isInvalid={validated} onChange={handleChange} required/>
+                                <Form.Control className="order-input" type="number" name="mobile" 
+                                isInvalid={(!customer.mobile && validated && true)} 
+                                isValid={(customer.mobile && validated && true)} 
+                                onChange={handleChange} 
+                                required
+                            />
                             </Form.Group>
                         </Col>
                         <Col className="col-4 align-self-end">
@@ -84,7 +89,13 @@ export const AddOrder = () => {
                         <Col className="p-0 col-5 orderInput">
                             <Form.Group >
                                 <Form.Label className="pe-2">نام</Form.Label>
-                                <Form.Control className="order-input" type="text" name="family" onChange={handleChange} value={customer.family} required/>
+                                <Form.Control className="order-input" type="text" name="family" 
+                                onChange={handleChange} 
+                                isInvalid={!customer.family && validated && true} 
+                                isValid={customer.family && validated && true} 
+                                value={customer.family} 
+                                required
+                            />
                             </Form.Group>
                         </Col> 
                         <Col className="p-0 col-5 me-auto orderInput">
@@ -104,7 +115,6 @@ export const AddOrder = () => {
                                     animation
                                     maxDate={new Date()}
                                     onChange={value => submitCalendar(value, 'birthday')}
-                                    required
                                 />
                             </Form.Group>
                         </Col>
@@ -120,11 +130,12 @@ export const AddOrder = () => {
                         <Form.Group controlId="reminder">
                             <Row>
                                 <Col className="p-0 mt-3 col-3 order-inputs">
-                                    <Form.Label>تاریخ یادآوری</Form.Label>
-                                    <Form.Control className="text-center order-input" type="number" name="reminder" min="0" onChange={handleChange}/>
+                                    <Form.Label className="pe-1">تاریخ یادآوری</Form.Label>
+                                    <Form.Control className="text-center order-input" type="number" name="reminder" min="0" onChange={handleChange} isInvalid={false} isValid={false} />
+                                    
                                 </Col>
-                                <Col className="align-self-end p-2">
-                                    <span className="mt-2 reminder-span" >روز دیگر</span>
+                                <Col className="align-self-end mt-3 col-2">
+                                    <span className="reminder-span" >روز دیگر</span>
                                 </Col>
                             </Row>
                         </Form.Group>
