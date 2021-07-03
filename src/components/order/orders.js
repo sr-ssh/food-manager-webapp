@@ -95,6 +95,13 @@ export const Orders = () => {
                                                     </Card.Text>
                                                 </Col>
                                             </Row>
+                                            <Row className="flex-nowrap mt-2">
+                                                <Col>
+                                                    <Card.Text>
+                                                        ثبت کننده: <span>{order.employee.family && order.employee.family}</span>
+                                                    </Card.Text>
+                                                </Col>
+                                            </Row>
                                         </Card.Body>
                                     </Card>
                                 </Row>
