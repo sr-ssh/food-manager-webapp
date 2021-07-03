@@ -28,7 +28,8 @@ export const Dashboard = () => {
     const dispatch = useDispatch()
 
     useEffect(() => {
-
+        let permissions = JSON.parse(localStorage.getItem('permissions'));
+        console.log("perrrrrrrrrrrrrrrrrrrrrrrrrrrr")
         if (!(permissions && permissions.length)) 
             dispatch(employeeActions.getPermissions())
             
