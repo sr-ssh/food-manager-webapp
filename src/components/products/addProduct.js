@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { productActions } from '../../actions';
 import { Form , Button , Row , Col, Modal, Spinner, Alert } from 'react-bootstrap';
 
+
 import closeIcon from '../../assets/images/close.svg'
 
 
@@ -20,7 +21,6 @@ export const AddProduct = (props) => {
     let formHandler = (e) => {
         e.preventDefault()
         dispatch(productActions.addProduct(product))
-        
     }
 
     useEffect(() => {

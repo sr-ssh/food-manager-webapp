@@ -56,8 +56,12 @@ function addProduct(product) {
                         dispatch(success(productConstants.ADD_PRODUCT_SUCCESS, product));
                         dispatch(alertActions.success(res.message));
                         //history.go(0)
-                    } else if (res.success === false)
-                        dispatch(alertActions.error(res.data.message));
+                        
+                    } else if (res.success === false){
+                        dispatch(success(productConstants.ADD_PRODUCT_SUCCESS, product));
+                        dispatch(alertActions.error(res.message));
+                    }
+
 
                     setTimeout(() => {
                         dispatch(alertActions.clear());
