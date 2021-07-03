@@ -13,7 +13,7 @@ import customerIcon from '../../assets/images/main/customer.svg'
 import ordersIcon from '../../assets/images/main/orders.svg'
 import addOrderIcon from '../../assets/images/main/add-order.svg'
 import { history } from '../../helpers';
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { employeeActions } from '../../actions/employeeActions'
 
 
@@ -24,12 +24,11 @@ import { employeeActions } from '../../actions/employeeActions'
 export const Dashboard = () => {
     const [isOpen, setIsOpen] = useState(false)
 
-    let permissions = JSON.parse(localStorage.getItem('permissions'));
+    let permissions = useSelector(state => state.getPermissions.permissions);
+
     const dispatch = useDispatch()
 
     useEffect(() => {
-        let permissions = JSON.parse(localStorage.getItem('permissions'));
-        console.log("perrrrrrrrrrrrrrrrrrrrrrrrrrrr")
         if (!(permissions && permissions.length)) 
             dispatch(employeeActions.getPermissions())
             

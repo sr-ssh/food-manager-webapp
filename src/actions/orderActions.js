@@ -44,8 +44,10 @@ function addOrder(products, customer) {
                 res => {
                     
                     console.log(res)
-                    if(res === undefined)
+                    if(res === undefined) {
                         dispatch(alertActions.error('ارتباط با سرور برقرار نیست'));
+                        
+                    }
                     else if(res.success){
                         console.log("order added")
                         dispatch(success(products, customer));
