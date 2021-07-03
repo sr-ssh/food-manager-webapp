@@ -292,3 +292,10 @@
 .eVqaMu {
     display: none;
 }
+
+
+@media print {
+    .noPrint{
+      display:none;
+    }
+}
