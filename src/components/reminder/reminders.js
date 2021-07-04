@@ -93,7 +93,7 @@ export const Reminders = () => {
                                         <thead>
                                             <tr>
                                                 <th>سفارش</th>
-                                                <th>قیمت</th>
+                                                <th>قیمت (تومان)</th>
                                                 <th>تعداد</th>
                                                 <th></th>
                                             </tr>
@@ -105,7 +105,7 @@ export const Reminders = () => {
                                                         return (
                                                             <tr key={item.name}>
                                                                 <td>{item.name && persianJs(item.name).englishNumber().toString()}</td>
-                                                                <td>{(item.quantity * item.sellingPrice) && persianJs(item.quantity * item.sellingPrice).englishNumber().toString()} تومان</td>
+                                                                <td>{(item.quantity * item.sellingPrice) && persianJs(item.quantity * item.sellingPrice).englishNumber().toString()} </td>
                                                                 <td>{item.quantity && persianJs(item.quantity).englishNumber().toString()}</td>
                                                             </tr>
                                                         )
@@ -115,7 +115,7 @@ export const Reminders = () => {
                                         }
                                         <tr className="border-top-blue">
                                             <td>جمع کل:</td>
-                                            <td className="fs-6">{(getTotalPrice(reminder.order.products)) && persianJs(getTotalPrice(reminder.order.products)).englishNumber().toString()} تومان</td>
+                                            <td className="fs-6">{(getTotalPrice(reminder.order.products)) && persianJs(getTotalPrice(reminder.order.products)).englishNumber().toString()} </td>
                                             <td></td>
                                             <td></td>
                                         </tr>

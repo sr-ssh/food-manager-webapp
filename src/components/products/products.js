@@ -52,7 +52,7 @@ export const Products = () => {
                                     <span style={{"color": "var(--text-color-one)"}}>نام : </span>{item.name && persianJs(item.name).englishNumber().toString()}
                                 </Card.Text>
                                 <Card.Text className="pt-1">
-                                    <span style={{"color": "var(--text-color-one)"}}>قیمت فروش : </span>{item.sellingPrice && persianJs(item.sellingPrice).englishNumber().toString()} تومان
+                                    <span style={{"color": "var(--text-color-one)"}}>قیمت فروش : </span>{item.sellingPrice && persianJs(item.sellingPrice).englishNumber().toString()} 
                                 </Card.Text>
                                 <Card.Text className="pt-1">
                                     <span style={{"color": "var(--text-color-one)"}}>تاریخ ویرایش : </span>{item.updatedAt && persianJs(moment.from(item.updatedAt, 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD')).englishNumber().toString()}
