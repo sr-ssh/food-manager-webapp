@@ -40,7 +40,7 @@ export const AddOrder = () => {
         e.preventDefault()
         let value = e.target.value
         let name = e.target.name
-
+        console.log(customer)
         if(name === "mobile" && value.length === 11 && value[0] === "0" && value[1] === "9") {
             dispatch(customerActions.getCustomer(value))
             setMobileValidated(false)
@@ -122,6 +122,32 @@ export const AddOrder = () => {
                                 />
                             </Form.Group>
                         </Col>
+                    </Row>
+                    <Row className="m-0 p-0 mt-2 order-inputs">
+                        <Col className="p-0 col-5 orderInput">
+                            <Form.Group >
+                                <Form.Label className="pe-2">آدرس</Form.Label>
+                                <Form.Control className="order-input" type="text" name="address" 
+                                onChange={handleChange} 
+                                isInvalid={!customer.address && validated && true} 
+                                isValid={customer.address && validated && true} 
+                                value={customer.address} 
+                                required
+                            />
+                            </Form.Group>
+                        </Col> 
+                        <Col className="p-0 col-5 orderInput me-3">
+                            <Form.Group >
+                                <Form.Label className="pe-3"> آماده سازی:</Form.Label>
+                                <Form.Control className="order-input me-2" type="number" min="0" name="duration" 
+                                onChange={handleChange} 
+                                isInvalid={!customer.duration && validated && true} 
+                                isValid={customer.duration && validated && true} 
+                                value={customer.duration} 
+                                required
+                            />
+                            </Form.Group>
+                        </Col> 
                     </Row>
 
                     <Row className="m-0 mt-4 basketContainer">

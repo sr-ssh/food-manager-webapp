@@ -82,7 +82,7 @@ function addOrder(products, customer) {
                     console.log(res)
                     if(res === undefined) {
                         dispatch(alertActions.error('ارتباط با سرور برقرار نیست'));
-                        
+                        dispatch(failure('ارتباط با سرور برقرار نیست'))
                     }
                     else if(res.success){
                         console.log("order added")
@@ -93,8 +93,10 @@ function addOrder(products, customer) {
                             history.go(0)
                         }, 1500);
                         
-                    }else if(res.success === false)
+                    }else if(res.success === false) {
                         dispatch(alertActions.error(ResizeObserver.message));
+                        dispatch(failure(ResizeObserver.message))
+                    }
                         
                     setTimeout(() => {
                         dispatch(alertActions.clear());
