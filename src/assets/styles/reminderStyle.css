@@ -6,3 +6,11 @@
     position: relative;
     top: -3vh;
 }
+
+.delivery-sms-button {
+    border-radius: 11px;
+    font-size: 1.1rem;
+    width: 45%;
+    position: relative;
+    top: -3vh;
+}

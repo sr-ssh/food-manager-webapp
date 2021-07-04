@@ -3,7 +3,7 @@ import moment from 'jalali-moment';
 import { Card , Table , Row , Col, Spinner, Button } from 'react-bootstrap';
 import persianJs from 'persianjs/persian.min';
 
-export const Order = ({order}) => {
+export const Order = ({order, deliveryShow, setDeliveryShow}) => {
 
     let [ print, setPrint ] = useState(false)
     
@@ -107,9 +107,12 @@ export const Order = ({order}) => {
                         </tbody>
                     </Table>
                 </Row>
-                <Row className="px-2 text-start ">
+                <Row className="px-2 mt-3 text-start ">
                     <Col>
-                        <Button className="btn-success reminder-sms-button py-1 border-0 noPrint" type="button"  onClick={() => printWindow()}>
+                        <Button className="btn-primary delivery-sms-button py-1 border-0 noPrint" type="button"  onClick={() => setDeliveryShow(true)}>
+                            ارسال به دلیوری
+                        </Button>
+                        <Button className="btn-success me-3 reminder-sms-button py-1 border-0 noPrint" type="button"  onClick={() => printWindow()}>
                             پرینت
                         </Button>
                     </Col>

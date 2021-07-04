@@ -83,7 +83,7 @@ export const Dashboard = () => {
                                 <Col xs={9} className="">
                                     <Button className="main-button w-100 me-auto d-block p-3" type="submit" onClick={e => history.push('/orders')}>
                                         <img className="ms-4" src={ordersIcon} alt="add-order-icon" width="35px"/>
-                                        سفارشات
+                                        سفارش ها
                                     </Button>
                                 </Col>
                             </Row>

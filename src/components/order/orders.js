@@ -6,12 +6,14 @@ import { orderActions } from '../../actions';
 import { Header } from '../base/serachHeader';
 import { OrderSearch } from './search'
 import { Order } from './order';
+import { Delivery } from './delivery'
 
 export const Orders = () => {
 
     let alertMessage = useSelector(state => state.alert.message)
     let alerType = useSelector(state => state.alert.type)
     const [modalShow, setModalShow] = useState(false)
+    const [deliveryShow, setDeliveryShow] = useState(false)
     const dispatch = useDispatch()
     const orders = useSelector(state => state.getOrders.orders)
     let orderLoading = useSelector(state => state.getOrders.loading)
@@ -54,11 +56,12 @@ export const Orders = () => {
                     ) : null 
                 }
                 {(orders.length > 0) ? 
-                    (orders.map((order, index) => <Order key={index} order={order}/>))    
+                    (orders.map((order, index) => <Order key={index} order={order} deliveryShow={deliveryShow} setDeliveryShow={setDeliveryShow} />))    
                     
                     : null}
                 
                 <OrderSearch show={modalShow} onHide={() => setModalShow(false)} />        
+                <Delivery show={deliveryShow} onHide={() => setDeliveryShow(false)} />        
             </Container>
         </div>
     )
