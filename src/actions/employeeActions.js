@@ -151,7 +151,7 @@ function getPermissions() {
                         dispatch(alertActions.error('ارتباط با سرور برقرار نیست'));
                     else if(res.success){
                         console.log("permissions received")
-                        dispatch(success(employeeConstants.GET_PERMISSIONS_SUCCESS, res.data));
+                        dispatch(success(employeeConstants.GET_PERMISSIONS_SUCCESS, res.data.permission));
                     }
                         
                     setTimeout(() => {

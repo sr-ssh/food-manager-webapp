@@ -113,8 +113,8 @@ export const Basket = ({order, insertOrder}) => {
                         </Col>
                     </Row>
                 
-                    <Row className="pt-2 px-2">
-                    <div className="table-wrapper-scroll-y my-custom-scrollbar">
+                    <Row className="pt-2 pe-2">
+                    <div className="table-wrapper-scroll-y my-custom-scrollbar px-1">
                         <Table className="lh-lg" borderless size="sm">
                             <thead>
                                 <tr>

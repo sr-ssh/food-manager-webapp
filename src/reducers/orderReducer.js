@@ -42,7 +42,8 @@ export function addOrder(state = initialState, action) {
             }
         case orderConstants.ADD_ORDER_FAILURE:
             return {
-                err: action.err
+                err: action.err,
+                loading: false
             }
         default:
             return state

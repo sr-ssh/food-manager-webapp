@@ -16,6 +16,7 @@ export const AddOrder = () => {
     let alerType = useSelector(state => state.alert.type)
     
     const [validated, setValidated] = useState(false);
+    const [mobileValidated, setMobileValidated] = useState(false);
     const [order, insertOrder] = useState([])
     const [customer, setCustomer] = useState({})
     const dispatch = useDispatch()
@@ -28,10 +29,10 @@ export const AddOrder = () => {
         
         if(oldCustomer && Object.keys(oldCustomer).length !== 0) {
             setCustomer(oldCustomer)
-            setValidated(false)
+            setMobileValidated(false);
         }
-        else {
-            setValidated(true);
+        else if(!customer.name && !customer.length) {
+            setMobileValidated(true);
         }
     }
 
@@ -40,8 +41,11 @@ export const AddOrder = () => {
         let value = e.target.value
         let name = e.target.name
 
-        if(name === "mobile" && value.length > 2) {
+        if(name === "mobile" && value.length === 11 && value[0] === "0" && value[1] === "9") {
             dispatch(customerActions.getCustomer(value))
+            setMobileValidated(false)
+        } else if (name === "mobile") {
+            return
         }
 
         setCustomer({...customer, [name]: value})
@@ -74,8 +78,8 @@ export const AddOrder = () => {
                             <Form.Group >
                                 <Form.Label className="pe-2">موبایل</Form.Label>
                                 <Form.Control className="order-input" type="number" name="mobile" 
-                                isInvalid={(!customer.mobile && validated && true)} 
-                                isValid={(customer.mobile && validated && true)} 
+                                isInvalid={((!customer.mobile && validated) || (mobileValidated) && true) } 
+                                isValid={((customer.mobile && validated) || (mobileValidated && customer.mobile) && true)} 
                                 onChange={handleChange} 
                                 required
                                 />
