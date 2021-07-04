@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { productActions } from '../../actions';
 import { Form , Button , Row , Col, Modal, Spinner, Alert } from 'react-bootstrap';
+import persianJs from 'persianjs/persian.min';
 
 import closeIcon from '../../assets/images/close.svg'
 
@@ -12,11 +13,14 @@ export const EditProduct = (props) => {
     const dispatch = useDispatch()
 
     let handleChange = (e) => {
-        if(e.target.id === 'active1')
+        let { id, value } = e.target;
+        if(id === 'sellingPrice' && value.length)
+            value = persianJs(value).toEnglishNumber().toString();
+        if(id === 'active1')
             setnewProduct({...newProduct, active: true})
-        else if (e.target.id === 'active0')
+        else if (id === 'active0')
             setnewProduct({...newProduct, active: false})
-        else setnewProduct({...newProduct, [e.target.id]: e.target.value})
+        else setnewProduct({...newProduct, [id]: value})
     }
 
     let formHandler = (e) => {
