@@ -14,3 +14,11 @@
     position: relative;
     top: -3vh;
 }
+
+.cancel-order-btn {
+    border-radius: 11px;
+    font-size: 1.1rem;
+    width: 35%;
+    position: relative;
+    top: -3vh;
+}

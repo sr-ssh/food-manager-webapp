@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^12.8.3",
     "axios": "^0.21.1",
     "bootstrap": "^5.0.1",
+    "comma-number": "^2.1.0",
     "jalali-moment": "^3.3.10",
     "jalali-react-datepicker": "^1.2.1",
     "persianjs": "^0.4.0",

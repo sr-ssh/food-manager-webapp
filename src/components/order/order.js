@@ -3,7 +3,7 @@ import moment from 'jalali-moment';
 import { Card , Table , Row , Col, Spinner, Button } from 'react-bootstrap';
 import persianJs from 'persianjs/persian.min';
 
-export const Order = ({order, deliveryShow, setDeliveryShow}) => {
+export const Order = ({order, deliveryShow, setDeliveryShow, cancelOrderShow, setCancelOrderShow, setActiveOrder}) => {
 
     let [ print, setPrint ] = useState(false)
     
@@ -45,6 +45,22 @@ export const Order = ({order, deliveryShow, setDeliveryShow}) => {
                                 <Col>
                                     <Card.Text>
                                         نام مشتری: <span>{order.customer.family}</span>
+                                    </Card.Text>
+                                </Col>
+                                <Col className="col-5">
+                                    <Card.Text className="text-center">
+                                        وضعیت: {(() => {
+                                                switch (order.status) {
+                                                    case 0:
+                                                        return <span>فعال</span>;
+                                                    case 1:
+                                                        return <span>پایان یافته</span>;;
+                                                    case 2:
+                                                        return <span>لغو شده</span>;;
+                                                    default:
+                                                        return;
+                                                }
+                                                })()}
                                     </Card.Text>
                                 </Col>
                             </Row>
@@ -109,15 +125,24 @@ export const Order = ({order, deliveryShow, setDeliveryShow}) => {
                 </Row>
                 <Row className="px-2 mt-3 text-start ">
                     <Col>
-                        <Button className="btn-primary delivery-sms-button py-1 border-0 noPrint" type="button"  onClick={() => setDeliveryShow(true)}>
-                            ارسال به دلیوری
-                        </Button>
+                        {order.status != 2 && 
+                            <Button className="btn-primary delivery-sms-button py-1 border-0 noPrint" type="button"  onClick={() => setDeliveryShow(true)}>
+                                ارسال به دلیوری
+                            </Button>
+                        }
                         <Button className="btn-success me-3 reminder-sms-button py-1 border-0 noPrint" type="button"  onClick={() => printWindow()}>
                             پرینت
                         </Button>
+                        {
+                            order.status != 2 &&
+                            <Button className="btn-danger mt-2 cancel-order-btn py-1 border-0 noPrint" type="button"  onClick={() => {return setCancelOrderShow(true), setActiveOrder(order)}}>
+                                لغو سفارش
+                            </Button>
+                        }
                     </Col>
-                </Row>
+                </Row> 
             </Card.Body>
+
         </Card> 
     )
 }

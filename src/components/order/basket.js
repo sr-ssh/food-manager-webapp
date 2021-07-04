@@ -131,7 +131,7 @@ export const Basket = ({order, insertOrder}) => {
                                             return (
                                                 <tr key={item.name}>
                                                     <td>{item.name && persianJs(item.name).englishNumber().toString()}</td>
-                                                    <td>{(item.quantity * item.sellingPrice) && persianJs(item.quantity * item.sellingPrice).englishNumber().toString()} </td>
+                                                    <td className="text-center">{(item.quantity * item.sellingPrice) && persianJs(item.quantity * item.sellingPrice).englishNumber().toString()} </td>
                                                     <td className="pe-3">{item.quantity && persianJs(item.quantity).englishNumber().toString()}</td>
                                                     <td onClick={(e) => removeOrder(e, item)}><img src={deleteIcon} className="d-block me-auto" alt="delete-icon"/></td>
                                                 </tr>

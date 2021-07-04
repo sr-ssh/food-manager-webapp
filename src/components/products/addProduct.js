@@ -55,15 +55,17 @@ export const AddProduct = (props) => {
                 }
                 <Form onSubmit={formHandler} >
                     <Row className="mt-3">
-                        <Col className="col-6 order-filter-input">
+                        <Col className="col-12 order-filter-input">
                             <Form.Group controlId="name">
                                 <Form.Label className="pe-3">نام محصول</Form.Label>
                                 <Form.Control className="order-input" type="text" value={addProductLoading ? "" : null} onChange={handleChange} required />
                             </Form.Group>
                         </Col>
-                        <Col className="col-6 order-filter-input">
+                    </Row>
+                    <Row className="mt-3">
+                        <Col className="col-12 order-filter-input">
                             <Form.Group controlId="sellingPrice">
-                                <Form.Label className="pe-3">قیمت</Form.Label>
+                                <Form.Label className="pe-3">قیمت (تومان)</Form.Label>
                                 <Form.Control className="order-input" type="number" min="0" value={addProductLoading ? "" : null} onChange={handleChange} required />
                             </Form.Group>
                         </Col>

@@ -2,7 +2,8 @@ import { orderConstants } from '../constants'
 
 const initialState = {
     order: [],
-    orders: []
+    orders: [],
+    loading: false
 }
 
 export function getOrders(state = initialState, action) {
@@ -21,6 +22,28 @@ export function getOrders(state = initialState, action) {
         case orderConstants.GET_ORDERS_FAILURE:
             return {
                 err: action.error
+            }
+        default:
+            return state
+    }
+}
+
+export function editOrderStatus(state = initialState, action) {
+    switch (action.type) {
+        case orderConstants.EDIT_ORDER_STATUS_REQUEST:
+            return {
+                ...state,
+                loading: true
+            }
+        case orderConstants.EDIT_ORDER_STATUS_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+            }
+        case orderConstants.EDIT_ORDER_STATUS_FAILURE:
+            return {
+                err: action.err,
+                loading: false
             }
         default:
             return state
