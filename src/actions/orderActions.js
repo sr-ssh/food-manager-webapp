@@ -90,7 +90,7 @@ function addOrder(products, customer) {
                         dispatch(alertActions.success(res.message));
                         setTimeout(() => {
                             dispatch(alertActions.clear());
-                            history.go(0)
+                            //history.go(0)
                         }, 1500);
                         
                     }else if(res.success === false) {

@@ -39,6 +39,8 @@ export const Register = () => {
         let res = value.indexOf('@') > 2
         if(res)
             return value
+        if(!value.length)
+            return undefined
         else
             return false
     }

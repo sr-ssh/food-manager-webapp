@@ -49,7 +49,6 @@ function register(user) {
             return res.data
         })
         .catch(function (error) {
-            console.log('errrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrror')
             if (error.response) {
                 console.log('errrrrrrrrrrrror')
                 console.log(error.response.data);
