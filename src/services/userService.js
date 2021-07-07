@@ -68,7 +68,7 @@ function verificationCode(mobile) {
     };
 
     return axios
-        .post(`${baseRoute}/login/mobile`, requestOptions.body)
+        .post(`${baseRoute}/verificationcode`, requestOptions.body)
         .then(res => {
             console.log("res.data >> "); 
             console.log(res.data);

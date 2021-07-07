@@ -19,13 +19,18 @@ export const EmployerRegister = () => {
 
     let alertMessage = useSelector(state => state.alert.message)
     let alerType = useSelector(state => state.alert.type)
+    let registerLoading = useSelector(state => state.register.loading)
+    let verificationCode = useSelector(state => state.verificationCode)
     
     const [showPassword, setShowPassword] = useState(false)
     const [validated, setValidated] = useState(false);
     const [inputs, setInputs] = useState({ username: '', password: '', position: 1 });
-    const { name, family, password, email, mobile, company, code } = inputs;
+    const { name, family, password, email, mobile, companyName, companyAddress, code } = inputs;
     const dispatch = useDispatch()
-    let registerLoading = useSelector(state => state.register.loading)
+
+    const checkVerificationCode = (code) => {
+        console.log('check verification code')
+    }
 
     const mobileHandler = (value) => {
         let res = value.length === 11 && value[0] === "0" && value[1] === "9"
@@ -72,7 +77,8 @@ export const EmployerRegister = () => {
 
     const formHandeler = e => {
         e.preventDefault();
-        let user = { family, company, password, email, mobile, code };
+        code = checkVerificationCode(code)
+        let user = { family, companyName, companyAddress, password, email, mobile, code };
         if(email != false && family && password && mobile && code)
             dispatch(userActions.register(user));
         else 
@@ -99,9 +105,9 @@ export const EmployerRegister = () => {
                         <img className="logo" src={logo} alt="logo" width="168px"/>
                     </Col>
                 </Row>
-                <Row className="ms-0 registerForm mt-0">
+                <Row className="ms-0 registerForm mt-5">
                     <Col>
-                        <Form className="d-flex flex-column justify-content-center" noValidate onSubmit={formHandeler}>
+                        <Form className="d-flex flex-column" noValidate onSubmit={formHandeler}>
                             <Row className="w-100 me-2 pe-2 order-inputs ">
                                 <Col >
                                     <Form.Group controlId="family" >
@@ -150,11 +156,12 @@ export const EmployerRegister = () => {
                             
                             <Row className="w-100 me-2 pe-2 order-inputs mt-2">
                                 <Col >
-                                    <Form.Group controlId="company" >
+                                    <Form.Group controlId="companyName" >
                                         <Image src={companyLogo} width="17px" className="mx-2"/>
                                         <Form.Label>نام شرکت</Form.Label>
                                         <Form.Control className="order-input login-input" type="text" 
-                                        isValid={inputs.company && validated && true}
+                                        isValid={companyName && validated && true}
+                                        isInvalid={!companyName && validated && true}
                                         onChange={handleChange}
                                         required
                                         />
@@ -168,7 +175,8 @@ export const EmployerRegister = () => {
                                         <Image src={companyLogo} width="17px" className="mx-2"/>
                                         <Form.Label>آدرس شرکت</Form.Label>
                                         <Form.Control className="order-input login-input" type="text" 
-                                        isValid={inputs.companyAddress && validated && true}
+                                        isValid={companyAddress && validated && true}
+                                        isInvalid={!companyAddress && validated && true}
                                         onChange={handleChange}
                                         required
                                         />
@@ -199,13 +207,14 @@ export const EmployerRegister = () => {
                                         <Image src={passwordLogo} width="17px" className="mx-2"/>
                                         <Form.Label>کد تایید</Form.Label>
                                         <Form.Control className= "order-input w-100 login-input" type="number"
-                                        isValid={inputs.verificationCode && validated && true}
+                                        isValid={code && validated && true}
+                                        isInvalid={!code && validated && true}
                                         onChange={handleChange}
                                         />
                                     </Form.Group>
                                 </Col>
                                 <Col className="mt-auto">
-                                    <Button className="verification-btn" variant="success" onClick={codeHandler}>ارسال کد تایید</Button>
+                                    <Button className="verification-btn" variant="success" onClick={codeHandler}>{verificationCode.loading ?  <Spinner animation="border" size="sm" /> : "ارسال کد تایید"}</Button>
                                 </Col>
                             </Row>
 

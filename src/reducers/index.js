@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { authentication, register } from './authenticationReducer';
+import { authentication, register, verificationCode } from './authenticationReducer';
 import { alert } from './alertReducer';
 import { getCustomers, getCustomer } from './customerReducer'
 import { getProducts, addProduct, editProduct } from './productReducer'
@@ -33,5 +33,6 @@ export default combineReducers ({
     editEmployee,
     addEmployee,
     deleteEmployee,
-    getPermissions
+    getPermissions, 
+    verificationCode
 })

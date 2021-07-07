@@ -64,20 +64,17 @@ export function register(state = initialState, action) {
               console.log("action into authentication reducer");   console.log(action);
               return {
                   ...state,
-                  isSent: false,
                   loading: true,
                   mobile: action.mobile
               };
           case userConstants.VERIFICATION_CODE_SUCCESS:
               return {
                   ...state,
-                  isSent: true,
                   loading: false,
                   user: action.mobile
               };
           case userConstants.VERIFICATION_CODE_FAILURE:
                 return {
-                    isSent: false,
                     loading: false
                 };
           default:

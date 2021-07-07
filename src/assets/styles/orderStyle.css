@@ -43,7 +43,7 @@
     color: var(--text-color-two);
     font-size: 14px;
     border: none;
-    height: 4vh;
+    max-height: 4vh;
 }
 
 .order-input:focus {
