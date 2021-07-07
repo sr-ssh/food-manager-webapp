@@ -23,7 +23,7 @@
     top: 47px;
 }
 
-.orderInput {
+.add-order-input {
     font-size: 11px;
     color: var(--text-color-one);
     font-family: 'IranSans';
@@ -43,6 +43,7 @@
     color: var(--text-color-two);
     font-size: 14px;
     border: none;
+    height: 4vh;
 }
 
 .order-input:focus {

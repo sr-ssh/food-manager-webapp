@@ -16,6 +16,7 @@ import './assets/styles/reminderStyle.css';
 import './assets/styles/discountsStyle.css';
 import './assets/styles/mainStyle.css';
 import './assets/styles/financeStyle.css';
+import './assets/styles/determineStyle.css';
 
 
 

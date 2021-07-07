@@ -84,7 +84,7 @@ export const AddOrder = () => {
                     {console.log(addOrderLoading)}
                     {console.log(alerType)}
                     <Row className="m-0 p-0 order-inputs">
-                        <Col className="p-0 col-5 orderInput">
+                        <Col className="p-0 col-5 add-order-input">
                             <Form.Group>
                                 <Form.Label className="pe-2">موبایل</Form.Label>
                                 <Form.Control className="order-input" type="number" name="mobile" 
@@ -101,7 +101,7 @@ export const AddOrder = () => {
                         </Col>
                     </Row>
                     <Row className="m-0 p-0 mt-2 order-inputs">
-                        <Col className="p-0 col-5 orderInput">
+                        <Col className="p-0 col-5 add-order-input">
                             <Form.Group >
                                 <Form.Label className="pe-2">نام</Form.Label>
                                 <Form.Control className="order-input" type="text" name="family" 
@@ -113,7 +113,7 @@ export const AddOrder = () => {
                             />
                             </Form.Group>
                         </Col> 
-                        <Col className="p-0 col-5 me-auto orderInput">
+                        <Col className="p-0 col-5 me-auto add-order-input">
                             <Form.Group controlId="birthday">
                                 <Form.Label className="pe-2">تاریخ تولد</Form.Label>
                                 <DatePicker 
@@ -135,7 +135,7 @@ export const AddOrder = () => {
                         </Col>
                     </Row>
                     <Row className="m-0 p-0 mt-2 order-inputs">
-                        <Col className="p-0 col-5 orderInput">
+                        <Col className="p-0 col-5 add-order-input">
                             <Form.Group >
                                 <Form.Label className="pe-2">آدرس</Form.Label>
                                 <Form.Control className="order-input" type="text" name="address" 
@@ -146,7 +146,7 @@ export const AddOrder = () => {
                             />
                             </Form.Group>
                         </Col> 
-                        <Col className="p-0 col-5 orderInput me-3">
+                        <Col className="p-0 col-5 add-order-input me-3">
                             <Form.Group >
                                 <Form.Label className="pe-3"> آماده سازی:</Form.Label>
                                 <Form.Control className="order-input me-2" type="number" min="0" name="duration" 

@@ -19,13 +19,14 @@ import { Reminders } from './components/reminder/reminders';
 import { Discounts } from './components/discounts/discounts';
 import { Employees } from './components/employee/employees';
 import Bills from './components/finance/bills';
+import { Determine } from './components/determine'
 
 function App() {
   return (    
         <Router history={history}>
             <Switch>
             <Route exact path="/" component={Login} />
-            <Route path="/register" component={Register} />
+            <Route path="/register" component={Determine} />
             <PrivateRoute path="/products" component={Products} ></PrivateRoute>
             <PrivateRoute path="/orders" component={Orders} ></PrivateRoute>
             <PrivateRoute path="/customers" component={Customers} ></PrivateRoute>

@@ -56,3 +56,31 @@ export function register(state = initialState, action) {
               return state
       }
   }
+
+  export function verificationCode(state = initialState, action) {
+    //console.log("action.type"); console.log(action.type);
+      switch (action.type) {
+          case userConstants.VERIFICATION_CODE_REQUEST:
+              console.log("action into authentication reducer");   console.log(action);
+              return {
+                  ...state,
+                  isSent: false,
+                  loading: true,
+                  mobile: action.mobile
+              };
+          case userConstants.VERIFICATION_CODE_SUCCESS:
+              return {
+                  ...state,
+                  isSent: true,
+                  loading: false,
+                  user: action.mobile
+              };
+          case userConstants.VERIFICATION_CODE_FAILURE:
+                return {
+                    isSent: false,
+                    loading: false
+                };
+          default:
+              return state
+      }
+  }

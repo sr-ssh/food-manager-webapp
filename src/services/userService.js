@@ -9,7 +9,8 @@ let baseRoute = SERVER_URL;
 export const userService = {
     login,
     register,
-    appInfo
+    appInfo,
+    verificationCode
 };
 
 
@@ -55,6 +56,29 @@ function register(user) {
                 console.log(error.response.status);
             }
             return error
+        });
+}
+
+function verificationCode(mobile) {
+    console.log('into verification code')
+
+    const requestOptions = {
+        headers: authHeader(),
+        body: {mobile}
+    };
+
+    return axios
+        .post(`${baseRoute}/login/mobile`, requestOptions.body)
+        .then(res => {
+            console.log("res.data >> "); 
+            console.log(res.data);
+            return res.data
+        })
+        .catch(function (error) {
+            if (error.response) {
+                console.log(error.response.data);
+                console.log(error.response.status);
+            }
         });
 }
 

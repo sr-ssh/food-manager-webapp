@@ -7,7 +7,8 @@ export const userActions = {
     login,
     register,
     appInfo,
-    logout
+    logout,
+    verificationCode
 };
 
 
@@ -118,6 +119,50 @@ function register(user) {
     function request(user) { console.log("into request"); return { type: userConstants.REGISTER_REQUEST, user } }
     function success(user) { console.log("into success"); return { type: userConstants.REGISTER_SUCCESS, user } }
     function failure(error) { return { type: userConstants.REGISTER_FAILURE, error } }
+}
+
+function verificationCode(mobile) {
+    return dispatch => {
+        dispatch(request(mobile));
+        userService.verificationCode(mobile)
+            .then(
+                res => {
+                    console.log("user into userAction");
+                    console.log('resssssssssssssssss')
+                    console.log(res)
+                    if(res === undefined) {
+                        dispatch(alertActions.error('ارتباط با سرور برقرار نیست'));
+                        dispatch(failure('ارتباط با سرور برقرار نیست'))
+                    }
+                    else if(res.success){
+                        console.log("user registered")
+                        dispatch(success(res));
+                        dispatch(alertActions.success(res.message));
+                    } else if(res.success === false) {
+                        dispatch(alertActions.error(res.message));
+                        dispatch(failure(res.message))
+                    } else {
+                        dispatch(alertActions.error("مشکلی وجود دارد"));
+                        dispatch(failure("مشکلی وجود دارد"))
+                    }
+
+                    setTimeout(() => {
+                        dispatch(alertActions.clear());
+                    }, 1500);
+                    
+                },
+                error => {
+                    dispatch(failure(error.toString()));
+                    console.log("occure error");
+                    console.log(error.toString());
+                    dispatch(alertActions.error(error.toString()));
+                }
+            );
+    };
+
+    function request(mobile) { console.log("into request"); return { type: userConstants.VERIFICATION_CODE_REQUEST, mobile } }
+    function success(mobile) { console.log("into success"); return { type: userConstants.VERIFICATION_CODE_SUCCESS, mobile } }
+    function failure(error) { return { type: userConstants.VERIFICATION_CODE_FAILURE, error } }
 }
 
 function logout() {

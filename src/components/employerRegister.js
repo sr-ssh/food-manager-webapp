@@ -15,15 +15,15 @@ import beSeenIcon from '../assets/images/be-seen.svg'
 import persianJs from 'persianjs/persian.min';
 
 
-export const Register = () => {
+export const EmployerRegister = () => {
 
     let alertMessage = useSelector(state => state.alert.message)
     let alerType = useSelector(state => state.alert.type)
     
     const [showPassword, setShowPassword] = useState(false)
     const [validated, setValidated] = useState(false);
-    const [inputs, setInputs] = useState({ username: '', password: '' });
-    const { name, family, password, email, mobile, company} = inputs;
+    const [inputs, setInputs] = useState({ username: '', password: '', position: 1 });
+    const { name, family, password, email, mobile, company, code } = inputs;
     const dispatch = useDispatch()
     let registerLoading = useSelector(state => state.register.loading)
 
@@ -65,11 +65,15 @@ export const Register = () => {
         setInputs(inputs => ({ ...inputs, [id]: value }));
     }
 
+    const codeHandler = (e) => {
+        e.preventDefault()
+        mobile && dispatch(userActions.verificationCode(mobile))
+    }
+
     const formHandeler = e => {
         e.preventDefault();
-        let user = { name, family, company, password, email, mobile };
-
-        if(email != false && family && password && mobile)
+        let user = { family, company, password, email, mobile, code };
+        if(email != false && family && password && mobile && code)
             dispatch(userActions.register(user));
         else 
             setValidated(true);
@@ -152,6 +156,21 @@ export const Register = () => {
                                         <Form.Control className="order-input login-input" type="text" 
                                         isValid={inputs.company && validated && true}
                                         onChange={handleChange}
+                                        required
+                                        />
+                                    </Form.Group>
+                                </Col>
+                            </Row>
+
+                            <Row className="w-100 me-2 pe-2 order-inputs mt-2">
+                                <Col >
+                                    <Form.Group controlId="companyAddress" >
+                                        <Image src={companyLogo} width="17px" className="mx-2"/>
+                                        <Form.Label>آدرس شرکت</Form.Label>
+                                        <Form.Control className="order-input login-input" type="text" 
+                                        isValid={inputs.companyAddress && validated && true}
+                                        onChange={handleChange}
+                                        required
                                         />
                                     </Form.Group>
                                 </Col>
@@ -173,6 +192,23 @@ export const Register = () => {
                                     </Form.Group>
                                 </Col>
                             </Row>
+
+                            <Row className="w-100 me-2 pe-2 order-inputs mt-2">
+                                <Col>
+                                    <Form.Group controlId="code">
+                                        <Image src={passwordLogo} width="17px" className="mx-2"/>
+                                        <Form.Label>کد تایید</Form.Label>
+                                        <Form.Control className= "order-input w-100 login-input" type="number"
+                                        isValid={inputs.verificationCode && validated && true}
+                                        onChange={handleChange}
+                                        />
+                                    </Form.Group>
+                                </Col>
+                                <Col className="mt-auto">
+                                    <Button className="verification-btn" variant="success" onClick={codeHandler}>ارسال کد تایید</Button>
+                                </Col>
+                            </Row>
+
                             <Row className="w-100 me-0">
                                 <Col className="mt-4 register-link">
                                     <a href="/">قبلا ثبت نام شده اید؟</a>

@@ -109,3 +109,8 @@
 .login-input{
     width: 65%;
 }
+
+.verification-btn {
+    height: 50%;
+    font-size: 0.8rem;
+}
