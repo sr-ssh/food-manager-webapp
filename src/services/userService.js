@@ -60,7 +60,7 @@ function register(user) {
 }
 
 function verificationCode(mobile) {
-    console.log('into verification code')
+    console.log('into userService')
 
     const requestOptions = {
         headers: authHeader(),

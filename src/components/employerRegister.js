@@ -25,12 +25,8 @@ export const EmployerRegister = () => {
     const [showPassword, setShowPassword] = useState(false)
     const [validated, setValidated] = useState(false);
     const [inputs, setInputs] = useState({ username: '', password: '', position: 1 });
-    const { name, family, password, email, mobile, companyName, companyAddress, code } = inputs;
+    const { name, family, password, email, mobile, companyName, companyAddress, position, code } = inputs;
     const dispatch = useDispatch()
-
-    const checkVerificationCode = (code) => {
-        console.log('check verification code')
-    }
 
     const mobileHandler = (value) => {
         let res = value.length === 11 && value[0] === "0" && value[1] === "9"
@@ -77,9 +73,10 @@ export const EmployerRegister = () => {
 
     const formHandeler = e => {
         e.preventDefault();
-        code = checkVerificationCode(code)
-        let user = { family, companyName, companyAddress, password, email, mobile, code };
-        if(email != false && family && password && mobile && code)
+         
+        let user = { family, companyName, companyAddress, password, email, position, mobile, code };
+        
+        if(email != false && family && password && mobile && code && companyName && companyAddress)
             dispatch(userActions.register(user));
         else 
             setValidated(true);

@@ -71,7 +71,7 @@ export function register(state = initialState, action) {
               return {
                   ...state,
                   loading: false,
-                  user: action.mobile
+                  mobile: action.mobile
               };
           case userConstants.VERIFICATION_CODE_FAILURE:
                 return {
@@ -79,5 +79,5 @@ export function register(state = initialState, action) {
                 };
           default:
               return state
-      }
+    }
   }

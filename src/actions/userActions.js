@@ -128,14 +128,13 @@ function verificationCode(mobile) {
             .then(
                 res => {
                     console.log("user into userAction");
-                    console.log('resssssssssssssssss')
                     console.log(res)
                     if(res === undefined) {
                         dispatch(alertActions.error('ارتباط با سرور برقرار نیست'));
                         dispatch(failure('ارتباط با سرور برقرار نیست'))
                     }
                     else if(res.success){
-                        console.log("user registered")
+                        console.log("verification code sent")
                         dispatch(success(res));
                         dispatch(alertActions.success(res.message));
                     } else if(res.success === false) {
