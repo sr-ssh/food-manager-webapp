@@ -18,8 +18,9 @@ import { Orders } from './components/order/orders';
 import { Reminders } from './components/reminder/reminders';
 import { Discounts } from './components/discounts/discounts';
 import { Employees } from './components/employee/employees';
-import Bills from './components/finance/bills';
 import { Determine } from './components/determine'
+import { Setting } from './components/setting/setting';
+import Bills from './components/finance/bills';
 
 function App() {
   return (    
@@ -37,6 +38,7 @@ function App() {
             <PrivateRoute path="/dashboard" component={Dashboard} ></PrivateRoute>
             <PrivateRoute path="/order/add" component={AddOrder} ></PrivateRoute>
             <PrivateRoute path="/employees" component={Employees} ></PrivateRoute>
+            <PrivateRoute path="/setting" component={Setting}></PrivateRoute>
             <Redirect from="*" to="/" />
             </Switch>
         </Router>

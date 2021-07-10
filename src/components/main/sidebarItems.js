@@ -83,15 +83,15 @@ export const SidebarItems = () => {
             </Row>
             
             <Row className="d-flex justify-content-center align-items-center mt-auto dashboardIcons">
-                <Col xs={4} sm={4} md={4} lg={4} className="my-3">
+                <Col className="my-3 col-4">
                     <Col onClick={e => userActions.logout()}><img className="m-auto d-block" src={exitIcon} height="40px" alt="exit-icon"/></Col>
                 </Col>
-                {/* <Col xs={4} sm={4} md={4} lg={4} className="my-3">
-                    <Link to="/"><img className="m-auto d-block" src={settingIcon} height="40px" alt="setting-icon" /></Link>
+                <Col className="my-3 col-4">
+                    <Link to="/setting"><img className="m-auto d-block" src={settingIcon} height="40px" alt="setting-icon" /></Link>
                 </Col>
                 <Col xs={4} sm={4} md={4} lg={4} className="my-3">
                     <Col ><img className="m-auto d-block" src={accountIcon} height="40px" alt="acount-icon"/></Col>
-                </Col> */}
+                </Col>
             </Row>
         </Container>
     )

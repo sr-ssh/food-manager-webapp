@@ -24,7 +24,10 @@ export function isPermitted(route) {
     }else if(route === "/finance" || route === "/bills"){
         if(permissions.find(per => per.no === 5 && per.status === true))
             return true;
-    }else if(route === "/" || route === "/register" || route === "/dashboard")
+    }else if(route === "/setting") {
+        return true
+    }
+    else if(route === "/" || route === "/register" || route === "/dashboard")
         return true;
     return false;   
 }

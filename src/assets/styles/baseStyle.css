@@ -87,3 +87,7 @@ body{
 .no-result-filter {
     height: 75vh;
 }
+
+.header-title {
+    position: absolute;
+}

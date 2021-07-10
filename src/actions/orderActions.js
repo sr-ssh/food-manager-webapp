@@ -6,7 +6,8 @@ import { alertActions } from './alertActions';
 export const orderActions = {
     getOrders,
     addOrder,
-    editOrderStatus
+    editOrderStatus,
+    getSms
 }
 
 function getOrders(filter) {
@@ -114,6 +115,43 @@ function addOrder(products, customer) {
     function request() { console.log("into request"); return { type: orderConstants.ADD_ORDER_REQUEST } }
     function success(order) { console.log("into success"); return { type: orderConstants.ADD_ORDER_SUCCESS, order } }
     function failure(error) { return { type: orderConstants.ADD_ORDER_FAILURE, error } }
+}
+
+function getSms() {
+    return dispatch => {
+        dispatch(request())
+        orderService.getOrderSms()
+            .then(
+                res => {
+                    console.log(res)
+                    if(res === undefined) {
+                        dispatch(alertActions.error('ارتباط با سرور برقرار نیست'));
+                        dispatch(failure('ارتباط با سرور برقرار نیست'))
+                    }
+                    else if(res.success){
+                        console.log("order added")
+                        dispatch(success(res.data.setting.order));
+                        
+                    }else if(res.success === false) {
+                        dispatch(alertActions.error(ResizeObserver.message));
+                        dispatch(failure(ResizeObserver.message))
+                    }
+                        
+                    setTimeout(() => {
+                        dispatch(alertActions.clear());
+                    }, 1500);
+                },
+                error => {
+                    dispatch(failure(error.toString()));
+                    console.log("occure error");
+                    console.log(error.toString());
+                    dispatch(alertActions.error(error.toString()));
+                }
+            )
+    }
+    function request() { console.log("into request"); return { type: orderConstants.GET_ORDER_SMS_REQUEST } }
+    function success(sms) { console.log("into success"); return { type: orderConstants.GET_ORDER_SMS_SUCCESS, sms } }
+    function failure(error) { return { type: orderConstants.GET_ORDER_SMS_FAILURE, error } }
 }
 
 function request(type) {
