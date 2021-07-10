@@ -34,7 +34,7 @@ export const Dashboard = () => {
     useEffect(() => {
             dispatch(userActions.getUserInfo())
             dispatch(productActions.getProducts())
-        if (!(permissions && permissions.length)) 
+        if (!(permissions)) 
             dispatch(employeeActions.getPermissions())
             
     }, [dispatch, permissions])

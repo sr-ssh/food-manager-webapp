@@ -5,7 +5,7 @@ const initialState = {
     employees: [],
     employee: {},
     editEmployee: {},
-    permissions: []
+    permissions: {}
 }
 
 export function getEmployees(state = initialState, action) {
