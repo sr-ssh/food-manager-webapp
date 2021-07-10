@@ -22,6 +22,7 @@ import { EmployerNoProduct } from './employerNoProduct';
 export const Dashboard = () => {
     const [isOpen, setIsOpen] = useState(false)
 
+    let user_type = JSON.parse(localStorage.getItem('type'));
     const permissions = useSelector(state => state.getPermissions.permissions);
     const userInfo = useSelector(state => state.getUserInfo.user)
     const products = useSelector(state => state.getProducts.product)
@@ -67,10 +68,10 @@ export const Dashboard = () => {
                                 </Button>
                             </Col>
                         </Row>
-                        { userInfo && Object.keys(userInfo).indexOf('company') > -1 && !products.length && 
+                        { user_type === 1 && !products.length && 
                             <EmployerNoProduct />
                         }
-                        { userInfo && Object.keys(userInfo).indexOf('company') > -1 && products.length > 0 &&
+                        { user_type === 1 && products.length > 0 &&
                             <MainMenuOptions />
                         }
                     </Row>

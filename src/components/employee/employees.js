@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import { Header } from '../base/employeeHeader'
+import { Header } from '../base/applicationsHeader'
 import { useDispatch, useSelector } from 'react-redux'
 import { employeeActions } from '../../actions/employeeActions'
-import { Row, Button, Container, Card, Col, Spinner } from 'react-bootstrap'
+import { Row, Container, Card, Col, Spinner } from 'react-bootstrap'
 import persianJs from 'persianjs/persian.min';
 import { translate } from '../../helpers';
 
@@ -30,7 +30,7 @@ export const Employees = () => {
 
     return (
         <div className="product-page">
-            <Header title="کارمندان" backLink="/dashboard" setModalShow={setAddModalShow} />
+            <Header title="کارمندان" backLink="/dashboard" addLink="/employee/add" />
             <Container className="m-auto">
                 {  
                 getEmployeesLoading &&

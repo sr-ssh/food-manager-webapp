@@ -1,7 +1,6 @@
 import { employeeConstants } from '../constants';
 import { employeeService } from '../services';
 import { alertActions } from './alertActions';
-import { history } from '../helpers';
 
 
 export const employeeActions = {
@@ -9,7 +8,8 @@ export const employeeActions = {
     addEmployee,
     editEmployee,
     getPermissions,
-    deleteEmployee
+    getApplications,
+    editApplication
 };
 
 function getEmployees() {
@@ -167,6 +167,61 @@ function getPermissions() {
             );
     };
 
+}
+
+function getApplications() {
+    return dispatch => {
+        dispatch(request(employeeConstants.GET_APPLICATIONS_REQUEST))
+        employeeService.getApplications()
+            .then(
+                res => {
+                    if(res === undefined)
+                        dispatch(alertActions.error('ارتباط با سرور برقرار نیست'));
+                    else if(res.success){
+                        console.log("applications received")
+                        dispatch(success(employeeConstants.GET_APPLICATIONS_SUCCESS, res.data));
+                    }
+                        
+                    setTimeout(() => {
+                        dispatch(alertActions.clear());
+                    }, 1500);
+                },
+                error => {
+                    dispatch(failure(employeeConstants.GET_APPLICATIONS_FAILURE, error.toString()));
+                    console.log("occure error");
+                    console.log(error.toString());
+                    dispatch(alertActions.error(error.toString()));
+                }
+            );
+    };
+}
+
+
+function editApplication() {
+    return dispatch => {
+        dispatch(request(employeeConstants.GET_APPLICATIONS_REQUEST))
+        employeeService.getApplications()
+            .then(
+                res => {
+                    if(res === undefined)
+                        dispatch(alertActions.error('ارتباط با سرور برقرار نیست'));
+                    else if(res.success){
+                        console.log("applications received")
+                        dispatch(success(employeeConstants.GET_APPLICATIONS_SUCCESS, res.data));
+                    }
+                        
+                    setTimeout(() => {
+                        dispatch(alertActions.clear());
+                    }, 1500);
+                },
+                error => {
+                    dispatch(failure(employeeConstants.GET_APPLICATIONS_FAILURE, error.toString()));
+                    console.log("occure error");
+                    console.log(error.toString());
+                    dispatch(alertActions.error(error.toString()));
+                }
+            );
+    };
 }
 
 

@@ -18,7 +18,7 @@ export function isPermitted(route) {
     }else if(route === "/order/add"){
         if(permissions.addOrder)
             return true;
-    }else if(route === "/employees"){
+    }else if(route === "/employees" || route === "/employee/add"){
         if(permissions.getEmployees)
             return true;
     }else if(route === "/finance" || route === "/bills"){
