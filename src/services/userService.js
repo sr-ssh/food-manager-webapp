@@ -48,6 +48,7 @@ function register(user) {
         .post(`${baseRoute}/`, user)
         .then(res => {
             console.log("res.user >> "); console.log(res.data.data);
+            localStorage.setItem('user', JSON.stringify(res.data.data));
             return res.data
         })
         .catch(function (error) {
