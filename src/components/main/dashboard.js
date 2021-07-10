@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import Sidebar from 'react-sidebar'
 import { Navbar , Nav } from 'react-bootstrap';
 import { Container, Button, Form, Row, Col, Image, Alert } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux'
 
 
 import { SidebarItems } from './sidebarItems'
@@ -12,10 +13,11 @@ import logo from '../../assets/images/crm.svg'
 import customerIcon from '../../assets/images/main/customer.svg'
 import ordersIcon from '../../assets/images/main/orders.svg'
 import addOrderIcon from '../../assets/images/main/add-order.svg'
+import { MainMenuOptions } from './mainMenuOptions'
 import { history } from '../../helpers';
-import { useDispatch, useSelector } from 'react-redux'
 import { employeeActions } from '../../actions/employeeActions'
-
+import { userActions } from '../../actions/userActions'
+import { productActions } from '../../actions/productActions'
 
 
 // import logo from './../assets/images/crm.svg'
@@ -24,11 +26,14 @@ import { employeeActions } from '../../actions/employeeActions'
 export const Dashboard = () => {
     const [isOpen, setIsOpen] = useState(false)
 
-    let permissions = useSelector(state => state.getPermissions.permissions);
-
+    const permissions = useSelector(state => state.getPermissions.permissions);
+    const userInfo = useSelector(state => state.getUserInfo.user)
+    const products = useSelector(state => state.getProducts.product)
     const dispatch = useDispatch()
 
     useEffect(() => {
+            dispatch(userActions.getUserInfo())
+            dispatch(productActions.getProducts())
         if (!(permissions && permissions.length)) 
             dispatch(employeeActions.getPermissions())
             
@@ -66,38 +71,23 @@ export const Dashboard = () => {
                                 </Button>
                             </Col>
                         </Row>
-                        {
-                            permissions && permissions.find(per => per.no === 1 && per.status === true) && 
-                            <Row className="my-3 justify-content-center">
-                                <Col xs={9} className="">
-                                    <Button className="main-button w-100 me-auto d-block p-3" type="submit" onClick={e => history.push('/order/add')}>
-                                        <img className="ms-4" src={addOrderIcon} alt="add-order-icon" width="35px"/>
-                                        ثبت سفارش
-                                    </Button>
+                        { userInfo && Object.keys(userInfo).indexOf('company') > -1 && !products.length && 
+                            <Row>
+                                <Col className="text-center">
+                                    محصولات خود را وارد کنید:
                                 </Col>
+                                <Row  className="my-3 justify-content-center">
+                                    <Col  xs={9}  className="">
+                                        <Button  className="main-button w-100 me-auto d-block p-3"  type="submit"  onClick={e  => history.push('/products')}>
+                                            <img  className="ms-4"  src={addOrderIcon}  alt="add-order-icon"  width="35px"/>
+                                            محصولات
+                                        </Button>
+                                    </Col>
+                                </Row>
                             </Row>
                         }
-                        {
-                            permissions && permissions.find(per => per.no === 2 && per.status === true) && 
-                            <Row className="my-3 justify-content-center">
-                                <Col xs={9} className="">
-                                    <Button className="main-button w-100 me-auto d-block p-3" type="submit" onClick={e => history.push('/orders')}>
-                                        <img className="ms-4" src={ordersIcon} alt="add-order-icon" width="35px"/>
-                                        سفارش ها
-                                    </Button>
-                                </Col>
-                            </Row>
-                        }
-                        {
-                            permissions && permissions.find(per => per.no === 6 && per.status === true) && 
-                            <Row className="my-3 justify-content-center">
-                                <Col xs={9} className="">
-                                    <Button className="main-button w-100 me-auto d-block p-3" type="submit" onClick={e => history.push('/customers')}>
-                                        <img className="ms-4" src={customerIcon} alt="add-order-icon" width="35px"/>
-                                        مشتریان
-                                    </Button>
-                                </Col>
-                            </Row>
+                        { userInfo && Object.keys(userInfo).indexOf('company') > -1 && products.length > 0 &&
+                            <MainMenuOptions />
                         }
                     </Row>
                 </Container>

@@ -10,6 +10,7 @@ export const userService = {
     login,
     register,
     appInfo,
+    userInfo,
     verificationCode
 };
 
@@ -71,6 +72,29 @@ function verificationCode(mobile) {
         .post(`${baseRoute}/verificationcode`, requestOptions.body)
         .then(res => {
             console.log("res.data >> "); 
+            console.log(res.data);
+            return res.data
+        })
+        .catch(function (error) {
+            if (error.response) {
+                console.log(error.response.data);
+                console.log(error.response.status);
+            }
+        });
+}
+
+function userInfo() {
+    console.log("into userService");
+
+    const requestOptions = {
+        headers: authHeader(),
+        body: {}
+    };
+    console.log(requestOptions)
+    return axios
+        .get(`${baseRoute}/account`, {headers: requestOptions.headers})
+        .then(res => {
+            console.log("res.user >> "); 
             console.log(res.data);
             return res.data
         })

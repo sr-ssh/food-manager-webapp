@@ -105,12 +105,12 @@ export const EmployerRegister = () => {
                 <Row className="ms-0 registerForm mt-5">
                     <Col>
                         <Form className="d-flex flex-column" noValidate onSubmit={formHandeler}>
-                            <Row className="w-100 me-2 pe-2 order-inputs ">
-                                <Col >
+                            <Row className="w-100 me-2 pe-2 form-label ">
+                                <Col>
                                     <Form.Group controlId="family" >
                                         <Image src={userLogo} width="17px" className="mx-2"/>
                                         <Form.Label>نام و نام خانوادگی</Form.Label>
-                                        <Form.Control className="order-input login-input" type="text" 
+                                        <Form.Control className="form-input w-100 login-input" type="text" 
                                         onChange={handleChange} 
                                         isValid={inputs.family && validated && true}
                                         isInvalid={!inputs.family && validated && true}
@@ -119,14 +119,11 @@ export const EmployerRegister = () => {
                                     <Form.Control.Feedback className="me-2" type="invalid">نام و نام خانوادگی خود را وارد کنید!</Form.Control.Feedback>
                                     </Form.Group>
                                 </Col>
-                            </Row>
-
-                            <Row className="w-100 me-2 pe-2 order-inputs mt-2">
-                                <Col >
+                                <Col>
                                     <Form.Group controlId="mobile" >
                                         <Image src={mobileLogo} width="17px" className="mx-2"/>
                                         <Form.Label>موبایل</Form.Label>
-                                        <Form.Control className="order-input login-input" type="number" 
+                                        <Form.Control className="form-input w-100 login-input" type="number" 
                                         onChange={handleChange}  
                                         isValid={inputs.mobile && inputs.mobile != false && validated && true}
                                         isInvalid={!inputs.mobile && validated && true}
@@ -136,12 +133,12 @@ export const EmployerRegister = () => {
                                 </Col>
                             </Row>
 
-                            <Row className="w-100 me-2 pe-2 order-inputs mt-2">
+                            <Row className="w-100 me-2 pe-2 form-label mt-2">
                                 <Col >
                                     <Form.Group controlId="email">
                                         <Image src={emailLogo} width="17px" className="mx-2"/>
                                         <Form.Label>ایمیل</Form.Label>
-                                        <Form.Control className="order-input login-input" type="email" 
+                                        <Form.Control className="form-input w-100 login-input" type="email" 
                                         isValid={inputs.email && inputs.email != false && validated && true}
                                         isInvalid={inputs.email === false && validated && true} 
                                         onChange={handleChange} 
@@ -151,12 +148,12 @@ export const EmployerRegister = () => {
                                 </Col>
                             </Row>
                             
-                            <Row className="w-100 me-2 pe-2 order-inputs mt-2">
-                                <Col >
+                            <Row className="w-100 me-2 pe-2 form-label mt-2">
+                                <Col className="col-4">
                                     <Form.Group controlId="companyName" >
                                         <Image src={companyLogo} width="17px" className="mx-2"/>
                                         <Form.Label>نام شرکت</Form.Label>
-                                        <Form.Control className="order-input login-input" type="text" 
+                                        <Form.Control className="form-input w-100 login-input" type="text" 
                                         isValid={companyName && validated && true}
                                         isInvalid={!companyName && validated && true}
                                         onChange={handleChange}
@@ -164,14 +161,11 @@ export const EmployerRegister = () => {
                                         />
                                     </Form.Group>
                                 </Col>
-                            </Row>
-
-                            <Row className="w-100 me-2 pe-2 order-inputs mt-2">
-                                <Col >
+                                <Col>
                                     <Form.Group controlId="companyAddress" >
                                         <Image src={companyLogo} width="17px" className="mx-2"/>
                                         <Form.Label>آدرس شرکت</Form.Label>
-                                        <Form.Control className="order-input login-input" type="text" 
+                                        <Form.Control className="form-input w-100 login-input" type="text" 
                                         isValid={companyAddress && validated && true}
                                         isInvalid={!companyAddress && validated && true}
                                         onChange={handleChange}
@@ -181,13 +175,30 @@ export const EmployerRegister = () => {
                                 </Col>
                             </Row>
 
-                            <Row className="w-100 me-2 pe-2 order-inputs mt-2">
-                                <Col >
-                                    <Form.Group className="inputWithButton login-input" controlId="password" >
+                            <Row className="w-100 me-2 pe-2 form-label mt-2">
+                                <Col className="col-8">
+                                    <Form.Group controlId="code">
                                         <Image src={passwordLogo} width="17px" className="mx-2"/>
-                                        <Form.Label>رمز عبور</Form.Label>
+                                        <Form.Label>کد تایید</Form.Label>
+                                        <Form.Control className= "form-input w-100 login-input" type="number"
+                                        isValid={code && validated && true}
+                                        isInvalid={!code && validated && true}
+                                        onChange={handleChange}
+                                        />
+                                    </Form.Group>
+                                </Col>
+                                <Col className="mt-auto col-3">
+                                    <Button className="verification-btn" onClick={codeHandler}>{verificationCode.loading ?  <Spinner animation="border" size="sm" /> : "ارسال کد"}</Button>
+                                </Col>
+                            </Row>
+
+                            <Row className="w-100 me-2 pe-2 form-label mt-2">
+                                <Col >
+                                    <Form.Group className="inputWithButton w-100 login-input" controlId="password" >
+                                        <Image src={passwordLogo} width="17px" className="mx-2"/>
+                                        <Form.Label >رمز عبور</Form.Label>
                                         <img src={showPassword ? beSeenIcon : notSeenIcon} onClick={(e) => setShowPassword(!showPassword)} height="25px" className="eye-button" />
-                                        <Form.Control className="w-100 eye-input order-input login-input" type={`${showPassword ? "text" : "password"}`}  
+                                        <Form.Control className="w-100 eye-input form-input login-input" type={`${showPassword ? "text" : "password"}`}  
                                         isValid={inputs.password && inputs.password != false && validated && true}
                                         isInvalid = {!inputs.password && validated && true}
                                         onChange={handleChange}  
@@ -198,31 +209,14 @@ export const EmployerRegister = () => {
                                 </Col>
                             </Row>
 
-                            <Row className="w-100 me-2 pe-2 order-inputs mt-2">
-                                <Col>
-                                    <Form.Group controlId="code">
-                                        <Image src={passwordLogo} width="17px" className="mx-2"/>
-                                        <Form.Label>کد تایید</Form.Label>
-                                        <Form.Control className= "order-input w-100 login-input" type="number"
-                                        isValid={code && validated && true}
-                                        isInvalid={!code && validated && true}
-                                        onChange={handleChange}
-                                        />
-                                    </Form.Group>
-                                </Col>
-                                <Col className="mt-auto">
-                                    <Button className="verification-btn" variant="success" onClick={codeHandler}>{verificationCode.loading ?  <Spinner animation="border" size="sm" /> : "ارسال کد تایید"}</Button>
-                                </Col>
-                            </Row>
-
                             <Row className="w-100 me-0">
                                 <Col className="mt-4 register-link">
                                     <a href="/">قبلا ثبت نام شده اید؟</a>
                                 </Col>
                             </Row>
-                            <Row className="registerSubmitContainer mt-2">
-                                <Col xs={8} className="me-auto ms-4">
-                                    <Button className="form-submit w-75 me-auto d-block" type="submit">{registerLoading ?  <Spinner animation="border" /> : "ثبت نام"}</Button>
+                            <Row>
+                                <Col>
+                                    <Button className="register-submit-btn m-auto d-block" type="submit">{registerLoading ?  <Spinner animation="border" /> : "ثبت نام"}</Button>
                                 </Col>
                             </Row>
                         </Form>
