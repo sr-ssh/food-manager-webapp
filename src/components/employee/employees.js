@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { Header } from '../base/employeeHeader'
+import { Header } from '../base/applicationsHeader'
 import { useDispatch, useSelector } from 'react-redux'
 import { employeeActions } from '../../actions/employeeActions'
-import { Row, Button, Container, Card, Col, Spinner } from 'react-bootstrap'
+import { Row, Container, Card, Col, Spinner } from 'react-bootstrap'
 import persianJs from 'persianjs/persian.min';
+import { translate } from '../../helpers';
+
 
 import { AddEmployee } from './addEmployee'
 import { EditEmployee } from './editEmployee'
@@ -28,7 +30,7 @@ export const Employees = () => {
 
     return (
         <div className="product-page">
-            <Header title="کارمندان" backLink="/dashboard" setModalShow={setAddModalShow} />
+            <Header title="کارمندان" backLink="/dashboard" addLink="/employee/add" />
             <Container className="m-auto">
                 {  
                 getEmployeesLoading &&
@@ -51,31 +53,11 @@ export const Employees = () => {
                                 <Card.Text className="pt-1">
                                     <span style={{"color": "var(--text-color-one)"}}>سطح دسترسی: </span>
                                     {
-                                        item.permission.map(per => {
-                                            if(per.status) {
-                                                switch (per.no) {
-                                                    case 1:
-                                                        return <span> ثبت سفارش </span>
-                                                    case 2:
-                                                        return <span> سفارش ها </span>
-                                                    case 3:
-                                                        return <span> یادآوری </span>
-                                                    case 4:
-                                                        return <span> محصولات </span>
-                                                    case 5:
-                                                        return <span> مالی </span>
-                                                    case 6:
-                                                        return <span> مشتریان </span>
-                                                    case 7:
-                                                        return <span> کارمندان </span>
-                                                    case 8:
-                                                        return <span> تخفیف ها </span>
-                                                    default:
-                                                        return
-                                                }
-                            
-                                            }
-                                        }) 
+                                        Object.keys(item.permission).map(per => 
+                                            item.permission[per]
+                                            ? <>{translate(per)}<br /></>
+                                            : null
+                                        ) 
                                     }
                                 </Card.Text>
                                 

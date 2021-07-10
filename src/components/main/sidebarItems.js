@@ -19,7 +19,7 @@ export const SidebarItems = () => {
 
     useEffect(() => {
 
-        if (!(permissions && permissions.length)) 
+        if (!(permissions)) 
             dispatch(employeeActions.getPermissions())
             
     }, [dispatch, permissions])
@@ -33,49 +33,49 @@ export const SidebarItems = () => {
             </Row>
             <Row>
                 {   
-                    permissions && permissions.find(per => per.no === 1 && per.status === true) && 
+                    permissions && permissions.addOrder && 
                     <Col xs={10} sm={10} md={10} lg={10} className="py-3 mx-3 fw-bold sidebarItem">
                         <Link to="/order/add">ثبت سفارش</Link>
                     </Col>
                 }
                 {   
-                    permissions && permissions.find(per => per.no === 2 && per.status === true) && 
+                    permissions && permissions.getOrders && 
                     <Col xs={10} sm={10} md={10} lg={10} className="py-3 mx-3 fw-bold sidebarItem">
                         <Link to="/orders">سفارش ها</Link>
                     </Col>
                 }
                 {   
-                    permissions && permissions.find(per => per.no === 3 && per.status === true) && 
+                    permissions && permissions.reminder && 
                     <Col xs={10} sm={10} md={10} lg={10} className="py-3 mx-3 fw-bold sidebarItem">
                         <Link to="/reminders">یادآوری</Link>
                     </Col>
                 }
                 {   
-                    permissions && permissions.find(per => per.no === 4 && per.status === true) && 
+                    permissions && permissions.getProducts && 
                     <Col xs={10} sm={10} md={10} lg={10} className="py-3 mx-3 fw-bold sidebarItem">
                         <Link to="/products">محصولات</Link>
                     </Col>
                 }
                 {
-                    permissions && permissions.find(per => per.no === 5 && per.status === true) &&
+                    permissions && permissions.finance &&
                     <Col xs={10} sm={10} md={10} lg={10} className="py-3 mx-3 fw-bold sidebarItem">
                         <Link to="/finance">مالی</Link>
                     </Col> 
                 }
                 {   
-                    permissions && permissions.find(per => per.no === 6 && per.status === true) && 
+                    permissions && permissions.getCustomers && 
                     <Col xs={10} sm={10} md={10} lg={10} className="py-3 mx-3 fw-bold sidebarItem">
                         <Link to="/customers">مشتریان</Link>
                     </Col>
                 }
                 {   
-                    permissions && permissions.find(per => per.no === 7 && per.status === true) && 
+                    permissions && permissions.getEmployees && 
                     <Col xs={10} sm={10} md={10} lg={10} className="py-3 mx-3 fw-bold sidebarItem">
                         <Link to="/employees">کارمندان</Link>
                     </Col>
                 }
                 {
-                    permissions && permissions.find(per => per.no === 8 && per.status === true) && 
+                    permissions && permissions.getDiscounts && 
                     <Col xs={10} sm={10} md={10} lg={10} className="py-3 mx-3 fw-bold sidebarItem">
                         <Link to="/discounts">تخفیف ها</Link>
                     </Col>

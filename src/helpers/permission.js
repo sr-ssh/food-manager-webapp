@@ -1,28 +1,28 @@
 export function isPermitted(route) {
     let permissions = JSON.parse(localStorage.getItem('permissions'));
     if(route === "/products"){
-        if(permissions.find(per => per.no === 4 && per.status === true))
+        if(permissions.getProducts)
             return true;
     }else if(route === "/orders"){
-        if(permissions.find(per => per.no === 2 && per.status === true))
+        if(permissions.getOrders)
             return true;
     }else if(route === "/customers"){
-        if(permissions.find(per => per.no === 6 && per.status === true))
+        if(permissions.getCustomers)
             return true;
     }else if(route === "/reminders"){
-        if(permissions.find(per => per.no === 3 && per.status === true))
+        if(permissions.reminder)
             return true;
     }else if(route === "/discounts"){
-        if(permissions.find(per => per.no === 8 && per.status === true))
+        if(permissions.getDiscounts)
             return true;
     }else if(route === "/order/add"){
-        if(permissions.find(per => per.no === 1 && per.status === true))
+        if(permissions.addOrder)
             return true;
-    }else if(route === "/employees"){
-        if(permissions.find(per => per.no === 7 && per.status === true))
+    }else if(route === "/employees" || route === "/employee/add"){
+        if(permissions.getEmployees)
             return true;
     }else if(route === "/finance" || route === "/bills"){
-        if(permissions.find(per => per.no === 5 && per.status === true))
+        if(permissions.finance)
             return true;
     }else if(route === "/setting") {
         return true

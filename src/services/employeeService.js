@@ -11,7 +11,9 @@ export const employeeService = {
     addEmployee,
     editEmployee,
     getPermissions,
-    deleteEmployee
+    deleteEmployee,
+    getApplications,
+    editApplication
 };
 
 
@@ -118,6 +120,7 @@ return axios
     .then(res => {
         console.log("res.user >> "); console.log(res.data.data);
         localStorage.setItem('permissions', JSON.stringify(res.data.data.permission));
+        localStorage.setItem('type', JSON.stringify(res.data.data.type));
         handleResponse(res)
         return res.data
     })
@@ -127,4 +130,49 @@ return axios
             handleError(error.response.status)
         }
     });
+}
+
+
+function getApplications() {
+    console.log("into employeeService");
+    
+    const requestOptions = {
+        headers: authHeader()
+    };
+    
+    return axios
+        .get(`${baseRoute}/employee/application`, requestOptions)
+        .then(res => {
+            console.log("res.user >> "); console.log(res.data.data);
+            handleResponse(res)
+            return res.data
+        })
+        .catch(function (error) {
+            if (error.response) {
+                console.log(error.response.data);
+                handleError(error.response.status)
+            }
+        });
+}
+
+function editApplication(application) {
+    console.log("into employeeService");
+    
+    const requestOptions = {
+        headers: authHeader()
+    };
+    
+    return axios
+        .put(`${baseRoute}/employee/application`, application, {headers: requestOptions.headers})
+        .then(res => {
+            console.log("res.user >> "); console.log(res.data.data);
+            handleResponse(res)
+            return res.data
+        })
+        .catch(function (error) {
+            if (error.response) {
+                console.log(error.response.data);
+                handleError(error.response.status)
+            }
+        });
 }

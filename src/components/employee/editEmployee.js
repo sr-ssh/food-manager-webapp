@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react'
 import { Modal, Button, Row, Col, Alert, Form, Spinner } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import persianJs from 'persianjs/persian.min';
-import {  employeeActions } from '../../actions/employeeActions'
+import {  employeeActions } from '../../actions/employeeActions';
+import { translate } from '../../helpers';
 
 import closeIcon from '../../assets/images/close.svg'
 
 export const EditEmployee = (props) => {
     const [validated, setValidated] = useState(false)
-    const [newPermission, setNewPermission] = useState([])
+    const [newPermission, setNewPermission] = useState({})
     const dispatch = useDispatch()
     let editEmployeeLoading = useSelector(state => state.editEmployee.loading)
     let alert = useSelector(state => state.alert)
@@ -17,15 +18,10 @@ export const EditEmployee = (props) => {
         if(e.target.type != "checkbox") {
             e.preventDefault()
         }
-        setNewPermission(
-            newPermission.map(item =>
-            item.no == e.target.id
-                ? { ...item, status: e.target.checked }
-                : item
-            )
-        )
-        
+        newPermission[e.target.name] = e.target.checked
+        console.log(newPermission)
     }
+
 
     const formHandler = (e) => {
         e.preventDefault()
@@ -75,46 +71,17 @@ export const EditEmployee = (props) => {
                 </Row>
                 <Form onSubmit={formHandler} noValidate validated={validated}>
                     {
-                        props.show && props.employee.permission.map((item, index) => {
+                        props.show && Object.keys(props.employee.permission).map((key, index) => {
                             return(
                                 <Form.Group key={index} className="fw-bold" onChange={handleChange}>
                                     <Row className="my-2">
                                         <Col  className="col-6">
                                             <Form.Check.Label className="ms-2" htmlFor="active1">
-                                                {(() => {
-                                                switch (item.no) {
-                                                    case 1:
-                                                        return "ثبت سفارش";
-                                                        break;
-                                                    case 2:
-                                                        return "سفارش ها";
-                                                        break;
-                                                    case 3:
-                                                        return "یادآوری";
-                                                        break;
-                                                    case 4:
-                                                        return "محصولات";
-                                                        break;
-                                                    case 5:
-                                                        return "مالی";
-                                                        break;
-                                                    case 6:
-                                                        return "مشتریان";
-                                                        break;
-                                                    case 7:
-                                                        return "کارمندان";
-                                                        break;
-                                                    case 8:
-                                                        return "تخفیف ها";
-                                                        break;
-                                                    default:
-                                                        return;
-                                                }
-                                                })()}
+                                                {translate(key)}
                                             </Form.Check.Label>
                                         </Col>
                                         <Col>
-                                            <Form.Check.Input name="no" id={`${item.no}`} defaultChecked={item.status} type="checkbox" />
+                                            <Form.Check.Input name={key} id={`${index}`} defaultChecked={props.employee.permission[key]} type="checkbox" />
                                         </Col>
                                     </Row>
 
