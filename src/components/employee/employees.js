@@ -13,6 +13,7 @@ import { RemoveEmployee } from './removeEmployee'
 
 import editIcon from '../../assets/images/Products/edit.svg'
 import deleteIcon from '../../assets/images/discounts/deletee.svg'
+import checkIcon from '../../assets/images/tick.svg'
 
 export const Employees = () => {
     const [addModalShow, setAddModalShow] = useState(false)
@@ -31,7 +32,7 @@ export const Employees = () => {
     return (
         <div className="product-page">
             <Header title="کارمندان" backLink="/dashboard" addLink="/employee/add" />
-            <Container className="m-auto">
+            <Container className="m-auto emplyees-text-gray">
                 {  
                 getEmployeesLoading &&
                     <Row>
@@ -42,36 +43,42 @@ export const Employees = () => {
                 }
                 {employees ? 
                     (employees.map((item, index) => 
-                        <Card key={index} className="m-auto mt-3 bg-light productCard" >
-                            <Card.Body className="pb-0 ps-1 rounded-3">
+                        <Card key={index} className="m-auto mt-3 productCard" >
+                            <Card.Body className="pb-0 ps-1 rounded-3 ">
                                 <Card.Text className="pt-1">
-                                    <span style={{"color": "var(--text-color-one)"}}>نام : </span>{item.family && persianJs(item.family).englishNumber().toString()}
+                                    نام : <span>{item.family && persianJs(item.family).englishNumber().toString()}</span>
                                 </Card.Text>
                                 <Card.Text className="pt-1">
-                                    <span style={{"color": "var(--text-color-one)"}}>شماره تماس : </span>{item.mobile && persianJs(item.mobile).englishNumber().toString()}
+                                    موبایل : <span>{item.mobile && persianJs(item.mobile).englishNumber().toString()}</span>
                                 </Card.Text>
-                                <Card.Text className="pt-1">
-                                    <span style={{"color": "var(--text-color-one)"}}>سطح دسترسی: </span>
-                                    {
-                                        Object.keys(item.permission).map(per => 
-                                            item.permission[per]
-                                            ? <>{translate(per)}<br /></>
-                                            : null
-                                        ) 
-                                    }
-                                </Card.Text>
+                                <Row>
+                                    <Col xs={4} className="ps-0">
+                                        <Card.Text className="pt-1">
+                                            سطح دسترسی: 
+                                        </Card.Text>
+                                    </Col>
+                                    <Col className="pe-0">
+                                        <Card.Text className="pt-1">
+                                            {
+                                                Object.keys(item.permission).map(per => 
+                                                    item.permission[per]
+                                                    ? <Col><img src={checkIcon} height="27px" alt="tick-icon" className="application-check-icon"/> <span>  {translate(per)}</span></Col>
+                                                    : null
+                                                ) 
+                                            }
+                                        </Card.Text>
+                                    </Col>
+                                </Row>
+                                
                                 
                                 <Row className="justify-content-end">
                                     <Card.Link className="d-flex justify-content-center editLogo" onClick={() => {setRemoveModalShow(true); setEmployee(item)}}>
-                                        <img className="" src={deleteIcon} height="35px" alt="delete-icon" />
+                                        <img className="" src={deleteIcon} height="29px" alt="delete-icon" />
                                     </Card.Link>
                                     <Card.Link className="d-flex justify-content-center editLogo" onClick={() => {setEditModalShow(true); setEmployee(item)}}>
-                                        <img className="" src={editIcon} height="42px" alt="edit-icon" />
+                                        <img className="" src={editIcon} height="39px" alt="edit-icon" />
                                     </Card.Link>
                                 </Row>
-{/*                                 <Card.Link className="editLogo bg-danger" onClick={() => {setEditModalShow(true); setEmployee(item)}}>
-                                    <img className="d-block me-auto" src={editIcon} height="42px" alt="back-icon" />
-                                </Card.Link> */}
                             </Card.Body>
                         </Card>    
                     ))    

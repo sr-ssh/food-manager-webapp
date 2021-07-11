@@ -6,7 +6,8 @@ const initialState = {
     employee: {},
     editEmployee: {},
     permissions: {},
-    applications: []
+    applications: [],
+    application: {}
 }
 
 export function getEmployees(state = initialState, action) {
@@ -135,6 +136,28 @@ export function getApplications(state = initialState, action) {
                 applications: action.data
             }
         case employeeConstants.GET_APPLICATIONS_FAILURE:
+            return {
+                err: action.err
+            }
+        default:
+            return state;
+    }
+}
+
+export function editApplications(state = initialState, action) {
+    switch (action.type) {
+        case employeeConstants.EDIT_APPLICATIONS_REQUEST:
+            return {
+                ...state, 
+                loading: true,
+            }
+        case employeeConstants.EDIT_APPLICATIONS_SUCCESS: 
+            return {
+                ...state,
+                loading: false,
+                application: action.data
+            }
+        case employeeConstants.EDIT_APPLICATIONS_FAILURE:
             return {
                 err: action.err
             }

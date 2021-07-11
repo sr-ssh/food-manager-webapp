@@ -37,6 +37,6 @@ export default combineReducers ({
     getPermissions, 
     verificationCode,
     getUserInfo,
-    getOrderSms
+    getOrderSms,
     getApplications
 })

@@ -165,7 +165,7 @@ function editApplication(application) {
     return axios
         .put(`${baseRoute}/employee/application`, application, {headers: requestOptions.headers})
         .then(res => {
-            console.log("res.user >> "); console.log(res.data.data);
+            console.log("res.user >> "); console.log(res.data);
             handleResponse(res)
             return res.data
         })

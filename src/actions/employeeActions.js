@@ -1,4 +1,5 @@
 import { employeeConstants } from '../constants';
+import { history } from '../helpers';
 import { employeeService } from '../services';
 import { alertActions } from './alertActions';
 
@@ -197,17 +198,18 @@ function getApplications() {
 }
 
 
-function editApplication() {
+function editApplication(application) {
     return dispatch => {
-        dispatch(request(employeeConstants.GET_APPLICATIONS_REQUEST))
-        employeeService.getApplications()
+        dispatch(request(employeeConstants.EDIT_APPLICATIONS_REQUEST))
+        employeeService.editApplication(application)
             .then(
                 res => {
                     if(res === undefined)
                         dispatch(alertActions.error('ارتباط با سرور برقرار نیست'));
                     else if(res.success){
                         console.log("applications received")
-                        dispatch(success(employeeConstants.GET_APPLICATIONS_SUCCESS, res.data));
+                        dispatch(success(employeeConstants.EDIT_APPLICATIONS_SUCCESS, res.data));
+                        history.go(0)
                     }
                         
                     setTimeout(() => {
@@ -215,7 +217,7 @@ function editApplication() {
                     }, 1500);
                 },
                 error => {
-                    dispatch(failure(employeeConstants.GET_APPLICATIONS_FAILURE, error.toString()));
+                    dispatch(failure(employeeConstants.EDIT_APPLICATIONS_FAILURE, error.toString()));
                     console.log("occure error");
                     console.log(error.toString());
                     dispatch(alertActions.error(error.toString()));

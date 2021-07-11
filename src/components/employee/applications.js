@@ -20,6 +20,14 @@ export const Applications = () => {
     let applications = useSelector(state => state.getApplications.applications)
     const dispatch = useDispatch()
 
+    const changeStatus = (id, status) => {
+        let application = {
+            applicationId: id,
+            status: status
+        }
+        dispatch(employeeActions.editApplication(application))
+    }
+
     useEffect(() => {
         dispatch(employeeActions.getApplications())
     }, [dispatch])
@@ -32,38 +40,53 @@ export const Applications = () => {
                 {
                     applications
                     ? applications.map((item, index) => 
-                        <Card className="m-auto mt-3 productCard border-0 lh-lg pb-2" >
-                            <Card.Body className="pb-0 ps-0 text-gray">
+                        <Card className="m-auto mt-3 productCard border-0 lh-lg pb-2 " >
+                            <Card.Body className="pb-0 ps-0 applications-text-gray">
                                 <Row className="pe-2">
                                     <Row className="mt-2">
-                                        <Col>
+                                        <Col xs={3} className="ps-0">
                                             <Card.Text>
-                                                نام : <span>{item.employee.family}</span>
+                                                نام :
+                                            </Card.Text>
+                                        </Col>
+                                        <Col className="pe-0">
+                                            <Card.Text>
+                                                <span>{item.employee.family}</span>
                                             </Card.Text>
                                         </Col>
                                     </Row>
                                     <Row className="mt-2">
-                                        <Col>
+                                        <Col xs={3} className="ps-0">
                                             <Card.Text>
-                                                موبایل : <span>{item.employee.mobile}</span>
+                                                موبایل :
                                             </Card.Text>
                                         </Col>
-                                        <Col>
+                                        <Col className="pe-0">
                                             <Card.Text>
-                                                تاریخ : <span>{item.createdAt && persianJs(moment.from(item.createdAt, 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD')).englishNumber().toString()}</span>
+                                                <span>{item.employee.mobile && persianJs(item.employee.mobile).englishNumber().toString()}</span>
+                                            </Card.Text>
+                                        </Col>
+                                        <Col className="ps-0"> 
+                                            <Card.Text>
+                                                تاریخ :
+                                            </Card.Text>
+                                        </Col>
+                                        <Col className="px-0"> 
+                                            <Card.Text>
+                                                <span>{item.createdAt && persianJs(moment.from(item.createdAt, 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD')).englishNumber().toString()}</span>
                                             </Card.Text>
                                         </Col>
                                     </Row>
                                 </Row>
-                                <Row>
-                                    <Col>
-                                        <Button className="border-0" type="button" >
-                                            <img className="d-flex m-auto" src={cancelIcon} alt="close-btn"/>
+                                <Row className="mt-4 mb-2 pe-2">
+                                    <Col xs={2}> 
+                                        <Button className="border-0 hire-application-btn p-0" type="button" onClick={() => changeStatus(item.id, 2)}>
+                                            <img className="d-flex m-auto " src={tickIcon} alt="close-btn" height="40px"/>
                                         </Button>
                                     </Col>
-                                    <Col>
-                                        <Button className="border-0" type="button" >
-                                            <img className="d-flex m-auto" src={tickIcon} alt="close-btn" />
+                                    <Col xs={2}>
+                                        <Button className="border-0 close-application-btn p-0" type="button" onClick={() => changeStatus(item.id, 3)}>
+                                            <img className="d-flex m-auto " src={cancelIcon} alt="close-btn" height="40px"/>
                                         </Button>
                                     </Col>
                                 </Row>
