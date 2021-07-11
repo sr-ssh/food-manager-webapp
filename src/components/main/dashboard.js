@@ -25,6 +25,7 @@ export const Dashboard = () => {
     const [isOpen, setIsOpen] = useState(false)
 
     let user_type = JSON.parse(localStorage.getItem('type'));
+    let application_status = JSON.parse(localStorage.getItem('applicationStatus'));
     const permissions = useSelector(state => state.getPermissions.permissions);
     const userInfo = useSelector(state => state.getUserInfo.user)
     const products = useSelector(state => state.getProducts.product)
@@ -75,6 +76,12 @@ export const Dashboard = () => {
                         }
                         { user_type === 1 && products.length > 0 &&
                             <MainMenuOptions />
+                        }
+                        { user_type === 2 && application_status === 1 &&
+                            <EmployeeApp />
+                        }
+                        { user_type === 2 && application_status === 3 &&
+                            <EmployeeNoApp />
                         }
                     </Row>
                 </Container>
