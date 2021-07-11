@@ -76,12 +76,6 @@ export const Dashboard = () => {
                         { user_type === 1 && products.length > 0 &&
                             <MainMenuOptions />
                         }
-                        { user_type === 2 && userInfo.employer &&
-                            <h2>test</h2>
-                        }
-                        { user_type === 2 && !userInfo.employer &&
-                            <EmployeeApp />
-                        }
                     </Row>
                 </Container>
                 
