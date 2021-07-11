@@ -14,6 +14,8 @@ import { employeeActions } from '../../actions/employeeActions'
 import { userActions } from '../../actions/userActions'
 import { productActions } from '../../actions/productActions'
 import { EmployerNoProduct } from './employerNoProduct';
+import { EmployeeApp } from './employeeApp'
+import { EmployeeNoApp } from './employeeNoApp'
 
 
 // import logo from './../assets/images/crm.svg'
@@ -74,8 +76,11 @@ export const Dashboard = () => {
                         { user_type === 1 && products.length > 0 &&
                             <MainMenuOptions />
                         }
-                        {
-                            user_type === 2 && "employee"
+                        { user_type === 2 && userInfo.employer &&
+                            <h2>test</h2>
+                        }
+                        { user_type === 2 && !userInfo.employer &&
+                            <EmployeeApp />
                         }
                     </Row>
                 </Container>
