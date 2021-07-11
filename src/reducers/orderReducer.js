@@ -96,6 +96,30 @@ export function getOrderSms(state = initialState, action) {
     }
 }
 
+export function editOrderSms(state = initialState, action) {
+    switch (action.type) {
+        case orderConstants.EDIT_ORDER_SMS_REQUEST:
+            return {
+                ...state,
+                params: action.params,
+                loading: true
+            }
+        case orderConstants.EDIT_ORDER_SMS_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                message: action.message
+            }
+        case orderConstants.EDIT_ORDER_SMS_FAILURE:
+            return {
+                err: action.err,
+                loading: false
+            }
+        default:
+            return state
+    }
+}
+
 export function setOrdersFilter(state = {}, action){
     
     switch (action.type) {

@@ -60,6 +60,20 @@
     top: 11vh;
 }
 
+.employee-register-submit-btn {
+    color: var(--button-color-one);
+    background-color: var(--button-background);
+    border: none;
+    border-radius: 11px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    min-height: 7vh;
+    width: 50vw;
+    font-family: 'IranSans';   
+    position: relative;
+    top: 15vh;
+}
+
 .submitContainer {
     margin-top: 130px;
 }
@@ -104,6 +118,16 @@
     text-decoration: none;
     font-weight: bold;
     font-size: 0.95rem;
+}
+
+.employee-register-link a {
+    color: var(--button-background);
+    margin-right: 40px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.95rem;
+    position: relative;
+    top: 7vh;
 }
 
 .mzLogo {
