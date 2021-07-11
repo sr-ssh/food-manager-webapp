@@ -121,6 +121,8 @@ return axios
         console.log("res.user >> "); console.log(res.data.data);
         localStorage.setItem('permissions', JSON.stringify(res.data.data.permission));
         localStorage.setItem('type', JSON.stringify(res.data.data.type));
+        if(res.data.data.type === 2)
+            localStorage.setItem('applicationStatus', JSON.stringify(res.data.data.application));
         handleResponse(res)
         return res.data
     })
