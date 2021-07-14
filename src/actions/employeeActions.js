@@ -11,7 +11,8 @@ export const employeeActions = {
     deleteEmployee,
     getPermissions,
     getApplications,
-    editApplication
+    editApplication,
+    addApplication
 };
 
 function getEmployees() {
@@ -190,6 +191,36 @@ function getApplications() {
                 },
                 error => {
                     dispatch(failure(employeeConstants.GET_APPLICATIONS_FAILURE, error.toString()));
+                    console.log("occure error");
+                    console.log(error.toString());
+                    dispatch(alertActions.error(error.toString()));
+                }
+            );
+    };
+}
+
+function addApplication(application) {
+    console.log("employee actions")
+    return dispatch => {
+        dispatch(request(employeeConstants.ADD_APPLICATION_REQUEST))
+        employeeService.addApplication(application)
+            .then(
+                res => {
+                    console.log("employee actions")
+                    if(res === undefined)
+                        dispatch(alertActions.error('ارتباط با سرور برقرار نیست'));
+                    else if(res.success){
+                        console.log("application added")
+                        dispatch(success(employeeConstants.ADD_APPLICATION_SUCCESS, res.data));
+                        history.go(0)
+                    }
+                        
+                    setTimeout(() => {
+                        dispatch(alertActions.clear());
+                    }, 1500);
+                },
+                error => {
+                    dispatch(failure(employeeConstants.ADD_APPLICATION_FAILURE, error.toString()));
                     console.log("occure error");
                     console.log(error.toString());
                     dispatch(alertActions.error(error.toString()));

@@ -144,6 +144,28 @@ export function getApplications(state = initialState, action) {
     }
 }
 
+export function addApplication(state = initialState, action) {
+    switch (action.type) {
+        case employeeConstants.ADD_APPLICATION_REQUEST:
+            return {
+                ...state, 
+                loading: true,
+            }
+        case employeeConstants.ADD_APPLICATION_SUCCESS: 
+            return {
+                ...state,
+                loading: false,
+                application: action.data
+            }
+        case employeeConstants.ADD_APPLICATION_FAILURE:
+            return {
+                err: action.err
+            }
+        default:
+            return state;
+    }
+}
+
 export function editApplications(state = initialState, action) {
     switch (action.type) {
         case employeeConstants.EDIT_APPLICATIONS_REQUEST:

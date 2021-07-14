@@ -13,7 +13,8 @@ export const employeeService = {
     getPermissions,
     deleteEmployee,
     getApplications,
-    editApplication
+    editApplication,
+    addApplication
 };
 
 
@@ -153,6 +154,28 @@ function getApplications() {
         .get(`${baseRoute}/employee/application`, requestOptions)
         .then(res => {
             console.log("res.user >> "); console.log(res.data.data);
+            handleResponse(res)
+            return res.data
+        })
+        .catch(function (error) {
+            if (error.response) {
+                console.log(error.response.data);
+                handleError(error.response.status)
+            }
+        });
+}
+
+function addApplication(application) {
+    console.log("into employeeService");
+    
+    const requestOptions = {
+        headers: authHeader()
+    };
+    
+    return axios
+        .post(`${baseRoute}/employee/application`, application, {headers: requestOptions.headers})
+        .then(res => {
+            console.log("res.user >> "); console.log(res.data);
             handleResponse(res)
             return res.data
         })

@@ -21,6 +21,7 @@ export const EmployeeApp = () => {
             status : 3
         }
         dispatch(employeeActions.editApplication(application))
+        //dispatch(employeeActions.getPermissions())
     }
 
 
