@@ -121,11 +121,15 @@ return axios
         console.log("res.user >> "); console.log(res.data.data);
         localStorage.setItem('permissions', JSON.stringify(res.data.data.permission));
         localStorage.setItem('type', JSON.stringify(res.data.data.type));
-        localStorage.setItem('employer', JSON.stringify(res.data.data.employer));
-        localStorage.setItem('applicationId', JSON.stringify(res.data.data.applicationId));
-
-        if(res.data.data.type === 2)
+        
+        if(res.data.data.type === 2){
             localStorage.setItem('applicationStatus', JSON.stringify(res.data.data.application));
+            localStorage.setItem('applicationId', JSON.stringify(res.data.data.applicationId));
+            if(res.data.data.application !== 3)
+                localStorage.setItem('employer', JSON.stringify(res.data.data.employer));
+        }
+            
+
         handleResponse(res)
         return res.data
     })
