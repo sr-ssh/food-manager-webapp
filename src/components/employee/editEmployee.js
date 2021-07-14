@@ -10,8 +10,8 @@ import tickIcon from '../../assets/images/tick.svg'
 
 export const EditEmployee = (props) => {
     const [validated, setValidated] = useState(false)
-    const [newPermission, setNewPermission] = useState({})
     const dispatch = useDispatch()
+    let [newPermission, setNewPermission] = useState(props.employee.permission)
     let editEmployeeLoading = useSelector(state => state.editEmployee.loading)
     let alert = useSelector(state => state.alert)
 
@@ -19,8 +19,7 @@ export const EditEmployee = (props) => {
         if(e.target.type != "checkbox") {
             e.preventDefault()
         }
-        console.log(e.target.checked)
-        newPermission[e.target.name] = e.target.checked
+        setNewPermission({...newPermission, [e.target.name]: e.target.checked})
     }
 
 
@@ -31,8 +30,9 @@ export const EditEmployee = (props) => {
     }
     
     useEffect(() => {
-        setNewPermission(props.employee.permission)
-    }, [props.employee, props.show])
+        if(!newPermission)
+            setNewPermission(props.employee.permission)
+    }, [newPermission, props.show])
 
     return (
         <Modal
@@ -42,7 +42,6 @@ export const EditEmployee = (props) => {
             centered
             className="mx-3 order-serach-modal"
             >
-            {console.log(newPermission)}
             <Modal.Body className="add-product px-4 permission-card applications-text-gray">
                 <Button className="border-0 customer-modal-close" type="button"  onClick={e => props.onHide(false)}>
                     <img className="d-flex m-auto customer-modal-close-svg" src={closeIcon} alt="close-btn" />
@@ -85,17 +84,17 @@ export const EditEmployee = (props) => {
                                 </Col>
                                 <Col>
                                     {
-                                        props.show && Object.keys(props.employee.permission).map((key, index) => {
+                                        props.show && newPermission && Object.keys(newPermission).map((key, index) => {
                                             return(
                                                 <Form.Group key={index} className="fw-bold" onChange={handleChange}>
                                                     <Row className="my-1">
                                                         <Col xs={3}>
                                                             <img 
                                                             htmlFor={`${index}`} 
-                                                            className={`${props.employee.permission[key] ? "edit-permission-tick-show" : "edit-permission-tick-fade"}`} src={tickIcon} 
+                                                            className={`${newPermission[key] ? "edit-permission-tick-show" : "d-none"}`} src={tickIcon} 
                                                             alt="close-btn" 
                                                             height="30px"/>
-                                                            <Form.Check.Input name={key} id={`${index}`} defaultChecked={props.employee.permission[key]} type="checkbox" className="mx-2 mt-2" />  
+                                                            <Form.Check.Input name={key} id={`${index}`} defaultChecked={newPermission[key]} type="checkbox" className="mx-2 mt-2" />  
                                                         </Col>
                                                         <Col>
                                                             <Form.Check.Label className="ms-2" htmlFor={`${index}`}>
