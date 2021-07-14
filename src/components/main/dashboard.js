@@ -74,7 +74,7 @@ export const Dashboard = () => {
                         { user_type === 1 && !products.length && 
                             <EmployerNoProduct />
                         }
-                        { user_type === 1 && products.length > 0 &&
+                        { ((user_type === 1 && products.length > 0) || (user_type === 2 && application_status === 2)) &&
                             <MainMenuOptions />
                         }
                         { user_type === 2 && application_status === 1 &&
