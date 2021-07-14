@@ -19,8 +19,8 @@ export const EditEmployee = (props) => {
         if(e.target.type != "checkbox") {
             e.preventDefault()
         }
+        console.log(e.target.checked)
         newPermission[e.target.name] = e.target.checked
-        console.log(newPermission)
     }
 
 
@@ -42,6 +42,7 @@ export const EditEmployee = (props) => {
             centered
             className="mx-3 order-serach-modal"
             >
+            {console.log(newPermission)}
             <Modal.Body className="add-product px-4 permission-card applications-text-gray">
                 <Button className="border-0 customer-modal-close" type="button"  onClick={e => props.onHide(false)}>
                     <img className="d-flex m-auto customer-modal-close-svg" src={closeIcon} alt="close-btn" />

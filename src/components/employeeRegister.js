@@ -25,7 +25,7 @@ export const EmployeeRegister = () => {
     const [showPassword, setShowPassword] = useState(false)
     const [validated, setValidated] = useState(false);
     const [inputs, setInputs] = useState({ username: '', password: '', position: 2 });
-    const { name, family, password, email, mobile, position, code, employerMobile } = inputs;
+    const { name, family, password, dupPassword, email, mobile, position, code, employerMobile } = inputs;
     const dispatch = useDispatch()
 
     const mobileHandler = (value) => {
@@ -76,7 +76,7 @@ export const EmployeeRegister = () => {
          
         let user = { family, password, email, employerMobile, position, mobile, code };
         
-        if(email != false && family && password && mobile && code && employerMobile)
+        if(email != false && family && password && password === dupPassword && mobile && code && employerMobile)
             dispatch(userActions.register(user));
         else 
             setValidated(true);
@@ -166,19 +166,6 @@ export const EmployeeRegister = () => {
                             </Row>
 
                             <Row className="w-100 me-2 pe-2 form-label mt-2">
-                                <Col className="col-6">
-                                    <Form.Group controlId="employerMobile" >
-                                        <Image src={mobileLogo} width="17px" className="mx-2"/>
-                                        <Form.Label>موبایل کارفرما</Form.Label>
-                                        <Form.Control className="form-input w-100 login-input" type="number" 
-                                        isValid={employerMobile && validated && true}
-                                        isInvalid={!employerMobile && validated && true}
-                                        onChange={handleChange}
-                                        required
-                                        />
-                                    </Form.Group>
-                                </Col>
-                                
                                 <Col>
                                     <Form.Group className="inputWithButton w-100 login-input" controlId="password" >
                                         <Image src={passwordLogo} width="17px" className="mx-2"/>
@@ -191,6 +178,33 @@ export const EmployeeRegister = () => {
                                         required
                                         />
                                         <Form.Control.Feedback className="me-2" type="invalid">رمز عبور طولانی تری انتخاب کنید!</Form.Control.Feedback>
+                                    </Form.Group>
+                                </Col>
+                                <Col className="col-6">
+                                    <Form.Group controlId="employerMobile" >
+                                        <Image src={mobileLogo} width="17px" className="mx-2"/>
+                                        <Form.Label>موبایل کارفرما</Form.Label>
+                                        <Form.Control className="form-input w-100 login-input" type="number" 
+                                        isValid={employerMobile && validated && true}
+                                        isInvalid={!employerMobile && validated && true}
+                                        onChange={handleChange}
+                                        required
+                                        />
+                                    </Form.Group>
+                                </Col>
+                            </Row>
+                            <Row className="w-100 me-2 pe-2 form-label mt-2">
+                                <Col className="col-6">
+                                    <Form.Group className="inputWithButton w-100 login-input" controlId="dupPassword" >
+                                        <Image src={passwordLogo} width="17px" className="mx-2"/>
+                                        <Form.Label >تکرار رمز عبور</Form.Label>
+                                        <Form.Control className="w-100 eye-input form-input login-input" type={`${showPassword ? "text" : "password"}`}  
+                                        isValid={dupPassword && password === dupPassword && validated && true}
+                                        isInvalid = {(!dupPassword && validated && true) || (dupPassword !== password && validated && true)}
+                                        onChange={handleChange}  
+                                        required
+                                        />
+                                        <Form.Control.Feedback className="me-2" type="invalid">رمز عبور یکسان نیست!</Form.Control.Feedback>
                                     </Form.Group>
                                 </Col>
                             </Row>
