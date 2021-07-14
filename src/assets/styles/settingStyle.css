@@ -1,0 +1,19 @@
+.setting-order-btn {
+    width: 60vw;
+    height: 8vh;
+    background-color: var(--button-color-one);
+    border: none;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px var(--button-color-one);
+    
+    margin: auto;
+}
+
+.setting-order-btn:focus {
+    background-color: var(--button-color-one);
+    border: none;
+}
+
+.setting-btn-row {
+    margin: 5vh 0 5vh 0;
+}
