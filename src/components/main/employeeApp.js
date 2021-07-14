@@ -1,12 +1,29 @@
 import React from 'react';
 import { Button, Row, Col, Card } from 'react-bootstrap';
-import { history } from '../../helpers';
+import { useDispatch } from 'react-redux';
+import persianJs from 'persianjs/persian.min';
 
 //icons
-import addOrderIcon from '../../assets/images/main/add-order.svg';
+import cancelIcon from '../../assets/images/employees/cancel-blue.svg';
+import { employeeActions } from '../../actions/employeeActions';
 
 
 export const EmployeeApp = () => {
+
+    let employer = JSON.parse(localStorage.getItem('employer'));
+    let applicationId = JSON.parse(localStorage.getItem('applicationId'));
+    const dispatch = useDispatch()
+
+    const closeApplication = (e) => {
+        e.preventDefault()
+        let application = {
+            applicationId: applicationId,
+            status : 3
+        }
+        dispatch(employeeActions.editApplication(application))
+    }
+
+
     return (
         <>
         <Row className="mb-3 pe-3 justify-content-center mt-4">
@@ -15,7 +32,10 @@ export const EmployeeApp = () => {
                     <Card.Body className="fs-6 fw-bold me-2">
                         <Row>
                             <Card.Text>
-                                در انتظار قبول درخواست توسط آقا/خانم با شماره 
+                                <span> در انتظار قبول درخواست توسط آقا/خانم </span>
+                                <span className="fs-5">{employer.family}</span> 
+                                <span> با شماره </span>
+                                {employer.mobile && persianJs(employer.mobile).englishNumber().toString()}
                             </Card.Text>
                         </Row>
                     </Card.Body>
@@ -24,10 +44,10 @@ export const EmployeeApp = () => {
         </Row>
         <Row className="my-3 pe-3 justify-content-center">
                 <Col  xs={10}  className="">
-                    <Button  className="no-product-main-button w-100 me-auto d-block p-2 px-0"  type="submit"  onClick={e  => history.push('/products')}>
+                    <Button  className="no-product-main-button w-100 me-auto d-block p-2 px-0"  type="submit"  onClick={e  => closeApplication(e)}>
                         <Row>
-                            <Col xs={3} className="ms-4 pe-4"><img src={addOrderIcon}  alt="add-order-icon"  width="35px"/></Col>
-                            <Col className="fs-6 me-0 text-end pt-1 pe-4">لغو درخواست</Col>
+                            <Col xs={3} className="ms-0 me-4 pe-4"><img src={cancelIcon} alt="add-order-icon"  width="43px"/></Col>
+                            <Col className="fs-6 me-0 text-end pt-2 pe-2">لغو درخواست</Col>
                         </Row>
                     </Button>
                 </Col>

@@ -211,5 +211,7 @@ function logout() {
     localStorage.removeItem('permissions');
     localStorage.removeItem('type');
     localStorage.removeItem('applicationStatus');
+    localStorage.removeItem('applicationId');
+    localStorage.removeItem('employer');
     history.push('/')
 }

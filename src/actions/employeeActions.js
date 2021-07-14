@@ -8,6 +8,7 @@ export const employeeActions = {
     getEmployees,
     addEmployee,
     editEmployee,
+    deleteEmployee,
     getPermissions,
     getApplications,
     editApplication
@@ -199,11 +200,13 @@ function getApplications() {
 
 
 function editApplication(application) {
+    console.log("employee actions")
     return dispatch => {
         dispatch(request(employeeConstants.EDIT_APPLICATIONS_REQUEST))
         employeeService.editApplication(application)
             .then(
                 res => {
+                    console.log("employee actions")
                     if(res === undefined)
                         dispatch(alertActions.error('ارتباط با سرور برقرار نیست'));
                     else if(res.success){
