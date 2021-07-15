@@ -10,7 +10,7 @@ import { userActions } from '../../actions/userActions'
 
 //components
 import {EmployerAccount} from './employerAccount'
-
+import { WithEmployeeAccount } from './withEmployeeAccount'
 
 export const Account = () => {
 
@@ -20,7 +20,6 @@ export const Account = () => {
     const dispatch = useDispatch()
     
     useEffect(() => {
-        console.log('ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss')
         dispatch(userActions.getUserInfo())
     }, [dispatch])
 
@@ -32,6 +31,9 @@ export const Account = () => {
                     <Card.Body className="ps-1 rounded-3 ">
                         {
                             userInfo && user_type === 1 && <EmployerAccount user={userInfo}/>
+                        }
+                        {
+                            userInfo && user_type === 2 && application_status === 2 && <WithEmployeeAccount user={userInfo}/>
                         }
                     </Card.Body>
                 </Card> 

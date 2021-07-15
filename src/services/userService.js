@@ -11,6 +11,7 @@ export const userService = {
     register,
     appInfo,
     userInfo,
+    editUserInfo,
     verificationCode
 };
 
@@ -94,6 +95,30 @@ function userInfo() {
     console.log(requestOptions)
     return axios
         .get(`${baseRoute}/account`, {headers: requestOptions.headers})
+        .then(res => {
+            console.log("res.user >> "); 
+            console.log(res.data);
+            return res.data
+        })
+        .catch(function (error) {
+            if (error.response) {
+                console.log(error.response.data);
+                console.log(error.response.status);
+            }
+        });
+}
+
+function editUserInfo(user) {
+    console.log("into userService");
+
+    const requestOptions = {
+        headers: authHeader(),
+        body: user
+    };
+
+    console.log(requestOptions)
+    return axios
+        .put(`${baseRoute}/account`, requestOptions.body, {headers: requestOptions.headers})
         .then(res => {
             console.log("res.user >> "); 
             console.log(res.data);

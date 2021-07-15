@@ -15,4 +15,10 @@ export function translate(key) {
         return "کارمندان"
     else if(key === "getDiscounts")
         return "تخفیف ها"
+    else if(key === "family")
+        return "نام"
+    else if(key === "company")
+        return "نام شرکت"
+    else if(key === "address")
+        return "آدرس شرکت"
 }

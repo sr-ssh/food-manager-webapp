@@ -10,7 +10,7 @@ import { getDiscounts } from './discountReducer';
 import { addDiscount } from './discountReducer';
 import { getEmployees, editEmployee, addEmployee, deleteEmployee, getApplications, addApplication } from './employeeReducer';
 import { getPermissions } from './employeeReducer';
-import { getUserInfo } from './userReducer';
+import { getUserInfo, editUserInfo } from './userReducer';
 
 export default combineReducers ({
     authentication,
@@ -39,5 +39,6 @@ export default combineReducers ({
     getUserInfo,
     getOrderSms,
     getApplications,
-    addApplication
+    addApplication,
+    editUserInfo
 })

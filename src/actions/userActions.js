@@ -9,7 +9,8 @@ export const userActions = {
     appInfo,
     logout,
     verificationCode,
-    getUserInfo
+    getUserInfo,
+    editUserInfo
 };
 
 
@@ -204,6 +205,48 @@ function getUserInfo() {
     function success(user) { console.log("into success"); return { type: userConstants.USER_INFO_SUCCESS, user } }
     function failure(error) { console.log("into failure"); return { type: userConstants.USER_INFO_FAILURE, error } }
 }
+
+
+function editUserInfo(user) {
+    return dispatch => {
+        dispatch(request())
+        userService.editUserInfo(user)
+            .then(
+                res => {
+                    console.log('user into userActions')
+                    console.log(res)
+                    if(res === undefined) {
+                        dispatch(alertActions.error('ارتباط با سرور برقرار نیست'));
+                        dispatch(failure('ارتباط با سرور برقرار نیست'))
+                    }
+                    else if(res.success){
+                        console.log("user info received")
+                        dispatch(success(res.data));
+                    } else if(res.success === false) {
+                        dispatch(failure(res.message))
+                    } else {
+                        dispatch(failure("مشکلی وجود دارد"))
+                    }
+
+                    setTimeout(() => {
+                        dispatch(alertActions.clear());
+                    }, 1500);
+                    
+                },
+                error => {
+                    dispatch(failure(error.toString()));
+                    console.log("occure error");
+                    console.log(error.toString());
+                    dispatch(alertActions.error(error.toString()));
+                }
+            )
+    }
+
+    function request() { console.log("into request"); return { type: userConstants.EDIT_USER_INFO_REQUEST } }
+    function success(user) { console.log("into success"); return { type: userConstants.EDIT_USER_INFO_SUCCESS, user } }
+    function failure(error) { console.log("into failure"); return { type: userConstants.EDIT_USER_INFO_FAILURE, error } }
+}
+
 
 function logout() {
     // remove user from local storage to log user out

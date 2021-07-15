@@ -24,3 +24,26 @@ export function getUserInfo(state = initialState, action) {
             return state;
     }
 }
+
+export function editUserInfo(state = initialState, action) {
+    switch (action.type) {
+        case userConstants.EDIT_USER_INFO_REQUEST:
+            return {
+                ...state,
+                user: {}
+            }
+        case userConstants.EDIT_USER_INFO_SUCCESS:
+            return {
+                ...state,
+                user: action.user
+            }
+        case userConstants.EDIT_USER_INFO_FAILURE:
+            return {
+                ...state,
+                user: {}
+            }
+    
+        default:
+            return state;
+    }
+}

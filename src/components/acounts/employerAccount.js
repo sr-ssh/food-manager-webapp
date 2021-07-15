@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState , useEffect } from 'react'
 import { Row , Col, Card } from 'react-bootstrap';
 import persianJs from 'persianjs/persian.min';
 
@@ -7,15 +7,18 @@ import editIcon from '../../assets/images/Products/edit.svg'
 
 //components
 import { EditField } from './editField.js'
+import { history } from '../../helpers';
 
 
 export const EmployerAccount = ({user}) => {
 
     const [editModalShow, setEditModalShow] = useState(false)
     const [input, setInput] = useState('')
+    const [name, setName] = useState('')
 
-    const edit = (name) => {
-        setInput(user.family)
+    const edit = (value, name) => {
+        setInput(value)
+        setName(name)
         setEditModalShow(true); 
         console.log(input)
     }
@@ -30,7 +33,7 @@ export const EmployerAccount = ({user}) => {
                 <Col className="pe-0">
                     <span className="fw-bold">{user.family && persianJs(user.family).englishNumber().toString()}</span>
                 </Col>
-                <Col className="text-start my-0" onClick={() => edit(user.family)}>
+                <Col className="text-start my-0" onClick={() => edit(user.family, 'family')}>
                     <img className="" src={editIcon} height="34px" alt="edit-icon" />
                 </Col>
             </Row>
@@ -66,7 +69,7 @@ export const EmployerAccount = ({user}) => {
                 <Col className="pe-0">
                     <span className="fw-bold">{user.company && persianJs(user.company).englishNumber().toString()}</span>
                 </Col>
-                <Col className="text-start my-0" onClick={() => {setEditModalShow(true); setInput(user.company)}}>
+                <Col className="text-start my-0" onClick={() => {edit(user.company, 'company')}}>
                     <img className="" src={editIcon} height="34px" alt="edit-icon" />
                 </Col>
             </Row>
@@ -80,7 +83,7 @@ export const EmployerAccount = ({user}) => {
                 <Col xs={6} className="pe-0">
                     <span className="fw-bold">{user.address && persianJs(user.address).englishNumber().toString()}</span>
                 </Col>
-                <Col className="text-start my-0" onClick={() => {setEditModalShow(true); setInput(user.address)}}>
+                <Col className="text-start my-0" onClick={() => {edit(user.address, 'address')}}>
                     <img className="" src={editIcon} height="34px" alt="edit-icon" />
                 </Col>
             </Row>
@@ -97,7 +100,7 @@ export const EmployerAccount = ({user}) => {
             </Row>
             
         </Card.Text>
-        <EditField show={editModalShow} onHide={() => setEditModalShow(false)} input={input}/>
+        <EditField show={editModalShow} onHide={() => {setEditModalShow(false); setInput(''); history.go(0)}} input={input} name={name} />
         </>
     )
 }

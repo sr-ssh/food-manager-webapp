@@ -1,13 +1,19 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState , useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { employeeActions } from '../../actions/employeeActions'
 import { Modal, Row, Col, Form, Button, Spinner, Alert } from 'react-bootstrap'
 
 import closeIcon from '../../assets/images/close.svg'
 
+//actions
+import { userActions } from '../../actions/userActions'
+import { history, translate } from '../../helpers'
+
 export const EditField = (props) => {
+
     const [validated, setValidated] = useState(false)
     const [input, setInput] = useState(props.input)
+    const [name, setName] = useState(props.name)
+
 
     let addEmployeeLoading = useSelector(state => state.addEmployee.loading)
     let alert = useSelector(state => state.alert)
@@ -23,10 +29,17 @@ export const EditField = (props) => {
         if (form.checkValidity() === false) {
             e.stopPropagation()
         } else {
-            dispatch(employeeActions.addEmployee(input))
+            dispatch(userActions.editUserInfo({[name]: input}))
+            history.go(0)
         }
         setValidated(true)
     }
+
+    useEffect(() => {
+        setInput(props.input)
+        setName(props.name)
+    }, [props.input, props.name])
+
 
 
     return (
@@ -38,7 +51,6 @@ export const EditField = (props) => {
             className="mx-3 order-serach-modal"
             >
             <Modal.Body className="add-product px-4">
-                {input && console.log(input)}
                 <Button className="border-0 customer-modal-close" type="button"  onClick={e => props.onHide(false)}>
                     <img className="d-flex m-auto customer-modal-close-svg" src={closeIcon} alt="close-btn" />
                 </Button>
@@ -56,34 +68,34 @@ export const EditField = (props) => {
                 {
                     props.show && input &&
                     <Form onSubmit={formHandler} noValidate validated={validated}>
-                    <Row className="mt-3">
-                        <Col className="order-filter-input">
-                            <Form.Group controlId="name">
-                                <Form.Label className="pe-3">شماره موبایل کارمند جدید را وارد کنید:</Form.Label>
-                                <Form.Control className="order-input" type="number" name="usernameOrMobile" defaultValue={input} value={input} onChange={handleChange} required />
-                            </Form.Group>
-                        </Col>
-                    </Row>
+                        <Row className="mt-3">
+                            <Col className="order-filter-input">
+                                <Form.Group controlId="name">
+                                    <Form.Label className="pe-3">{translate(name)}</Form.Label>
+                                    <Form.Control className="order-input" type="text" name={name} defaultValue={input} onChange={handleChange} required />
+                                </Form.Group>
+                            </Col>
+                        </Row>
 
-                    {
-                        addEmployeeLoading ? (
-                            <Button className="fw-bold order-submit border-0 w-100 mt-4" size="lg" type="submit"  disabled>
-                                <Spinner
-                                as="span"
-                                animation="grow"
-                                size="sm"
-                                role="status"
-                                aria-hidden="true"
-                                />
-                                در حال انجام عملیات...
-                            </Button>
-                        ) : (
-                            <Button className="fw-bold order-submit border-0 w-100 mt-4" size="lg" type="submit" block>
-                                افزودن
-                            </Button>
-                        )
-                    }
-                </Form>
+                        {
+                            addEmployeeLoading ? (
+                                <Button className="fw-bold order-submit border-0 w-100 mt-4" size="lg" type="submit"  disabled>
+                                    <Spinner
+                                    as="span"
+                                    animation="grow"
+                                    size="sm"
+                                    role="status"
+                                    aria-hidden="true"
+                                    />
+                                    در حال انجام عملیات...
+                                </Button>
+                            ) : (
+                                <Button className="fw-bold order-submit border-0 w-100 mt-4" size="lg" type="submit" block>
+                                ثبت
+                                </Button>
+                            )
+                        }
+                    </Form>
                 }
                 
             </Modal.Body>

@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { orderActions, customerActions  } from '../../actions';
-import { Header } from '../base/header2';
-import { Basket } from './basket';
-import { Container , Form , Button , Row , Col, Alert, Spinner } from 'react-bootstrap';
-import DatePicker from "react-multi-date-picker";
+import { Container , Form , Button , Row , Col, Alert, Spinner, Card } from 'react-bootstrap';
 import moment from 'jalali-moment';
 import "react-multi-date-picker/styles/layouts/mobile.css"
+import persianJs from 'persianjs/persian.min';
 
 import downloadIcon from '../../assets/images/download.svg'
 
-export const WithEmployeeAccount = () => {
+export const WithEmployeeAccount = ({user}) => {
 
     let alertMessage = useSelector(state => state.alert.message)
     let alerType = useSelector(state => state.alert.type)
