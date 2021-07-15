@@ -5,110 +5,117 @@ import { Container , Form , Button , Row , Col, Alert, Spinner, Card } from 'rea
 import moment from 'jalali-moment';
 import "react-multi-date-picker/styles/layouts/mobile.css"
 import persianJs from 'persianjs/persian.min';
+import { history } from '../../helpers';
 
-import downloadIcon from '../../assets/images/download.svg'
+//icons
+import editIcon from '../../assets/images/Products/edit.svg'
+
+//components
+import { EditField } from './editField.js'
+
 
 export const WithEmployeeAccount = ({user}) => {
 
-    let alertMessage = useSelector(state => state.alert.message)
-    let alerType = useSelector(state => state.alert.type)
-    
-    const [validated, setValidated] = useState(false);
-    const [mobileValidated, setMobileValidated] = useState(false);
-    const [order, insertOrder] = useState([])
-    const [customer, setCustomer] = useState({})
-    const dispatch = useDispatch()
-    let oldCustomer = useSelector(state => state.getCustomer.customer)
-    let addOrderLoading = useSelector(state => state.addOrder.loading)
+    const [editModalShow, setEditModalShow] = useState(false)
+    const [input, setInput] = useState('')
+    const [name, setName] = useState('')
 
-    let mobileHandler = (value) => {
-        let res = value.length === 11 && value[0] === "0" && value[1] === "9"
-        if(res) {
-            dispatch(customerActions.getCustomer(value))
-            setMobileValidated(false)
-            return value
-        }
-        else
-            return undefined
+    const edit = (value, name) => {
+        setInput(value)
+        setName(name)
+        setEditModalShow(true); 
+        console.log(input)
     }
-
-    let handleOldCustomer = (e) => {
-        e.preventDefault()
-        if(oldCustomer && Object.keys(oldCustomer).length !== 0) {
-            setCustomer(oldCustomer)
-            setMobileValidated(false);
-        }
-        else if(!customer.name && !customer.length) {
-            setMobileValidated(true);
-        }
-    }
-
-    let handleChange = (e) => {
-        e.preventDefault()
-        let value = e.target.value
-        let name = e.target.name
-        if(name === "mobile") {
-            value = mobileHandler(value)
-        } 
-        setCustomer({...customer, [name]: value})
-    }
-
-    let formHandler = (e) => {
-        e.preventDefault()
-        if(order.length && customer.family && customer.mobile && customer.address && customer.duration) {
-            dispatch(orderActions.addOrder(order, customer))
-        } else {
-            console.log('empty order can not be sent')
-            setValidated(true);
-        }
-    }
-
-    const submitCalendar = (value, name) => {
-        let birthDate = `${value.year}/${value.month.number}/${value.day}`
-        birthDate =  moment.from(birthDate, 'fa', 'YYYY/MM/DD').locale('en').format('YYYY-MM-DD');
-        setCustomer({...customer, [name]: birthDate})
-    }
-
-    useEffect(() => {
-        if(addOrderLoading)
-            insertOrder([])
-    }, [addOrderLoading])
 
     return (
         <>
-        <Card.Text className="pt-1">
-            نام : <span>{user.family && persianJs(user.family).englishNumber().toString()}</span>
+        {user && console.log(user.employer)}
+        <Card.Text className="pt-1 pe-3">
+            <Row className="ms-0 align-items-center">
+                <Col xs={3}>
+                    نام : 
+                </Col>
+                <Col className="pe-0">
+                    <span className="fw-bold">{user.family && persianJs(user.family).englishNumber().toString()}</span>
+                </Col>
+                <Col className="text-start my-0" onClick={() => edit(user.family, 'family')}>
+                    <img className="" src={editIcon} height="34px" alt="edit-icon" />
+                </Col>
+            </Row>
         </Card.Text>
-        <Card.Text className="pt-1">
-            موبایل : <span>{user.mobile && persianJs(user.mobile).englishNumber().toString()}</span>
+
+        <Card.Text className="pt-1 pe-3">
+            <Row className="ms-0 align-items-center">
+                <Col xs={3}>
+                    موبایل :        
+                </Col>
+                <Col className="pe-0">
+                    <span className="fw-bold">{user.mobile && persianJs(user.mobile).englishNumber().toString()}</span>
+                </Col>
+            </Row>
         </Card.Text>
-        <Card.Text className="pt-1">
-            ایمیل : <span>{user.email}</span>
+
+        <Card.Text className="pt-1 pe-3">
+            <Row className="ms-0 align-items-center">
+                <Col xs={3}>
+                    ایمیل :  
+                </Col>
+                <Col className="pe-0">
+                    <span className="fw-bold">{user.email}</span>
+                </Col>
+            </Row>
         </Card.Text>
-        <Card.Text className="pt-1">
-            آدرس : <span>{user.address && persianJs(user.address).englishNumber().toString()}</span>
+
+        
+        <Card.Text className="pt-1 pe-3">
+            <Row className="ms-0 align-items-center">
+                <Col xs={3}>
+                    آدرس : 
+                </Col>
+                <Col xs={6} className="pe-0">
+                    <span className="fw-bold">{user.address && persianJs(user.address).englishNumber().toString()}</span>
+                </Col>
+                <Col className="text-start my-0" onClick={() => {edit(user.address, 'address')}}>
+                    <img className="" src={editIcon} height="34px" alt="edit-icon" />
+                </Col>
+            </Row>
         </Card.Text>
-        <Card.Text className="pt-1">
-            نوع : <span>کارفرما</span>
+
+        <Card.Text className="pt-1 pe-3">
+            <Row className="ms-0 align-items-center">
+                <Col xs={3}>
+                    نوع : 
+                </Col>
+                <Col className="pe-0">
+                    <span className="fw-bold">کارفرما</span>
+                </Col>
+            </Row>
+            
         </Card.Text>
-        <Card className="background-blue border-0 customer-round">
-            <Card.Body className="pe-0 ps-0 ">
-                <Row className="flex-nowrap mt-2">
-                    <Col>
-                        <Card.Text>
-                            نام کارفرما: <span>{order.customer.mobile && persianJs(order.customer.mobile).englishNumber().toString()}</span>
-                        </Card.Text>
-                    </Col>
-                </Row>
-                <Row className="flex-nowrap mt-2">
-                    <Col>
-                        <Card.Text>
-                            نام شرکت : <span>{order.employee ? order.employee.family : null}</span>
-                        </Card.Text>
-                    </Col>
-                </Row>
-            </Card.Body>
-        </Card>
+        <Row className="ms-2 orders mx-0">
+            <Card className="background-blue border-0 customer-round">
+                <Card.Body className="ps-0 lh-lg py-3 pe-1">
+                    <Row className="ms-0 align-items-center">
+                        <Col xs={4}>
+                            نام کارفرما: 
+                        </Col>
+                        <Col className="pe-0">
+                            <span className="fw-bold">{user.employer && user.employer.family}</span>
+                        </Col>
+                    </Row>
+                    <Row className="ms-0 align-items-center mt-2">
+                        <Col xs={4}>
+                        نام شرکت: 
+                        </Col>
+                        <Col className="pe-0">
+                            <span className="fw-bold">{user.employer && user.employer.company}</span>
+                        </Col>
+                    </Row>
+                </Card.Body>
+            </Card>
+        </Row>
+        
+        <EditField show={editModalShow} onHide={() => {setEditModalShow(false); setInput(''); history.go(0)}} input={input} name={name} />
         </>
     )
 }

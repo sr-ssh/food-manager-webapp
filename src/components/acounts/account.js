@@ -28,7 +28,7 @@ export const Account = () => {
             <Header title="حساب کاربری" backLink="/dashboard"/>
             <Container className="m-auto emplyees-text-gray">
                 <Card className="m-auto mt-3 productCard border-0" >
-                    <Card.Body className="ps-1 rounded-3 ">
+                    <Card.Body className="ps-1 rounded-3">
                         {
                             userInfo && user_type === 1 && <EmployerAccount user={userInfo}/>
                         }

@@ -1,13 +1,13 @@
-import React, { useState , useEffect } from 'react'
+import React, { useState } from 'react'
 import { Row , Col, Card } from 'react-bootstrap';
 import persianJs from 'persianjs/persian.min';
+import { history } from '../../helpers';
 
 //icons
 import editIcon from '../../assets/images/Products/edit.svg'
 
 //components
 import { EditField } from './editField.js'
-import { history } from '../../helpers';
 
 
 export const EmployerAccount = ({user}) => {

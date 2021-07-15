@@ -66,7 +66,7 @@ export const EditField = (props) => {
                 </>
                 }
                 {
-                    props.show && input &&
+                    props.show &&
                     <Form onSubmit={formHandler} noValidate validated={validated}>
                         <Row className="mt-3">
                             <Col className="order-filter-input">
