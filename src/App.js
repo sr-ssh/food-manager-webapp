@@ -22,6 +22,7 @@ import { Determine } from './components/determine'
 import { Setting } from './components/setting/setting';
 import Bills from './components/finance/bills';
 import { Applications } from './components/employee/applications';
+import { Account } from './components/acounts/account';
 
 function App() {
   return (    
@@ -41,6 +42,7 @@ function App() {
             <PrivateRoute path="/employees" component={Employees} ></PrivateRoute>
             <PrivateRoute path="/setting" component={Setting}></PrivateRoute>
             <PrivateRoute path="/employee/add" component={Applications} ></PrivateRoute>
+            <PrivateRoute path="/account" component={Account} ></PrivateRoute>
             <Redirect from="*" to="/" />
             </Switch>
         </Router>

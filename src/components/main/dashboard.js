@@ -18,8 +18,6 @@ import { EmployeeApp } from './employeeApp'
 import { EmployeeNoApp } from './employeeNoApp'
 
 
-// import logo from './../assets/images/crm.svg'
-
 
 export const Dashboard = () => {
     const [isOpen, setIsOpen] = useState(false)
