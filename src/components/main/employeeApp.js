@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Button, Row, Col, Card } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import persianJs from 'persianjs/persian.min';
@@ -20,9 +20,15 @@ export const EmployeeApp = () => {
             applicationId: applicationId,
             status : 3
         }
-        dispatch(employeeActions.editApplication(application))
-        //dispatch(employeeActions.getPermissions())
+        dispatch(employeeActions.editApplicationAndReload(application))
+        
     }
+
+    useEffect(() => {
+
+        dispatch(employeeActions.getPermissions())
+            
+    }, [])
 
 
     return (

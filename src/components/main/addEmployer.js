@@ -23,8 +23,7 @@ export const AddEmployer = (props) => {
         if (form.checkValidity() === false) {
             e.stopPropagation()
         } else {
-            dispatch(employeeActions.addApplication(employer))
-            //dispatch(employeeActions.getPermissions())
+            dispatch(employeeActions.addApplicationAndReload(employer))
         }
         setValidated(true)
     }

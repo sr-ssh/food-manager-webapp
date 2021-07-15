@@ -12,7 +12,9 @@ export const employeeActions = {
     getPermissions,
     getApplications,
     editApplication,
-    addApplication
+    addApplicationAndReload,
+    editApplicationAndReload,
+    getPermissionsAndReload
 };
 
 function getEmployees() {
@@ -172,6 +174,35 @@ function getPermissions() {
 
 }
 
+function getPermissionsAndReload() {
+    return dispatch => {
+        dispatch(request(employeeConstants.GET_PERMISSIONS_REQUEST))
+        employeeService.getPermissions()
+            .then(
+                res => {
+                    if(res === undefined)
+                        dispatch(alertActions.error('ارتباط با سرور برقرار نیست'));
+                    else if(res.success){
+                        console.log("permissions received")
+                        dispatch(success(employeeConstants.GET_PERMISSIONS_SUCCESS, res.data.permission));
+                        history.go(0)
+                    }
+                        
+                    setTimeout(() => {
+                        dispatch(alertActions.clear());
+                    }, 1500);
+                },
+                error => {
+                    dispatch(failure(employeeConstants.GET_PERMISSIONS_FAILURE, error.toString()));
+                    console.log("occure error");
+                    console.log(error.toString());
+                    dispatch(alertActions.error(error.toString()));
+                }
+            );
+    };
+
+}
+
 function getApplications() {
     return dispatch => {
         dispatch(request(employeeConstants.GET_APPLICATIONS_REQUEST))
@@ -199,7 +230,7 @@ function getApplications() {
     };
 }
 
-function addApplication(application) {
+function addApplicationAndReload(application) {
     console.log("employee actions")
     return dispatch => {
         dispatch(request(employeeConstants.ADD_APPLICATION_REQUEST))
@@ -212,7 +243,7 @@ function addApplication(application) {
                     else if(res.success){
                         console.log("application added")
                         dispatch(success(employeeConstants.ADD_APPLICATION_SUCCESS, res.data));
-                        history.go(0)
+                        dispatch(getPermissionsAndReload())
                     }
                         
                     setTimeout(() => {
@@ -244,6 +275,36 @@ function editApplication(application) {
                         console.log("applications received")
                         dispatch(success(employeeConstants.EDIT_APPLICATIONS_SUCCESS, res.data));
                         history.go(0)
+                    }
+                        
+                    setTimeout(() => {
+                        dispatch(alertActions.clear());
+                    }, 1500);
+                },
+                error => {
+                    dispatch(failure(employeeConstants.EDIT_APPLICATIONS_FAILURE, error.toString()));
+                    console.log("occure error");
+                    console.log(error.toString());
+                    dispatch(alertActions.error(error.toString()));
+                }
+            );
+    };
+}
+
+function editApplicationAndReload(application) {
+    console.log("employee actions")
+    return dispatch => {
+        dispatch(request(employeeConstants.EDIT_APPLICATIONS_REQUEST))
+        employeeService.editApplication(application)
+            .then(
+                res => {
+                    console.log("employee actions")
+                    if(res === undefined)
+                        dispatch(alertActions.error('ارتباط با سرور برقرار نیست'));
+                    else if(res.success){
+                        console.log("applications received")
+                        dispatch(success(employeeConstants.EDIT_APPLICATIONS_SUCCESS, res.data));
+                        dispatch(getPermissionsAndReload())
                     }
                         
                     setTimeout(() => {

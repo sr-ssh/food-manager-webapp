@@ -120,6 +120,13 @@ return axios
     .get(`${baseRoute}/employee/permission`, requestOptions)
     .then(res => {
         console.log("res.user >> "); console.log(res.data.data);
+
+        localStorage.removeItem('permissions')
+        localStorage.removeItem('type')
+        localStorage.removeItem('applicationStatus')
+        localStorage.removeItem('applicationId')
+        localStorage.removeItem('employer')
+        
         localStorage.setItem('permissions', JSON.stringify(res.data.data.permission));
         localStorage.setItem('type', JSON.stringify(res.data.data.type));
         

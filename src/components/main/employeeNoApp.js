@@ -1,21 +1,15 @@
 import React, { useState } from 'react';
 import { Button, Row, Col, Card } from 'react-bootstrap';
-import { useDispatch } from 'react-redux';
-import persianJs from 'persianjs/persian.min';
 
 //icons
 import cancelIcon from '../../assets/images/Products/pluss.svg';
-import { employeeActions } from '../../actions/employeeActions';
 
 //components
 import { AddEmployer } from './addEmployer';
 
 export const EmployeeNoApp = () => {
     
-    let employer = JSON.parse(localStorage.getItem('employer'));
-    let applicationId = JSON.parse(localStorage.getItem('applicationId'));
     const [modalShow, setModalShow] = useState(false)
-    const dispatch = useDispatch()
 
     
     return (

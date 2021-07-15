@@ -207,11 +207,6 @@ function getUserInfo() {
 
 function logout() {
     // remove user from local storage to log user out
-    localStorage.removeItem('user');
-    localStorage.removeItem('permissions');
-    localStorage.removeItem('type');
-    localStorage.removeItem('applicationStatus');
-    localStorage.removeItem('applicationId');
-    localStorage.removeItem('employer');
+    localStorage.clear()
     history.push('/')
 }
