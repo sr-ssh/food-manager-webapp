@@ -10,7 +10,9 @@ import { userActions } from '../../actions/userActions'
 
 //components
 import {EmployerAccount} from './employerAccount'
-import { WithEmployeeAccount } from './withEmployeeAccount'
+import { WaitingAccount } from './waitingAccount'
+import { EmployeeAccount } from './employeeAccount'
+
 
 export const Account = () => {
 
@@ -33,7 +35,10 @@ export const Account = () => {
                             userInfo && user_type === 1 && <EmployerAccount user={userInfo}/>
                         }
                         {
-                            userInfo && user_type === 2 && application_status === 2 && <WithEmployeeAccount user={userInfo}/>
+                            userInfo && user_type === 2 && application_status === 2 && <EmployeeAccount user={userInfo}/>
+                        }
+                        {
+                            userInfo && user_type === 2 && application_status === 1 && <WaitingAccount user={userInfo}/>
                         }
                     </Card.Body>
                 </Card> 

@@ -20,5 +20,5 @@ export function translate(key) {
     else if(key === "company")
         return "نام شرکت"
     else if(key === "address")
-        return "آدرس شرکت"
+        return "آدرس"
 }

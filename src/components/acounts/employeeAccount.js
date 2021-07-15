@@ -14,7 +14,7 @@ import editIcon from '../../assets/images/Products/edit.svg'
 import { EditField } from './editField.js'
 
 
-export const WithEmployeeAccount = ({user}) => {
+export const EmployeeAccount = ({user}) => {
 
     const [editModalShow, setEditModalShow] = useState(false)
     const [input, setInput] = useState('')
