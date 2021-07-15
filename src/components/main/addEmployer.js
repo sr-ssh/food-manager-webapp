@@ -52,16 +52,17 @@ export const AddEmployer = (props) => {
                     </Row>
                 </>
                 }
-                <Form onSubmit={formHandler} noValidate validated={validated}>
-                    <Row className="mt-3">
+                <Form className="d-flex flex-column" onSubmit={formHandler} noValidate validated={validated}>
+                    <Row className="mt-3 justify-content-center">
                         <Col className="order-filter-input">
-                            <Form.Group controlId="name">
-                                <Form.Label className="pe-3">شماره موبایل کارفرما</Form.Label>
-                                <Form.Control className="order-input" type="number" name="mobile" defaultValue={employer.mobile} onChange={handleChange} required />
+                            <Form.Group controlId="name ">
+                                <Form.Label className="pe-3">موبایل کارفرما</Form.Label>
+                                <Form.Control className="order-input w-75" type="number" name="mobile" defaultValue={employer.mobile} onChange={handleChange} required />
                             </Form.Group>
                         </Col>
                     </Row>
 
+      
                     {
                         addemployerLoading ? (
                             <Button className="fw-bold order-submit border-0 w-100 mt-4" size="lg" type="submit"  disabled>

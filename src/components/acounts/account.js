@@ -9,9 +9,10 @@ import "react-multi-date-picker/styles/layouts/mobile.css"
 import { userActions } from '../../actions/userActions'
 
 //components
-import {EmployerAccount} from './employerAccount'
+import { EmployerAccount } from './employerAccount'
 import { WaitingAccount } from './waitingAccount'
 import { EmployeeAccount } from './employeeAccount'
+import { NoApplicationAccount } from './noApplicationAccount';
 
 
 export const Account = () => {
@@ -39,6 +40,9 @@ export const Account = () => {
                         }
                         {
                             userInfo && user_type === 2 && application_status === 1 && <WaitingAccount user={userInfo}/>
+                        }
+                        {
+                            userInfo && user_type === 2 && application_status === 3 && <NoApplicationAccount user={userInfo}/>
                         }
                     </Card.Body>
                 </Card> 
