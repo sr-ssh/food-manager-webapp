@@ -3,6 +3,12 @@ import moment from 'jalali-moment';
 import { Card , Table , Row , Col, Spinner, Button } from 'react-bootstrap';
 import persianJs from 'persianjs/persian.min';
 
+//icons
+import deliveryIcon from './../../assets/images/order/delivery.svg'
+import printIcon from './../../assets/images/order/print.svg'
+import cancelIcon from './../../assets/images/order/cancel.svg'
+
+
 export const Order = ({order, deliveryShow, setDeliveryShow, cancelOrderShow, setCancelOrderShow, setActiveOrder}) => {
 
     let [ print, setPrint ] = useState(false)
@@ -32,7 +38,7 @@ export const Order = ({order, deliveryShow, setDeliveryShow, cancelOrderShow, se
                             <Row>
                                 <Col>
                                     <Card.Text>
-                                    تاریخ سفارش : <span>{order.createdAt && persianJs(moment.from(order.createdAt, 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD')).englishNumber().toString()}</span>
+                                    تاریخ : <span>{order.createdAt && persianJs(moment.from(order.createdAt, 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD')).englishNumber().toString()}</span>
                                     </Card.Text>
                                 </Col>
                                 <Col className="col-5">
@@ -74,19 +80,27 @@ export const Order = ({order, deliveryShow, setDeliveryShow, cancelOrderShow, se
                             <Row className="flex-nowrap mt-2">
                                 <Col>
                                     <Card.Text>
-                                        ثبت کننده: <span>{order.employee ? order.employee.family : null}</span>
+                                        آدرس: <span>{order.address && persianJs(order.address).englishNumber().toString()}</span>
+                                    </Card.Text>
+                                </Col>
+                            </Row>
+                            <Row className="flex-nowrap mt-2">
+                                <Col>
+                                    <Card.Text>
+                                        اتمام آماده سازی: <span>{order.readyTime && persianJs(moment.from(order.readyTime, 'YYYY/MM/DD HH:mm').locale('fa').format('HH:mm DD MMMM YYYY')).englishNumber().toString()}</span>
+                                    </Card.Text>
+                                </Col>
+                            </Row>
+                            <Row className="flex-nowrap mt-2">
+                                <Col>
+                                    <Card.Text>
+                                        ثبت شده توسط: <span>{order.employee ? order.employee.family : null}</span>
                                     </Card.Text>
                                 </Col>
                             </Row>
                         </Card.Body>
                     </Card>
                 </Row>
-                <Row className="mt-2">
-                    <Card.Text className="text-bold">
-                        سفارشات
-                    </Card.Text>
-                </Row>
-                
                 <Row className="m-0 p-0 ps-2">
                     
                     <Table borderless size="sm">
@@ -123,20 +137,25 @@ export const Order = ({order, deliveryShow, setDeliveryShow, cancelOrderShow, se
                         </tbody>
                     </Table>
                 </Row>
-                <Row className="px-2 mt-3 text-start ">
-                    <Col>
-                        {order.status != 2 && 
-                            <Button className="btn-primary delivery-sms-button py-1 border-0 noPrint" type="button"  onClick={() => setDeliveryShow(true)}>
-                                ارسال به دلیوری
+                <Row className=" pb-3 text-start ms-3 justify-content-end">
+                   
+                    <Col xs={2} className="text-start">
+                        <Button className="btn-success reminder-sms-button p-1 border-0 noPrint" type="button"  onClick={() => printWindow()}>
+                            <img src={printIcon} height="40px" alt="reminder-icon"  />
+                        </Button>
+                    </Col>
+                    <Col xs={2} className="text-start">
+                        {order.status !== 2 && 
+                            <Button className="btn-primary delivery-sms-button p-1 border-0 noPrint" type="button"  onClick={() => setDeliveryShow(true)}>
+                                <img src={deliveryIcon} height="40px" alt="delivery-icon"  />
                             </Button>
                         }
-                        <Button className="btn-success me-3 reminder-sms-button py-1 border-0 noPrint" type="button"  onClick={() => printWindow()}>
-                            پرینت
-                        </Button>
+                    </Col>
+                    <Col xs={2} className="text-start">
                         {
-                            order.status != 2 &&
-                            <Button className="btn-danger mt-2 cancel-order-btn py-1 border-0 noPrint" type="button"  onClick={() => {return setCancelOrderShow(true), setActiveOrder(order)}}>
-                                لغو سفارش
+                            order.status !== 2 &&
+                            <Button className="btn-danger cancel-order-btn p-1 border-0 noPrint" type="button"  onClick={() => {return setCancelOrderShow(true), setActiveOrder(order)}}>
+                                <img src={cancelIcon} height="40px" alt="cancel-icon"  />
                             </Button>
                         }
                     </Col>
