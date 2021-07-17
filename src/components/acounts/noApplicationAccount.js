@@ -10,6 +10,7 @@ import { history } from '../../helpers';
 //icons
 import editIcon from '../../assets/images/Products/edit.svg'
 import cancelIcon from '../../assets/images/Products/pluss.svg';
+import plusIcon from './../../assets/images/main/plus-employer.svg'
 
 
 //components
@@ -101,8 +102,8 @@ export const NoApplicationAccount = ({user}) => {
             <Col xs={11} className="pe-0 mt-3">
                 <Button  className="no-product-main-button w-100 me-auto d-block p-2 px-0"  type="submit"  onClick={e  => setModalShow(true)}>
                     <Row>
-                        <Col xs={3} className="ms-0 me-4 pe-4"><img src={cancelIcon} alt="add-order-icon"  width="43px"/></Col>
-                        <Col className="fs-6 me-0 text-end pt-2 pe-2">ارسال درخواست</Col>
+                        <Col xs={3} className="ms-0 me-4 pe-4"><img src={plusIcon} alt="add-order-icon"  width="30px"/></Col>
+                        <Col className="fs-6 me-0 text-end pt-1 pe-2">ارسال درخواست</Col>
                     </Row>
                 </Button>
             </Col>
