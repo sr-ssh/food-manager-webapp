@@ -81,16 +81,22 @@ function editOrderStatus(orderId, status) {
 function addOrder(products, customer) {
     console.log("into orderService");
 
-    let reminder ;
+    let reminder, address, duration ;
     if(!customer.birthday)
         customer.birthday = "1900-01-01T05:42:13.845Z";
+    if(!customer.address)
+        address = " ";
+    else address = customer.address
+    if(!customer.duration)
+        duration = -1;
+    else duration = customer.duration
     if(!customer.reminder)
         reminder = -1;
     else reminder = customer.reminder
 
     const requestOptions = {
         headers: authHeader(),
-        body: {products, customer, reminder}
+        body: {products, customer, reminder, duration, address}
     };
 
     return axios

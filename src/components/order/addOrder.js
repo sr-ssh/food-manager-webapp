@@ -57,7 +57,7 @@ export const AddOrder = () => {
 
     let formHandler = (e) => {
         e.preventDefault()
-        if(order.length && customer.family && customer.mobile && customer.address && customer.duration) {
+        if(order.length && customer.family && customer.mobile) {
             dispatch(orderActions.addOrder(order, customer))
         } else {
             console.log('empty order can not be sent')
@@ -134,25 +134,32 @@ export const AddOrder = () => {
                             </Form.Group>
                         </Col>
                     </Row>
+                    
+                    <Row className="m-0 mt-4 basketContainer">
+                        <Col>
+                            <Basket order={order} insertOrder={insertOrder} />
+                        </Col>
+                    </Row>
+
                     <Row className="m-0 p-0 mt-2 order-inputs">
                         <Col className="p-0 col-5 add-order-input">
-                            <Form.Group >
+                            <Form.Group controlId="address">
                                 <Form.Label className="pe-2">آدرس</Form.Label>
                                 <Form.Control className="order-input" type="text" name="address" 
                                 onChange={handleChange} 
-                                isInvalid={!customer.address && validated && true} 
-                                isValid={customer.address && validated && true} 
+                                isInvalid={false} 
+                                isValid={false} 
                                 value={customer.address} 
                             />
                             </Form.Group>
                         </Col> 
                         <Col className="p-0 col-5 add-order-input me-3">
-                            <Form.Group >
+                            <Form.Group controlId="duration">
                                 <Form.Label className="pe-3"> آماده سازی:</Form.Label>
                                 <Form.Control className="order-input me-2" type="number" min="0" name="duration" 
                                 onChange={handleChange} 
-                                isInvalid={!customer.duration && validated && true} 
-                                isValid={customer.duration && validated && true} 
+                                isInvalid={false} 
+                                isValid={false} 
                                 value={customer.duration}
                                 required
                             />
@@ -160,13 +167,7 @@ export const AddOrder = () => {
                         </Col> 
                     </Row>
 
-                    <Row className="m-0 mt-4 basketContainer">
-                        <Col>
-                            <Basket order={order} insertOrder={insertOrder} />
-                        </Col>
-                    </Row>
-
-                    <Row className="m-0 order-input align-self-start me-3 flex-row">
+                    <Row className="m-0 align-self-start me-3 flex-row">
                         <Form.Group controlId="reminder">
                             <Row>
                                 <Col className="p-0 mt-3 col-3 order-inputs">
@@ -178,7 +179,7 @@ export const AddOrder = () => {
                                         value={customer.reminder}
                                     />
                                 </Col>
-                                <Col className="align-self-end mt-3 col-2">
+                                <Col className="align-self-end mt-3 col-3 order-input">
                                     <span className="reminder-span" >روز دیگر</span>
                                 </Col>
                             </Row>

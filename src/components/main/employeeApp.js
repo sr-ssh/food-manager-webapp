@@ -28,7 +28,7 @@ export const EmployeeApp = () => {
 
         dispatch(employeeActions.getPermissions())
             
-    }, [])
+    }, [dispatch])
 
 
     return (

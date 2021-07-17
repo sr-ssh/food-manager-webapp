@@ -1,13 +1,25 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Row, Col, Button } from 'react-bootstrap'
 import { history } from '../../helpers';
+import { useDispatch } from 'react-redux';
+
 
 import customerIcon from '../../assets/images/main/customer.svg'
 import ordersIcon from '../../assets/images/main/orders.svg'
 import addOrderIcon from '../../assets/images/main/add-order.svg'
 
+//actions
+import { employeeActions } from '../../actions/employeeActions';
+
+
 export const MainMenuOptions = () => {
+
     let permissions = JSON.parse(localStorage.getItem('permissions'));
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(employeeActions.getPermissions())
+    }, [dispatch])
 
     return (
         <div>
