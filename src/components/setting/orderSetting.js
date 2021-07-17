@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector,  useDispatch} from 'react-redux'
-import { Card, Form, Col, Row, Button } from 'react-bootstrap'
+import { Card, Form, Col, Row, Button, Dropdown } from 'react-bootstrap'
 
 import { Header } from '../base/settingHeader'
 import { orderActions } from '../../actions'
+
+import editIcon from '../../assets/images/Products/edit.svg'
+import tickIcon from '../../assets/images/tick.svg'
 
 export const OrderSetting = () => {
     let orderSms = useSelector(state => state.getOrderSms.sms)
@@ -11,6 +14,7 @@ export const OrderSetting = () => {
     const dispatch = useDispatch()
 
     const handleChange = (e) => {
+        console.log('testeststs')
         if(e.target.type === "checkbox") {
             setSms({...sms, [e.target.id]: {
                 ...sms.[e.target.id], 
@@ -40,40 +44,140 @@ export const OrderSetting = () => {
     }
 
     useEffect(() => {
-        console.log('useEfffffect')
         dispatch(orderActions.getSms())
     }, [dispatch])
 
+    
     return (
-        <div className="product-page">
-            <Card className="text-center">
-                <Card.Body>
-                    <hr/>
-                    <Form onSubmit={handleSubmit} >
-                        {orderSms &&
-                        (<>
-                            <Form.Group controlId="preSms" className="mt-4">
-                                <Form.Label>پیامک ثبت سفارش</Form.Label>
-                                <Form.Check className="w-25" onChange={handleChange} name="1" defaultChecked={orderSms.preSms.status} type="checkbox" label='وضعیت' />
-                                <Form.Control as="textarea" onChange={handleChange} name="1" defaultValue={orderSms.preSms.text} rows={3} />
-                            </Form.Group>
-                            <Form.Group controlId="postDeliverySms" className="mt-4">
-                                <Form.Label>پیامک پیک (راننده):</Form.Label>
-                                <Form.Check className="w-25" onChange={handleChange} name="2" defaultChecked={orderSms.postDeliverySms.status} type="checkbox" label='وضعیت' />
-                                <Form.Control as="textarea" onChange={handleChange} name="2" defaultValue={orderSms.postDeliverySms.text} rows={3} />
-                            </Form.Group>
-                            <Form.Group controlId="postCustomerSms" className="mt-4">
-                                <Form.Label>پیامک تحویل کالا به پیک:</Form.Label>
-                                <Form.Check className="w-25" onChange={handleChange} name="3" defaultChecked={orderSms.postCustomerSms.status} type="checkbox" label='وضعیت' />
-                                <Form.Control as="textarea" onChange={handleChange} name="3" defaultValue={orderSms.postCustomerSms.text} rows={3} />
-                            </Form.Group>
-                        </>)
-                        
-                        }
-                        <Button variant="primary" type="submit">ثبت</Button>
-                    </Form>
-                </Card.Body>
-            </Card>
+        <div>
+            <Form onSubmit={handleSubmit} className="order-setting">
+            {console.log(sms)}
+                {orderSms &&
+                (<>
+                    <Form.Group controlId="preSms" className="mt-2" >
+                        <Row className="m-0 px-4">
+                            <Col className="col-1">
+                                <Form.Check.Input name="1" defaultChecked={orderSms.preSms.status} onChange={handleChange} className="test" type="checkbox" />
+                                <span className="check"></span>
+                            </Col>
+                            <Col className="col-8 text-end">
+                                <Form.Check.Label htmlFor="preSms">
+                                    <span className="sms-status-label">اس ام اس ثبت سفارش</span>
+                                </Form.Check.Label>
+                            </Col>
+                        </Row>
+                        <Card className="m-3 mt-1 sms-text-container">
+                            <Card.Body>
+                                <Card.Text>
+                                    {orderSms.preSms.text}
+                                </Card.Text>
+                                <Card.Link className="editLogo d-block me-auto">
+                                    <img className="edit-sms-icon d-block me-auto" src={editIcon} height="35px" alt="edit-icon" />
+                                </Card.Link>
+                            </Card.Body>
+                        </Card>
+                    </Form.Group>
+
+                    <Form.Group controlId="postDeliverySms" className="mt-2" onChange={handleChange}>
+                        <Row className="m-0 px-4">
+                            <Col className="col-1">
+                                <img 
+                                className={`${orderSms.postDeliverySms.status ? "edit-permission-tick-show" : "d-none" }`} 
+                                src={tickIcon} 
+                                alt="tick-btn" 
+                                height="30px"/>
+                                <Form.Check.Input name="2" defaultChecked={orderSms.postDeliverySms.status} type="checkbox" />  
+                            </Col>
+                            <Col className="col-8 text-end">
+                                <Form.Check.Label htmlFor="postDeliverySms">
+                                    <span className="sms-status-label">اس ام اس پیک</span>
+                                </Form.Check.Label>
+                            </Col>
+                        </Row>
+                        <Card className="m-3 mt-1 sms-text-container">
+                            <Card.Body>
+                                <Card.Text>
+                                    {orderSms.postDeliverySms.text}
+                                </Card.Text>
+                                <Card.Link className="editLogo d-block me-auto">
+                                    <img className="edit-sms-icon d-block me-auto" src={editIcon} height="35px" alt="edit-icon" />
+                                </Card.Link>
+                            </Card.Body>
+                        </Card>
+                    </Form.Group>
+
+                    <Form.Group controlId="postCustomerSms" className="mt-2" onChange={handleChange}> 
+                        <Row className="m-0 px-4">
+                            <Col className="col-1">
+                                <img 
+                                className={`${orderSms.postCustomerSms.status ? "edit-permission-tick-show" : "d-none" }`} 
+                                src={tickIcon} 
+                                alt="tick-btn" 
+                                height="30px"/>
+                                <Form.Check.Input name="3" defaultChecked={orderSms.postCustomerSms.status} type="checkbox" />  
+                            </Col>
+                            <Col className="col-8 text-end">
+                                <Form.Check.Label className="me-1" htmlFor="postCustomerSms">
+                                    <span className="sms-status-label">اس ام اس ارسال محصول</span>
+                                </Form.Check.Label>
+                            </Col>
+                        </Row>
+                        <Card className="m-3 mt-1 sms-text-container">
+                            <Card.Body>
+                                <Card.Text>
+                                    {orderSms.postCustomerSms.text}
+                                </Card.Text>
+                                <Card.Link className="editLogo d-block me-auto">
+                                    <img className="edit-sms-icon d-block me-auto" src={editIcon} height="35px" alt="edit-icon" />
+                                </Card.Link>
+                            </Card.Body>
+                        </Card>
+                    </Form.Group>
+                    <Form.Group>
+                        <Row className="mx-0">
+                            <Col className="col-7 order-setting-field-label align-self-center">
+                                واحد زمان
+                            </Col>
+                            <Col className="col-5">
+                                <Dropdown className="text-center">
+                                    <Dropdown.Toggle className="dropdown-toggle" id="dropdown-basic">
+                                        دقیقه
+                                    </Dropdown.Toggle>
+                                    <Dropdown.Menu>
+                                        <Dropdown.Item >دقیقه</Dropdown.Item>
+                                        <Dropdown.Item>ساعت</Dropdown.Item>
+                                        <Dropdown.Item >روز</Dropdown.Item>
+                                    </Dropdown.Menu>
+                                </Dropdown>
+                            </Col>
+                        </Row>
+                        <Row className="mt-3 mx-0">
+                            <Col className="col-7 order-setting-field-label  align-self-center">
+                                مقدار پیش فرض یاد آوری
+                            </Col>
+                            <Col className="col-5">
+                                <Form.Group controlId="defaultReminder">
+                                    <Form.Control type="number" className="order-setting-field m-auto" placeholder="دقیقه"/>
+                                </Form.Group>
+                            </Col>
+                        </Row>
+                        <Row className="mt-3 mx-0">
+                            <Col className="col-7 order-setting-field-label align-self-center">
+                                مقدار پیش فرض آماده سازی
+                            </Col>
+                            <Col className="col-5">
+                                <Form.Group>
+                                    <Form.Control type="number" className="order-setting-field m-auto" placeholder="دقیقه" />
+                                </Form.Group>
+                            </Col>
+                        </Row>
+                </Form.Group>
+                <Button variant="primary" type="submit" className="edit-sms-submit-btn">ثبت</Button>
+                </>)
+                
+                }
+
+            </Form>
         </div>
     )
 }
