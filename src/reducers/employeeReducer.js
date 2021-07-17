@@ -5,7 +5,9 @@ const initialState = {
     employees: [],
     employee: {},
     editEmployee: {},
-    permissions: []
+    permissions: {},
+    applications: [],
+    application: {}
 }
 
 export function getEmployees(state = initialState, action) {
@@ -112,6 +114,72 @@ export function getPermissions(state = initialState, action) {
                 permissions: action.data
             }
         case employeeConstants.GET_PERMISSIONS_FAILURE:
+            return {
+                err: action.err
+            }
+        default:
+            return state;
+    }
+}
+
+export function getApplications(state = initialState, action) {
+    switch (action.type) {
+        case employeeConstants.GET_APPLICATIONS_REQUEST:
+            return {
+                ...state, 
+                loading: true,
+            }
+        case employeeConstants.GET_APPLICATIONS_SUCCESS: 
+            return {
+                ...state,
+                loading: false,
+                applications: action.data
+            }
+        case employeeConstants.GET_APPLICATIONS_FAILURE:
+            return {
+                err: action.err
+            }
+        default:
+            return state;
+    }
+}
+
+export function addApplication(state = initialState, action) {
+    switch (action.type) {
+        case employeeConstants.ADD_APPLICATION_REQUEST:
+            return {
+                ...state, 
+                loading: true,
+            }
+        case employeeConstants.ADD_APPLICATION_SUCCESS: 
+            return {
+                ...state,
+                loading: false,
+                application: action.data
+            }
+        case employeeConstants.ADD_APPLICATION_FAILURE:
+            return {
+                err: action.err
+            }
+        default:
+            return state;
+    }
+}
+
+export function editApplications(state = initialState, action) {
+    switch (action.type) {
+        case employeeConstants.EDIT_APPLICATIONS_REQUEST:
+            return {
+                ...state, 
+                loading: true,
+            }
+        case employeeConstants.EDIT_APPLICATIONS_SUCCESS: 
+            return {
+                ...state,
+                loading: false,
+                application: action.data
+            }
+        case employeeConstants.EDIT_APPLICATIONS_FAILURE:
             return {
                 err: action.err
             }

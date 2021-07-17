@@ -11,7 +11,10 @@ export const employeeService = {
     addEmployee,
     editEmployee,
     getPermissions,
-    deleteEmployee
+    deleteEmployee,
+    getApplications,
+    editApplication,
+    addApplication
 };
 
 
@@ -117,7 +120,24 @@ return axios
     .get(`${baseRoute}/employee/permission`, requestOptions)
     .then(res => {
         console.log("res.user >> "); console.log(res.data.data);
+
+        localStorage.removeItem('permissions')
+        localStorage.removeItem('type')
+        localStorage.removeItem('applicationStatus')
+        localStorage.removeItem('applicationId')
+        localStorage.removeItem('employer')
+        
         localStorage.setItem('permissions', JSON.stringify(res.data.data.permission));
+        localStorage.setItem('type', JSON.stringify(res.data.data.type));
+        
+        if(res.data.data.type === 2){
+            localStorage.setItem('applicationStatus', JSON.stringify(res.data.data.application));
+            localStorage.setItem('applicationId', JSON.stringify(res.data.data.applicationId));
+            if(res.data.data.application !== 3)
+                localStorage.setItem('employer', JSON.stringify(res.data.data.employer));
+        }
+            
+
         handleResponse(res)
         return res.data
     })
@@ -127,4 +147,71 @@ return axios
             handleError(error.response.status)
         }
     });
+}
+
+
+function getApplications() {
+    console.log("into employeeService");
+    
+    const requestOptions = {
+        headers: authHeader()
+    };
+    
+    return axios
+        .get(`${baseRoute}/employee/application`, requestOptions)
+        .then(res => {
+            console.log("res.user >> "); console.log(res.data.data);
+            handleResponse(res)
+            return res.data
+        })
+        .catch(function (error) {
+            if (error.response) {
+                console.log(error.response.data);
+                handleError(error.response.status)
+            }
+        });
+}
+
+function addApplication(application) {
+    console.log("into employeeService");
+    
+    const requestOptions = {
+        headers: authHeader()
+    };
+    
+    return axios
+        .post(`${baseRoute}/employee/application`, application, {headers: requestOptions.headers})
+        .then(res => {
+            console.log("res.user >> "); console.log(res.data);
+            handleResponse(res)
+            return res.data
+        })
+        .catch(function (error) {
+            if (error.response) {
+                console.log(error.response.data);
+                handleError(error.response.status)
+            }
+        });
+}
+
+function editApplication(application) {
+    console.log("into employeeService");
+    
+    const requestOptions = {
+        headers: authHeader()
+    };
+    
+    return axios
+        .put(`${baseRoute}/employee/application`, application, {headers: requestOptions.headers})
+        .then(res => {
+            console.log("res.user >> "); console.log(res.data);
+            handleResponse(res)
+            return res.data
+        })
+        .catch(function (error) {
+            if (error.response) {
+                console.log(error.response.data);
+                handleError(error.response.status)
+            }
+        });
 }

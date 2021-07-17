@@ -9,7 +9,10 @@ let baseRoute = SERVER_URL;
 export const userService = {
     login,
     register,
-    appInfo
+    appInfo,
+    userInfo,
+    editUserInfo,
+    verificationCode
 };
 
 
@@ -46,16 +49,86 @@ function register(user) {
         .post(`${baseRoute}/`, user)
         .then(res => {
             console.log("res.user >> "); console.log(res.data.data);
+            localStorage.setItem('user', JSON.stringify(res.data.data));
             return res.data
         })
         .catch(function (error) {
-            console.log('errrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrror')
             if (error.response) {
                 console.log('errrrrrrrrrrrror')
                 console.log(error.response.data);
                 console.log(error.response.status);
             }
             return error
+        });
+}
+
+function verificationCode(mobile) {
+    console.log('into userService')
+
+    const requestOptions = {
+        headers: authHeader(),
+        body: {mobile}
+    };
+
+    return axios
+        .post(`${baseRoute}/verificationcode`, requestOptions.body)
+        .then(res => {
+            console.log("res.data >> "); 
+            console.log(res.data);
+            return res.data
+        })
+        .catch(function (error) {
+            if (error.response) {
+                console.log(error.response.data);
+                console.log(error.response.status);
+            }
+        });
+}
+
+function userInfo() {
+    console.log("into userService");
+
+    const requestOptions = {
+        headers: authHeader(),
+        body: {}
+    };
+    console.log(requestOptions)
+    return axios
+        .get(`${baseRoute}/account`, {headers: requestOptions.headers})
+        .then(res => {
+            console.log("res.user >> "); 
+            console.log(res.data);
+            return res.data
+        })
+        .catch(function (error) {
+            if (error.response) {
+                console.log(error.response.data);
+                console.log(error.response.status);
+            }
+        });
+}
+
+function editUserInfo(user) {
+    console.log("into userService");
+
+    const requestOptions = {
+        headers: authHeader(),
+        body: user
+    };
+
+    console.log(requestOptions)
+    return axios
+        .put(`${baseRoute}/account`, requestOptions.body, {headers: requestOptions.headers})
+        .then(res => {
+            console.log("res.user >> "); 
+            console.log(res.data);
+            return res.data
+        })
+        .catch(function (error) {
+            if (error.response) {
+                console.log(error.response.data);
+                console.log(error.response.status);
+            }
         });
 }
 

@@ -39,6 +39,8 @@ export const Register = () => {
         let res = value.indexOf('@') > 2
         if(res)
             return value
+        if(!value.length)
+            return undefined
         else
             return false
     }
@@ -77,7 +79,6 @@ export const Register = () => {
         <div className="form-page">
             <div id="triangle-up"></div>
             <Container fluid className="p-0 d-flex flex-column">
-                {console.log(inputs)}
                 {
                 alertMessage && 
                 <>

@@ -1,35 +1,38 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
 import Sidebar from 'react-sidebar'
-import { Navbar , Nav } from 'react-bootstrap';
-import { Container, Button, Form, Row, Col, Image, Alert } from 'react-bootstrap';
+import { Container, Button, Row, Col } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux'
 
 
 import { SidebarItems } from './sidebarItems'
 
 import menuIcon from './../../assets/images/menu.svg'
 import logo from '../../assets/images/crm.svg'
-import customerIcon from '../../assets/images/main/customer.svg'
-import ordersIcon from '../../assets/images/main/orders.svg'
-import addOrderIcon from '../../assets/images/main/add-order.svg'
-import { history } from '../../helpers';
-import { useDispatch, useSelector } from 'react-redux'
+import { MainMenuOptions } from './mainMenuOptions'
+
 import { employeeActions } from '../../actions/employeeActions'
+import { userActions } from '../../actions/userActions'
+import { productActions } from '../../actions/productActions'
+import { EmployerNoProduct } from './employerNoProduct';
+import { EmployeeApp } from './employeeApp'
+import { EmployeeNoApp } from './employeeNoApp'
 
-
-
-// import logo from './../assets/images/crm.svg'
 
 
 export const Dashboard = () => {
     const [isOpen, setIsOpen] = useState(false)
 
-    let permissions = useSelector(state => state.getPermissions.permissions);
-
+    let user_type = JSON.parse(localStorage.getItem('type'));
+    let application_status = JSON.parse(localStorage.getItem('applicationStatus'));
+    const permissions = useSelector(state => state.getPermissions.permissions);
+    const userInfo = useSelector(state => state.getUserInfo.user)
+    const products = useSelector(state => state.getProducts.product)
     const dispatch = useDispatch()
 
     useEffect(() => {
-        if (!(permissions && permissions.length)) 
+            dispatch(userActions.getUserInfo())
+            dispatch(productActions.getProducts())
+        if (!(permissions)) 
             dispatch(employeeActions.getPermissions())
             
     }, [dispatch, permissions])
@@ -58,46 +61,25 @@ export const Dashboard = () => {
                             <img className="logo" src={logo} alt="logo" width="160px"/>
                         </Col>
                     </Row>
-                    <Row className="ms-0 justify-content-center " style={{"zIndex": 1}}>
-                        <Row className="my-3 pe-3">
+                    <Row className="ms-0 justify-content-center no-product-main-body" style={{"zIndex": 1}}>
+                        <Row className="mb-4 pe-3 mt-0">
                             <Col xs={3} className="me-4 ms-auto">
                                 <Button className="main-button me-auto d-block p-2" type="submit" onClick={() => setIsOpen(!isOpen)}>
                                     <img src={menuIcon} height="38px" alt="menu-icon"  />
                                 </Button>
                             </Col>
                         </Row>
-                        {
-                            permissions && permissions.find(per => per.no === 1 && per.status === true) && 
-                            <Row className="my-3 justify-content-center">
-                                <Col xs={9} className="">
-                                    <Button className="main-button w-100 me-auto d-block p-3" type="submit" onClick={e => history.push('/order/add')}>
-                                        <img className="ms-4" src={addOrderIcon} alt="add-order-icon" width="35px"/>
-                                        ثبت سفارش
-                                    </Button>
-                                </Col>
-                            </Row>
+                        { user_type === 1 && !products.length && 
+                            <EmployerNoProduct />
                         }
-                        {
-                            permissions && permissions.find(per => per.no === 2 && per.status === true) && 
-                            <Row className="my-3 justify-content-center">
-                                <Col xs={9} className="">
-                                    <Button className="main-button w-100 me-auto d-block p-3" type="submit" onClick={e => history.push('/orders')}>
-                                        <img className="ms-4" src={ordersIcon} alt="add-order-icon" width="35px"/>
-                                        سفارش ها
-                                    </Button>
-                                </Col>
-                            </Row>
+                        { ((user_type === 1 && products.length > 0) || (user_type === 2 && application_status === 2)) &&
+                            <MainMenuOptions />
                         }
-                        {
-                            permissions && permissions.find(per => per.no === 6 && per.status === true) && 
-                            <Row className="my-3 justify-content-center">
-                                <Col xs={9} className="">
-                                    <Button className="main-button w-100 me-auto d-block p-3" type="submit" onClick={e => history.push('/customers')}>
-                                        <img className="ms-4" src={customerIcon} alt="add-order-icon" width="35px"/>
-                                        مشتریان
-                                    </Button>
-                                </Col>
-                            </Row>
+                        { user_type === 2 && application_status === 1 &&
+                            <EmployeeApp />
+                        }
+                        { user_type === 2 && application_status === 3 &&
+                            <EmployeeNoApp />
                         }
                     </Row>
                 </Container>

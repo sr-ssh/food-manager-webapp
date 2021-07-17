@@ -1,15 +1,16 @@
 import { combineReducers } from 'redux';
-import { authentication, register } from './authenticationReducer';
+import { authentication, register, verificationCode } from './authenticationReducer';
 import { alert } from './alertReducer';
 import { getCustomers, getCustomer } from './customerReducer'
 import { getProducts, addProduct, editProduct } from './productReducer'
 import { financeSummary, bill } from './financeReducer'
-import { addOrder, getOrders, setOrdersFilter, editOrderStatus } from './orderReducer'
+import { addOrder, getOrders, setOrdersFilter, editOrderStatus, getOrderSms } from './orderReducer'
 import { getReminders } from './reminderReducer'
 import { getDiscounts } from './discountReducer';
 import { addDiscount } from './discountReducer';
-import { getEmployees, editEmployee, addEmployee, deleteEmployee } from './employeeReducer';
+import { getEmployees, editEmployee, addEmployee, deleteEmployee, getApplications, addApplication } from './employeeReducer';
 import { getPermissions } from './employeeReducer';
+import { getUserInfo, editUserInfo } from './userReducer';
 
 export default combineReducers ({
     authentication,
@@ -33,5 +34,11 @@ export default combineReducers ({
     editEmployee,
     addEmployee,
     deleteEmployee,
-    getPermissions
+    getPermissions, 
+    verificationCode,
+    getUserInfo,
+    getOrderSms,
+    getApplications,
+    addApplication,
+    editUserInfo
 })

@@ -28,7 +28,7 @@ export const Orders = () => {
 
     return (
         <div className="product-page orders ">
-            <Header title="سفارش ها" modalShow={modalShow} setModalShow={setModalShow}/>
+            <Header className="noPrint" title="سفارش ها" modalShow={modalShow} setModalShow={setModalShow}/>
             <Container className="m-auto">
                 {
                 orderLoading &&

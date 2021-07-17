@@ -7,7 +7,10 @@ export const userActions = {
     login,
     register,
     appInfo,
-    logout
+    logout,
+    verificationCode,
+    getUserInfo,
+    editUserInfo
 };
 
 
@@ -120,9 +123,133 @@ function register(user) {
     function failure(error) { return { type: userConstants.REGISTER_FAILURE, error } }
 }
 
+function verificationCode(mobile) {
+    return dispatch => {
+        dispatch(request(mobile));
+        userService.verificationCode(mobile)
+            .then(
+                res => {
+                    console.log("user into userAction");
+                    console.log(res)
+                    if(res === undefined) {
+                        dispatch(alertActions.error('ارتباط با سرور برقرار نیست'));
+                        dispatch(failure('ارتباط با سرور برقرار نیست'))
+                    }
+                    else if(res.success){
+                        console.log("verification code sent")
+                        dispatch(success(res));
+                        dispatch(alertActions.success(res.message));
+                    } else if(res.success === false) {
+                        dispatch(alertActions.error(res.message));
+                        dispatch(failure(res.message))
+                    } else {
+                        dispatch(alertActions.error("مشکلی وجود دارد"));
+                        dispatch(failure("مشکلی وجود دارد"))
+                    }
+
+                    setTimeout(() => {
+                        dispatch(alertActions.clear());
+                    }, 1500);
+                    
+                },
+                error => {
+                    dispatch(failure(error.toString()));
+                    console.log("occure error");
+                    console.log(error.toString());
+                    dispatch(alertActions.error(error.toString()));
+                }
+            );
+    };
+
+    function request(mobile) { console.log("into request"); return { type: userConstants.VERIFICATION_CODE_REQUEST, mobile } }
+    function success(mobile) { console.log("into success"); return { type: userConstants.VERIFICATION_CODE_SUCCESS, mobile } }
+    function failure(error) { return { type: userConstants.VERIFICATION_CODE_FAILURE, error } }
+}
+
+function getUserInfo() {
+    return dispatch => {
+        dispatch(request())
+        userService.userInfo()
+            .then(
+                res => {
+                    console.log('user into userActions')
+                    console.log(res)
+                    if(res === undefined) {
+                        dispatch(alertActions.error('ارتباط با سرور برقرار نیست'));
+                        dispatch(failure('ارتباط با سرور برقرار نیست'))
+                    }
+                    else if(res.success){
+                        console.log("user info received")
+                        dispatch(success(res.data));
+                    } else if(res.success === false) {
+                        dispatch(failure(res.message))
+                    } else {
+                        dispatch(failure("مشکلی وجود دارد"))
+                    }
+
+                    setTimeout(() => {
+                        dispatch(alertActions.clear());
+                    }, 1500);
+                    
+                },
+                error => {
+                    dispatch(failure(error.toString()));
+                    console.log("occure error");
+                    console.log(error.toString());
+                    dispatch(alertActions.error(error.toString()));
+                }
+            )
+    }
+
+    function request() { console.log("into request"); return { type: userConstants.USER_INFO_REQUEST } }
+    function success(user) { console.log("into success"); return { type: userConstants.USER_INFO_SUCCESS, user } }
+    function failure(error) { console.log("into failure"); return { type: userConstants.USER_INFO_FAILURE, error } }
+}
+
+
+function editUserInfo(user) {
+    return dispatch => {
+        dispatch(request())
+        userService.editUserInfo(user)
+            .then(
+                res => {
+                    console.log('user into userActions')
+                    console.log(res)
+                    if(res === undefined) {
+                        dispatch(alertActions.error('ارتباط با سرور برقرار نیست'));
+                        dispatch(failure('ارتباط با سرور برقرار نیست'))
+                    }
+                    else if(res.success){
+                        console.log("user info received")
+                        dispatch(success(res.data));
+                    } else if(res.success === false) {
+                        dispatch(failure(res.message))
+                    } else {
+                        dispatch(failure("مشکلی وجود دارد"))
+                    }
+
+                    setTimeout(() => {
+                        dispatch(alertActions.clear());
+                    }, 1500);
+                    
+                },
+                error => {
+                    dispatch(failure(error.toString()));
+                    console.log("occure error");
+                    console.log(error.toString());
+                    dispatch(alertActions.error(error.toString()));
+                }
+            )
+    }
+
+    function request() { console.log("into request"); return { type: userConstants.EDIT_USER_INFO_REQUEST } }
+    function success(user) { console.log("into success"); return { type: userConstants.EDIT_USER_INFO_SUCCESS, user } }
+    function failure(error) { console.log("into failure"); return { type: userConstants.EDIT_USER_INFO_FAILURE, error } }
+}
+
+
 function logout() {
     // remove user from local storage to log user out
-    localStorage.removeItem('user');
-    localStorage.removeItem('permissions');
+    localStorage.clear()
     history.push('/')
 }

@@ -13,7 +13,9 @@ axios.interceptors.request.use(request => {
 export const orderService = {
     getOrders,
     addOrder, 
-    editOrderStatus
+    editOrderStatus,
+    getOrderSms,
+    editOrderSms
 };
 
 function getOrders(filter = {}) {
@@ -79,16 +81,22 @@ function editOrderStatus(orderId, status) {
 function addOrder(products, customer) {
     console.log("into orderService");
 
-    let reminder ;
+    let reminder, address, duration ;
     if(!customer.birthday)
         customer.birthday = "1900-01-01T05:42:13.845Z";
+    if(!customer.address)
+        address = " ";
+    else address = customer.address
+    if(!customer.duration)
+        duration = -1;
+    else duration = customer.duration
     if(!customer.reminder)
         reminder = -1;
     else reminder = customer.reminder
 
     const requestOptions = {
         headers: authHeader(),
-        body: {products, customer, reminder}
+        body: {products, customer, reminder, duration, address}
     };
 
     return axios
@@ -104,4 +112,50 @@ function addOrder(products, customer) {
                 handleError(error.response.status)
             }
         });
+}
+
+function getOrderSms() {
+    console.log('into orderService')
+
+    const requestOptions = {
+        headers: authHeader(),
+        body: {}
+    }
+
+    return axios
+        .get(`${baseRoute}/order/sms`, {headers: requestOptions.headers})
+        .then(res => {
+            console.log("res.user >> ")
+            console.log(res.data)
+            return handleResponse(res)
+        })
+        .catch(function (error) {
+            if(error.response) {
+                console.log(error.response.data)
+                handleError(error.response.status)
+            }
+        })
+}
+
+function editOrderSms(params) {
+    console.log('into orderService')
+
+    const requestOptions = {
+        headers: authHeader(), 
+        body: params
+    }
+
+    return axios
+        .put(`${baseRoute}/order/sms`, requestOptions.body, {headers: requestOptions.headers})
+        .then(res => {
+            console.log('res >>')
+            console.log(res.data)
+            return handleResponse(res)
+        })
+        .catch(error => {
+            if(error.response) {
+                console.log(error.response.data)
+                handleError(error.response.status)
+            }
+        })
 }

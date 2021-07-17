@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react'
-import { Modal, Button, Row, Col, Alert, Form, Spinner } from 'react-bootstrap'
+import { Modal, Button, Row, Col, Alert, Form, Spinner, Card } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import persianJs from 'persianjs/persian.min';
-import {  employeeActions } from '../../actions/employeeActions'
+import {  employeeActions } from '../../actions/employeeActions';
+import { translate } from '../../helpers';
 
 import closeIcon from '../../assets/images/close.svg'
+import tickIcon from '../../assets/images/tick.svg'
 
 export const EditEmployee = (props) => {
     const [validated, setValidated] = useState(false)
-    const [newPermission, setNewPermission] = useState([])
     const dispatch = useDispatch()
+    let [newPermission, setNewPermission] = useState(props.employee.permission)
     let editEmployeeLoading = useSelector(state => state.editEmployee.loading)
     let alert = useSelector(state => state.alert)
 
@@ -17,15 +19,9 @@ export const EditEmployee = (props) => {
         if(e.target.type != "checkbox") {
             e.preventDefault()
         }
-        setNewPermission(
-            newPermission.map(item =>
-            item.no == e.target.id
-                ? { ...item, status: e.target.checked }
-                : item
-            )
-        )
-        
+        setNewPermission({...newPermission, [e.target.name]: e.target.checked})
     }
+
 
     const formHandler = (e) => {
         e.preventDefault()
@@ -34,8 +30,9 @@ export const EditEmployee = (props) => {
     }
     
     useEffect(() => {
-        setNewPermission(props.employee.permission)
-    }, [props.employee, props.show])
+        if(!newPermission)
+            setNewPermission(props.employee.permission)
+    }, [newPermission, props.show])
 
     return (
         <Modal
@@ -45,7 +42,7 @@ export const EditEmployee = (props) => {
             centered
             className="mx-3 order-serach-modal"
             >
-            <Modal.Body className="add-product px-4">
+            <Modal.Body className="add-product px-4 permission-card applications-text-gray">
                 <Button className="border-0 customer-modal-close" type="button"  onClick={e => props.onHide(false)}>
                     <img className="d-flex m-auto customer-modal-close-svg" src={closeIcon} alt="close-btn" />
                 </Button>
@@ -60,90 +57,79 @@ export const EditEmployee = (props) => {
                         </Row>
                     </>
                 }
-                
-                <Row>
-                    <Col>
-                        <span className="ms-2">نام کارمند:</span>
-                        <span>{props.employee.family}</span>
-                    </Col>
-                </Row>
-                <Row className="my-2">
-                    <Col>
-                        <span className="ms-2">شماره تماس:</span>
-                        {props.show && persianJs(props.employee.mobile).englishNumber().toString()}
-                    </Col>
-                </Row>
                 <Form onSubmit={formHandler} noValidate validated={validated}>
-                    {
-                        props.show && props.employee.permission.map((item, index) => {
-                            return(
-                                <Form.Group key={index} className="fw-bold" onChange={handleChange}>
-                                    <Row className="my-2">
-                                        <Col  className="col-6">
-                                            <Form.Check.Label className="ms-2" htmlFor="active1">
-                                                {(() => {
-                                                switch (item.no) {
-                                                    case 1:
-                                                        return "ثبت سفارش";
-                                                        break;
-                                                    case 2:
-                                                        return "سفارش ها";
-                                                        break;
-                                                    case 3:
-                                                        return "یادآوری";
-                                                        break;
-                                                    case 4:
-                                                        return "محصولات";
-                                                        break;
-                                                    case 5:
-                                                        return "مالی";
-                                                        break;
-                                                    case 6:
-                                                        return "مشتریان";
-                                                        break;
-                                                    case 7:
-                                                        return "کارمندان";
-                                                        break;
-                                                    case 8:
-                                                        return "تخفیف ها";
-                                                        break;
-                                                    default:
-                                                        return;
-                                                }
-                                                })()}
-                                            </Form.Check.Label>
-                                        </Col>
-                                        <Col>
-                                            <Form.Check.Input name="no" id={`${item.no}`} defaultChecked={item.status} type="checkbox" />
-                                        </Col>
-                                    </Row>
-
-                                </Form.Group>
+                    <Row >
+                        <Col xs={2}>
+                            نام : 
+                        </Col>
+                        <Col>
+                            <span>{props.employee.family}</span>
+                        </Col>
+                    </Row>
+                    <Row className="my-2">
+                        <Col xs={3}>
+                            موبایل: 
+                        </Col>
+                        <Col>
+                            <span>{props.show && persianJs(props.employee.mobile).englishNumber().toString()}</span>
+                        </Col>
+                    </Row>
+                    <Card className="m-auto mt-3 productCard border-0 lh-lg pb-2" >
+                        <Card.Body className="pb-0 ps-0 emplyees-text-gray">
+                            <Row>
+                                <Col xs={5} className="ps-0">
+                                    <Card.Text>
+                                        سطح دسترسی: 
+                                    </Card.Text>
+                                </Col>
+                                <Col>
+                                    {
+                                        props.show && newPermission && Object.keys(newPermission).map((key, index) => {
+                                            return(
+                                                <Form.Group key={index} className="fw-bold" onChange={handleChange}>
+                                                    <Row className="my-1">
+                                                        <Col xs={3}>
+                                                            <img 
+                                                            htmlFor={`${index}`} 
+                                                            className={`${newPermission[key] ? "edit-permission-tick-show" : "d-none"}`} src={tickIcon} 
+                                                            alt="close-btn" 
+                                                            height="30px"/>
+                                                            <Form.Check.Input name={key} id={`${index}`} defaultChecked={newPermission[key]} type="checkbox" className="mx-2 mt-2" />  
+                                                        </Col>
+                                                        <Col>
+                                                            <Form.Check.Label className="ms-2" htmlFor={`${index}`}>
+                                                                <span>{translate(key)}</span>
+                                                            </Form.Check.Label>
+                                                        </Col>
+                                                    </Row>
+                                                </Form.Group>
+                                            )
+                                        })
+                                    }
+                                </Col>
+                            </Row>
+                        </Card.Body>
+                    </Card>   
+                        {
+                            editEmployeeLoading ? (
+                                <Button className="fw-bold order-submit border-0 w-100 mt-3" size="lg" type="submit"  disabled>
+                                    <Spinner
+                                    as="span"
+                                    animation="grow"
+                                    size="sm"
+                                    role="status"
+                                    aria-hidden="true"
+                                    />
+                                    در حال انجام عملیات...
+                                </Button>
+                            ) : (
+                                <Button className="fw-bold order-submit border-0 w-100 mt-3" size="lg" type="submit" block>
+                                    ثبت
+                                </Button>
                             )
-                        })
-                    }
-                    {
-                        editEmployeeLoading ? (
-                            <Button className="fw-bold order-submit border-0 w-100 mt-4" size="lg" type="submit"  disabled>
-                                <Spinner
-                                as="span"
-                                animation="grow"
-                                size="sm"
-                                role="status"
-                                aria-hidden="true"
-                                />
-                                در حال انجام عملیات...
-                            </Button>
-                        ) : (
-                            <Button className="fw-bold order-submit border-0 w-100 mt-4" size="lg" type="submit" block>
-                                ویرایش کردن
-                            </Button>
-                        )
-                    }
-                </Form>
-                
+                        }
+                </Form>  
             </Modal.Body>
-            
         </Modal>
     )
 }

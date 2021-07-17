@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { orderActions, customerActions  } from '../../actions';
 import { Header } from '../base/header2';
@@ -23,10 +23,19 @@ export const AddOrder = () => {
     let oldCustomer = useSelector(state => state.getCustomer.customer)
     let addOrderLoading = useSelector(state => state.addOrder.loading)
 
+    let mobileHandler = (value) => {
+        let res = value.length === 11 && value[0] === "0" && value[1] === "9"
+        if(res) {
+            dispatch(customerActions.getCustomer(value))
+            setMobileValidated(false)
+            return value
+        }
+        else
+            return undefined
+    }
 
     let handleOldCustomer = (e) => {
         e.preventDefault()
-        
         if(oldCustomer && Object.keys(oldCustomer).length !== 0) {
             setCustomer(oldCustomer)
             setMobileValidated(false);
@@ -40,14 +49,9 @@ export const AddOrder = () => {
         e.preventDefault()
         let value = e.target.value
         let name = e.target.name
-        console.log(customer)
-        if(name === "mobile" && value.length === 11 && value[0] === "0" && value[1] === "9") {
-            dispatch(customerActions.getCustomer(value))
-            setMobileValidated(false)
-        } else if (name === "mobile") {
-            return
-        }
-
+        if(name === "mobile") {
+            value = mobileHandler(value)
+        } 
         setCustomer({...customer, [name]: value})
     }
 
@@ -67,20 +71,27 @@ export const AddOrder = () => {
         setCustomer({...customer, [name]: birthDate})
     }
 
+    useEffect(() => {
+        if(addOrderLoading)
+            insertOrder([])
+    }, [addOrderLoading])
+
     return (
         <div className="order-page">
             <Header title="ثبت سفارش" backLink="/dashboard"/>
             <Container fluid className="pt-3 px-3 m-0">
                 <Form onSubmit={formHandler} noValidate >
-                    
+                    {console.log(addOrderLoading)}
+                    {console.log(alerType)}
                     <Row className="m-0 p-0 order-inputs">
-                        <Col className="p-0 col-5 orderInput">
-                            <Form.Group >
+                        <Col className="p-0 col-5 add-order-input">
+                            <Form.Group>
                                 <Form.Label className="pe-2">موبایل</Form.Label>
                                 <Form.Control className="order-input" type="number" name="mobile" 
                                 isInvalid={((!customer.mobile && validated) || (mobileValidated) && true) } 
                                 isValid={((customer.mobile && validated) || (mobileValidated && customer.mobile) && true)} 
-                                onChange={handleChange} 
+                                onChange={handleChange}
+                                value={customer.mobile} 
                                 required
                                 />
                             </Form.Group>
@@ -90,7 +101,7 @@ export const AddOrder = () => {
                         </Col>
                     </Row>
                     <Row className="m-0 p-0 mt-2 order-inputs">
-                        <Col className="p-0 col-5 orderInput">
+                        <Col className="p-0 col-5 add-order-input">
                             <Form.Group >
                                 <Form.Label className="pe-2">نام</Form.Label>
                                 <Form.Control className="order-input" type="text" name="family" 
@@ -102,7 +113,7 @@ export const AddOrder = () => {
                             />
                             </Form.Group>
                         </Col> 
-                        <Col className="p-0 col-5 me-auto orderInput">
+                        <Col className="p-0 col-5 me-auto add-order-input">
                             <Form.Group controlId="birthday">
                                 <Form.Label className="pe-2">تاریخ تولد</Form.Label>
                                 <DatePicker 
@@ -123,47 +134,52 @@ export const AddOrder = () => {
                             </Form.Group>
                         </Col>
                     </Row>
-                    <Row className="m-0 p-0 mt-2 order-inputs">
-                        <Col className="p-0 col-5 orderInput">
-                            <Form.Group >
-                                <Form.Label className="pe-2">آدرس</Form.Label>
-                                <Form.Control className="order-input" type="text" name="address" 
-                                onChange={handleChange} 
-                                isInvalid={!customer.address && validated && true} 
-                                isValid={customer.address && validated && true} 
-                                value={customer.address} 
-                                required
-                            />
-                            </Form.Group>
-                        </Col> 
-                        <Col className="p-0 col-5 orderInput me-3">
-                            <Form.Group >
-                                <Form.Label className="pe-3"> آماده سازی:</Form.Label>
-                                <Form.Control className="order-input me-2" type="number" min="0" name="duration" 
-                                onChange={handleChange} 
-                                isInvalid={!customer.duration && validated && true} 
-                                isValid={customer.duration && validated && true} 
-                                value={customer.duration} 
-                                required
-                            />
-                            </Form.Group>
-                        </Col> 
-                    </Row>
-
+                    
                     <Row className="m-0 mt-4 basketContainer">
                         <Col>
                             <Basket order={order} insertOrder={insertOrder} />
                         </Col>
                     </Row>
 
-                    <Row className="m-0 order-input align-self-start me-3 flex-row">
+                    <Row className="m-0 p-0 mt-2 order-inputs">
+                        <Col className="p-0 col-5 add-order-input">
+                            <Form.Group controlId="address">
+                                <Form.Label className="pe-2">آدرس</Form.Label>
+                                <Form.Control className="order-input" type="text" name="address" 
+                                onChange={handleChange} 
+                                isInvalid={false} 
+                                isValid={false} 
+                                value={customer.address} 
+                            />
+                            </Form.Group>
+                        </Col> 
+                        <Col className="p-0 col-5 add-order-input me-3">
+                            <Form.Group controlId="duration">
+                                <Form.Label className="pe-3"> آماده سازی:</Form.Label>
+                                <Form.Control className="order-input me-2" type="number" min="0" name="duration" 
+                                onChange={handleChange} 
+                                isInvalid={false} 
+                                isValid={false} 
+                                value={customer.duration}
+                                required
+                            />
+                            </Form.Group>
+                        </Col> 
+                    </Row>
+
+                    <Row className="m-0 align-self-start me-3 flex-row">
                         <Form.Group controlId="reminder">
                             <Row>
                                 <Col className="p-0 mt-3 col-3 order-inputs">
                                     <Form.Label className="pe-1">تاریخ یادآوری</Form.Label>
-                                    <Form.Control className="text-center order-input" type="number" name="reminder" min="0" onChange={handleChange} isInvalid={false} isValid={false} />
+                                    <Form.Control className="text-center order-input" type="number" name="reminder" min="0" 
+                                        onChange={handleChange} 
+                                        isInvalid={false} 
+                                        isValid={false} 
+                                        value={customer.reminder}
+                                    />
                                 </Col>
-                                <Col className="align-self-end mt-3 col-2">
+                                <Col className="align-self-end mt-3 col-3 order-input">
                                     <span className="reminder-span" >روز دیگر</span>
                                 </Col>
                             </Row>

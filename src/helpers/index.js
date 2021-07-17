@@ -1,4 +1,5 @@
 export * from './store';
 export * from './history';
 export * from './authHeader';
-export * from './util'
+export * from './util';
+export * from './translate';

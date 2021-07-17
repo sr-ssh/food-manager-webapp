@@ -116,8 +116,8 @@ export const Login = () => {
                                 </Col>
                             </Row>
                             <Row className="registerSubmitContainer">
-                                <Col xs={7} className="me-auto ms-4">
-                                    <Button className="form-submit w-100 me-auto d-block" type="submit" >{loggingInLoading ? <Spinner animation="border" /> : "ورود"}</Button>
+                                <Col xs={6} className="me-auto ms-4">
+                                    <Button className="login-btn w-100 me-auto d-block" type="submit" >{loggingInLoading ? <Spinner animation="border" /> : "ورود"}</Button>
                                 </Col>
                             </Row>
                         </Form>

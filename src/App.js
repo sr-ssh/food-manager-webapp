@@ -18,14 +18,18 @@ import { Orders } from './components/order/orders';
 import { Reminders } from './components/reminder/reminders';
 import { Discounts } from './components/discounts/discounts';
 import { Employees } from './components/employee/employees';
+import { Determine } from './components/determine'
+import { Setting } from './components/setting/setting';
 import Bills from './components/finance/bills';
+import { Applications } from './components/employee/applications';
+import { Account } from './components/acounts/account';
 
 function App() {
   return (    
         <Router history={history}>
             <Switch>
             <Route exact path="/" component={Login} />
-            <Route path="/register" component={Register} />
+            <Route path="/register" component={Determine} />
             <PrivateRoute path="/products" component={Products} ></PrivateRoute>
             <PrivateRoute path="/orders" component={Orders} ></PrivateRoute>
             <PrivateRoute path="/customers" component={Customers} ></PrivateRoute>
@@ -36,6 +40,9 @@ function App() {
             <PrivateRoute path="/dashboard" component={Dashboard} ></PrivateRoute>
             <PrivateRoute path="/order/add" component={AddOrder} ></PrivateRoute>
             <PrivateRoute path="/employees" component={Employees} ></PrivateRoute>
+            <PrivateRoute path="/setting" component={Setting}></PrivateRoute>
+            <PrivateRoute path="/employee/add" component={Applications} ></PrivateRoute>
+            <PrivateRoute path="/account" component={Account} ></PrivateRoute>
             <Redirect from="*" to="/" />
             </Switch>
         </Router>
