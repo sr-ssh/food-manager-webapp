@@ -181,20 +181,6 @@ export const EmployeeRegister = () => {
                                     </Form.Group>
                                 </Col>
                                 <Col className="col-6">
-                                    <Form.Group controlId="employerMobile" >
-                                        <Image src={mobileLogo} width="17px" className="mx-2"/>
-                                        <Form.Label>موبایل کارفرما</Form.Label>
-                                        <Form.Control className="form-input w-100 login-input" type="number" 
-                                        isValid={employerMobile && validated && true}
-                                        isInvalid={!employerMobile && validated && true}
-                                        onChange={handleChange}
-                                        required
-                                        />
-                                    </Form.Group>
-                                </Col>
-                            </Row>
-                            <Row className="w-100 me-2 pe-2 form-label mt-2">
-                                <Col className="col-6">
                                     <Form.Group className="inputWithButton w-100 login-input" controlId="dupPassword" >
                                         <Image src={passwordLogo} width="17px" className="mx-2"/>
                                         <Form.Label >تکرار رمز عبور</Form.Label>
@@ -205,6 +191,20 @@ export const EmployeeRegister = () => {
                                         required
                                         />
                                         <Form.Control.Feedback className="me-2" type="invalid">رمز عبور یکسان نیست!</Form.Control.Feedback>
+                                    </Form.Group>
+                                </Col>
+                            </Row>
+                            <Row className="w-100 me-2 pe-2 form-label mt-2">
+                                <Col className="col-6">
+                                    <Form.Group controlId="employerMobile" >
+                                        <Image src={mobileLogo} width="17px" className="mx-2"/>
+                                        <Form.Label>موبایل کارفرما</Form.Label>
+                                        <Form.Control className="form-input w-100 login-input" type="number" 
+                                        isValid={employerMobile && validated && true}
+                                        isInvalid={!employerMobile && validated && true}
+                                        onChange={handleChange}
+                                        required
+                                        />
                                     </Form.Group>
                                 </Col>
                             </Row>
