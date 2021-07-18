@@ -82,7 +82,7 @@ export const EditEmployee = (props) => {
                                         سطح دسترسی: 
                                     </Card.Text>
                                 </Col>
-                                <Col>
+                                <Col className="pe-0">
                                     {
                                         props.show && newPermission && Object.keys(newPermission).map((key, index) => {
                                             return(

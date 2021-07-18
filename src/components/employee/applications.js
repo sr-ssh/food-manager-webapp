@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Container, Col, Card , Row, Button } from 'react-bootstrap';
+import { Container, Col, Card , Row, Button, Spinner } from 'react-bootstrap';
 import persianJs from 'persianjs/persian.min';
 import moment from 'jalali-moment';
 
@@ -18,6 +18,7 @@ import tickIcon from './../../assets/images/employees/tick.svg'
 export const Applications = () => {
 
     let applications = useSelector(state => state.getApplications.applications)
+    let applicationsLoading = useSelector(state => state.getApplications.loading)
     const dispatch = useDispatch()
 
     const changeStatus = (id, status) => {
@@ -37,6 +38,14 @@ export const Applications = () => {
         <div className="finance-page orders">
             <Header title="درخواست ها" backLink="/employees" />
             <Container fluid className="m-auto">
+                {  
+                    applicationsLoading &&
+                    <Row>
+                        <Col className="col-3 mt-2 m-auto ">
+                            <Spinner className="m-auto d-block" animation="border" />
+                        </Col>
+                    </Row>
+                }
                 {
                     applications
                     ? applications.map((item, index) => 

@@ -17,6 +17,7 @@ export const Orders = () => {
     const [deliveryShow, setDeliveryShow] = useState(false)
     const [cancelOrderShow, setCancelOrderShow] = useState(false)
     const [activeOrder, setActiveOrder] = useState({})
+    const [order, setOrder] = useState('')
     const dispatch = useDispatch()
     const orders = useSelector(state => state.getOrders.orders)
     let orderLoading = useSelector(state => state.getOrders.loading)
@@ -30,6 +31,17 @@ export const Orders = () => {
         <div className="product-page orders ">
             <Header className="noPrint" title="سفارش ها" modalShow={modalShow} setModalShow={setModalShow}/>
             <Container className="m-auto">
+                {
+                alertMessage && 
+                <>
+                <div className="modal-backdrop show"></div>
+                    <Row className="justify-content-center text-center ">
+                        <Alert variant={alerType}>
+                            {alertMessage}
+                        </Alert> 
+                    </Row>
+                </>
+                }
                 {
                 orderLoading &&
                     <Row>
@@ -48,12 +60,12 @@ export const Orders = () => {
                     ) : null 
                 }
                 {(orders.length > 0) ? 
-                    (orders.map((order, index) => <Order key={index} order={order} deliveryShow={deliveryShow} setDeliveryShow={setDeliveryShow} cancelOrderShow={cancelOrderShow} setCancelOrderShow={setCancelOrderShow} setActiveOrder={setActiveOrder} />))    
+                    (orders.map((order, index) => <Order key={index} order={order} deliveryShow={deliveryShow} setDeliveryShow={setDeliveryShow} cancelOrderShow={cancelOrderShow} setCancelOrderShow={setCancelOrderShow} setActiveOrder={setActiveOrder} setOrder={setOrder}/>))    
                     
                     : null}
                 
                 <OrderSearch show={modalShow} onHide={() => setModalShow(false)} />        
-                <Delivery show={deliveryShow} onHide={() => setDeliveryShow(false)} />    
+                <Delivery show={deliveryShow} onHide={() => setDeliveryShow(false)} order={order} />    
                 <CancelOrder show={cancelOrderShow} onHide={() => setCancelOrderShow(false)} order={activeOrder} />    
             </Container>
         </div>

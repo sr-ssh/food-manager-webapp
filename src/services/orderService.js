@@ -15,7 +15,8 @@ export const orderService = {
     addOrder, 
     editOrderStatus,
     getOrderSms,
-    editOrderSms
+    editOrderSms,
+    sendDeliverySms
 };
 
 function getOrders(filter = {}) {
@@ -147,6 +148,29 @@ function editOrderSms(params) {
 
     return axios
         .put(`${baseRoute}/order/sms`, requestOptions.body, {headers: requestOptions.headers})
+        .then(res => {
+            console.log('res >>')
+            console.log(res.data)
+            return handleResponse(res)
+        })
+        .catch(error => {
+            if(error.response) {
+                console.log(error.response.data)
+                handleError(error.response.status)
+            }
+        })
+}
+
+function sendDeliverySms(params) {
+    console.log('into orderService')
+
+    const requestOptions = {
+        headers: authHeader(), 
+        body: params
+    }
+
+    return axios
+        .post(`${baseRoute}/order/delivery/sms`, requestOptions.body, {headers: requestOptions.headers})
         .then(res => {
             console.log('res >>')
             console.log(res.data)

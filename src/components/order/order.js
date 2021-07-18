@@ -9,7 +9,7 @@ import printIcon from './../../assets/images/order/print.svg'
 import cancelIcon from './../../assets/images/order/cancel.svg'
 
 
-export const Order = ({order, deliveryShow, setDeliveryShow, cancelOrderShow, setCancelOrderShow, setActiveOrder}) => {
+export const Order = ({order, deliveryShow, setDeliveryShow, cancelOrderShow, setCancelOrderShow, setActiveOrder, setOrder}) => {
 
     let [ print, setPrint ] = useState(false)
     
@@ -144,21 +144,22 @@ export const Order = ({order, deliveryShow, setDeliveryShow, cancelOrderShow, se
                             <img src={printIcon} height="40px" alt="reminder-icon"  />
                         </Button>
                     </Col>
-                    <Col xs={2} className="text-start">
-                        {order.status !== 2 && 
-                            <Button className="btn-primary delivery-sms-button p-1 border-0 noPrint" type="button"  onClick={() => setDeliveryShow(true)}>
-                                <img src={deliveryIcon} height="40px" alt="delivery-icon"  />
-                            </Button>
-                        }
-                    </Col>
-                    <Col xs={2} className="text-start">
                         {
                             order.status !== 2 &&
-                            <Button className="btn-danger cancel-order-btn p-1 border-0 noPrint" type="button"  onClick={() => {return setCancelOrderShow(true), setActiveOrder(order)}}>
-                                <img src={cancelIcon} height="40px" alt="cancel-icon"  />
-                            </Button>
-                        }
-                    </Col>
+                            <>
+                            <Col xs={2} className="text-start">
+                                <Button className="btn-primary delivery-sms-button p-1 border-0 noPrint" type="button"  onClick={() => {setDeliveryShow(true); setOrder(order.id);}}>
+                                    <img src={deliveryIcon} height="40px" alt="delivery-icon"  />
+                                </Button>
+                            </Col>
+                            <Col xs={2} className="text-start">
+                            
+                                <Button className="btn-danger cancel-order-btn p-1 border-0 noPrint" type="button"  onClick={() => { setCancelOrderShow(true); setActiveOrder(order)}}>
+                                    <img src={cancelIcon} height="40px" alt="cancel-icon"  />
+                                </Button>
+                            </Col>
+                            </>
+                    }
                 </Row> 
             </Card.Body>
 

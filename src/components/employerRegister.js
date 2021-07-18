@@ -153,7 +153,7 @@ export const EmployerRegister = () => {
                                 <Col className="col-4">
                                     <Form.Group controlId="companyName" >
                                         <Image src={companyLogo} width="17px" className="mx-2"/>
-                                        <Form.Label>نام شرکت</Form.Label>
+                                        <Form.Label>نام برند</Form.Label>
                                         <Form.Control className="form-input w-100 login-input" type="text" 
                                         isValid={companyName && validated && true}
                                         isInvalid={!companyName && validated && true}

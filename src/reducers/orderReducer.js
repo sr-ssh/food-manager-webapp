@@ -120,6 +120,28 @@ export function editOrderSms(state = initialState, action) {
     }
 }
 
+export function deliverySms(state = initialState, action) {
+    switch (action.type) {
+        case orderConstants.EDIT_ORDER_SMS_REQUEST:
+            return {
+                ...state,
+                loading: true
+            }
+        case orderConstants.EDIT_ORDER_SMS_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+            }
+        case orderConstants.EDIT_ORDER_SMS_FAILURE:
+            return {
+                err: action.err,
+                loading: false
+            }
+        default:
+            return state
+    }
+}
+
 export function setOrdersFilter(state = {}, action){
     
     switch (action.type) {

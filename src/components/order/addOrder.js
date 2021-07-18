@@ -81,8 +81,6 @@ export const AddOrder = () => {
             <Header title="ثبت سفارش" backLink="/dashboard"/>
             <Container fluid className="pt-3 px-3 m-0">
                 <Form onSubmit={formHandler} noValidate >
-                    {console.log(addOrderLoading)}
-                    {console.log(alerType)}
                     <Row className="m-0 p-0 order-inputs">
                         <Col className="p-0 col-5 add-order-input">
                             <Form.Group>
@@ -100,6 +98,21 @@ export const AddOrder = () => {
                             <img src={downloadIcon} className="add-order-download-btn p-1" onClick={(e) => handleOldCustomer(e)} height="33vh" width="50vw" alt="down-icon"/>
                         </Col>
                     </Row>
+                    
+                    <Row className="m-0 p-0 mt-2 order-inputs">
+                        <Col className="p-0 add-order-input">
+                            <Form.Group controlId="address">
+                                <Form.Label className="pe-2">آدرس</Form.Label>
+                                <Form.Control className="order-input" type="text" name="address" 
+                                onChange={handleChange} 
+                                isInvalid={false} 
+                                isValid={false} 
+                                value={customer.address} 
+                            />
+                            </Form.Group>
+                        </Col> 
+                    </Row>
+
                     <Row className="m-0 p-0 mt-2 order-inputs">
                         <Col className="p-0 col-5 add-order-input">
                             <Form.Group >
@@ -141,21 +154,10 @@ export const AddOrder = () => {
                         </Col>
                     </Row>
 
-                    <Row className="m-0 p-0 mt-2 order-inputs">
-                        <Col className="p-0 col-5 add-order-input">
-                            <Form.Group controlId="address">
-                                <Form.Label className="pe-2">آدرس</Form.Label>
-                                <Form.Control className="order-input" type="text" name="address" 
-                                onChange={handleChange} 
-                                isInvalid={false} 
-                                isValid={false} 
-                                value={customer.address} 
-                            />
-                            </Form.Group>
-                        </Col> 
-                        <Col className="p-0 col-5 add-order-input me-3">
+                    <Row className="m-0 align-self-start flex-row">
+                        <Col className=" mt-3 order-inputs">
                             <Form.Group controlId="duration">
-                                <Form.Label className="pe-3"> آماده سازی:</Form.Label>
+                                <Form.Label className="pe-1"> آماده سازی</Form.Label>
                                 <Form.Control className="order-input me-2" type="number" min="0" name="duration" 
                                 onChange={handleChange} 
                                 isInvalid={false} 
@@ -165,25 +167,23 @@ export const AddOrder = () => {
                             />
                             </Form.Group>
                         </Col> 
-                    </Row>
-
-                    <Row className="m-0 align-self-start me-3 flex-row">
+                        <Col xs={2} className="align-self-end mt-3 order-input">
+                            <span className="reminder-span">دقیقه</span>
+                        </Col>
+                        <Col className=" mt-3 order-inputs">
                         <Form.Group controlId="reminder">
-                            <Row>
-                                <Col className="p-0 mt-3 col-3 order-inputs">
-                                    <Form.Label className="pe-1">تاریخ یادآوری</Form.Label>
-                                    <Form.Control className="text-center order-input" type="number" name="reminder" min="0" 
-                                        onChange={handleChange} 
-                                        isInvalid={false} 
-                                        isValid={false} 
-                                        value={customer.reminder}
-                                    />
-                                </Col>
-                                <Col className="align-self-end mt-3 col-3 order-input">
-                                    <span className="reminder-span" >روز دیگر</span>
-                                </Col>
-                            </Row>
-                        </Form.Group>
+                            <Form.Label className="pe-1">تاریخ یادآوری</Form.Label>
+                            <Form.Control className="text-center order-input" type="number" name="reminder" min="0" 
+                                onChange={handleChange} 
+                                isInvalid={false} 
+                                isValid={false} 
+                                value={customer.reminder}
+                            />
+                            </Form.Group>
+                        </Col>
+                        <Col xs={2} className="align-self-end mt-3 order-input">
+                            <span className="reminder-span" >روز دیگر</span>
+                        </Col>
                     </Row>
                     
                     <Row className="m-0 mt-4 justify-content-center w-100">

@@ -15,6 +15,7 @@ import { useSelector } from 'react-redux'
 export const SidebarItems = () => {
 
     let permissions = JSON.parse(localStorage.getItem('permissions'));
+    let user_type = JSON.parse(localStorage.getItem('type'));
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -86,9 +87,12 @@ export const SidebarItems = () => {
                 <Col className="my-3 col-4">
                     <Col onClick={e => userActions.logout()}><img className="m-auto d-block" src={exitIcon} height="40px" alt="exit-icon"/></Col>
                 </Col>
-                <Col className="my-3 col-4">
-                    <Link to="/setting"><img className="m-auto d-block" src={settingIcon} height="40px" alt="setting-icon" /></Link>
-                </Col>
+                {
+                    user_type === 1 &&
+                    <Col className="my-3 col-4">
+                        <Link to="/setting"><img className="m-auto d-block" src={settingIcon} height="40px" alt="setting-icon" /></Link>
+                    </Col>
+                }
                 <Col xs={4} sm={4} md={4} lg={4} className="my-3">
                     <Link to="/account"><img className="m-auto d-block" src={accountIcon} height="40px" alt="acount-icon"/></Link>
                 </Col>

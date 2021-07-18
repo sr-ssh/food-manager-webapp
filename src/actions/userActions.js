@@ -222,6 +222,7 @@ function editUserInfo(user) {
                     else if(res.success){
                         console.log("user info received")
                         dispatch(success(res.data));
+                        dispatch(alertActions.success(res.message));
                     } else if(res.success === false) {
                         dispatch(failure(res.message))
                     } else {

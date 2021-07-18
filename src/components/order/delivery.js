@@ -1,20 +1,30 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Modal, Row, Col, Button, Form } from 'react-bootstrap'
+import { useDispatch } from 'react-redux'
+import { orderActions } from '../../actions/orderActions'
 
 import closeIcon from '../../assets/images/close.svg'
 
 export const Delivery = (props) => {
 
-    const [deliveryMobile, setDeliveryMobile] = useState(false)    
+    const [deliveryMobile, setDeliveryMobile] = useState(false)   
+    const dispatch = useDispatch()
+    
     const handleChange = (e) => {
         e.preventDefault()
-        setDeliveryMobile({...deliveryMobile, [e.target.name]: e.target.value})
+        setDeliveryMobile({...deliveryMobile, [e.target.id]: e.target.value})
     }
 
 
     const formHandler = (e) => {
         e.preventDefault()
+        dispatch(orderActions.sendDeliverySms(deliveryMobile))
+        props.onHide(true)
     }
+
+    useEffect(() => {
+        setDeliveryMobile({orderId: props.order})
+    }, [setDeliveryMobile, props.order])
 
     return (
         <Modal
@@ -38,14 +48,15 @@ export const Delivery = (props) => {
                             </Form.Group>
                         </Col>
                     </Row>
+                    <Row>
+                        <Col className="col-6 m-auto">
+                            <Button className="fw-bold order-submit border-0 w-100 mt-4" size="lg" type="submit" block>
+                                ارسال پیامک
+                            </Button>
+                        </Col>
+                    </Row>
                 </Form>
-                <Row>
-                    <Col className="col-6 m-auto">
-                        <Button className="fw-bold order-submit border-0 w-100 mt-4" size="lg" type="submit" block>
-                            ارسال پیامک
-                        </Button>
-                    </Col>
-                </Row>
+                
             </Modal.Body>
         </Modal>
     )
