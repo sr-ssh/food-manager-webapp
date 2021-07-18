@@ -9,7 +9,8 @@ export const orderActions = {
     editOrderStatus,
     getSms,
     editSms,
-    sendDeliverySms
+    sendDeliverySms,
+    editNewSms
 }
 
 function getOrders(filter) {
@@ -158,6 +159,13 @@ function editSms(params) {
     function request(params) { console.log('into request'); return { type: orderConstants.EDIT_ORDER_SMS_REQUEST, params } }
     function success() { console.log("into success"); return { type: orderConstants.EDIT_ORDER_SMS_SUCCESS } }
     function failure(error) {return { type: orderConstants.EDIT_ORDER_SMS_FAILURE, error }}
+}
+
+function editNewSms(sms) {
+    return {
+        type: orderConstants.EDIT_ORDER_SMS,
+        sms
+    }
 }
 
 function getSms() {
