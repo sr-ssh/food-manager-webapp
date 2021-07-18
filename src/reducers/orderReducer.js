@@ -91,6 +91,12 @@ export function getOrderSms(state = initialState, action) {
                 err: action.err,
                 loading: false
             }
+        case orderConstants.EDIT_ORDER_SMS:
+            return {
+                ...state,
+                loading: false,
+                sms: action.sms
+            }
         default:
             return state
     }

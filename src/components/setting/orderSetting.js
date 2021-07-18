@@ -16,21 +16,26 @@ export const OrderSetting = () => {
     const handleChange = (e) => {
         console.log('testeststs')
         if(e.target.type === "checkbox") {
-            setSms({...sms, [e.target.id]: {
-                ...sms.[e.target.id], 
-                text: orderSms.[e.target.id].text, 
-                type: e.target.name, 
-                status: e.target.checked
-            }})
+            dispatch(orderActions.editNewSms(
+                    {...orderSms, [e.target.id]: {
+                    ...orderSms.[e.target.id], 
+                    text: orderSms.[e.target.id].text, 
+                    type: e.target.name, 
+                    status: e.target.checked
+                }}
+            ))
             return
         }
+
+
         e.preventDefault()
-        setSms({...sms, [e.target.id]: {
-            ...sms.[e.target.id], 
+
+        dispatch(orderActions.editNewSms({...orderSms, [e.target.id]: {
+            ...orderSms.[e.target.id], 
             text: e.target.value, 
             type: e.target.name,
             status: !sms.[e.target.id] ? orderSms.[e.target.id].status : sms[e.target.id].status
-        }})
+        }}))
     }
 
     const handleSubmit = (e) => {
@@ -51,7 +56,6 @@ export const OrderSetting = () => {
     return (
         <div>
             <Form onSubmit={handleSubmit} className="order-setting">
-            {console.log(sms)}
                 {orderSms &&
                 (<>
                     <Form.Group controlId="preSms" className="mt-2" >
@@ -82,7 +86,7 @@ export const OrderSetting = () => {
                         <Row className="m-0 px-4">
                             <Col className="col-1">
                                 <img 
-                                className={`${orderSms.postDeliverySms.status ? "edit-permission-tick-show" : "d-none" }`} 
+                                className={`${orderSms.postDeliverySms.status ? "edit-permission-tick-show" : "edit-permission-tick-fade" }`} 
                                 src={tickIcon} 
                                 alt="tick-btn" 
                                 height="30px"/>
