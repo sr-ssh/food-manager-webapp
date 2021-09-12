@@ -6,6 +6,7 @@ import { EditProduct } from './editProduct'
 import { useDispatch, useSelector } from 'react-redux'
 import { productActions } from '../../../actions'
 import moment from 'jalali-moment';
+import commaNumber from 'comma-number'
 
 import persianJs from 'persianjs/persian.min';
 
@@ -52,7 +53,22 @@ export const Products = () => {
                                     <span style={{"color": "var(--text-color-one)"}}>نام : </span>{item.name && persianJs(item.name).englishNumber().toString()}
                                 </Card.Text>
                                 <Card.Text className="pt-1">
-                                    <span style={{"color": "var(--text-color-one)"}}>قیمت فروش : </span>{item.sellingPrice && persianJs(item.sellingPrice).englishNumber().toString()} 
+                                    <span style={{ "color": "var(--text-color-one)" }}>نوع : </span>{item.type.name && persianJs(item.type.name).englishNumber().toString()}
+                                </Card.Text>
+                                <Card.Text className="pt-1">
+                                    <span style={{ "color": "var(--text-color-one)" }}>
+                                        قیمت : 
+                                    </span>
+                                    {item.size[0].price && persianJs(commaNumber(item.size[0].price)).englishNumber().toString()}
+                                </Card.Text>
+                                <Card.Text className="pt-1">
+                                    <span style={{"color": "var(--text-color-one)"}}>
+                                        تخفیف : 
+                                    </span>
+                                    {item.size[0].discount && persianJs(commaNumber(item.size[0].discount)).englishNumber().toString()} 
+                                </Card.Text>
+                                <Card.Text className="pt-1">
+                                    <span style={{ "color": "var(--text-color-one)" }}>موجودی : </span>{item.supply && persianJs(item.supply).englishNumber().toString()}
                                 </Card.Text>
                                 <Card.Text className="pt-1">
                                     <span style={{"color": "var(--text-color-one)"}}>تاریخ ویرایش : </span>{item.updatedAt && persianJs(moment.from(item.updatedAt, 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD')).englishNumber().toString()}
