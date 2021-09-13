@@ -54,12 +54,9 @@ export const SideBar = ({ routes }) => {
                             <img className="m-auto d-block exit--icon--desktop" src={exitIcon} height="40px" alt="exit-icon" />
                         </Col>
                     </Col>
-                    {
-                        user_type === 1 &&
-                        <Col className=" col-4">
-                            <NavLink to="/setting"><img className="m-auto d-block" src={settingIcon} height="40px" alt="setting-icon" /></NavLink>
-                        </Col>
-                    }
+                    <Col className=" col-4">
+                        <NavLink to="/setting"><img className="m-auto d-block" src={settingIcon} height="40px" alt="setting-icon" /></NavLink>
+                    </Col>
                     <Col xs={4} sm={4} md={4} lg={4} className=" col-4">
                         <NavLink to="/account"><img className="m-auto d-block" src={accountIcon} height="40px" alt="acount-icon" /></NavLink>
                     </Col>

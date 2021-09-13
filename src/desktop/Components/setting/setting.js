@@ -55,7 +55,7 @@ export const Setting = () => {
                     <Tab label={
                         <ButtonBase disabled className="d-flex flex-row">
                             <img src={orderLogo} height="25px" />
-                            <span className="me-2 ff-iranSans fw-bold fs-6">سفارش</span>
+                            <span className="me-2 ff-iranSans fw-bold fs-6">دلیوری</span>
                         </ButtonBase>
                     } />
                 </Tabs>
