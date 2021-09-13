@@ -72,3 +72,26 @@ export function editProduct(state = {}, action) {
             return state;
     }
 }
+
+export function getProductTypes(state = {}, action) {
+    switch (action.type) {
+        case productConstants.GET_PRODUCT_TYPES_REQUEST:
+            return {
+                ...state, 
+                loading: true,
+            }
+        case productConstants.GET_PRODUCT_TYPES_SUCCESS: 
+            return {
+                ...state,
+                loading: false,
+                productTypes: action.data
+            }
+        case productConstants.GET_PRODUCT_TYPES_FAILURE:
+            return {
+                err: action.err
+            }
+        default:
+            return state;
+    }
+
+}

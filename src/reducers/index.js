@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import { authentication, register, verificationCode } from './authenticationReducer';
 import { alert } from './alertReducer';
 import { getCustomers, getCustomer } from './customerReducer'
-import { getProducts, addProduct, editProduct } from './productReducer'
+import { getProducts, addProduct, editProduct, getProductTypes } from './productReducer'
 import { financeSummary, bill } from './financeReducer'
 import { addOrder, getOrders, setOrdersFilter, editOrderStatus, getOrderSms, deliverySms } from './orderReducer'
 import { getReminders } from './reminderReducer'
@@ -18,7 +18,7 @@ export default combineReducers ({
     alert,
     getProducts,
     addProduct,
-    editProduct,
+    editProduct, getProductTypes,
     getCustomers,
     getCustomer,
     financeSummary,

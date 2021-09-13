@@ -6,7 +6,8 @@ import { alertActions } from './alertActions';
 export const productActions = {
     getProducts,
     addProduct,
-    editProduct
+    editProduct,
+    getProductTypes
 };
 
 function getProducts() {
@@ -106,6 +107,38 @@ function editProduct(product) {
                     console.log("occure error");
                     console.log(error.toString());
                     dispatch(alertActions.error(productConstants.EDIT_PRODUCT_FAILURE, error.toString()));
+                }
+            );
+    }
+
+}
+
+function getProductTypes() {
+    return dispatch => {
+        dispatch(request(productConstants.GET_PRODUCT_TYPES_REQUEST))
+        productService.getProductTypes()
+            .then(
+                res => {
+                    
+                    console.log(res)
+
+                    if(res === undefined)
+                        dispatch(alertActions.error('ارتباط با سرور برقرار نیست.مجصول شما ویرایش نشد'));
+                    else if(res.success){
+                        console.log("product edited")
+                        dispatch(success(productConstants.GET_PRODUCT_TYPES_SUCCESS, res.data));
+                    } else if (res.success === false)
+                        dispatch(alertActions.error(res.message));
+
+                    setTimeout(() => {
+                        dispatch(alertActions.clear());
+                    }, 1500);
+                },
+                error => {
+                    dispatch(failure(error.toString()));
+                    console.log("occure error");
+                    console.log(error.toString());
+                    dispatch(alertActions.error(productConstants.GET_PRODUCT_TYPES_FAILURE, error.toString()));
                 }
             );
     }

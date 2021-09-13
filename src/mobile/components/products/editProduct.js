@@ -1,20 +1,30 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { productActions } from '../../../actions';
-import { Form , Button , Row , Col, Modal, Spinner, Alert } from 'react-bootstrap';
+import { Form , Button , Row , Col, Modal, Spinner, Alert, Dropdown } from 'react-bootstrap';
 import persianJs from 'persianjs/persian.min';
 
 import closeIcon from '../../assets/images/close.svg'
+import spinnerIcon from './../../assets/images/sppiner.svg'
+
 
 export const EditProduct = (props) => {
+    const [dimStatus, setDimStatus] = useState(false)
+    const [selectedItem, setItem] = useState(-1)
+    const productTypes = useSelector(state => state.getProductTypes.productTypes)
     const [newProduct, setnewProduct] = useState(props.product)
     const editProductLoading = useSelector(state => state.editProduct.loading)
     const alert = useSelector(state => state.alert)
     const dispatch = useDispatch()
 
+    const handleDropdown = (item) => {
+        setItem(item.name)
+        setnewProduct({...newProduct, "typeId": item._id})
+    }
+
     let handleChange = (e) => {
         let { id, value } = e.target;
-        if(id === 'sellingPrice' && value.length)
+        if(id === 'price' && value.length)
             value = persianJs(value).toEnglishNumber().toString();
         if(id === 'active1')
             setnewProduct({...newProduct, active: true})
@@ -29,8 +39,20 @@ export const EditProduct = (props) => {
     }
 
     useEffect(() => {
-        setnewProduct(props.product)
-    }, [props.product])
+        setItem(-1)
+        props.product.size && setnewProduct({
+            _id: props.product._id,
+            active: props.product.active,
+            name: props.product.name,
+            typeId: props.product.type?._id,
+            img: props.product.img,
+            price: props.product.size[0].price,
+            discount : props.product.size[0].discount,
+            description: props.product.description,
+            supply: props.product.supply
+        })
+        dispatch(productActions.getProductTypes())
+    }, [dispatch, props.product])
 
 
     return (
@@ -40,7 +62,7 @@ export const EditProduct = (props) => {
             aria-labelledby="contained-modal-title-vcenter"
             centered className="mx-3 order-serach-modal"
             >
-            <Modal.Body className="add-product px-4">
+            <Modal.Body className="add-product px-4 add-discount">
                 <Button className="border-0 customer-modal-close" type="button"  onClick={e => props.onHide(false)}>
                     <img className="d-flex m-auto customer-modal-close-svg" src={closeIcon} alt="close-btn" />
                 </Button>
@@ -78,17 +100,64 @@ export const EditProduct = (props) => {
                             </Form.Group>
                         </Col>
                         <Col className="col-6 order-filter-input">
-                            <Form.Group controlId="sellingPrice">
+                            <Row>
+                                <Col>
+                                    <Form.Label className="pe-2">نوع </Form.Label>
+                                </Col>
+                                <Col className="ps-4 pt-1 text-start">
+                                    <img className="me-auto" src={spinnerIcon} height="13px" alt="spinner-icon"/>
+                                </Col>
+                            </Row>
+                            <Dropdown onToggle={(e) => setDimStatus(!dimStatus)} >
+                                <Dropdown.Toggle className="d-flex order-filter-input">
+                                    {selectedItem !== -1 ? <span>{selectedItem}</span> : props.product?.type?.name}
+                                </Dropdown.Toggle> 
+                                <Dropdown.Menu className={`${dimStatus ? "dim" : ""} dropdownProductMenu`}>
+                                    {
+                                        productTypes?.map((item, index) => 
+                                            <Dropdown.Item key={index} onClick={() => handleDropdown(item)} >
+                                                <Col className="text-end pe-1 order-filter-input">{item.name}</Col> 
+                                            </Dropdown.Item>
+                                            )
+                                    }
+                                </Dropdown.Menu>
+                            </Dropdown>
+                        </Col>
+                        {props.product.size && console.log(props.product.size[0])}
+                        <Col className="col-6 order-filter-input">
+                            <Form.Group controlId="price">
                                 <Form.Label className="pe-3">قیمت</Form.Label>
-                                <Form.Control className="order-input" type="number" min="0" defaultValue={props.product.sellingPrice} onChange={handleChange} required/>
+                                <Form.Control className="order-input" type="number" min="0" defaultValue={props.product.size && props.product.size[0].price} onChange={handleChange} required/>
+                            </Form.Group>
+                        </Col>
+                        <Col className="col-6 order-filter-input">
+                            <Form.Group controlId="discount">
+                                <Form.Label className="pe-3">تخفیف</Form.Label>
+                                <Form.Control className="order-input" type="number" min="0" defaultValue={props.product.size && props.product.size[0].discount} onChange={handleChange} required/>
                             </Form.Group>
                         </Col>
                     </Row>
                     <Row>
                         <Col>
+                            <Form.Group controlId="supply" className="order-filter-input mt-3">
+                                <Form.Label className="pe-3">موجودی</Form.Label>
+                                <Form.Control className="order-input border-0 h-100" type="number" defaultValue={props.product.supply} rows={6} onChange={handleChange}/>
+                            </Form.Group>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                            <Form.Group controlId="img" className="order-filter-input mt-3">
+                                <Form.Label className="pe-3">تصویر</Form.Label>
+                                <Form.Control className="order-input border-0 h-100" type="text" defaultValue={props.product.img} rows={6} onChange={handleChange}/>
+                            </Form.Group>
+                        </Col>
+                    </Row>
+                    <Row rows={10}>
+                        <Col rows={10}>
                             <Form.Group controlId="description" className="order-filter-input mt-3">
                                 <Form.Label className="pe-3">توضیحات</Form.Label>
-                                <Form.Control className="order-input border-0 h-100" as="textarea" defaultValue={props.product.description} rows={6} onChange={handleChange}/>
+                                <Form.Control className="order-input border-0 h-100" as="textarea" defaultValue={props.product.description} rows={10} onChange={handleChange}/>
                             </Form.Group>
                         </Col>
                     </Row>
