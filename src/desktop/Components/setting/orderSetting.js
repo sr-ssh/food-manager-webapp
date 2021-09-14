@@ -1,67 +1,67 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { Container, Card, Form, Col, Row, Button, Dropdown, Spinner } from 'react-bootstrap'
+import { Container, Card, Form, Col, Row, Button, Spinner } from 'react-bootstrap'
 
 // Actions
-import { orderActions, settingsActions } from '../../../actions'
+import { settingsActions } from '../../../actions'
 // Icons
 import editIcon from '../../assets/images/Products/edit.svg'
-import tickIcon from '../../assets/images/tick.svg'
 
 export const OrderSetting = () => {
     let orderSettings = useSelector(state => state.getOrderSettings.settings)
-    let editOrderSms = useSelector(state => state.editOrderSms)
+    let [newSettings, setNewSettings] = useState(useSelector(state => state.getOrderSettings.settings))
+    let editOrderSettings = useSelector(state => state.editOrderSettings)
     const dispatch = useDispatch();
     const handleChange = (e) => {
-        console.log('_____________________handleChange_____________________')
-        // if (e.target.type === "checkbox") {
-        //     dispatch(orderActions.editNewSms(
-        //         {
-        //             ...orderSms, [e.target.id]: {
-        //                 ...orderSms.[e.target.id],
-        //                 text: orderSms.[e.target.id].text,
-        //                 status: e.target.checked
-        //             }
-        //         }
-        //     ))
-        //     return
-        // }
-        // if (e.target.type === "textarea") {
-        //     dispatch(orderActions.editNewSms(
-        //         {
-        //             ...orderSms, [e.target.id]: {
-        //                 ...orderSms.[e.target.id],
-        //                 text: e.target.value,
-        //                 status: orderSms.[e.target.id].status
-        //             }
-        //         }
-        //     ))
-        //     return
+        if (e.target.type === "checkbox" && e.target.id !== "isPayNecessary") {
+            setNewSettings(
+                {
+                    ...newSettings, [e.target.id]: {
+                        ...newSettings.[e.target.id],
+                        text: newSettings.[e.target.id].text,
+                        status: e.target.checked
+                    }
+                }
+            )
+            return
+        }
+        if (e.target.type === "textarea") {
+            setNewSettings(
+                {
+                    ...newSettings, [e.target.id]: {
+                        ...newSettings.[e.target.id],
+                        text: e.target.value,
+                        status: newSettings.[e.target.id].status
+                    }
+                }
+            )
+            return
+        
 
-        // }
-
-        // e.preventDefault()
-
-        // dispatch(orderActions.editNewSms({
-        //     ...orderSms, [e.target.id]: {
-        //         ...orderSms.[e.target.id],
-        //         text: e.target.value,
-        //         status: orderSms.[e.target.id].status
-        //     }
-        // }))
+        }
+        if (e.target.id === "isPayNecessary") {
+            setNewSettings({...newSettings, [e.target.id]: e.target.checked})
+            return
+        }
+        if (e.target.type === "number") {
+            setNewSettings({...newSettings, [e.target.id]: parseInt(e.target.value)})
+            return
+        }
     }
 
     const HandleSubmit = (e) => {
         e.preventDefault();
-        // dispatch(orderActions.editSms(orderSms))
-
+        dispatch(settingsActions.editOrderSettings(newSettings))
     }
 
     useEffect(() => {
         dispatch(settingsActions.orderSettings())
     }, [dispatch])
+    useEffect(() => {
+        setNewSettings(orderSettings)
+    }, [orderSettings])
 
-console.log(orderSettings)
+console.log(newSettings, orderSettings)
     return (
         <div style={{'overflowY': 'scroll'}}>
             <Container fluid className="m-0 mt-4 w-100 d-flex  ">
@@ -237,7 +237,7 @@ console.log(orderSettings)
                                                     </Col>
                                                     <Col className="col-5">
                                                         <Form.Group controlId="confirmTime">
-                                                            <Form.Control type="number" className="order-setting-field m-auto"  defaultValue={orderSettings.confirmTime} />
+                                                            <Form.Control onChange={handleChange} type="number" className="order-setting-field m-auto"  defaultValue={orderSettings.confirmTime} />
                                                         </Form.Group>
                                                     </Col>
                                                 </Row>
@@ -251,7 +251,7 @@ console.log(orderSettings)
                                                     </Col>
                                                     <Col className="col-5">
                                                         <Form.Group controlId="cookTime">
-                                                            <Form.Control type="number" className="order-setting-field m-auto" defaultValue={orderSettings.cookTime} />
+                                                            <Form.Control onChange={handleChange} type="number" className="order-setting-field m-auto" defaultValue={orderSettings.cookTime} />
                                                         </Form.Group>
                                                     </Col>
                                                 </Row>
@@ -273,25 +273,22 @@ console.log(orderSettings)
                                             </Form.Group>
                                         </Col>
                                     </Row>
+                                    <Button variant="primary" type="submit" className="edit-sms-submit-btn mb-5 py-3">
+                                        {
+                                            editOrderSettings.loading ?
+                                                <Spinner
+                                                    as="span"
+                                                    animation="grow"
+                                                    size="sm"
+                                                    role="status"
+                                                    variant="light"
+                                                    aria-hidden="true"
+                                                />
+                                                :
+                                                <> ثبت </>
+                                        }
 
-
-
-                                        <Button variant="primary" type="submit" className="edit-sms-submit-btn mb-5 py-3">
-                                            {/* {
-                                                editOrderSms.loading ?
-                                                    <Spinner
-                                                        as="span"
-                                                        animation="grow"
-                                                        size="sm"
-                                                        role="status"
-                                                        variant="light"
-                                                        aria-hidden="true"
-                                                    />
-                                                    :
-                                                    <> ثبت </>
-                                            } */}
-
-                                        </Button>
+                                    </Button>
                                     </>)
                                 }
 

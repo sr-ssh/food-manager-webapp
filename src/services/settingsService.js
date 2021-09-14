@@ -7,7 +7,7 @@ let baseRoute = SERVER_URL;
 
 export const settingsService = {
     getorderSettings,
-    editOrderSms
+    editOrderSettings
 };
 
 function getorderSettings() {
@@ -33,7 +33,7 @@ function getorderSettings() {
         })
 }
 
-function editOrderSms(params) {
+function editOrderSettings(params) {
     console.log('into orderService')
 
     const requestOptions = {
@@ -42,7 +42,7 @@ function editOrderSms(params) {
     }
 
     return axios
-        .put(`${baseRoute}/order/sms`, requestOptions.body, {headers: requestOptions.headers})
+        .put(`${baseRoute}/settings/order`, requestOptions.body, {headers: requestOptions.headers})
         .then(res => {
             console.log('res >>')
             console.log(res.data)
