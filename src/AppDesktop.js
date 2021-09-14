@@ -21,7 +21,7 @@ import './desktop/assets/styles/determineStyle.css'
 import './desktop/assets/styles/headerStyle.css'
 import './desktop/assets/styles/orderStyle.css'
 import './desktop/assets/styles/sideBar.css'
-
+import './desktop/assets/styles/settingsStyle.css'
 
 
 

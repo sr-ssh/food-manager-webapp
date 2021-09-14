@@ -14,7 +14,7 @@ export const orderService = {
     getOrders,
     addOrder, 
     editOrderStatus,
-    getOrderSms,
+    getorderSettings,
     editOrderSms,
     sendDeliverySms
 };
@@ -115,7 +115,7 @@ function addOrder(products, customer) {
         });
 }
 
-function getOrderSms() {
+function getorderSettings() {
     console.log('into orderService')
 
     const requestOptions = {
@@ -124,7 +124,7 @@ function getOrderSms() {
     }
 
     return axios
-        .get(`${baseRoute}/order/sms`, {headers: requestOptions.headers})
+        .get(`${baseRoute}/settings/order`, {headers: requestOptions.headers})
         .then(res => {
             console.log("res.user >> ")
             console.log(res.data)

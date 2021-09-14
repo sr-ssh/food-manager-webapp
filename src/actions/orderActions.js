@@ -7,7 +7,7 @@ export const orderActions = {
     getOrders,
     addOrder,
     editOrderStatus,
-    getSms,
+    orderSettings,
     editSms,
     sendDeliverySms,
     editNewSms
@@ -168,10 +168,10 @@ function editNewSms(sms) {
     }
 }
 
-function getSms() {
+function orderSettings() {
     return dispatch => {
         dispatch(request())
-        orderService.getOrderSms()
+        orderService.getorderSettings()
             .then(
                 res => {
                     console.log(res)
