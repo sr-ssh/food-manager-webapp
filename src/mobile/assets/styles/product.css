@@ -28,7 +28,7 @@
 }
 
 .product-checkbox{
-    font-size: 18px;
+    font-size: 15px;
 }
 
 .was-validated .form-check-input:valid, .form-check-input.is-valid {
@@ -66,4 +66,83 @@
 
 .form-check-input:checked[type=radio] {
     background-image: none;
+}
+
+.add-img-btn {
+    max-height: 6vh;
+    font-size: 0.9rem;
+    width: 25vw;
+    border-radius: 10px;
+    border:none;
+    font-weight: bold;
+    color: var(--red-one);
+    background-color: var(--red-two);
+}
+
+.add-img-btn.btn-check:checked + .add-img-btn.btn-primary, .add-img-btn.btn-check:active + .add-img-btn.btn-primary, .add-img-btn.btn-primary:active, .add-img-btn.btn-primary.active, .add-img-btn.show > .add-img-btn.btn-primary.dropdown-toggle {
+    color: var(--red-one);
+    background-color: var(--red-two);
+}
+
+.add-img-btn.btn-check:focus + .add-img-btn.btn-primary, .add-img-btn.btn-primary:focus {
+    color: var(--red-one);
+    background-color: var(--red-two);
+    border-color: var(--red-one);
+    box-shadow: 0 0 0 0.25rem rgb(244 67 54 / 50%);
+}
+
+.add-img-btn.btn-primary:hover {
+    color: var(--red-one);
+    background-color: var(--red-two);
+    border-color: none
+}
+
+.add-img-btn.btn-primary:disabled, .add-img-btn.btn-primary.disabled {
+    color: var(--red-one);
+    background-color: var(--red-two);
+    border-color: none;
+}
+.input-box-shadow { 
+    box-shadow: 0px 6px 6px -14px rgb(0 0 0 / 17%), 0px 0px 14px -4px rgb(0 0 0 / 2%), 0px 0px 20px 2px rgb(0 0 0 / 6%);
+}
+.order-input-no-height{
+    border-radius: 10px;
+    color: var(--text-color-two);
+    font-size: 14px;
+    border: none;
+}
+.product-submit {
+    background-color: var(--red-one);
+    border: none;
+    border-radius: 11px;
+    position: relative;
+    color: var(--body-bachground);
+    box-shadow: 0px 3px 11px -7px rgb(0 0 0 / 76%), 0px 0px 6px 0px rgb(0 0 0 / 2%), 0px 0px 20px 3px rgb(0 0 0 / 6%);
+}
+
+.product-submit.btn-check:checked + .product-submit.btn-primary, .product-submit.btn-check:active + .product-submit.btn-primary, .product-submit.btn-primary:active, .product-submit.btn-primary.active, .product-submit.show > .product-submit.btn-primary.dropdown-toggle {
+    background-color: var(--red-one);
+}
+
+.product-submit.btn-check:focus + .product-submit.btn-primary, .product-submit.btn-primary:focus {
+    background-color: var(--red-one);
+    border-color: none;
+    box-shadow: 0 0 0 0.25rem rgb(244 67 54 / 50%);
+}
+
+.product-submit.btn-primary:hover {
+    background-color: var(--red-one);
+    border-color: none
+}
+.price--placeholder{
+    position: relative;
+    top: 5vh;
+    left: -19vw;
+    font-weight: normal;
+}
+.supply-placeholder{
+    position: relative;
+    top: 5vh;
+    left: -11vw;
+    font-weight: normal;
 }

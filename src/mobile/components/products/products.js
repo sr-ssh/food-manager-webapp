@@ -42,43 +42,66 @@ export const Products = () => {
                 }
                 {products ? 
                     (products?.map((item, index) => 
-                        <Card key={index} className="m-auto mt-3 bg-light productCard" >
-                            <Card.Body className="pb-0 ps-1 rounded-3">
+                        <Card key={index} className="m-auto mt-3 border-0 productCard lh-sm" >
+                            <Card.Body className="pb-0 ps-1 rounded-3 pt-3">
+                                <img src={item.img} alt="product-img" width="120px"  className="product--image"/>
                                 <Card.Title>
                                     {item.active 
-                                    ? <div className="activeStatus"><span></span> فعال</div>
-                                    : <div className="deActiveStatus"><span></span> غیرفعال</div>}
+                                    ? <div className="activeStatus fs-6"><span></span> فعال</div>
+                                    : <div className="deActiveStatus fs-6"><span></span> غیرفعال</div>}
                                 </Card.Title>
-                                <Card.Text className="pt-1">
-                                    <span style={{"color": "var(--text-color-one)"}}>نام : </span>{item.name && persianJs(item.name).englishNumber().toString()}
+                                <Card.Text className="pt-1 fs-6-sm">
+                                    <span style={{ "color": "var(--text-color-one)" }}>نوع :</span>
+                                    <span  className="pe-3">{item.type.name && persianJs(item.type.name).englishNumber().toString()}</span>
                                 </Card.Text>
-                                <Card.Text className="pt-1">
-                                    <span style={{ "color": "var(--text-color-one)" }}>نوع : </span>{item.type.name && persianJs(item.type.name).englishNumber().toString()}
+                                <Card.Text className="fs-6-sm">
+                                    <span style={{"color": "var(--text-color-one)"}}>نام :</span>
+                                    <span className="pe-3">{item.name && persianJs(item.name).englishNumber().toString()}</span>
                                 </Card.Text>
-                                <Card.Text className="pt-1">
+                                <Card.Text className="fs-6-sm">
                                     <span style={{ "color": "var(--text-color-one)" }}>
-                                        قیمت : 
+                                        قیمت فروش :
                                     </span>
+                                    <span className="pe-3">
                                     {item.size[0].price && persianJs(commaNumber(item.size[0].price)).englishNumber().toString()}
-                                </Card.Text>
-                                <Card.Text className="pt-1">
-                                    <span style={{"color": "var(--text-color-one)"}}>
-                                        تخفیف : 
                                     </span>
-                                    {item.size[0].discount && persianJs(commaNumber(item.size[0].discount)).englishNumber().toString()} 
+                                    <span className="pe-1">تومان</span>
                                 </Card.Text>
-                                <Card.Text className="pt-1">
-                                    <span style={{ "color": "var(--text-color-one)" }}>موجودی : </span>{item.supply && persianJs(item.supply).englishNumber().toString()}
+                                <Card.Text className="fs-6-sm">
+                                    <span style={{ "color": "var(--text-color-one)" }}>تعداد :</span>
+                                    <span className="pe-3">{item.supply && persianJs(item.supply).englishNumber().toString()}
+                                    </span>
+                                    <span className="pe-1">عدد</span>
                                 </Card.Text>
-                                <Card.Text className="pt-1">
-                                    <span style={{"color": "var(--text-color-one)"}}>تاریخ ویرایش : </span>{item.updatedAt && persianJs(moment.from(item.updatedAt, 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD')).englishNumber().toString()}
+                                <Card.Text className="fs-6-sm">
+                                    <span style={{"color": "var(--text-color-one)"}}>
+                                        تخفیف :
+                                    </span>
+                                    <span className="pe-3">{item.size[0].discount && persianJs(commaNumber(item.size[0].discount)).englishNumber().toString()}
+                                    </span> 
+                                    <span className="pe-1">تومان</span>
                                 </Card.Text>
-                                <Card.Text className="pt-1 ps-1">
-                                <span style={{"color": "var(--text-color-one)"}}>توضیحات :   </span>{item.description && persianJs(item.description).englishNumber().toString()}
+                                <Card.Text className="fs-6-sm">
+                                    <span style={{"color": "var(--text-color-one)"}}>تاریخ ویرایش :</span>
+                                    <span className="pe-3">{item.updatedAt && persianJs(moment.from(item.updatedAt, 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD')).englishNumber().toString()}
+                                    </span>
                                 </Card.Text>
-                                <Card.Link className="editLogo w-100 d-block m-auto" onClick={() => {setEditModalShow(true); setProduct(item)}}>
-                                    <img className="d-block me-auto" src={editIcon} height="42px" alt="back-icon" />
-                                </Card.Link>
+                                <Row className="ms-0">
+                                    <Col xs={10} className="ps-1 ms-0">
+                                        <Card.Text className="fs-6-sm ps-1">
+                                        <span style={{"color": "var(--text-color-one)"}}>توضیحات :</span>
+                                        <span className="pe-3">{item.description && persianJs(item.description).englishNumber().toString()}
+                                        </span>
+                                        </Card.Text>
+                                    </Col>
+                                    <Col xs={2} className="mt-1 ps-0 pb-1">
+                                        <Card.Link className="editLogo w-100 d-block m-auto" onClick={() => {setEditModalShow(true); setProduct(item)}}>
+                                            <img className="d-block me-auto" src={editIcon} height="36px" alt="back-icon" />
+                                        </Card.Link>
+                                    </Col>
+                                </Row>
+                                
+                                
                             </Card.Body>
                         </Card>    
                     ))    

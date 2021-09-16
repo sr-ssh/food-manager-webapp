@@ -7,6 +7,7 @@ import persianJs from 'persianjs/persian.min';
 // icons
 import closeIcon from '../../assets/images/close.svg'
 import spinnerIcon from './../../assets/images/sppiner.svg'
+import plusIcon from './../../assets/images/Products/pluss.svg'
 
 
 export const AddProduct = (props) => {
@@ -49,7 +50,7 @@ export const AddProduct = (props) => {
             centered
             className="mx-3 order-serach-modal"
             >
-            <Modal.Body className="add-product px-4 add-discount">
+            <Modal.Body className="add-product px-3 add-discount">
                 <Button className="border-0 customer-modal-close" type="button"  onClick={e => props.onHide(false)}>
                     <img className="d-flex m-auto customer-modal-close-svg" src={closeIcon} alt="close-btn" />
                 </Button>
@@ -65,67 +66,74 @@ export const AddProduct = (props) => {
                     </>
                 }
                 <Form onSubmit={formHandler} >
-                    {/* <Row className="mt-3">
-                        <Col className="col-12 order-filter-input">
-                            <Form.Group controlId="name">
-                                <Form.Label className="pe-3">نام محصول</Form.Label>
-                                <Form.Control className="order-input" type="text" value={addProductLoading ? "" : null} onChange={handleChange} required />
-                            </Form.Group>
-                        </Col>
-                    </Row> */}
-                    <Row className="my-3 justify-content-between">
-                        <Col className="col-6 order-filter-input">
-                            <Form.Group controlId="name" className="ms-2">
-                                <Form.Label className="pe-2">نام محصول</Form.Label>
-                                <Form.Control style={{"width":"94%"}} className="order-input h-100" type="text" name="name" value={addProductLoading ? "" : null} onChange={handleChange} required/>
-                            </Form.Group>
-                        </Col>
-                        <Col className="col-6 order-filter-input">
+                    <Row>
+                        <Col className="col-5 order-filter-input">
                             <Row>
                                 <Col>
-                                    <Form.Label className="pe-2">نوع </Form.Label>
+                                    <Form.Label className="pe-2 fw-normal">نوع </Form.Label>
                                 </Col>
                                 <Col className="ps-4 pt-1 text-start">
                                     <img className="me-auto" src={spinnerIcon} height="13px" alt="spinner-icon"/>
                                 </Col>
                             </Row>
                             <Dropdown onToggle={(e) => setDimStatus(!dimStatus)} >
-                                <Dropdown.Toggle className="d-flex order-filter-input">
+                                <Dropdown.Toggle className="w-100 d-flex order-filter-input input-box-shadow">
                                     {selectedItem !== -1 ? <span>{selectedItem}</span> : null}
                                 </Dropdown.Toggle> 
                                 <Dropdown.Menu className={`${dimStatus ? "dim" : ""} dropdownProductMenu`}>
                                     {
                                         productTypes?.map((item, index) => 
                                             <Dropdown.Item key={index} onClick={() => handleDropdown(item)} >
-                                                <Col className="text-end pe-1 order-filter-input">{item.name}</Col> 
+                                                <Col className="text-end pe-1 order-input">{item.name}</Col> 
                                             </Dropdown.Item>
                                             )
                                     }
                                 </Dropdown.Menu>
                             </Dropdown>
                         </Col>
+                        <Col>
+                            <Button className="fw-bold add-img-btn border-0 w-100 mt-4 px-0 py-0 pb-1" size="lg" type="button" block>
+                                <img src={plusIcon} height="30px" alt="plus-icon" />
+                                <span className="fs-6-sm fw-bold">اضافه کردن عکس</span>
+                            </Button>
+                        </Col>
                     </Row>
-                    <Row className="mt-3">
-                        <Col className="col-12 order-filter-input">
-                            <Form.Group controlId="price">
-                                <Form.Label className="pe-3">قیمت (تومان)</Form.Label>
-                                <Form.Control className="order-input" type="number" min="0" value={addProductLoading ? "" : null} onChange={handleChange} required />
+                    <Row className="my-3 justify-content-between">
+                        <Col xs={7} className="order-filter-input ps-0 mx-0">
+                            <Form.Group controlId="name">
+                                <Form.Label className="pe-2 fw-normal">نام محصول</Form.Label>
+                                <Form.Control style={{"width":"94%"}} className="order-input h-100 py-3 input-box-shadow" type="text" name="name" value={addProductLoading ? "" : null} onChange={handleChange} required/>
+                            </Form.Group>
+                        </Col>
+                        <Col xs={5} className="order-filter-input px-0 mx-0">
+                            <Form.Group controlId="name" className="ms-2">
+                                <Form.Label className="pe-2 fw-normal">تعداد</Form.Label>
+                                <span className="supply-placeholder">عدد</span>
+                                <Form.Control style={{"width":"94%"}} className="order-input h-100 py-3 input-box-shadow input--placeholder" type="text" name="name" value={addProductLoading ? "" : null} onChange={handleChange} required/>
                             </Form.Group>
                         </Col>
                     </Row>
-                    <Row className="mt-3">
-                        <Col className="col-12 order-filter-input">
-                            <Form.Group controlId="img">
-                                <Form.Label className="pe-3">تصویر</Form.Label>
-                                <Form.Control className="order-input" type="text" min="0" value={addProductLoading ? "" : null} onChange={handleChange} required />
+                    <Row className="mt-0 justify-content-between">
+                        <Col xs={7} className="order-filter-input ps-0 mx-0">
+                            <Form.Group controlId="price">
+                                <Form.Label className="pe-2 fw-normal">قیمت</Form.Label>
+                                <span className="price--placeholder">تومان</span>
+                                <Form.Control style={{"width":"94%"}} className="order-input py-3 h-100 input-box-shadow" type="number" min="0" value={addProductLoading ? "" : null} onChange={handleChange} required/>
+                                
+                            </Form.Group>
+                        </Col>
+                        <Col xs={5} className="order-filter-input px-0 mx-0">
+                            <Form.Group controlId="price" className="ms-2">
+                                <Form.Label className="pe-3 fw-normal">تخفیف</Form.Label>
+                                <Form.Control style={{"width":"94%"}} className="order-input py-3 h-100 input-box-shadow" type="number" min="0" value={addProductLoading ? "" : null} onChange={handleChange} required />
                             </Form.Group>
                         </Col>
                     </Row>
                     <Row>
                         <Col>
                             <Form.Group controlId="description" className="order-filter-input mt-3">
-                                <Form.Label className="pe-3">توضیحات</Form.Label>
-                                <Form.Control className="order-input border-0 h-100" as="textarea" rows={6} value={addProductLoading ? "" : null} onChange={handleChange}/>
+                                <Form.Label className="pe-3 fw-normal">توضیحات</Form.Label>
+                                <Form.Control className="border-0 h-100 input-box-shadow order-input-no-height" as="textarea" rows="3" value={addProductLoading ? "" : null} onChange={handleChange}/>
                             </Form.Group>
                         </Col>
                     </Row>
@@ -133,7 +141,7 @@ export const AddProduct = (props) => {
                         <Col>
                             {
                                 addProductLoading ? (
-                                    <Button className="fw-bold order-submit border-0 w-100 mt-4" size="lg" type="submit"  disabled>
+                                    <Button className="fw-bold product-submit border-0 w-100 mt-4" size="lg" type="submit"  disabled>
                                         <Spinner
                                         as="span"
                                         animation="grow"
@@ -144,7 +152,7 @@ export const AddProduct = (props) => {
                                         در حال انجام عملیات...
                                     </Button>
                                 ) : (
-                                    <Button className="fw-bold order-submit border-0 w-100 mt-4" size="lg" type="submit" block>
+                                    <Button className="product-submit border-0 w-100 mt-3 fs-6 py-2" size="lg" type="submit" block>
                                         ثبت
                                     </Button>
                                 )

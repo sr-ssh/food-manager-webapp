@@ -18,9 +18,9 @@
 }
 
 .activeStatus span {
-    height: 15px;
-    width: 15px;
-    margin-left: 10px;
+    height: 13px;
+    width: 13px;
+    margin-left: 6px;
     background-color: var(--button-color-two);
     border-radius: 50%;
     display: inline-block;
@@ -32,10 +32,16 @@
 }
 
 .deActiveStatus span {
-    height: 15px;
-    width: 15px;
-    margin-left: 10px;
+    height: 13px;
+    width: 13px;
+    margin-left: 6px;
     background-color: var(--dager-color);
     border-radius: 50%;
     display: inline-block;
+}
+
+.product--image{
+    position: absolute;
+    left: 10px;
+    top: 18px;
 }
