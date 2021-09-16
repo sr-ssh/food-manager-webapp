@@ -79,3 +79,13 @@
     width: 1.2em;
     height: 1.2em;
 }
+.employee--card .card-title {
+    background-color: var(--button-color-one);
+    border-radius: 10px 10px 0 0;
+    color: var(--body-bachground);
+}
+.editLogo--employee {
+    width: 50px;
+    background-color: var(--pages-background);
+    border-radius: 10px;
+}
