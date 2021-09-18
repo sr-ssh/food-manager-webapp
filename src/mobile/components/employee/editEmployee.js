@@ -1,38 +1,47 @@
 import React, { useState, useEffect } from 'react'
-import { Modal, Button, Row, Col, Alert, Form, Spinner, Card } from 'react-bootstrap'
+import { Modal, Button, Row, Col, Alert, Form, Spinner, Card, Dropdown } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import persianJs from 'persianjs/persian.min';
 import {  employeeActions } from '../../../actions/employeeActions';
-import { translate } from '../../../helpers';
 
 import closeIcon from '../../assets/images/close.svg'
-import tickIcon from '../../assets/images/tick.svg'
+import spinnerIcon from './../../assets/images/sppiner.svg'
 
 export const EditEmployee = (props) => {
+    const [dimStatus, setDimStatus] = useState(false)
+    const [selectedItem, setItem] = useState(-1)
     const [validated, setValidated] = useState(false)
+    const userTypes = useSelector(state => state.getEmployeeTypes.employeeTypes)
     const dispatch = useDispatch()
-    let [newPermission, setNewPermission] = useState(props.employee.permission)
+    let [newEmployee, setNewEmployee] = useState(props.employee)
     let editEmployeeLoading = useSelector(state => state.editEmployee.loading)
     let alert = useSelector(state => state.alert)
 
-    const handleChange = (e) => {
-        if(e.target.type != "checkbox") {
-            e.preventDefault()
-        }
-        setNewPermission({...newPermission, [e.target.name]: e.target.checked})
+    const handleDropdown = (item) => {
+        setItem(item.persianName)
+        setNewEmployee({...newEmployee, "typeId": item._id})
     }
-
+    const handleChange = (e) => {
+        e.preventDefault()
+        setNewEmployee({...newEmployee, [e.target.id]: e.target.value})
+    }
 
     const formHandler = (e) => {
         e.preventDefault()
-        let employee = {permissions: newPermission, _id: props.employee._id}
+        let employee = {...newEmployee, _id: props.employee._id}
         dispatch(employeeActions.editEmployee(employee))
     }
     
     useEffect(() => {
-        if(!newPermission)
-            setNewPermission(props.employee.permission)
-    }, [newPermission, props.show])
+        setItem(-1)
+        props.employee.type && setNewEmployee({
+            _id: props.employee._id,
+            family: props.employee.family,
+            typeId: props.employee.type._id,
+            mobile: props.employee.mobile
+        })
+        dispatch(employeeActions.getEmployeeTypes())
+    }, [dispatch, props.employee])
 
     return (
         <Modal
@@ -42,92 +51,74 @@ export const EditEmployee = (props) => {
             centered
             className="mx-3 order-serach-modal"
             >
-            <Modal.Body className="add-product px-4 permission-card applications-text-gray">
+            <Modal.Body className="lh-lg add-product px-3 permission-card applications-text-gray add-discount ">
                 <Button className="border-0 customer-modal-close" type="button"  onClick={e => props.onHide(false)}>
                     <img className="d-flex m-auto customer-modal-close-svg" src={closeIcon} alt="close-btn" />
                 </Button>
-                {
-                    alert.message && 
-                    <>
-                        <div className="modal-backdrop show"></div>
-                        <Row className="justify-content-center text-center ">
-                            <Alert variant={alert.type}>
-                                {alert.message}
-                            </Alert> 
-                        </Row>
-                    </>
-                }
+             
                 <Form onSubmit={formHandler} noValidate validated={validated}>
                     <Row >
-                        <Col xs={2}>
-                            نام : 
-                        </Col>
-                        <Col>
-                            <span>{props.employee.family}</span>
-                        </Col>
-                    </Row>
-                    <Row className="my-2">
-                        <Col xs={3}>
-                            موبایل: 
-                        </Col>
-                        <Col>
-                            <span>{props.show && persianJs(props.employee.mobile).englishNumber().toString()}</span>
+                        <Col className="order-filter-input ">
+                            <Form.Group controlId="family">
+                                <Form.Label className="pe-1 fw-normal fs-7 mb-0">نام</Form.Label>
+                                <Form.Control className="fs-6-sm w-100 order-input py-3 h-100 input-box-shadow text-dark-grey" type="text" defaultValue={props.employee.family} onChange={handleChange} required />
+                            </Form.Group>
                         </Col>
                     </Row>
-                    <Card className="m-auto mt-3 productCard border-0 lh-lg pb-2" >
-                        <Card.Body className="pb-0 ps-0 emplyees-text-gray">
+                    <Row className="mt-3 justify-content-between">
+                        <Col xs={7} className="order-filter-input ps-0 mx-0">
+                            <Form.Group controlId="mobile">
+                                <Form.Label className="pe-1 fw-normal fs-7 mb-0">موبایل</Form.Label>
+                                <Form.Control style={{"width":"94%"}} className="fs-6-sm order-input py-3 h-100 input-box-shadow text-dark-grey" type="number" min="0" defaultValue={props.employee.mobile} onChange={handleChange} required/>
+                            </Form.Group>
+                        </Col>
+                        <Col className="col-5 order-filter-input">
                             <Row>
-                                <Col xs={5} className="ps-0">
-                                    <Card.Text>
-                                        سطح دسترسی: 
-                                    </Card.Text>
+                                <Col>
+                                    <Form.Label className="pe-1 fw-normal fs-7 mb-0">شغل</Form.Label>
                                 </Col>
-                                <Col className="pe-0">
-                                    {
-                                        props.show && newPermission && Object.keys(newPermission).map((key, index) => {
-                                            return(
-                                                <Form.Group key={index} className="fw-bold" onChange={handleChange}>
-                                                    <Row className="my-1">
-                                                        <Col xs={3}>
-                                                            <img 
-                                                            htmlFor={`${index}`} 
-                                                            className={`${newPermission[key] ? "edit-permission-tick-show" : "d-none"}`} src={tickIcon} 
-                                                            alt="close-btn" 
-                                                            height="30px"/>
-                                                            <Form.Check.Input name={key} id={`${index}`} defaultChecked={newPermission[key]} type="checkbox" className="mx-2 mt-2" />  
-                                                        </Col>
-                                                        <Col>
-                                                            <Form.Check.Label className="ms-2" htmlFor={`${index}`}>
-                                                                <span>{translate(key)}</span>
-                                                            </Form.Check.Label>
-                                                        </Col>
-                                                    </Row>
-                                                </Form.Group>
-                                            )
-                                        })
-                                    }
+                                <Col className="ps-4 pt-1 text-start">
+                                    <img className="me-auto" src={spinnerIcon} height="13px" alt="spinner-icon"/>
                                 </Col>
                             </Row>
-                        </Card.Body>
-                    </Card>   
-                        {
-                            editEmployeeLoading ? (
-                                <Button className="fw-bold order-submit border-0 w-100 mt-3" size="lg" type="submit"  disabled>
-                                    <Spinner
-                                    as="span"
-                                    animation="grow"
-                                    size="sm"
-                                    role="status"
-                                    aria-hidden="true"
-                                    />
-                                    در حال انجام عملیات...
-                                </Button>
-                            ) : (
-                                <Button className="fw-bold order-submit border-0 w-100 mt-3" size="lg" type="submit" block>
-                                    ثبت
-                                </Button>
-                            )
-                        }
+                            <Dropdown onToggle={(e) => setDimStatus(!dimStatus)} >
+                                <Dropdown.Toggle className="w-100 d-flex order-filter-input input-box-shadow fs-6-sm text-dark-grey fw-normal">
+                                    {selectedItem !== -1 ? <span>{selectedItem}</span> : props.employee?.type?.persianName}
+                                </Dropdown.Toggle> 
+                                <Dropdown.Menu className={`${dimStatus ? "dim" : ""} dropdownProductMenu`}>
+                                    {
+                                        userTypes?.map((item, index) => 
+                                            <Dropdown.Item key={index} onClick={() => handleDropdown(item)} >
+                                                <Col className="text-end pe-1 order-input fs-6-sm">{item.persianName}</Col> 
+                                            </Dropdown.Item>
+                                            )
+                                    }
+                                </Dropdown.Menu>
+                            </Dropdown>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                            {
+                                editEmployeeLoading ? (
+                                    <Button className="fw-bold product-submit border-0 w-100 mt-4" size="lg" type="submit"  disabled>
+                                        <Spinner
+                                        as="span"
+                                        animation="grow"
+                                        size="sm"
+                                        role="status"
+                                        aria-hidden="true"
+                                        />
+                                        در حال انجام عملیات...
+                                    </Button>
+                                ) : (
+                                    <Button className="product-submit border-0 w-100 mt-3 fs-6 py-2" size="lg" type="submit" block>
+                                        ثبت
+                                    </Button>
+                                )
+                            }
+                        </Col>
+                    </Row>
                 </Form>  
             </Modal.Body>
         </Modal>

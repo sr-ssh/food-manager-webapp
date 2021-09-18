@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Header } from '../base/applicationsHeader'
 import { useDispatch, useSelector } from 'react-redux'
 import { employeeActions } from '../../../actions/employeeActions'
-import { Row, Container, Col, Spinner } from 'react-bootstrap'
+import { Row, Container, Col, Spinner, Alert } from 'react-bootstrap'
 
 import { EditEmployee } from './editEmployee'
 import { RemoveEmployee } from './removeEmployee'
@@ -12,6 +12,7 @@ export const Employees = () => {
     const [editModalShow, setEditModalShow] = useState(false)
     const [removeModalShow, setRemoveModalShow] = useState(false)
     const [employee, setEmployee] = useState({})
+    let alert = useSelector(state => state.alert)
     
     let employees = useSelector(state => state.getEmployees.employees)
     let getEmployeesLoading = useSelector(state => state.getEmployees.loading)
@@ -25,6 +26,17 @@ export const Employees = () => {
         <div className="product-page">
             <Header title="کارمندان" backLink="/dashboard" addLink="/employee/add" />
             <Container className="m-auto">
+                {
+                    alert.message && console.log("alertttttttt", alert.message) && 
+                    <>
+                        <div className="modal-backdrop alert-backdrop show"></div>
+                        <Row className="justify-content-center text-center ">
+                            <Alert variant={alert.type}>
+                                {alert.message}
+                            </Alert> 
+                        </Row>
+                    </>
+                }
                 {  
                 getEmployeesLoading &&
                     <Row>

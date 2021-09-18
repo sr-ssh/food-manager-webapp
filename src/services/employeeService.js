@@ -14,7 +14,9 @@ export const employeeService = {
     deleteEmployee,
     getApplications,
     editApplication,
-    addApplication
+    addApplication,
+    getEmployeeTypes,
+    blockUnblockEmployee
 };
 
 
@@ -205,6 +207,50 @@ function editApplication(application) {
         .put(`${baseRoute}/employee/application`, application, {headers: requestOptions.headers})
         .then(res => {
             console.log("res.user >> "); console.log(res.data);
+            handleResponse(res)
+            return res.data
+        })
+        .catch(function (error) {
+            if (error.response) {
+                console.log(error.response.data);
+                handleError(error.response.status)
+            }
+        });
+}
+
+function getEmployeeTypes() {
+    console.log("into employeeService");
+
+    const requestOptions = {
+        headers: authHeader()
+    };
+    
+    return axios
+        .get(`${baseRoute}/employee/type`, requestOptions)
+        .then(res => {
+            console.log("res.user >> "); console.log(res.data.data);
+            handleResponse(res)
+            return res.data
+        })
+        .catch(function (error) {
+            if (error.response) {
+                console.log(error.response.data);
+                handleError(error.response.status)
+            }
+        });
+}
+
+function blockUnblockEmployee(id) {
+    console.log("into employeeService");
+
+    const requestOptions = {
+        headers: authHeader()
+    };
+    
+    return axios
+        .post(`${baseRoute}/employee/block`, id, requestOptions)
+        .then(res => {
+            console.log("res.user >> "); console.log(res.data.data);
             handleResponse(res)
             return res.data
         })

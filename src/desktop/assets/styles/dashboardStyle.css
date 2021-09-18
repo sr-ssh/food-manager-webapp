@@ -173,6 +173,9 @@
 .modal {
   z-index: 1500;
 }
+.alert-backdrop {
+  z-index: 1550;
+}
 .dim {
   box-shadow: none !important;
 }

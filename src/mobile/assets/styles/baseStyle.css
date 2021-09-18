@@ -110,7 +110,7 @@ body{
 .alert {
     position: absolute;
     bottom: 26vh;
-    z-index: 1050;
+    z-index: 1550;
 }
 
 .no-result-filter {

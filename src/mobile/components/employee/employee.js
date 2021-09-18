@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useDebugValue, useState } from 'react'
 import { Row, Card, Col } from 'react-bootstrap'
 import persianJs from 'persianjs/persian.min';
 import moment from 'jalali-moment';
@@ -12,9 +12,16 @@ import operatorIcon from './../../assets/images/employees/operator-happy.svg'
 import deliveryIcon from './../../assets/images/employees/deliveryr-happy.svg'
 import cookIcon from './../../assets/images/employees/chef-happy-pizza.svg'
 import { Toggle } from './toggle';
+import { useDispatch } from 'react-redux';
+import { employeeActions } from '../../../actions/employeeActions';
 
 
 export const Employee = ({key, item, setRemoveModalShow, setEmployee, setEditModalShow}) => {
+
+    const dispatch = useDispatch()
+    const blockUnblockEmployee = () => {
+        dispatch(employeeActions.blockUnblockEmployee({_id: item._id}))
+    }
     
     return (
         <Card  className="m-auto mt-3 productCard employee--card mb-3 pb-3 border-0" >
@@ -59,7 +66,7 @@ export const Employee = ({key, item, setRemoveModalShow, setEmployee, setEditMod
                     </Col>
                 </Row>
                 <Row className="justify-content-between mt-3 ps-2 pe-1">
-                    <Col xs={6} className="">
+                    <Col xs={6} onClick={() => blockUnblockEmployee()}>
                         <Toggle active={item.active}/>
                     </Col>
                     <Col xs={3} className="me-4 editLogo--employee">

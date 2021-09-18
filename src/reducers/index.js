@@ -8,7 +8,7 @@ import { addOrder, getOrders, setOrdersFilter, editOrderStatus, getOrderSms, del
 import { getReminders } from './reminderReducer'
 import { getDiscounts } from './discountReducer';
 import { addDiscount } from './discountReducer';
-import { getEmployees, editEmployee, addEmployee, deleteEmployee, getApplications, addApplication } from './employeeReducer';
+import { getEmployees, editEmployee, addEmployee, deleteEmployee, getApplications, addApplication, getEmployeeTypes, blockUnblockEmployee } from './employeeReducer';
 import { getPermissions } from './employeeReducer';
 import { getUserInfo, editUserInfo } from './userReducer';
 import { getOrderSettings, editOrderSettings } from './settingsReducer';
@@ -40,7 +40,7 @@ export default combineReducers ({
     getUserInfo,
     getOrderSms,
     getApplications,
-    addApplication,
+    addApplication, getEmployeeTypes, blockUnblockEmployee,
     editUserInfo,
     deliverySms,
     getOrderSettings, editOrderSettings

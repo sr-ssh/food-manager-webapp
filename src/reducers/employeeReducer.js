@@ -187,3 +187,46 @@ export function editApplications(state = initialState, action) {
             return state;
     }
 }
+
+export function getEmployeeTypes(state = initialState, action) {
+    switch (action.type) {
+        case employeeConstants.GET_EMPLOYEE_TYPES_REQUEST:
+            return {
+                ...state, 
+                loading: true,
+            }
+        case employeeConstants.GET_EMPLOYEE_TYPES_SUCCESS: 
+            return {
+                ...state,
+                loading: false,
+                employeeTypes: action.data
+            }
+        case employeeConstants.GET_EMPLOYEE_TYPES_FAILURE:
+            return {
+                err: action.err
+            }
+        default:
+            return state;
+    }
+}
+
+export function blockUnblockEmployee(state = initialState, action) {
+    switch (action.type) {
+        case employeeConstants.BLOCK_UNBLOCK_EMPLOYEE_REQUEST:
+            return {
+                ...state, 
+                loading: true,
+            }
+        case employeeConstants.BLOCK_UNBLOCK_EMPLOYEE_SUCCESS: 
+            return {
+                ...state,
+                loading: false,
+            }
+        case employeeConstants.BLOCK_UNBLOCK_EMPLOYEE_FAILURE:
+            return {
+                err: action.err
+            }
+        default:
+            return state;
+    }
+}

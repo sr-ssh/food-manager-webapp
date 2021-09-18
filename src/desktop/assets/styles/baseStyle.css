@@ -56,3 +56,6 @@ body {
 .text-grey {
   color: var(--text-color-three);
 }
+.text-dark-grey{
+  color: black !important;
+}

@@ -14,7 +14,9 @@ export const employeeActions = {
     editApplication,
     addApplicationAndReload,
     editApplicationAndReload,
-    getPermissionsAndReload
+    getPermissionsAndReload,
+    getEmployeeTypes,
+    blockUnblockEmployee
 };
 
 function getEmployees() {
@@ -313,6 +315,62 @@ function editApplicationAndReload(application) {
                 },
                 error => {
                     dispatch(failure(employeeConstants.EDIT_APPLICATIONS_FAILURE, error.toString()));
+                    console.log("occure error");
+                    console.log(error.toString());
+                    dispatch(alertActions.error(error.toString()));
+                }
+            );
+    };
+}
+
+function getEmployeeTypes() {
+    return dispatch => {
+        dispatch(request(employeeConstants.GET_EMPLOYEE_TYPES_REQUEST))
+        employeeService.getEmployeeTypes()
+            .then(
+                res => {
+                    if(res === undefined)
+                        dispatch(alertActions.error('ارتباط با سرور برقرار نیست'));
+                    else if(res.success){
+                        console.log("employees received")
+                        dispatch(success(employeeConstants.GET_EMPLOYEE_TYPES_SUCCESS, res.data));
+                    }
+                        
+                    setTimeout(() => {
+                        dispatch(alertActions.clear());
+                    }, 1500);
+                },
+                error => {
+                    dispatch(failure(employeeConstants.GET_EMPLOYEE_TYPES_FAILURE, error.toString()));
+                    console.log("occure error");
+                    console.log(error.toString());
+                    dispatch(alertActions.error(error.toString()));
+                }
+            );
+    };
+}
+
+
+function blockUnblockEmployee(id) {
+    return dispatch => {
+        dispatch(request(employeeConstants.BLOCK_UNBLOCK_EMPLOYEE_REQUEST))
+        employeeService.blockUnblockEmployee(id)
+            .then(
+                res => {
+                    if(res === undefined)
+                        dispatch(alertActions.error('ارتباط با سرور برقرار نیست'));
+                    else if(res.success){
+                        console.log("employees received")
+                        dispatch(success(employeeConstants.BLOCK_UNBLOCK_EMPLOYEE_SUCCESS, res.data));
+                        dispatch(alertActions.success(res.message))
+                    }
+                        
+                    setTimeout(() => {
+                        dispatch(alertActions.clear());
+                    }, 1500);
+                },
+                error => {
+                    dispatch(failure(employeeConstants.BLOCK_UNBLOCK_EMPLOYEE_FAILURE, error.toString()));
                     console.log("occure error");
                     console.log(error.toString());
                     dispatch(alertActions.error(error.toString()));
