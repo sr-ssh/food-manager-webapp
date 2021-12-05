@@ -40,7 +40,7 @@
 #back-center {
   /* height: 100%; */
   /* min-height: 100vh; */
-  background: var(--background-one);
+  background: var(--pages-background);
   display: flex;
   justify-content: center;
   align-items: center;
