@@ -24,7 +24,7 @@ export const MainMenuOptions = () => {
     return (
         <div>
             {
-                permissions && permissions.addOrder && 
+                // permissions && permissions.addOrder && 
                 <Row  className="my-3 justify-content-center">
                     <Col  xs={9}  className="">
                         <Button  className="main-button w-100 me-auto d-block p-3"  type="submit"  onClick={e  => history.push('/order/add')}>
@@ -36,7 +36,7 @@ export const MainMenuOptions = () => {
             }
         
             {
-                permissions && permissions.getOrders && 
+                // permissions && permissions.getOrders && 
                 <Row  className="my-3 justify-content-center">
                     <Col  xs={9}  className="">
                         <Button  className="main-button w-100 me-auto d-block p-3"  type="submit"  onClick={e  => history.push('/orders')}>
@@ -48,7 +48,7 @@ export const MainMenuOptions = () => {
             }
         
             {
-                permissions && permissions.getCustomers && 
+                // permissions && permissions.getCustomers && 
                 <Row  className="my-3 justify-content-center">
                     <Col  xs={9}  className="">
                         <Button  className="main-button w-100 me-auto d-block p-3"  type="submit"  onClick={e  => history.push('/customers')}>
