@@ -36,6 +36,7 @@ import './mobile/assets/styles/financeStyle.css';
 import './mobile/assets/styles/determineStyle.css';
 import './mobile/assets/styles/employeeStyle.css';
 import './mobile/assets/styles/settingStyle.css';
+import './mobile/assets/styles/main.css';
 
 
 

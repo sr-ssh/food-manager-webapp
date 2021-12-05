@@ -1,0 +1,39 @@
+.btn{
+    
+    &,
+    &:link,
+    &:visited{
+        background-color: var(--button-color-three);
+        padding: 1.9rem 4rem;
+        text-decoration: none;
+        border-radius: 1rem;
+        font-size: 1.3rem;
+        font-weight: 700;
+        
+        
+    }
+    &__mainpage{
+        
+        border-color: var(--red-one);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.1rem 4rem;
+        box-shadow: 0 1rem 2rem rgba(#000,.2);
+
+
+        &-icon{
+
+            height: 3.5rem;
+            flex: 0;
+        }
+
+        &-text{
+           flex: 2;
+           font-size: 1.6rem;
+           color: var(--button-color-one);
+        }
+
+
+    }
+}

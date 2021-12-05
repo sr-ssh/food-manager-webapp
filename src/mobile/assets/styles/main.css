@@ -1,0 +1,69 @@
+:root {
+  --body-bachground: #ffffff;
+  --button-background: #64b5f6;
+  --button-color-one: #373737;
+  --pages-background: #ebebeb;
+  --text-color-one: #646464;
+  --text-color-two: #383738;
+  --button-color-two: #4caf50;
+  --card-background: #cdcdcd;
+  --dager-color: #e53935;
+  --background-blue: #c3e2fc;
+  --background-one: #f8f3ef;
+  --background-two: #383738;
+  --red-one: #f44336;
+  --button-color-three: #fff; }
+
+@font-face {
+  font-family: "IranSans";
+  src: url("./../font/ir_sans.ttf"); }
+
+* {
+  margin: 0;
+  padding: 0; }
+
+*,
+*:after,
+*::before {
+  box-sizing: inherit; }
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%; }
+
+body {
+  font-family: "IranSans";
+  background-color: var(--body-bachground);
+  margin: 0;
+  padding: 0; }
+
+.btn, .btn:link, .btn:visited {
+  background-color: var(--button-color-three);
+  padding: 1.9rem 4rem;
+  text-decoration: none;
+  border-radius: 1rem;
+  font-size: 1.3rem;
+  font-weight: 700; }
+
+.btn__mainpage {
+  border-color: var(--red-one);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.1rem 4rem;
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2); }
+  .btn__mainpage-icon {
+    height: 3.5rem;
+    flex: 0; }
+  .btn__mainpage-text {
+    flex: 2;
+    font-size: 1.6rem;
+    color: var(--button-color-one); }
+
+.main {
+  width: 100%;
+  padding: 0 8rem;
+  height: 30rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly; }
