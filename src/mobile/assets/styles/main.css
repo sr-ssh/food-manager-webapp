@@ -39,7 +39,7 @@ body {
 
 .btn, .btn:link, .btn:visited {
   background-color: var(--button-color-three);
-  padding: 1.9rem 4rem;
+  padding: 1.9rem 3rem;
   text-decoration: none;
   border-radius: 1rem;
   font-size: 1.3rem;
@@ -48,17 +48,17 @@ body {
 .btn__mainpage {
   border-color: var(--red-one);
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  padding: 1.1rem 4rem;
+  padding: 1.1rem 2rem;
   box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2); }
   .btn__mainpage-icon {
-    height: 3.5rem;
-    flex: 0; }
+    height: 3.5rem; }
   .btn__mainpage-text {
-    flex: 2;
     font-size: 1.6rem;
-    color: var(--button-color-one); }
+    flex: 1;
+    color: var(--button-color-one);
+    margin-left: 3rem; }
 
 .main {
   width: 100%;

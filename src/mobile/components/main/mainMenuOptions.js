@@ -23,7 +23,7 @@ export const MainMenuOptions = () => {
 
     return (
         <div className="main">
-          <a className="btn btn__mainpage">
+          <a className="btn btn__mainpage" onClick={(e)  => history.push('/orders')}>
               <img  className="btn__mainpage-icon"  src={addOrderIcon}  alt="add-order-icon"  />
               <span className="btn__mainpage-text">گزارش فروش</span>
           </a>
