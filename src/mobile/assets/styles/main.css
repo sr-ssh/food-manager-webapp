@@ -67,3 +67,8 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly; }
+
+.deliveryPayment {
+  background-color: orangered;
+  width: 100%;
+  height: 100vh; }

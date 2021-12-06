@@ -64,7 +64,7 @@ export const SidebarItems = () => {
             lg={10}
             className="py-3 mx-3 fw-bold sidebarItem"
           >
-            <Link to="/dashboard">پرداخت و شارژ پیک ها</Link>
+            <Link to="/products">پرداخت و شارژ پیک ها</Link>
           </Col>
         }
         {

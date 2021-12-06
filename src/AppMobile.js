@@ -21,6 +21,7 @@ import { Setting } from './mobile/components/setting/setting';
 import Bills from './mobile/components/finance/bills';
 import { Applications } from './mobile/components/employee/applications';
 import { Account } from './mobile/components/acounts/account';
+import { DeliveryPayment } from './mobile/components/finance/deliveryPayment';
 
 
 import './mobile/assets/styles/formStyle.css';
@@ -46,7 +47,7 @@ function AppMobile() {
             <Switch>
             <Route exact path="/" component={Login} />
             <Route path="/register" component={Determine} />
-            <PrivateRoute path="/products" component={Products} ></PrivateRoute>
+            {/* <PrivateRoute path="/products" component={Products} ></PrivateRoute> */}
             <PrivateRoute path="/customers" component={Customers} ></PrivateRoute>
             <PrivateRoute path="/reminders" component={Reminders} ></PrivateRoute>
             <PrivateRoute path="/discounts" component={Discounts} ></PrivateRoute>
@@ -57,6 +58,7 @@ function AppMobile() {
             <PrivateRoute path="/setting" component={Setting}></PrivateRoute>
             <PrivateRoute path="/employee/add" component={Applications} ></PrivateRoute>
             <PrivateRoute path="/account" component={Account} ></PrivateRoute>
+            <PrivateRoute path="/products" component={DeliveryPayment} ></PrivateRoute>
             <Redirect from="*" to="/" />
             </Switch>
         </Router>
