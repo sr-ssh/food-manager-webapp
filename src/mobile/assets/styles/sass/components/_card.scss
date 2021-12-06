@@ -1,0 +1,16 @@
+.cards{
+  width: 100%;
+  height: 30rem;
+  background-color: var(--card--color);
+  border-radius: 1rem;
+
+  &__deliveryPayment{
+    
+    &:not(:first-child){
+        margin-top: 1.5rem;
+    }
+
+  }
+
+
+}

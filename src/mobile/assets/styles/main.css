@@ -12,7 +12,9 @@
   --background-one: #f8f3ef;
   --background-two: #383738;
   --red-one: #f44336;
-  --button-color-three: #fff; }
+  --button-color-three: #fff;
+  --card--color: #fff
+  ; }
 
 @font-face {
   font-family: "IranSans";
@@ -60,6 +62,14 @@ body {
     color: var(--button-color-one);
     margin-left: 3rem; }
 
+.cards {
+  width: 100%;
+  height: 30rem;
+  background-color: var(--card--color);
+  border-radius: 1rem; }
+  .cards__deliveryPayment:not(:first-child) {
+    margin-top: 1.5rem; }
+
 .main {
   width: 100%;
   padding: 0 8rem;
@@ -71,4 +81,9 @@ body {
 .deliveryPayment {
   background-color: orangered;
   width: 100%;
-  height: 100vh; }
+  min-height: 100vh;
+  padding: 2.3rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  flex: 1; }
