@@ -40,7 +40,9 @@
     }
 
     &__deliveryPayment{
-        background-color: brown;
-        padding: 1.5rem 3rem;
+        background-color: var(--button-color-one);
+        padding: 1rem 3rem;
+        width: 100%;
+        color: #ccc;
     }
 }

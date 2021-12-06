@@ -1,19 +1,20 @@
 :root {
   --body-bachground: #ffffff;
-  --button-background: #64b5f6;
-  --button-color-one: #373737;
   --pages-background: #ebebeb;
   --text-color-one: #646464;
   --text-color-two: #383738;
-  --button-color-two: #4caf50;
   --card-background: #cdcdcd;
   --dager-color: #e53935;
   --background-blue: #c3e2fc;
   --background-one: #f8f3ef;
   --background-two: #383738;
   --red-one: #f44336;
+  --button-background: #64b5f6;
+  --button-color-one: #373737;
+  --button-color-two: #4caf50;
   --button-color-three: #fff;
   --card--color: #fff
+
   ; }
 
 @font-face {
@@ -63,8 +64,10 @@ body {
     margin-left: 3rem; }
 
 .btn__deliveryPayment {
-  background-color: brown;
-  padding: 1.5rem 3rem; }
+  background-color: var(--button-color-one);
+  padding: 1rem 3rem;
+  width: 100%;
+  color: #ccc; }
 
 .cards {
   width: 100%;
@@ -86,7 +89,6 @@ body {
   justify-content: space-evenly; }
 
 .deliveryPayment {
-  background-color: orangered;
   width: 100%;
   min-height: 100vh;
   padding: 2.3rem 2rem;
@@ -113,11 +115,13 @@ body {
       .deliveryPayment__text-charge-value {
         flex: 2 0 0;
         color: var(--red-one);
-        font-size: 1.8rem; }
+        font-size: 1.8rem;
+        font-weight: 700; }
         .deliveryPayment__text-charge-value span {
           color: #000;
           font-size: 1.2rem;
-          margin-right: 1rem; }
+          margin-right: 1rem;
+          font-weight: 400; }
     .deliveryPayment__text-mobile {
       flex: 1 0 0;
       color: var(--text-color-one); }
@@ -138,3 +142,5 @@ body {
       color: var(--text-color-one); }
       .deliveryPayment__text-creditCardNumber-value {
         flex: .3 0 0; }
+  .deliveryPayment__btn {
+    padding: 1rem  1rem; }
