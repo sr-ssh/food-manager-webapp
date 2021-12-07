@@ -123,24 +123,28 @@ body {
           margin-right: 1rem;
           font-weight: 400; }
     .deliveryPayment__text-mobile {
-      flex: 1 0 0;
+      flex: .5 0 0;
       color: var(--text-color-one); }
       .deliveryPayment__text-mobile-value {
-        flex: .3 0 0; }
+        flex: 1 0;
+        direction: ltr; }
     .deliveryPayment__text-iban {
       flex: 1 0 0;
       color: var(--text-color-one); }
       .deliveryPayment__text-iban-value {
-        flex: .3 0 0; }
+        flex: 1 0;
+        direction: ltr; }
     .deliveryPayment__text-bankAccount {
       flex: 1 0 0;
       color: var(--text-color-one); }
       .deliveryPayment__text-bankAccount-value {
-        flex: .3 0 0; }
+        flex: 1 0;
+        direction: ltr; }
     .deliveryPayment__text-creditCardNumber {
       flex: 1 0 0;
       color: var(--text-color-one); }
       .deliveryPayment__text-creditCardNumber-value {
-        flex: .3 0 0; }
+        flex: 1 0;
+        direction: ltr; }
   .deliveryPayment__btn {
     padding: 1rem  1rem; }

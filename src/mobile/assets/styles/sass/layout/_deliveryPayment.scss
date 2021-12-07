@@ -48,16 +48,18 @@
                     font-size: 1.2rem;
                     margin-right: 1rem;
                     font-weight: 400;
+                    
                 }
             }
         }
 
         &-mobile{
-            flex: 1 0 0;
+            flex: .5 0 0;
             color: var(--text-color-one);
-            &-value{
 
-               flex: .3 0 0 ;
+            &-value{
+                flex: 1 0;
+                direction: ltr;
             }
         }
 
@@ -66,9 +68,9 @@
             color: var(--text-color-one);
 
             &-value{
-
-                flex: .3 0 0 ;
-             }
+                flex: 1 0;
+                direction: ltr;
+            }
 
         }
 
@@ -78,10 +80,9 @@
             color: var(--text-color-one);
 
             &-value{
-
-                flex: .3 0 0 ;
-             }
-
+                flex: 1 0;
+                direction: ltr;
+            }
         }
 
         &-creditCardNumber{
@@ -89,9 +90,9 @@
             color: var(--text-color-one);
 
             &-value{
-
-                flex: .3 0 0 ;
-             }
+                flex: 1 0;
+                direction: ltr;
+            }
 
         }
 
