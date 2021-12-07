@@ -27,11 +27,11 @@ export const MainMenuOptions = () => {
               <img  className="btn__mainpage-icon me-4"  src={salesReportIcon}  alt="sales-report-icon"  />
               <span className="btn__mainpage-text">گزارش فروش</span>
           </a>
-          <a className="btn btn__mainpage">
+          <a className="btn btn__mainpage" onClick={(e)  => history.push('/products')}>
               <img  className="btn__mainpage-icon me-4"  src={productsIcon}  alt="add-order-icon"  />
               <span className="btn__mainpage-text">محصولات</span>
           </a>
-          <a className="btn btn__mainpage">
+          <a className="btn btn__mainpage" onClick={(e)  => history.push('/employees')}>
               <img  className="btn__mainpage-icon me-4"  src={employeesIcon}  alt="add-order-icon"  />
               <span className="btn__mainpage-text">کارمندان</span>
           </a>

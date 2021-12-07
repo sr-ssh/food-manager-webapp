@@ -58,7 +58,8 @@ function AppMobile() {
             <PrivateRoute path="/setting" component={Setting}></PrivateRoute>
             <PrivateRoute path="/employee/add" component={Applications} ></PrivateRoute>
             <PrivateRoute path="/account" component={Account} ></PrivateRoute>
-            <PrivateRoute path="/products" component={DeliveryPayment} ></PrivateRoute>
+            <PrivateRoute path="/products" component={Products} ></PrivateRoute>
+            <PrivateRoute path="/payment/delivery" component={DeliveryPayment} ></PrivateRoute>
             <Redirect from="*" to="/" />
             </Switch>
         </Router>
