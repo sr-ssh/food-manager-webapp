@@ -38,6 +38,7 @@ import './mobile/assets/styles/determineStyle.css';
 import './mobile/assets/styles/employeeStyle.css';
 import './mobile/assets/styles/settingStyle.css';
 import './mobile/assets/styles/main.css';
+import { Pricing } from './mobile/components/pricing/pricing';
 
 
 
@@ -59,6 +60,7 @@ function AppMobile() {
             <PrivateRoute path="/employee/add" component={Applications} ></PrivateRoute>
             <PrivateRoute path="/account" component={Account} ></PrivateRoute>
             <PrivateRoute path="/products" component={Products} ></PrivateRoute>
+            <PrivateRoute path="/pricing" component={Pricing} ></PrivateRoute>
             <PrivateRoute path="/payment/delivery" component={DeliveryPayment} ></PrivateRoute>
             <Redirect from="*" to="/" />
             </Switch>

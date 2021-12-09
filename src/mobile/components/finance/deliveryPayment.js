@@ -74,7 +74,7 @@ export const DeliveryPayment = () => {
                 </span>
               </div>
               <div className="deliveryPayment__btn">
-                <a className="btn btn__deliveryPayment">پرداخت شد</a>
+                <a className="btnn btnn__deliveryPayment">پرداخت شد</a>
               </div>
             </div>
           ))}
