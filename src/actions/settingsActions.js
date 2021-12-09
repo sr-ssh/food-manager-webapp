@@ -1,6 +1,5 @@
 import { settingsConstants } from '../constants'
-import { history } from '../helpers';
-import { orderService, settingsService } from '../services'
+import {  settingsService } from '../services'
 import { alertActions } from './alertActions';
 
 export const settingsActions = {
@@ -84,6 +83,26 @@ function orderSettings() {
     function request() { console.log("into request"); return { type: settingsConstants.GET_ORDER_SETTINGS_REQUEST } }
     function success(settings) { console.log("into success"); return { type: settingsConstants.GET_ORDER_SETTINGS_SUCCESS, settings } }
     function failure(error) { return { type: settingsConstants.GET_ORDER_SETTINGS_FAILURE, error } }
+}
+
+function getPricing() {
+    return dispatch => {
+        dispatch(request(settingsService.GET_PRICING_REQUEST))
+        settingsService.getReminders()
+            .then(
+                res => {
+                    dispatch(success(settingsService.GET_PRICING_SUCCESS, res));
+                    console.log(res)
+                    dispatch(alertActions.success(res));
+                },
+                error => {
+                    dispatch(failure(settingsService.GET_PRICING_FAILURE, error.toString()));
+                    console.log("occure error");
+                    console.log(error.toString());
+                    dispatch(alertActions.error(error.toString()));
+                }
+            );
+    };
 }
 
 
