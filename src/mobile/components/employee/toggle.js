@@ -41,7 +41,7 @@ export const Toggle = ({active}) => {
                 justifyContent: "center",
                 alignItems: "center",
                 height: "100%",
-                fontSize: "0.75rem",
+                fontSize: "1.2rem",
                 color: "#4caf50",
                 paddingRight: 2,
                 width: "100px",
@@ -60,7 +60,8 @@ export const Toggle = ({active}) => {
                 height: "100%",
                 fontSize: "0.75rem",
                 color: "#f44336",
-                paddingLeft: 2
+                paddingLeft: 2,
+                fontSize: "1.2rem"
               }}  
             >
               قفل

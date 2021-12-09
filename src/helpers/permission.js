@@ -27,7 +27,7 @@ export function isPermitted(route) {
     }else if(route === "/setting") {
         return true
     }
-    else if(route === "/" || route === "/register" || route === "/dashboard" || route === "/account")
+    else if(route === "/" || route === "/register" || route === "/dashboard" || route === "/account" || route === "/payment/delivery")
         return true;
     return false;   
 }

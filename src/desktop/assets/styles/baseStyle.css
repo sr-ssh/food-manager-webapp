@@ -31,16 +31,19 @@ body {
   width: 40% !important;
 }
 .fs-6-sm{
-  font-size: 0.85rem;
+  font-size: 1.4rem;
+}
+.fs-6{
+  font-size: 1.6rem !important;
 }
 .fs-7 {
-  font-size: 0.75rem;
+  font-size: 1.3rem;
 }
 .fs-8 {
-  font-size: 0.65rem;
+  font-size: 1.2rem;
 }
 .fs-9 {
-  font-size: 0.55rem;
+  font-size: 1.1rem;
 }
 .ff-iranSans {
   font-family: "IranSans" !important;
