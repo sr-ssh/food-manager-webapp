@@ -148,3 +148,8 @@ body {
         direction: ltr; }
   .deliveryPayment__btn {
     padding: 1rem  1rem; }
+
+.pricing__edit {
+  width: 100%;
+  height: 100vh;
+  background-color: var(--text-color-one); }
