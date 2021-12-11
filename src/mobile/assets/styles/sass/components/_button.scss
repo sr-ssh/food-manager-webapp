@@ -9,7 +9,7 @@
         border-radius: 1rem;
         font-size: 1.3rem;
         font-weight: 700;
-        
+        text-align: center;
         
     }
     &__mainpage{
@@ -44,5 +44,18 @@
         padding: 1rem 3rem;
         width: 100%;
         color: #ccc;
+    }
+
+    &__pricing__edit{
+        display: inline-block;
+        width: 90%;
+        margin-right: 5%;
+        padding: 1.6rem 0;
+        flex: 2;
+        margin-top: 20rem;
+        background-color: var(--red-one);
+        color: #fff;
+        font-size: 1.6rem;
+        letter-spacing: .2rem;
     }
 }

@@ -1,0 +1,15 @@
+.input{
+    width: 100%;
+    padding: 1rem 2rem;
+    margin: .8rem 0;
+    display: inline-block;
+    border: 1px solid rgb(167, 167, 167);
+    border-radius: 3rem;
+
+
+    &__pricing__edit{
+      flex: 1;
+    //   margin-top: -1rem;
+    }
+    
+}

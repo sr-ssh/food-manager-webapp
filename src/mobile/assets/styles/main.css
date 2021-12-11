@@ -46,7 +46,8 @@ body {
   text-decoration: none;
   border-radius: 1rem;
   font-size: 1.3rem;
-  font-weight: 700; }
+  font-weight: 700;
+  text-align: center; }
 
 .btnn__mainpage {
   border-color: var(--red-one);
@@ -69,6 +70,18 @@ body {
   width: 100%;
   color: #ccc; }
 
+.btnn__pricing__edit {
+  display: inline-block;
+  width: 90%;
+  margin-right: 5%;
+  padding: 1.6rem 0;
+  flex: 2;
+  margin-top: 20rem;
+  background-color: var(--red-one);
+  color: #fff;
+  font-size: 1.6rem;
+  letter-spacing: .2rem; }
+
 .cards {
   width: 100%;
   height: 30rem;
@@ -79,6 +92,16 @@ body {
     flex-direction: column; }
     .cards__deliveryPayment:not(:first-child) {
       margin-top: 1.5rem; }
+
+.input {
+  width: 100%;
+  padding: 1rem 2rem;
+  margin: .8rem 0;
+  display: inline-block;
+  border: 1px solid #a7a7a7;
+  border-radius: 3rem; }
+  .input__pricing__edit {
+    flex: 1; }
 
 .main {
   width: 100%;
@@ -153,3 +176,17 @@ body {
   width: 100%;
   height: 100vh;
   background-color: var(--text-color-one); }
+  .pricing__edit:not(:first-child) {
+    display: flex;
+    padding: 1rem; }
+  .pricing__edit-container-input {
+    width: 100%;
+    height: 10rem;
+    padding: 0 2rem;
+    display: flex;
+    flex-direction: column; }
+  .pricing__edit-title {
+    color: #fff;
+    font-weight: 700;
+    margin-top: 1rem;
+    flex: 0; }
