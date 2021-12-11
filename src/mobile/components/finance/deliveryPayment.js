@@ -12,6 +12,12 @@ export const DeliveryPayment = () => {
   useEffect(() => {
     dispatch(deliveryChargesActions.getDeliveryCharges());
   }, [dispatch]);
+
+  //function
+  const handleSumbit = (e, data) => {
+    e.preventDefault(e)
+    dispatch(deliveryChargesActions.addDeliveryCharges(data))
+  }
   return (
     <>
       <Header title="پرداخت و شارژ پیک ها" backLink="/dashboard" />
@@ -74,7 +80,7 @@ export const DeliveryPayment = () => {
                 </span>
               </div>
               <div className="deliveryPayment__btn">
-                <a className="btn btn__deliveryPayment">پرداخت شد</a>
+                <a className="btn btn__deliveryPayment" onClick={(e) => handleSumbit(e, item)}>پرداخت شد</a>
               </div>
             </div>
           ))}
