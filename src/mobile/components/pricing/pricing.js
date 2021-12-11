@@ -29,7 +29,7 @@ export const Pricing = () => {
         <input type="text" name="lowest" value={getConfigPrice?.lowest || input.lowest} className="input input__pricing__edit" />
       </div>
       <div className="pricing__edit-container-input">
-        <p className="pricing__edit-title">زمان مسیر (تومان)</p>
+        <p className="pricing__edit-title">زمان مسیر (دقیقه)</p>
         <input type="text" name="duration" value={getConfigPrice?.duration || input.duration} className="input input__pricing__edit" />
       </div>
       <a className="btnn btnn__pricing__edit">ثبت کردن</a>
