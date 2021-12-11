@@ -1,6 +1,6 @@
 import { addConstants } from '../constants'
 
-export function getConfigPrice(state = {}, action) {
+export function editConfigPrice(state = {}, action) {
 
     switch (action.type) {
         case addConstants.EDIT_CONFIG_PRICE_REQUEST:

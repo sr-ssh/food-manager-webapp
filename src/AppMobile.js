@@ -43,28 +43,29 @@ import { Pricing } from './mobile/components/pricing/pricing';
 
 
 function AppMobile() {
-  return (    
-        <Router history={history}>
-            <Switch>
-            <Route exact path="/" component={Login} />
-            <Route path="/register" component={Determine} />
-            {/* <PrivateRoute path="/products" component={Products} ></PrivateRoute> */}
-            <PrivateRoute path="/customers" component={Customers} ></PrivateRoute>
-            <PrivateRoute path="/reminders" component={Reminders} ></PrivateRoute>
-            <PrivateRoute path="/discounts" component={Discounts} ></PrivateRoute>
-            <PrivateRoute path="/finance" component={Finance}></PrivateRoute>
-            <PrivateRoute path="/bills" component={Bills}></PrivateRoute>
-            <PrivateRoute path="/dashboard" component={Dashboard} ></PrivateRoute>
-            <PrivateRoute path="/employees" component={Employees} ></PrivateRoute>
-            <PrivateRoute path="/setting" component={Setting}></PrivateRoute>
-            <PrivateRoute path="/employee/add" component={Applications} ></PrivateRoute>
-            <PrivateRoute path="/account" component={Account} ></PrivateRoute>
-            <PrivateRoute path="/products" component={Products} ></PrivateRoute>
-            <PrivateRoute path="/pricing" component={Pricing} ></PrivateRoute>
-            <PrivateRoute path="/payment/delivery" component={DeliveryPayment} ></PrivateRoute>
-            <Redirect from="*" to="/" />
-            </Switch>
-        </Router>
+  return (
+    <Router history={history}>
+      <Switch>
+        <Route exact path="/" component={Login} />
+        <Route path="/register" component={Determine} />
+        <Route path="/dashboard" component={Dashboard} />
+        {/* <PrivateRoute path="/products" component={Products} ></PrivateRoute> */}
+        <PrivateRoute path="/customers" component={Customers} ></PrivateRoute>
+        <PrivateRoute path="/reminders" component={Reminders} ></PrivateRoute>
+        <PrivateRoute path="/discounts" component={Discounts} ></PrivateRoute>
+        <PrivateRoute path="/finance" component={Finance}></PrivateRoute>
+        <PrivateRoute path="/bills" component={Bills}></PrivateRoute>
+        {/* <PrivateRoute path="/dashboard" component={Dashboard} ></PrivateRoute> */}
+        <PrivateRoute path="/employees" component={Employees} ></PrivateRoute>
+        <PrivateRoute path="/setting" component={Setting}></PrivateRoute>
+        <PrivateRoute path="/employee/add" component={Applications} ></PrivateRoute>
+        <PrivateRoute path="/account" component={Account} ></PrivateRoute>
+        <PrivateRoute path="/products" component={Products} ></PrivateRoute>
+        <PrivateRoute path="/pricing" component={Pricing} ></PrivateRoute>
+        <PrivateRoute path="/payment/delivery" component={DeliveryPayment} ></PrivateRoute>
+        <Redirect from="*" to="/" />
+      </Switch>
+    </Router>
   );
 }
 

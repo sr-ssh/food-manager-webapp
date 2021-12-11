@@ -8,9 +8,11 @@ import { homeActions } from "../../../actions";
 export const Pricing = () => {
   const dispatch = useDispatch();
   const getConfigPrice = useSelector(state => state?.getConfigPrice?.data?.data);
-  const [input, setInput] = useState({ enter: getConfigPrice?.enter || 0, distance: getConfigPrice?.distance || 0, lowest: getConfigPrice?.lowest || 0, duration: getConfigPrice?.duration || 0 })
+  const [input, setInput] = useState()
 
   useEffect(() => dispatch(homeActions.getConfigPrice()), [dispatch])
+
+  useEffect(() => setInput(state => ({ ...state, ...getConfigPrice })), [getConfigPrice])
 
   const handleChange = (e) => {
     e.preventDefault()
@@ -29,19 +31,19 @@ export const Pricing = () => {
       <Header title="قیمت دهی" backLink="/dashboard" />
       <div className="pricing__edit-container-input">
         <p className="pricing__edit-title">ورودی (تومان)</p>
-        <input type="text" name="enter" value={input.enter} onChange={(e) => handleChange(e)} className="input input__pricing__edit" />
+        <input type="text" name="enter" value={input?.enter} onChange={(e) => handleChange(e)} className="input input__pricing__edit" />
       </div>
       <div className="pricing__edit-container-input">
         <p className="pricing__edit-title">فاصله (متر)</p>
-        <input type="text" name="distance" value={input.distance} onChange={(e) => handleChange(e)} className="input input__pricing__edit" />
+        <input type="text" name="distance" value={input?.distance} onChange={(e) => handleChange(e)} className="input input__pricing__edit" />
       </div>
       <div className="pricing__edit-container-input">
         <p className="pricing__edit-title">حداقل قیمت (تومان)</p>
-        <input type="text" name="lowest" value={input.lowest} onChange={(e) => handleChange(e)} className="input input__pricing__edit" />
+        <input type="text" name="lowest" value={input?.lowest} onChange={(e) => handleChange(e)} className="input input__pricing__edit" />
       </div>
       <div className="pricing__edit-container-input">
         <p className="pricing__edit-title">زمان مسیر (دقیقه)</p>
-        <input type="text" name="duration" value={input.duration} onChange={(e) => handleChange(e)} className="input input__pricing__edit" />
+        <input type="text" name="duration" value={input?.duration} onChange={(e) => handleChange(e)} className="input input__pricing__edit" />
       </div>
       <a className="btnn btnn__pricing__edit" onClick={(e) => handleSumbit(e)}>ثبت کردن</a>
 

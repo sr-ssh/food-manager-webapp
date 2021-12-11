@@ -39,9 +39,11 @@ import { getUserInfo, editUserInfo } from "./userReducer";
 import { getOrderSettings, editOrderSettings } from "./settingsReducer";
 import { getDeliveryCharges } from "./deliveryChargesReducer";
 import { getConfigPrice } from "./getReducer";
+import { editConfigPrice } from "./addReducer";
 
 export default combineReducers({
   getConfigPrice,
+  editConfigPrice,
   authentication,
   register,
   alert,

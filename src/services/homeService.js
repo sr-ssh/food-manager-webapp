@@ -21,6 +21,7 @@ function getConfigPrice() {
 }
 
 function editConfigPrice(input) {
+    console.log(input);
     return axios.put(`${baseRoute}/settings/pricing`, input, requestOptions).then(res => res.data)
         .catch(error => {
             if (error.response) {

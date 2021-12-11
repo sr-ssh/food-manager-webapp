@@ -26,6 +26,7 @@ function getConfigPrice() {
 }
 
 function editConfigPrice(input) {
+    console.log(input);
     return dispatch => {
         dispatch(request(addConstants.EDIT_CONFIG_PRICE_REQUEST));
 
