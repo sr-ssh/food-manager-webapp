@@ -9,3 +9,4 @@ export * from './discountConstants';
 export * from './employeeConstants';
 export * from './settingsConstants';
 export * from './deliveryChargesConstants';
+export * from './getConstants';

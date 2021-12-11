@@ -52,7 +52,7 @@ function addBill(bill) {
     console.log("into financeService");
 
     return axios
-        .post(`${baseRoute}/finance/bill`, bill , {headers: requestOptions.headers})
+        .post(`${baseRoute}/finance/bill`, bill, { headers: requestOptions.headers })
         .then(res => {
             return res.data.data
         })
@@ -62,5 +62,7 @@ function addBill(bill) {
                 console.log(error.response.status);
             }
         });
+
+
 }
 

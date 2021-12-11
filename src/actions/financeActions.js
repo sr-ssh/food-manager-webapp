@@ -12,18 +12,18 @@ export const financeActions = {
 function getFinanceSummary() {
     return dispatch => {
         dispatch(request(financeConstants.FINANCE_SUMMARY_REQUEST));
-        
+
         financeService.getFinanceSummary()
             .then(
                 res => {
 
-                    if(res === undefined)
+                    if (res === undefined)
                         dispatch(alertActions.error('ارتباط با سرور برقرار نیست'));
-                    else if(res.success){
+                    else if (res.success) {
                         console.log("user into financeAction");
                         dispatch(success(financeConstants.FINANCE_SUMMARY_SUCCESS, res.data));
                     }
-                        
+
                     setTimeout(() => {
                         dispatch(alertActions.clear());
                     }, 1500);
@@ -41,7 +41,7 @@ function getFinanceSummary() {
 function getBills() {
     return dispatch => {
         dispatch(request(financeConstants.GET_BILLS_REQUEST));
-        
+
         financeService.getBills()
             .then(
                 bills => {
@@ -64,7 +64,7 @@ function getBills() {
 function addBill(bill) {
     return dispatch => {
         dispatch(request(financeConstants.ADD_BILLS_REQUEST));
-        
+
         financeService.addBill(bill)
             .then(
                 data => {
@@ -84,6 +84,8 @@ function addBill(bill) {
     };
 
 }
+
+
 
 function request(type) {
     return { type: type }

@@ -7,3 +7,4 @@ export * from './orderActions';
 export * from './reminderActions'
 export * from './settingsActions'
 export * from './deliveryChargeActions';
+export * from './homeActions';

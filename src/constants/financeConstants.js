@@ -1,4 +1,4 @@
-export const financeConstants = { 
+export const financeConstants = {
 
     FINANCE_SUMMARY_REQUEST: 'FINANCE_SUMMARY_REQUEST',
     FINANCE_SUMMARY_SUCCESS: 'FINANCE_SUMMARY_SUCCESS',
@@ -10,6 +10,7 @@ export const financeConstants = {
 
     ADD_BILLS_REQUEST: 'ADD_BILLS_REQUEST',
     ADD_BILLS_SUCCESS: 'ADD_BILLS_SUCCESS',
-    ADD_BILLS_FAILURE: 'ADD_BILLS_FAILURE'
+    ADD_BILLS_FAILURE: 'ADD_BILLS_FAILURE',
+
 
 }
