@@ -40,7 +40,7 @@ body {
   margin: 0;
   padding: 0; }
 
-.btn, .btn:link, .btn:visited {
+.btnn, .btnn:link, .btnn:visited {
   background-color: var(--button-color-three);
   padding: 1.9rem 3rem;
   text-decoration: none;
@@ -48,22 +48,22 @@ body {
   font-size: 1.3rem;
   font-weight: 700; }
 
-.btn__mainpage {
+.btnn__mainpage {
   border-color: var(--red-one);
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 1.1rem 2rem;
   box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2); }
-  .btn__mainpage-icon {
+  .btnn__mainpage-icon {
     height: 3.5rem; }
-  .btn__mainpage-text {
+  .btnn__mainpage-text {
     font-size: 1.6rem;
     flex: 1;
     color: var(--button-color-one);
     margin-left: 3rem; }
 
-.btn__deliveryPayment {
+.btnn__deliveryPayment {
   background-color: var(--button-color-one);
   padding: 1rem 3rem;
   width: 100%;

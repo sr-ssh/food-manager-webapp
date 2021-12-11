@@ -7,11 +7,12 @@ let baseRoute = SERVER_URL;
 
 export const settingsService = {
     getorderSettings,
-    editOrderSettings
+    editOrderSettings,
+    getPricing
 };
 
 function getorderSettings() {
-    console.log('into orderService')
+    console.log('into settingsService')
 
     const requestOptions = {
         headers: authHeader(),
@@ -34,7 +35,7 @@ function getorderSettings() {
 }
 
 function editOrderSettings(params) {
-    console.log('into orderService')
+    console.log('into settingsService')
 
     const requestOptions = {
         headers: authHeader(), 
@@ -49,6 +50,28 @@ function editOrderSettings(params) {
             return handleResponse(res)
         })
         .catch(error => {
+            if(error.response) {
+                console.log(error.response.data)
+                handleError(error.response.status)
+            }
+        })
+}
+
+function getPricing() {
+
+    const requestOptions = {
+        headers: authHeader(),
+        body: {}
+    }
+
+    return axios
+        .get(`${baseRoute}/settings/pricing`, {headers: requestOptions.headers})
+        .then(res => {
+            console.log("res.user >> ")
+            console.log(res.data)
+            return handleResponse(res)
+        })
+        .catch(function (error) {
             if(error.response) {
                 console.log(error.response.data)
                 handleError(error.response.status)

@@ -68,7 +68,7 @@ export const SidebarItems = () => {
           </Col>
         }
         {
-          // permissions && permissions.reminder &&
+          permissions && permissions.getPricing &&
           <Col
             xs={10}
             sm={10}
@@ -76,7 +76,7 @@ export const SidebarItems = () => {
             lg={10}
             className="py-3 mx-3 fw-bold sidebarItem"
           >
-            <Link to="/dashboard">قیمت دهی</Link>
+            <Link to="/pricing">قیمت دهی</Link>
           </Col>
         }
         {
