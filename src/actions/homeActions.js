@@ -11,10 +11,9 @@ function getConfigPrice() {
 
         homeService.getConfigPrice()
             .then(
-                bills => {
-                    console.log(bills)
+                res => {
                     console.log("user into financeAction");
-                    dispatch(success(getConstants.GET_CONFIG_PRICE_SUCCESS, bills));
+                    dispatch(success(getConstants.GET_CONFIG_PRICE_SUCCESS, res));
                 },
                 error => {
                     dispatch(failure(getConstants.GET_CONFIG_PRICE_FAILURE, error.toString()));

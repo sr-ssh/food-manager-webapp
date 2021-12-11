@@ -38,8 +38,10 @@ import { getPermissions } from "./employeeReducer";
 import { getUserInfo, editUserInfo } from "./userReducer";
 import { getOrderSettings, editOrderSettings } from "./settingsReducer";
 import { getDeliveryCharges } from "./deliveryChargesReducer";
+import { getConfigPrice } from "./getReducer";
 
 export default combineReducers({
+  getConfigPrice,
   authentication,
   register,
   alert,
