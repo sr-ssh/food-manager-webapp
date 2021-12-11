@@ -1,4 +1,4 @@
-import { getConstants } from '../constants';
+import { getConstants, addConstants } from '../constants';
 import { homeService } from '../services';
 import { alertActions } from './alertActions';
 import { history } from '../helpers';
@@ -25,8 +25,28 @@ function getConfigPrice() {
     };
 }
 
+function editConfigPrice(input) {
+    return dispatch => {
+        dispatch(request(addConstants.EDIT_CONFIG_PRICE_REQUEST));
+
+        homeService.editConfigPrice(input)
+            .then(
+                res => {
+                    console.log("user into financeAction");
+                    dispatch(success(addConstants.EDIT_CONFIG_PRICE_SUCCESS, res));
+                },
+                error => {
+                    dispatch(failure(addConstants.EDIT_CONFIG_PRICE_FAILURE, error.toString()));
+                    console.log("occure error");
+                    console.log(error.toString());
+                    dispatch(alertActions.error(error.toString()));
+                }
+            );
+    };
+}
+
 export const homeActions = {
-    getConfigPrice
+    getConfigPrice, editConfigPrice
 };
 
 
