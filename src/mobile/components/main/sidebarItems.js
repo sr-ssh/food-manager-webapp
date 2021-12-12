@@ -88,7 +88,7 @@ export const SidebarItems = () => {
             lg={10}
             className="py-3 mx-3 fw-bold sidebarItem"
           >
-            <Link to="/dashboard">ایستگاه ها</Link>
+            <Link to="/stations">ایستگاه ها</Link>
           </Col>
         }
         {permissions && permissions.getEmployees && (

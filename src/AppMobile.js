@@ -21,6 +21,7 @@ import { Setting } from './mobile/components/setting/setting';
 import Bills from './mobile/components/finance/bills';
 import { Applications } from './mobile/components/employee/applications';
 import { Account } from './mobile/components/acounts/account';
+import { Station } from './mobile/components/stations/station';
 import { DeliveryPayment } from './mobile/components/finance/deliveryPayment';
 
 
@@ -49,6 +50,7 @@ function AppMobile() {
         <Route exact path="/" component={Login} />
         <Route path="/register" component={Determine} />
         <Route path="/dashboard" component={Dashboard} />
+        <Route path="/stations" component={Station} />
         {/* <PrivateRoute path="/products" component={Products} ></PrivateRoute> */}
         <PrivateRoute path="/customers" component={Customers} ></PrivateRoute>
         <PrivateRoute path="/reminders" component={Reminders} ></PrivateRoute>
