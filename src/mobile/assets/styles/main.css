@@ -103,6 +103,14 @@ body {
   .input__pricing__edit {
     flex: 1; }
 
+.stations {
+  width: 100%;
+  height: 100vh;
+  background-color: red; }
+  .stations__map {
+    width: 100%;
+    height: 100%; }
+
 .main {
   width: 100%;
   padding: 0 8rem;
