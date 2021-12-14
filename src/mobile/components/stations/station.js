@@ -60,7 +60,7 @@ export const Station = () => {
           stations.map((item, index) => (
             <Circle
               key={index}
-              center={[item.latitude, item.longitudes]}
+              center={[item.location[1], item.location[0]]}
               pathOptions={circleOptions}
               radius={item.dimeter}
               metric={meters2ScreenPixels}
@@ -69,7 +69,7 @@ export const Station = () => {
                 {item.description}
               </Tooltip>
               <Circle
-                center={[item.latitude, item.longitudes]}
+                center={[item.location[1], item.location[0]]}
                 pathOptions={innerCircleOptions}
                 radius={30}
                 metric={meters2ScreenPixels}
