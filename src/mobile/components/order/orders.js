@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Row , Col, Container, Alert, Spinner } from 'react-bootstrap';
 
-import { orderActions } from '../../actions';
+import { orderActions } from '../../../actions';
 import { Header } from '../base/serachHeader';
 import { OrderSearch } from './search'
 import { Order } from './order';

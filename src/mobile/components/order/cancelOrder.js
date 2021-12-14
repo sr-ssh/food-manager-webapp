@@ -1,7 +1,7 @@
 import React from 'react'
 import { Modal, Row, Col, Form, Button, Spinner,Alert  } from 'react-bootstrap'
 import { useSelector, useDispatch } from 'react-redux'
-import { orderActions } from '../../actions'
+import { orderActions } from '../../../actions'
 
 import closeIcon from '../../assets/images/close.svg'
 

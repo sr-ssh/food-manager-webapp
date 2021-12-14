@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Modal, Row, Col, Button, Form } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
-import { orderActions } from '../../actions/orderActions'
+import { orderActions } from '../../../actions/orderActions'
 
 import closeIcon from '../../assets/images/close.svg'
 

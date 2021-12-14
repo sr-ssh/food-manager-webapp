@@ -178,6 +178,10 @@
     background-color: var(--background-blue);
 }
 
+.background-red{
+    background-color: var(--red-two);
+}
+
 .orders th{
     font-size: 11px;
     color: var(--text-color-one);
