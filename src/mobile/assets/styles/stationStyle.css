@@ -4,3 +4,9 @@
   color: #fff;
   border: none;
 }
+.dimeter-placeholder{
+  position: relative;
+  top: 5vh;
+  left: -18vw;
+  font-weight: normal;
+}

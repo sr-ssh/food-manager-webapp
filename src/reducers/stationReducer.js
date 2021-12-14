@@ -25,3 +25,25 @@ export function getStations(state = initialState, action) {
             return state
     }
 }
+
+export function addStation(state = initialState, action) {
+    switch (action.type) {
+        case stationConstants.ADD_STATION_REQUEST:
+            return {
+                ...state,
+                loading: true
+            }
+        case stationConstants.ADD_STATION_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                station: action.data
+            }
+        case stationConstants.ADD_STATION_FAILURE:
+            return {
+                err: action.error
+            }
+        default:
+            return state
+    }
+}

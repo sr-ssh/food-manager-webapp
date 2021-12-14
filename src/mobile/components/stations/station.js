@@ -7,15 +7,18 @@ import {
   Circle,
   Tooltip,
 } from "react-leaflet";
-import { Header } from "../base/header2";
+import { Header } from "../base/productHeader";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import { meters2ScreenPixels } from "google-map-react";
 
 import { useDispatch, useSelector } from "react-redux";
 import { stationActions } from "../../../actions";
+import { AddStation } from "./addStation";
 
 export const Station = () => {
+  const [addModalShow, setAddModalShow] = useState(false)
+
   let { stations, loading } = useSelector((state) => state.getStations);
   const dispatch = useDispatch();
 
@@ -41,7 +44,7 @@ export const Station = () => {
 
   return (
     <div className="stations">
-      <Header title="ایستگاه ها" backLink="/dashboard" />
+      <Header title="ایستگاه ها" setModalShow={setAddModalShow} modalShow={addModalShow}/>
       <MapContainer
         className="stations__map"
         center={mapPositions}
@@ -83,6 +86,7 @@ export const Station = () => {
             </Circle>
           ))}
       </MapContainer>
+      <AddStation show={addModalShow} onHide={() => setAddModalShow(false)} />
     </div>
   );
 };
