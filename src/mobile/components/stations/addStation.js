@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { productActions } from "../../../actions";
+import { productActions, stationActions } from "../../../actions";
 import {
   Form,
   Button,
@@ -35,9 +35,16 @@ export const AddStation = (props) => {
     setProduct({ ...product, [e.target.id]: e.target.value });
   };
 
+  let handleClose = () => {
+    props.onHide(false);
+    setTimeout(() => {
+      dispatch(stationActions.getStations());
+    }, 1500);
+  };
+
   let formHandler = (e) => {
     e.preventDefault();
-    dispatch(productActions.addProduct(product));
+    dispatch(stationActions.addStation(product));
   };
 
   return (
@@ -52,7 +59,7 @@ export const AddStation = (props) => {
         <Button
           className="border-0 customer-modal-close"
           type="button"
-          onClick={(e) => props.onHide(false)}
+          onClick={(e) => handleClose()}
         >
           <img
             className="d-flex m-auto customer-modal-close-svg"
@@ -72,7 +79,9 @@ export const AddStation = (props) => {
           <Row className="my-3 justify-content-between">
             <Col xs={12} className="order-filter-input ps-0 mx-0">
               <Form.Group controlId="description">
-                <Form.Label className="pe-2 fw-normal fs-6-sm">نام ایستگاه</Form.Label>
+                <Form.Label className="pe-2 fw-normal fs-6-sm">
+                  نام ایستگاه
+                </Form.Label>
                 <Form.Control
                   style={{ width: "96%" }}
                   className="radius-10 border-0 h-100 py-2 input-box-shadow fs-6-sm"
@@ -88,8 +97,10 @@ export const AddStation = (props) => {
           <Row className="mt-3 justify-content-between">
             <Col xs={7} className="order-filter-input ps-0 mx-0">
               <Form.Group controlId="code">
-                <Form.Label className="pe-2 fw-normal fs-6-sm">شماره ایستگاه</Form.Label>
-                
+                <Form.Label className="pe-2 fw-normal fs-6-sm">
+                  شماره ایستگاه
+                </Form.Label>
+
                 <Form.Control
                   style={{ width: "94%" }}
                   className="radius-10 border-0 py-2 h-100 input-box-shadow fs-6-sm"
@@ -110,6 +121,39 @@ export const AddStation = (props) => {
                   className="radius-10 border-0 py-2 h-100 input-box-shadow fs-6-sm"
                   type="number"
                   min="0"
+                  value={addProductLoading ? "" : null}
+                  onChange={handleChange}
+                  required
+                />
+              </Form.Group>
+            </Col>
+          </Row>
+          <Row className="mt-3 justify-content-between">
+            <Col xs={6} className="order-filter-input ps-0 mx-0">
+              <Form.Group controlId="longitudes">
+                <Form.Label className="pe-2 fw-normal fs-6-sm">
+                  طول جغرافیایی
+                </Form.Label>
+
+                <Form.Control
+                  style={{ width: "94%" }}
+                  className="radius-10 border-0 py-2 h-100 input-box-shadow fs-6-sm"
+                  type="text"
+                  value={addProductLoading ? "" : null}
+                  onChange={handleChange}
+                  required
+                />
+              </Form.Group>
+            </Col>
+            <Col xs={6} className="order-filter-input px-0 mx-0">
+              <Form.Group controlId="latitude" className="ms-2">
+                <Form.Label className="pe-3 fw-normal fs-6-sm">
+                  عرض جغرافیایی
+                </Form.Label>
+                <Form.Control
+                  style={{ width: "94%" }}
+                  className="radius-10 border-0 py-2 h-100 input-box-shadow fs-6-sm"
+                  type="text"
                   value={addProductLoading ? "" : null}
                   onChange={handleChange}
                   required
