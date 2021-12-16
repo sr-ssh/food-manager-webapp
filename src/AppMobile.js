@@ -53,7 +53,7 @@ function AppMobile() {
         <Route path="/register" component={Determine} />
         <Route path="/dashboard" component={Dashboard} />
         <Route path="/stations" component={Station} />
-        {/* <PrivateRoute path="/products" component={Products} ></PrivateRoute> */}
+        <PrivateRoute path="/products" component={Products} ></PrivateRoute>
         <PrivateRoute path="/customers" component={Customers} ></PrivateRoute>
         <PrivateRoute path="/reminders" component={Reminders} ></PrivateRoute>
         <PrivateRoute path="/discounts" component={Discounts} ></PrivateRoute>

@@ -4,8 +4,6 @@ import { Card, Table, Row, Col, Spinner, Button } from "react-bootstrap";
 import persianJs from "persianjs/persian.min";
 
 //icons
-import deliveryIcon from "./../../assets/images/order/delivery.svg";
-import printIcon from "./../../assets/images/order/print.svg";
 import cancelIcon from "./../../assets/images/order/cancel.svg";
 
 export const Order = ({
@@ -22,16 +20,11 @@ export const Order = ({
   const getTotalPrice = (order) => {
     let total = 0;
     order.map((item) => {
-      total += item.sellingPrice * item.quantity;
+      total += item.price * item.quantity;
     });
     return total;
   };
 
-  const printWindow = async () => {
-    await setPrint(true);
-    window.print();
-    setPrint(false);
-  };
 
   return (
     <Card
@@ -130,14 +123,14 @@ export const Order = ({
               {order.products.length
                 ? order.products.map((item) => {
                     return (
-                      <tr key={item.name}>
+                      <tr key={item._id.name}>
                         <td>
-                          {item.name &&
-                            persianJs(item.name).englishNumber().toString()}
+                          {item._id.name &&
+                            persianJs(item._id.name).englishNumber().toString()}
                         </td>
                         <td>
-                          {item.quantity * item.sellingPrice &&
-                            persianJs(item.quantity * item.sellingPrice)
+                          {item.quantity * item.price &&
+                            persianJs(item.quantity * item.price)
                               .englishNumber()
                               .toString()}{" "}
                         </td>
