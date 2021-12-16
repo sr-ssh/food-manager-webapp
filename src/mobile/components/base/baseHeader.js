@@ -3,6 +3,7 @@ import { Navbar, Nav } from "react-bootstrap";
 
 import ReactExport from "react-export-excel";
 import { filterColumns } from "../../../helpers/transform";
+import { history } from "../../../helpers";
 
 // icon
 import backIcon from "./../../assets/images/back.svg";
@@ -66,7 +67,7 @@ export const Header = ({
             <Navbar.Text className="fs-6 fw-normal text-light noPrint me-4 pe-3">
               {title}
             </Navbar.Text>
-            <Nav.Link href="/dashboard" className="me-auto ps-4">
+            <Nav.Link onClick={() => history.push('/dashboard')} className="me-auto ps-4">
               <img src={backIcon} height="30px" alt="back-icon" />
             </Nav.Link>
           </Nav>

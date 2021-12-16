@@ -1,23 +1,17 @@
 import React, { useEffect, useState } from "react";
-import {
-  MapContainer,
-  TileLayer,
-  Marker,
-  Popup,
-  Circle,
-  Tooltip,
-} from "react-leaflet";
+import { MapContainer, TileLayer, Circle, Tooltip } from "react-leaflet";
 import { Header } from "../base/productHeader";
 import "leaflet/dist/leaflet.css";
-import L from "leaflet";
 import { meters2ScreenPixels } from "google-map-react";
-
 import { useDispatch, useSelector } from "react-redux";
 import { stationActions } from "../../../actions";
 import { AddStation } from "./addStation";
+import { EditStation } from "./editStation";
 
 export const Station = () => {
-  const [addModalShow, setAddModalShow] = useState(false)
+  const [addModalShow, setAddModalShow] = useState(false);
+  const [editModalShow, setEditModalShow] = useState(false);
+
 
   let { stations, loading } = useSelector((state) => state.getStations);
   const dispatch = useDispatch();
@@ -44,7 +38,13 @@ export const Station = () => {
 
   return (
     <div className="stations">
-      <Header title="ایستگاه ها" setModalShow={setAddModalShow} modalShow={addModalShow}/>
+      <Header
+        title="ایستگاه ها"
+        setModalShow={setAddModalShow}
+        modalShow={addModalShow}
+        setEdit="true"
+        setEditModal={setEditModalShow}
+      />
       <MapContainer
         className="stations__map"
         center={mapPositions}
@@ -65,9 +65,7 @@ export const Station = () => {
               radius={item.dimeter}
               metric={meters2ScreenPixels}
             >
-              <Tooltip>
-                {item.description}
-              </Tooltip>
+              <Tooltip>{item.description}</Tooltip>
               <Circle
                 center={[item.location[1], item.location[0]]}
                 pathOptions={innerCircleOptions}
@@ -87,6 +85,7 @@ export const Station = () => {
           ))}
       </MapContainer>
       <AddStation show={addModalShow} onHide={() => setAddModalShow(false)} />
+      <EditStation show={editModalShow} onHide={() => setEditModalShow(false)} />
     </div>
   );
 };

@@ -1,31 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { productActions, stationActions } from "../../../actions";
-import {
-  Form,
-  Button,
-  Row,
-  Col,
-  Modal,
-  Spinner,
-  Alert,
-  Dropdown,
-} from "react-bootstrap";
+import { stationActions } from "../../../actions";
+import { Form, Button, Row, Col, Modal, Spinner, Alert } from "react-bootstrap";
 import persianJs from "persianjs/persian.min";
 
 // icons
 import closeIcon from "../../assets/images/close.svg";
-import spinnerIcon from "./../../assets/images/sppiner.svg";
-import plusIcon from "./../../assets/images/Products/pluss.svg";
-
-export const AddStation = (props) => {
-  const [dimStatus, setDimStatus] = useState(false);
+export const EditStation = (props) => {
   const [product, setProduct] = useState({});
-  const [selectedItem, setItem] = useState(-1);
   const addProductLoading = useSelector((state) => state.addProduct.loading);
-  const productTypes = useSelector(
-    (state) => state.getProductTypes.productTypes
-  );
+
   const alert = useSelector((state) => state.alert);
   const dispatch = useDispatch();
 
@@ -44,7 +28,7 @@ export const AddStation = (props) => {
 
   let formHandler = (e) => {
     e.preventDefault();
-    dispatch(stationActions.addStation(product));
+    dispatch(stationActions.editStation(product));
   };
 
   return (

@@ -5,6 +5,7 @@ import { alertActions } from "./alertActions";
 export const stationActions = {
   getStations,
   addStation,
+  editStation
 };
 
 function getStations() {
@@ -44,6 +45,29 @@ function addStation(params) {
       (error) => {
         dispatch(
           failure(stationConstants.ADD_STATION_FAILURE, error.toString())
+        );
+        console.log("occure error");
+        console.log(error.toString());
+        dispatch(alertActions.error(error.toString()));
+      }
+    );
+  };
+}
+
+function editStation(params) {
+  return (dispatch) => {
+    dispatch(request(stationConstants.EDIT_STATION_REQUEST));
+    stationService.editStation(params).then(
+      (res) => {
+        dispatch(success(stationConstants.EDIT_STATION_SUCCESS, res.data));
+        dispatch(alertActions.success(res.message));
+        setTimeout(() => {
+            dispatch(alertActions.clear());
+        }, 1500);
+      },
+      (error) => {
+        dispatch(
+          failure(stationConstants.EDIT_STATION_FAILURE, error.toString())
         );
         console.log("occure error");
         console.log(error.toString());
