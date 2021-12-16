@@ -22,6 +22,7 @@ export const Customers = () => {
     const dispatch = useDispatch()
 
     useEffect(() => {
+        console.log("_______________********************************")
         dispatch(customerActions.getCustomers());
     }, [dispatch])
 

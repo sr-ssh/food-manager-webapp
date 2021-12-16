@@ -18,6 +18,10 @@ export function isPermitted(route) {
     if (permissions.finance) return true;
   } else if (route === "/pricing") {
     if (permissions.getPricing) return true;
+  } else if (route === "/order") {
+    if (permissions.getPricing) return true;
+  } else if (route === "/customer") {
+    if (permissions.getCustomers) return true;
   } else if (route === "/setting") {
     return true;
   } else if (
@@ -25,8 +29,7 @@ export function isPermitted(route) {
     route === "/register" ||
     route === "/dashboard" ||
     route === "/account" ||
-    route === "/payment/delivery" ||
-    route === "/order"
+    route === "/payment/delivery"
   )
     return true;
   return false;

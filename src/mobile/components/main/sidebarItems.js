@@ -102,7 +102,7 @@ export const SidebarItems = () => {
             <Link to="/employees">کارمندان</Link>
           </Col>
         )}
-        {/* {permissions && permissions.getEmployees && ( */}
+        {permissions && permissions.getOrders && (
           <Col
             xs={10}
             sm={10}
@@ -112,7 +112,18 @@ export const SidebarItems = () => {
           >
             <Link to="/order">سفارش ها</Link>
           </Col>
-        {/* )} */}
+        )}
+        {permissions && permissions.getCustomers && (
+          <Col
+            xs={10}
+            sm={10}
+            md={10}
+            lg={10}
+            className="py-3 mx-3 fw-bold sidebarItem"
+          >
+            <Link to="/customer">مشتریان</Link>
+          </Col>
+        )}
       </Row>
 
       <Row className="d-flex justify-content-center align-items-center mt-auto dashboardIcons">
