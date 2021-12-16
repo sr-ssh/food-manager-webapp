@@ -8,7 +8,7 @@ export const Customer = ({ customer }) => {
     <Card className="m-auto mt-3 bg-light productCard border-0 lh-lg pb-2">
       <Card.Body className="pb-0 ps-0 text-gray">
         <Row className="p-0 ps-3 m-0">
-          <Card className="background-blue border-0 customer-round">
+          <Card className="background-red border-0 customer-round">
             <Card.Body className="py-2 px-0">
               <Row>
                 <Col className="col-3 ps-0 ms-0">
