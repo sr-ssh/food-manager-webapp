@@ -60,7 +60,7 @@ export const Applications = () => {
                                         </Col>
                                         <Col className="pe-0">
                                             <Card.Text>
-                                                <span>{item.employee.family}</span>
+                                                <span>{item.employee?.family}</span>
                                             </Card.Text>
                                         </Col>
                                     </Row>
@@ -72,7 +72,7 @@ export const Applications = () => {
                                         </Col>
                                         <Col className="pe-0">
                                             <Card.Text>
-                                                <span>{item.employee.mobile && persianJs(item.employee.mobile).englishNumber().toString()}</span>
+                                                <span>{item.employee?.mobile && persianJs(item.employee.mobile).englishNumber().toString()}</span>
                                             </Card.Text>
                                         </Col>
                                         <Col className="ps-0"> 
