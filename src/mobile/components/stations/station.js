@@ -12,7 +12,6 @@ export const Station = () => {
   const [addModalShow, setAddModalShow] = useState(false);
   const [editModalShow, setEditModalShow] = useState(false);
 
-
   let { stations, loading } = useSelector((state) => state.getStations);
   const dispatch = useDispatch();
 
@@ -65,7 +64,9 @@ export const Station = () => {
               radius={item.dimeter}
               metric={meters2ScreenPixels}
             >
-              <Tooltip>{item.description}</Tooltip>
+              <Tooltip offset={[20, 0]} opacity="1" className="station-name">
+                {item.description}
+              </Tooltip>
               <Circle
                 center={[item.location[1], item.location[0]]}
                 pathOptions={innerCircleOptions}
@@ -85,7 +86,10 @@ export const Station = () => {
           ))}
       </MapContainer>
       <AddStation show={addModalShow} onHide={() => setAddModalShow(false)} />
-      <EditStation show={editModalShow} onHide={() => setEditModalShow(false)} />
+      <EditStation
+        show={editModalShow}
+        onHide={() => setEditModalShow(false)}
+      />
     </div>
   );
 };

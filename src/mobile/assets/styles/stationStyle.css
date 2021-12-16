@@ -10,3 +10,10 @@
   left: -18vw;
   font-weight: normal;
 }
+.station-name{
+ border: none;
+ background-color: var(--body-bachground);
+ font-size: 1.5rem;
+ font-family: "IranSans" !important;
+ border-radius: 20px;
+}
