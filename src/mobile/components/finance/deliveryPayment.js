@@ -17,6 +17,9 @@ export const DeliveryPayment = () => {
   const handleSumbit = (e, data) => {
     e.preventDefault(e)
     dispatch(deliveryChargesActions.addDeliveryCharges(data))
+    setTimeout(() => {
+      dispatch(deliveryChargesActions.getDeliveryCharges());
+  }, 1500);
   }
   return (
     <>
@@ -79,8 +82,8 @@ export const DeliveryPayment = () => {
                     persianJs(item.cardNumber).englishNumber().toString()}
                 </span>
               </div>
-              <div className="deliveryPayment__btn">
-                <a className="btn btn__deliveryPayment" onClick={(e) => handleSumbit(e, item)}>پرداخت شد</a>
+              <div className="deliveryPayment__btn w-100">
+                <a className="btnn btnn__deliveryPayment w-100" onClick={(e) => handleSumbit(e, item)}>پرداخت شد</a>
               </div>
             </div>
           ))}
