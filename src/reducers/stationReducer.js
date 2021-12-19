@@ -69,3 +69,25 @@ export function editStation(state = initialState, action) {
             return state
     }
 }
+
+export function getStation(state = initialState, action) {
+    switch (action.type) {
+        case stationConstants.GET_STATION_REQUEST:
+            return {
+                ...state,
+                loading: true
+            }
+        case stationConstants.GET_STATION_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                station: action.data
+            }
+        case stationConstants.GET_STATION_FAILURE:
+            return {
+                err: action.error
+            }
+        default:
+            return state
+    }
+}

@@ -1,14 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { stationActions } from "../../../actions";
 import { Form, Button, Row, Col, Modal, Spinner, Alert } from "react-bootstrap";
 import persianJs from "persianjs/persian.min";
+import downloadIcon from './../../assets/images/station/download.svg'
 
 // icons
 import closeIcon from "../../assets/images/close.svg";
 export const EditStation = (props) => {
-  const [product, setProduct] = useState({});
+  const [product, setProduct] = useState({ description: ""});
   const addProductLoading = useSelector((state) => state.addProduct.loading);
+  const {loading, station} = useSelector((state) => state.getStation);
 
   const alert = useSelector((state) => state.alert);
   const dispatch = useDispatch();
@@ -31,6 +33,21 @@ export const EditStation = (props) => {
     dispatch(stationActions.editStation(product));
   };
 
+  let handleStation = (e) => {
+    e.preventDefault();
+    dispatch(stationActions.getStation({code: product.code}));
+  };
+
+  useEffect(() => {
+    station && station.description && console.log("ddddddddddddddddddd") && setProduct({
+      description: station.description,
+      code: station.code,
+      dimeter: station.dimeter,
+      latitude: station.location[1],
+      longitudes: station.location[0]
+    })
+  }, [station])
+  console.log(product)
   return (
     <Modal
       {...props}
@@ -71,7 +88,7 @@ export const EditStation = (props) => {
                   className="radius-10 border-0 h-100 py-2 input-box-shadow fs-6-sm"
                   type="text"
                   name="description"
-                  value={addProductLoading ? "" : null}
+                  value={product?.description}
                   onChange={handleChange}
                   required
                 />
@@ -94,6 +111,24 @@ export const EditStation = (props) => {
                   onChange={handleChange}
                   required
                 />
+                {loading ? (
+                  <Spinner
+                    as="div"
+                    variant="primary"
+                    animation="border"
+                    size="sm"
+                    className="add-order-download-btn-loading"
+                  />
+                ) : (
+                  <img
+                    src={downloadIcon}
+                    className="add-order-download-btn p-1"
+                    onClick={(e) => handleStation(e)}
+                    height="33vh"
+                    width="50vw"
+                    alt="down-icon"
+                  />
+                )}
               </Form.Group>
             </Col>
             <Col xs={6} className="order-filter-input px-0 mx-0">

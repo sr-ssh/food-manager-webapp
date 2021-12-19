@@ -7,7 +7,8 @@ let baseRoute = SERVER_URL + "/station";
 export const stationService = {
   getStations,
   addStation,
-  editStation
+  editStation,
+  getStation
 };
 
 function getStations() {
@@ -61,6 +62,25 @@ function editStation(params) {
     .put(`${baseRoute}`, requestOptions.body, {
       headers: requestOptions.headers,
     })
+    .then((res) => {
+      handleResponse(res);
+      return res.data;
+    })
+    .catch(function (error) {
+      if (error.response) {
+        console.log(error.response.data);
+        console.log(error.response.status);
+      }
+    });
+}
+
+function getStation(params) {
+  const requestOptions = {
+    headers: authHeader(),
+  };
+
+  return axios
+    .get(`${baseRoute}/${encodeURI(params.code)}`, requestOptions)
     .then((res) => {
       handleResponse(res);
       return res.data;

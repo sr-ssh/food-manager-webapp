@@ -40,7 +40,12 @@ import { getOrderSettings, editOrderSettings } from "./settingsReducer";
 import { getDeliveryCharges } from "./deliveryChargesReducer";
 import { getConfigPrice } from "./getReducer";
 import { editConfigPrice } from "./addReducer";
-import { getStations, addStation, editStation } from "./stationReducer";
+import {
+  getStations,
+  addStation,
+  editStation,
+  getStation,
+} from "./stationReducer";
 
 export default combineReducers({
   getConfigPrice,
@@ -82,5 +87,6 @@ export default combineReducers({
   getDeliveryCharges,
   getStations,
   addStation,
-  editStation
+  editStation,
+  getStation,
 });
