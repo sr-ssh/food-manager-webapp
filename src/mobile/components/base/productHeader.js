@@ -13,7 +13,7 @@ export const Header = ({ title, modalShow, setModalShow, setEdit = false, setEdi
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="align-items-center w-100">
             <Nav.Link
-              className="ms-0 pe-4 ps-1 me-3"
+              className={`${setEdit ? 'ms-0' : 'ms-auto'} pe-4 ps-1 me-3`}
               onClick={() => setModalShow(true)}
             >
               <img src={plusIcon} height="38px" alt="plus-icon" />
