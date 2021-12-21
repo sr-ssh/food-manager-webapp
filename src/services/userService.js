@@ -39,12 +39,6 @@ function login(mobileOrEmail, password) {
 function register(user) {
     console.log("into userService");
 
-    //completing info
-    if(!user.company)
-        user.company = " ";
-    if(!user.email)
-        user.email = "a@a.com";
-
     return axios
         .post(`${baseRoute}/`, user)
         .then(res => {

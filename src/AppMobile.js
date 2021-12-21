@@ -42,6 +42,8 @@ import './mobile/assets/styles/settingStyle.css';
 import './mobile/assets/styles/main.css';
 import './mobile/assets/styles/stationStyle.css';
 import { Pricing } from './mobile/components/pricing/pricing';
+import { EmployerRegister } from './mobile/components/employerRegister';
+import { EmployeeRegister } from './mobile/components/employeeRegister';
 
 
 
@@ -50,7 +52,7 @@ function AppMobile() {
     <Router history={history}>
       <Switch>
         <Route exact path="/" component={Login} />
-        <Route path="/register" component={Determine} />
+        <Route path="/register" component={EmployeeRegister} />
         <Route path="/dashboard" component={Dashboard} />
         <Route path="/stations" component={Station} />
         <PrivateRoute path="/products" component={Products} ></PrivateRoute>

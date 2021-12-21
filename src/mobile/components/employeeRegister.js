@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { userActions } from '../../actions/userActions';
 import { Container, Button, Form, Row, Col, Image, Alert, Spinner, Tooltip, OverlayTrigger } from 'react-bootstrap';
 
-import logo from './../assets/images/crm.svg'
+import logo from './../assets/images/base/happy-pizza.svg'
 import userLogo from './../assets/images/user.svg'
 import mobileLogo from './../assets/images/phone.svg'
 import emailLogo from './../assets/images/emaill.svg'
@@ -74,9 +74,9 @@ export const EmployeeRegister = () => {
     const formHandeler = e => {
         e.preventDefault();
          
-        let user = { family, password, email, employerMobile, position, mobile, code };
+        let user = { family, password, mobile, code };
         
-        if(email != false && family && password && password === dupPassword && mobile && code && employerMobile)
+        if(email != false && family && password && password === dupPassword && mobile && code)
             dispatch(userActions.register(user));
         else 
             setValidated(true);
@@ -108,8 +108,8 @@ export const EmployeeRegister = () => {
                             <Row className="w-100 me-2 pe-2 form-label ">
                                 <Col>
                                     <Form.Group controlId="family" >
-                                        <Image src={userLogo} width="17px" className="mx-2"/>
-                                        <Form.Label>نام و نام خانوادگی</Form.Label>
+                                        <Image src={userLogo} width="17px" className="mx-2 fs-6"/>
+                                        <Form.Label className='fs-7'>نام و نام خانوادگی</Form.Label>
                                         <Form.Control className="form-input w-100 login-input" type="text" 
                                         onChange={handleChange} 
                                         isValid={inputs.family && validated && true}
@@ -122,7 +122,7 @@ export const EmployeeRegister = () => {
                                 <Col>
                                     <Form.Group controlId="mobile" >
                                         <Image src={mobileLogo} width="17px" className="mx-2"/>
-                                        <Form.Label>موبایل</Form.Label>
+                                        <Form.Label className='fs-7'>موبایل</Form.Label>
                                         <Form.Control className="form-input w-100 login-input" type="number" 
                                         onChange={handleChange}  
                                         isValid={inputs.mobile && inputs.mobile != false && validated && true}
@@ -132,27 +132,11 @@ export const EmployeeRegister = () => {
                                     </Form.Group>
                                 </Col>
                             </Row>
-
-                            <Row className="w-100 me-2 pe-2 form-label mt-2">
-                                <Col >
-                                    <Form.Group controlId="email">
-                                        <Image src={emailLogo} width="17px" className="mx-2"/>
-                                        <Form.Label>ایمیل</Form.Label>
-                                        <Form.Control className="form-input w-100 login-input" type="email" 
-                                        isValid={inputs.email && inputs.email != false && validated && true}
-                                        isInvalid={inputs.email === false && validated && true} 
-                                        onChange={handleChange} 
-                                        />
-                                        <Form.Control.Feedback className="me-2" type="invalid">ایمیل بدرستی وارد نشده است!</Form.Control.Feedback>
-                                    </Form.Group>
-                                </Col>
-                            </Row>
-                            
                             <Row className="w-100 me-2 pe-2 form-label mt-2">
                                 <Col className="col-8">
                                     <Form.Group controlId="code">
                                         <Image src={passwordLogo} width="17px" className="mx-2"/>
-                                        <Form.Label>کد تایید</Form.Label>
+                                        <Form.Label className='fs-7'>کد تایید</Form.Label>
                                         <Form.Control className= "form-input w-100 login-input" type="number"
                                         isValid={code && validated && true}
                                         isInvalid={!code && validated && true}
@@ -169,7 +153,7 @@ export const EmployeeRegister = () => {
                                 <Col>
                                     <Form.Group className="inputWithButton w-100 login-input" controlId="password" >
                                         <Image src={passwordLogo} width="17px" className="mx-2"/>
-                                        <Form.Label >رمز عبور</Form.Label>
+                                        <Form.Label  className='fs-7'>رمز عبور</Form.Label>
                                         <img src={showPassword ? beSeenIcon : notSeenIcon} onClick={(e) => setShowPassword(!showPassword)} height="25px" className="eye-button" />
                                         <Form.Control className="w-100 eye-input form-input login-input" type={`${showPassword ? "text" : "password"}`}  
                                         isValid={inputs.password && inputs.password != false && validated && true}
@@ -183,7 +167,7 @@ export const EmployeeRegister = () => {
                                 <Col className="col-6">
                                     <Form.Group className="inputWithButton w-100 login-input" controlId="dupPassword" >
                                         <Image src={passwordLogo} width="17px" className="mx-2"/>
-                                        <Form.Label >تکرار رمز عبور</Form.Label>
+                                        <Form.Label  className='fs-7'>تکرار رمز عبور</Form.Label>
                                         <Form.Control className="w-100 eye-input form-input login-input" type={`${showPassword ? "text" : "password"}`}  
                                         isValid={dupPassword && password === dupPassword && validated && true}
                                         isInvalid = {(!dupPassword && validated && true) || (dupPassword !== password && validated && true)}
@@ -194,21 +178,6 @@ export const EmployeeRegister = () => {
                                     </Form.Group>
                                 </Col>
                             </Row>
-                            <Row className="w-100 me-2 pe-2 form-label mt-2">
-                                <Col className="col-6">
-                                    <Form.Group controlId="employerMobile" >
-                                        <Image src={mobileLogo} width="17px" className="mx-2"/>
-                                        <Form.Label>موبایل کارفرما</Form.Label>
-                                        <Form.Control className="form-input w-100 login-input" type="number" 
-                                        isValid={employerMobile && validated && true}
-                                        isInvalid={!employerMobile && validated && true}
-                                        onChange={handleChange}
-                                        required
-                                        />
-                                    </Form.Group>
-                                </Col>
-                            </Row>
-
                             <Row className="w-100 me-0">
                                 <Col className="mt-4 employee-register-link">
                                     <a href="/">قبلا ثبت نام شده اید؟</a>

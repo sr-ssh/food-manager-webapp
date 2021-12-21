@@ -5,7 +5,7 @@ import { userActions } from '../../actions/userActions';
 import { Spinner } from 'react-bootstrap'
 
 //css
-import logo from './../assets/images/crm.svg'
+import logo from './../assets/images/base/happy-pizza.svg'
 import userLogo from './../assets/images/user.svg'
 import passwordLogo from './../assets/images/password.svg'
 import { Container, Button, Form, Row, Col, Image, Alert } from 'react-bootstrap';
