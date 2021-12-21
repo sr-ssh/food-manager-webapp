@@ -16,7 +16,6 @@ import persianJs from "persianjs/persian.min";
 // icons
 import closeIcon from "../../assets/images/close.svg";
 import spinnerIcon from "./../../assets/images/sppiner.svg";
-import plusIcon from "./../../assets/images/Products/pluss.svg";
 
 export const EditProduct = (props) => {
   const [dimStatus, setDimStatus] = useState(false);
@@ -52,21 +51,18 @@ export const EditProduct = (props) => {
   useEffect(() => {
     console.log("dstgrrrrrrrrrrrr", props.product)
     setItem(-1);
-    props.product.size &&
+    props.show && props.product.size &&
       setnewProduct({
-        _id: props.product._id,
-        active: props.product.active,
-        name: props.product.name,
+        ...props.product,
         typeId: props.product.type?._id,
-        img: props.product.type?._id,
+        img: props.product.img,
         price: props.product.size[0].price,
         discount: props.product.size[0].discount,
-        description: props.product.description,
-        supply: props.product.supply,
       });
     dispatch(productActions.getProductTypes());
   }, [dispatch, props.product, props.show]);
 
+  console.log(newProduct)
   return (
     <Modal
       {...props}
@@ -79,7 +75,7 @@ export const EditProduct = (props) => {
         <Button
           className="border-0 customer-modal-close"
           type="button"
-          onClick={(e) => props.onHide(false)}
+          onClick={(e) => {setnewProduct({});props.onHide(false)}}
         >
           <img
             className="d-flex m-auto customer-modal-close-svg"
@@ -105,7 +101,7 @@ export const EditProduct = (props) => {
                 <Form.Check.Input
                   name="activity"
                   id="active1"
-                  defaultChecked={props.product.active}
+                  defaultChecked={newProduct.active}
                   inline
                   type="radio"
                   isValid
@@ -127,7 +123,7 @@ export const EditProduct = (props) => {
                 <Form.Check.Input
                   name="activity"
                   id="active0"
-                  defaultChecked={!props.product.active}
+                  defaultChecked={!newProduct.active}
                   inline
                   type="radio"
                   isInvalid
@@ -162,7 +158,7 @@ export const EditProduct = (props) => {
                   {selectedItem !== -1 ? (
                     <span>{selectedItem}</span>
                   ) : (
-                    props.product?.type?.name
+                    newProduct.type?.name
                   )}
                 </Dropdown.Toggle>
                 <Dropdown.Menu
@@ -189,7 +185,7 @@ export const EditProduct = (props) => {
                   className="order-input h-100 py-3 input-box-shadow"
                   type="text"
                   name="name"
-                  defaultValue={props.product.type?._id}
+                  defaultValue={newProduct.type?._id}
                   onChange={handleChange}
                   required
                 />
@@ -205,7 +201,7 @@ export const EditProduct = (props) => {
                   className="order-input h-100 py-3 input-box-shadow"
                   type="text"
                   name="name"
-                  defaultValue={props.product.name}
+                  defaultValue={newProduct.name}
                   onChange={handleChange}
                   required
                 />
@@ -220,7 +216,7 @@ export const EditProduct = (props) => {
                   className="order-input h-100 py-3 input-box-shadow input--placeholder"
                   type="text"
                   name="name"
-                  defaultValue={props.product.supply}
+                  defaultValue={newProduct.supply}
                   onChange={handleChange}
                   required
                 />
@@ -238,7 +234,7 @@ export const EditProduct = (props) => {
                   type="tel"
                   inputMode="tel"
                   pattern="[0-9 ۰-۹]*"
-                  value={props.product.size[0].price}
+                  value={newProduct.price}
                   onChange={handleChange}
                   required
                 />
@@ -253,7 +249,7 @@ export const EditProduct = (props) => {
                   type="tel"
                   inputMode="tel"
                   pattern="[0-9 ۰-۹]*"
-                  value={props.product.size[0].discount}
+                  value={newProduct.discount}
                   onChange={handleChange}
                   required
                 />
@@ -271,7 +267,7 @@ export const EditProduct = (props) => {
                   className="border-0 h-100 input-box-shadow order-input-no-height"
                   as="textarea"
                   rows="3"
-                  value={props.product.description}
+                  value={newProduct.description}
                   onChange={handleChange}
                 />
               </Form.Group>
