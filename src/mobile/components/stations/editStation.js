@@ -3,14 +3,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { stationActions } from "../../../actions";
 import { Form, Button, Row, Col, Modal, Spinner, Alert } from "react-bootstrap";
 import persianJs from "persianjs/persian.min";
-import downloadIcon from './../../assets/images/station/download.svg'
+import downloadIcon from "./../../assets/images/station/download.svg";
 
 // icons
 import closeIcon from "../../assets/images/close.svg";
 export const EditStation = (props) => {
-  const [product, setProduct] = useState({ description: ""});
+  const [product, setProduct] = useState(
+    useSelector((state) => state.getStation.station)
+  );
   const addProductLoading = useSelector((state) => state.addProduct.loading);
-  const {loading, station} = useSelector((state) => state.getStation);
+  const { loading, station } = useSelector((state) => state.getStation);
 
   const alert = useSelector((state) => state.alert);
   const dispatch = useDispatch();
@@ -23,6 +25,7 @@ export const EditStation = (props) => {
 
   let handleClose = () => {
     props.onHide(false);
+    setProduct({})
     setTimeout(() => {
       dispatch(stationActions.getStations());
     }, 1500);
@@ -35,19 +38,20 @@ export const EditStation = (props) => {
 
   let handleStation = (e) => {
     e.preventDefault();
-    dispatch(stationActions.getStation({code: product.code}));
+    dispatch(stationActions.getStation({ code: product.code }));
   };
 
   useEffect(() => {
-    station && station.description && console.log("ddddddddddddddddddd") && setProduct({
-      description: station.description,
-      code: station.code,
-      dimeter: station.dimeter,
-      latitude: station.location[1],
-      longitudes: station.location[0]
-    })
-  }, [station])
-  console.log(product)
+    station &&
+      setProduct({
+        ...product,
+        ...station,
+        latitude: station.location[1],
+        longitudes: station.location[0],
+      });
+  }, [station]);
+
+  console.log(product);
   return (
     <Modal
       {...props}
@@ -84,7 +88,7 @@ export const EditStation = (props) => {
                   نام ایستگاه
                 </Form.Label>
                 <Form.Control
-                  style={{ width: "96%" }}
+                  style={{ width: "73%" }}
                   className="radius-10 border-0 h-100 py-2 input-box-shadow fs-6-sm"
                   type="text"
                   name="description"
@@ -96,18 +100,19 @@ export const EditStation = (props) => {
             </Col>
           </Row>
           <Row className="mt-3 justify-content-between">
-            <Col xs={6} className="order-filter-input ps-0 mx-0">
-              <Form.Group controlId="code">
+            <Col xs={6} className="order-filter-input ps-0 mx-0" >
+              <Form.Group controlId="code" >
                 <Form.Label className="pe-2 fw-normal fs-6-sm">
                   شماره ایستگاه
                 </Form.Label>
 
                 <Form.Control
-                  style={{ width: "94%" }}
-                  className="radius-10 border-0 py-2 h-100 input-box-shadow fs-6-sm"
+                  style={{ width: "72%" }}
+                  className="radius-10 border-0 py-2 h-100 input-box-shadow fs-6-sm d-inline-block
+                  "
                   type="number"
                   min="0"
-                  value={addProductLoading ? "" : null}
+                  value={product?.code}
                   onChange={handleChange}
                   required
                 />
@@ -121,8 +126,9 @@ export const EditStation = (props) => {
                   />
                 ) : (
                   <img
+                    style={{ width: "27%" }}
                     src={downloadIcon}
-                    className="add-order-download-btn p-1"
+                    className="add-order-download-btn p-1 download-station"
                     onClick={(e) => handleStation(e)}
                     height="33vh"
                     width="50vw"
@@ -140,7 +146,7 @@ export const EditStation = (props) => {
                   className="radius-10 border-0 py-2 h-100 input-box-shadow fs-6-sm"
                   type="number"
                   min="0"
-                  value={addProductLoading ? "" : null}
+                  value={product?.dimeter}
                   onChange={handleChange}
                   required
                 />
@@ -155,7 +161,7 @@ export const EditStation = (props) => {
                   style={{ width: "94%" }}
                   className="radius-10 border-0 py-2 h-100 input-box-shadow fs-6-sm"
                   type="text"
-                  value={addProductLoading ? "" : null}
+                  value={product?.latitude}
                   onChange={handleChange}
                   required
                 />
@@ -168,7 +174,7 @@ export const EditStation = (props) => {
                   style={{ width: "94%" }}
                   className="radius-10 border-0 py-2 h-100 input-box-shadow fs-6-sm"
                   type="text"
-                  value={addProductLoading ? "" : null}
+                  value={product?.longitudes}
                   onChange={handleChange}
                   required
                 />

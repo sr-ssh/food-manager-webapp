@@ -17,3 +17,8 @@
  font-family: "IranSans" !important;
  border-radius: 20px;
 }
+
+.download-station{
+  position: relative;
+  left: 17px;
+}
