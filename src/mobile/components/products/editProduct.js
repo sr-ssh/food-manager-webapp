@@ -50,6 +50,7 @@ export const EditProduct = (props) => {
   };
 
   useEffect(() => {
+    console.log("dstgrrrrrrrrrrrr", props.product)
     setItem(-1);
     props.product.size &&
       setnewProduct({
@@ -57,14 +58,14 @@ export const EditProduct = (props) => {
         active: props.product.active,
         name: props.product.name,
         typeId: props.product.type?._id,
-        img: props.product.img,
+        img: props.product.type?._id,
         price: props.product.size[0].price,
         discount: props.product.size[0].discount,
         description: props.product.description,
         supply: props.product.supply,
       });
     dispatch(productActions.getProductTypes());
-  }, [dispatch, props.product]);
+  }, [dispatch, props.product, props.show]);
 
   return (
     <Modal
@@ -188,7 +189,7 @@ export const EditProduct = (props) => {
                   className="order-input h-100 py-3 input-box-shadow"
                   type="text"
                   name="name"
-                  defaultValue={newProduct.img}
+                  defaultValue={props.product.type?._id}
                   onChange={handleChange}
                   required
                 />
@@ -204,7 +205,7 @@ export const EditProduct = (props) => {
                   className="order-input h-100 py-3 input-box-shadow"
                   type="text"
                   name="name"
-                  defaultValue={newProduct.name}
+                  defaultValue={props.product.name}
                   onChange={handleChange}
                   required
                 />
@@ -219,7 +220,7 @@ export const EditProduct = (props) => {
                   className="order-input h-100 py-3 input-box-shadow input--placeholder"
                   type="text"
                   name="name"
-                  defaultValue={newProduct.supply}
+                  defaultValue={props.product.supply}
                   onChange={handleChange}
                   required
                 />
@@ -237,7 +238,7 @@ export const EditProduct = (props) => {
                   type="tel"
                   inputMode="tel"
                   pattern="[0-9 ۰-۹]*"
-                  value={newProduct.price}
+                  value={props.product.size[0].price}
                   onChange={handleChange}
                   required
                 />
@@ -252,7 +253,7 @@ export const EditProduct = (props) => {
                   type="tel"
                   inputMode="tel"
                   pattern="[0-9 ۰-۹]*"
-                  value={newProduct.discount}
+                  value={props.product.size[0].discount}
                   onChange={handleChange}
                   required
                 />
@@ -270,7 +271,7 @@ export const EditProduct = (props) => {
                   className="border-0 h-100 input-box-shadow order-input-no-height"
                   as="textarea"
                   rows="3"
-                  value={newProduct.description}
+                  value={props.product.description}
                   onChange={handleChange}
                 />
               </Form.Group>
