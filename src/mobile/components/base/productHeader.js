@@ -1,5 +1,6 @@
 import React from "react";
 import { Navbar, Nav } from "react-bootstrap";
+import { history } from "../../../helpers";
 
 import backIcon from "./../../assets/images/back.svg";
 import plusIcon from "./../../assets/images/Products/pluss.svg";
@@ -27,7 +28,7 @@ export const Header = ({ title, modalShow, setModalShow, setEdit = false, setEdi
               </Nav.Link>
             )}
             <Navbar.Text className="fs-6 text-light me-4 pe-1">{title}</Navbar.Text>
-            <Nav.Link href="/dashboard" className="me-auto ps-4">
+            <Nav.Link onClick={() => history.push('/dashboard')} className="me-auto ps-4">
               <img src={backIcon} height="26px" alt="back-icon" />
             </Nav.Link>
           </Nav>
