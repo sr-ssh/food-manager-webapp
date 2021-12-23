@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Header } from "../base/header2";
+import {
+  Row,
+  Alert,
+} from "react-bootstrap";
 
 import { useDispatch, useSelector } from "react-redux";
 import { homeActions } from "../../../actions";
@@ -9,6 +13,7 @@ export const Pricing = () => {
   const dispatch = useDispatch();
   const getConfigPrice = useSelector(state => state?.getConfigPrice?.data?.data);
   const [input, setInput] = useState()
+  const alert = useSelector((state) => state.alert);
 
   useEffect(() => dispatch(homeActions.getConfigPrice()), [dispatch])
 
@@ -29,6 +34,14 @@ export const Pricing = () => {
   return (
     <div className="pricing__edit">
       <Header title="قیمت دهی" backLink="/dashboard" />
+      {alert.message && (
+          <>
+            <div className="modal-backdrop show"></div>
+            <Row className="justify-content-center text-center ">
+              <Alert variant={alert.type}>{alert.message}</Alert>
+            </Row>
+          </>
+        )}
       <div className="pricing__edit-container-input">
         <p className="pricing__edit-title">ورودی (تومان)</p>
         <input type="text" name="enter" value={input?.enter} onChange={(e) => handleChange(e)} className="input input__pricing__edit" />
